@@ -6,5 +6,4 @@ import { Component } from '@angular/core';
     templateUrl: 'app.template.html'
 })
 export class AppComponent {
-    
 }

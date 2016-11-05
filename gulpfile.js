@@ -7,11 +7,23 @@ var vendor = 'public/js/vendor';
 /* JS & TS */
 var typescript = require('gulp-typescript');
 var sourcemaps = require('gulp-sourcemaps');
+var eslint = require('gulp-eslint');
+var tslint = require('gulp-tslint');
 
 var tsProject = typescript.createProject('tsconfig.json');
 
 
-gulp.task('build-ts', function () {
+
+gulp.task('tslint', () =>
+    gulp.src('assets/app/**/*.ts')
+        .pipe(tslint({
+            formatter: 'verbose'
+        }))
+        .pipe(tslint.report())
+);
+
+// Transpile Typescript
+gulp.task('build-ts', () => {
     return gulp.src(appDev + '**/*.ts')
         .pipe(sourcemaps.init())
         .pipe(typescript(tsProject))
@@ -19,40 +31,49 @@ gulp.task('build-ts', function () {
         .pipe(gulp.dest(appProd));
 });
 
-gulp.task('build-copy', function () {
+// JS linting
+gulp.task('eslint', () => {
+    return gulp.src(['**/*.js', '!node_modules/**', '!public/js/**'])
+        .pipe(eslint())
+        .pipe(eslint.format())
+        .pipe(eslint.failAfterError());
+});
 
+
+gulp.task('build-copy', () => {
     return gulp.src([appDev + '**/*.html', appDev + '**/*.htm', appDev + '**/*.css'])
         .pipe(gulp.dest(appProd));
 });
 
-gulp.task('vendor', function() {
+
+gulp.task('vendor', () => {
 
     // Angular 2 Framework
     gulp.src('node_modules/@angular/**')
         .pipe(gulp.dest(vendor + '/@angular'));
 
-    //ES6 Shim
+    // ES6 Shim
     gulp.src('node_modules/es6-shim/**')
         .pipe(gulp.dest(vendor + '/es6-shim/'));
 
-    //reflect metadata
+    // reflect metadata
     gulp.src('node_modules/reflect-metadata/**')
         .pipe(gulp.dest(vendor + '/reflect-metadata/'));
 
-    //rxjs
+    // rxjs
     gulp.src('node_modules/rxjs/**')
         .pipe(gulp.dest(vendor + '/rxjs/'));
 
-    //systemjs
+    // systemjs
     gulp.src('node_modules/systemjs/**')
         .pipe(gulp.dest(vendor + '/systemjs/'));
 
-    //zonejs
+    // zonejs
     return gulp.src('node_modules/zone.js/**')
         .pipe(gulp.dest(vendor + '/zone.js/'));
 });
 
-gulp.task('watch', function () {
+gulp.task('watch', () => {
     gulp.watch(appDev + '**/*.ts', ['build-ts']);
     gulp.watch(appDev + '**/*.{html,htm,css}', ['build-copy']);
 });
