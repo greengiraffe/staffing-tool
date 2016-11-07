@@ -1,14 +1,18 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
+var Skill = require('skill');
 var passportLocalMongoose = require('passport-local-mongoose');
 
 var schema = new Schema({
-    username: {type: String, required: true},
     firstname: {type: String},
     lastname: {type: String},
-    email: {type: String},
+    email: {type: String, required: true},
     password: {type: String, required: true},
-    role: {type: String},
+    skype: {type: String},
+    phone: {type: String},
+    location: {type: String, default: 'Berlin HQ'},
+    role: {type: String, required: true}, // admin, user, user_creator
+    skill: [{name: Skill, rating: Number}],
     picture: {type: String} // url to image
 });
 
