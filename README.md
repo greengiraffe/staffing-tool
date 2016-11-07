@@ -3,7 +3,7 @@ Seed project for MEAN Stack.
 
 # Dependencies
 - MongoDB
-- Node
+- Node v6.9.1
 
 # Usage
 
