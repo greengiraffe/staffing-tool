@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
-var Skill = require('skill');
+var Skill = require('./skill');
 var passportLocalMongoose = require('passport-local-mongoose');
 
 var schema = new Schema({

@@ -5,4 +5,5 @@ var schema = new Schema({
     name: {type: String}
 });
 
-module.exports = mongoose.model('Skill', schema);
+// module.exports = mongoose.model('Skill', schema);
+module.exports = schema;
