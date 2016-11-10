@@ -1,16 +1,17 @@
-var gulp = require('gulp');
+let gulp = require('gulp');
 
-var appDev = 'assets/app/';
-var appProd = 'public/js/app/';
-var vendor = 'public/js/vendor';
+let appDev = 'assets/app/';
+let appProd = 'public/js/app/';
+let vendor = 'public/js/vendor';
+let backend = 'server/';
 
 /* JS & TS */
-var typescript = require('gulp-typescript');
-var sourcemaps = require('gulp-sourcemaps');
-var eslint = require('gulp-eslint');
-var tslint = require('gulp-tslint');
+let typescript = require('gulp-typescript');
+let sourcemaps = require('gulp-sourcemaps');
+let eslint = require('gulp-eslint');
+let tslint = require('gulp-tslint');
 
-var tsProject = typescript.createProject('tsconfig.json');
+let tsProject = typescript.createProject('tsconfig.json');
 
 
 
@@ -74,8 +75,9 @@ gulp.task('vendor', () => {
 });
 
 gulp.task('watch', () => {
-    gulp.watch(appDev + '**/*.ts', ['build-ts']);
+    gulp.watch(appDev + '**/*.ts', ['build-ts', 'tslint']);
     gulp.watch(appDev + '**/*.{html,htm,css}', ['build-copy']);
+    gulp.watch(backend + '**/*.js', ['eslint']);
 });
 
 gulp.task('default', ['watch', 'build-ts', 'build-copy']);

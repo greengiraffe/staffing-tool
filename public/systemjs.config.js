@@ -1,17 +1,17 @@
 // map tells the System loader where to look for things
-var map = {
+let map = {
     'app': 'js/app', // 'dist',
     'rxjs': 'js/vendor/rxjs',
     '@angular': 'js/vendor/@angular'
 };
 
 // packages tells the System loader how to load when no filename and/or no extension
-var packages = {
+let packages = {
     'app': {main: 'boot.js', defaultExtension: 'js'},
     'rxjs': {defaultExtension: 'js'}
 };
 
-var packageNames = [
+let packageNames = [
     '@angular/common',
     '@angular/compiler',
     '@angular/core',
@@ -28,7 +28,7 @@ packageNames.forEach(function (pkgName) {
     packages[pkgName] = {main: 'index.js', defaultExtension: 'js'};
 });
 
-var config = {
+let config = {
     map: map,
     packages: packages
 };
