@@ -13,6 +13,12 @@ Seed project for MEAN Stack.
 
 `npm start` (starts NodeJS server, separate terminal/ command line window)
 
+## Autorestart server on file change
+
+`npm install -g nodemon`
+
+`nodemon start`
+
 
 ###Project Structure:
 ```

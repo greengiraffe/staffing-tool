@@ -18,7 +18,8 @@ let schema = new Schema({
     location: {type: String, default: 'Berlin HQ'},
     role: {type: String, required: true}, // admin, user, user_creator
     userSkill: [userSkill],
-    picture: {type: String} // url to image
+    picture: {type: String}, // url to image
+    register: {type: Boolean, default: true}
 });
 
 schema.plugin(uniqueValidator);
