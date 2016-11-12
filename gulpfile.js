@@ -27,7 +27,7 @@ gulp.task('tslint', () =>
 gulp.task('build-ts', () => {
     return gulp.src(appDev + '**/*.ts')
         .pipe(sourcemaps.init())
-        .pipe(typescript(tsProject))
+        .pipe(tsProject())
         .pipe(sourcemaps.write())
         .pipe(gulp.dest(appProd));
 });

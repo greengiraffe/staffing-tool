@@ -1,6 +1,12 @@
 let mongoose = require('mongoose');
 let Schema = mongoose.Schema;
-let Skill = require('./skill');
+let uniqueValidator = require('mongoose-unique-validator');
+
+let userSkill = new Schema({
+    _id: false,
+    skill: {type: Schema.Types.ObjectId, ref: 'Skill', required: true},
+    rating: {type: Number}
+});
 
 let schema = new Schema({
     firstname: {type: String},
@@ -11,8 +17,10 @@ let schema = new Schema({
     phone: {type: String},
     location: {type: String, default: 'Berlin HQ'},
     role: {type: String, required: true}, // admin, user, user_creator
-    skill: [{name: Skill, rating: Number}],
+    userSkill: [userSkill],
     picture: {type: String} // url to image
 });
+
+schema.plugin(uniqueValidator);
 
 module.exports = mongoose.model('User', schema);

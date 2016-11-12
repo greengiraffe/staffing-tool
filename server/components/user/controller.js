@@ -5,6 +5,3 @@ let User = require('./user.js');
 let router = express.Router();
 
 module.exports = router;
-
-
-

@@ -30,6 +30,7 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(cookieParser());
 app.use(expressSession(config.sessions));
+app.use(appRoutes);
 
 // passport middleware
 app.use(passport.initialize());
@@ -49,10 +50,6 @@ app.use(passport.session());
 mongoose.connect(config.database.uri);
 
 // ================================================
-
-
-// ================================================
-app.use('/', appRoutes);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
