@@ -25,13 +25,15 @@ HTW Projekt WiSe 16/17 – IXDS Online Staffing Tool
 
 ## Dependencies
 - MongoDB
-- Node v6.9.1
+- Node v6.9.1 (use nvm to mangage node versions)
 
 ## Usage
 
 `npm install`
 
-`npm run gulp` (starts gulp for compilation, separate terminal/ command line window)
+`npm run build`      (run build and file watcher)
+
+`npm run build:prod` (run build process for production)
 
 `npm start` (starts NodeJS server, separate terminal/ command line window)
 
