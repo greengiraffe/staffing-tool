@@ -3,19 +3,17 @@ HTW Projekt WiSe 16/17 – IXDS Online Staffing Tool
 
 ## Version control
 ### Commit messages
-Commit messages are formatted according to [AngularJS commit message guidelines](https://docs.google.com/document/d/1QrDFcIiPjSLDn3EL15IJygNPiHORgU1_OOAqWjiDU5Y/edit).
+Commit messages are inspired by the [AngularJS commit message guidelines](https://docs.google.com/document/d/1QrDFcIiPjSLDn3EL15IJygNPiHORgU1_OOAqWjiDU5Y/edit).
 This enables automatic generation of the changelog from commit messages.
 #### Commit message format
-Each commit message consists of a **_header_**, a **_body_** and a **_footer_**. The header has a special format that includes a **type**, a **scope** and a **subject**:
+Each commit message consists of a **featureId**, a **type**, a **scope** and a **subject**:
 ```
-<type>(<scope>): <subject>
-<BLANK LINE>
-<body>
-<BLANK LINE>
-<footer>
+[<#featureId]<type>(<scope>): <subject>
+
 ```
-The header is mandatory and the scope of the header is optional.
-##### Type (required)
+##### Feature ID
+If the Feature ID is unknown or not defined, use [#00].
+##### Type
 Must be one of the following:
 
 *	**feat:**A new feature
@@ -31,7 +29,7 @@ Must be one of the following:
 The scope could be anything specifying place of the commit change. For example $location, $browser, $compile, $rootScope, ngHref, ngClick, ngView, etc...
 You can use * if there isn't a more fitting scope.
 
-##### Subject (required)
+##### Subject
 The subject contains short description (<50 characters) of the change:
 *	use the imperative, present tense: **_"change"_** not *_"changed"_* nor *_"changes"_*
 *	do not capitalize first letter
@@ -45,44 +43,17 @@ The subject contains short description (<50 characters) of the change:
 *	If applied, this commit will **release version 1.0.0**
 *	If applied, this commit will **merge pull request #123 from user/branch**
 
-##### Body
-Just as in the subject, use the **imperative**, **present** tense: "change" not "changed" nor "changes". The body should include the motivation for the change and contrast this with previous behavior. Focus on **what** and **why** vs how.
-#### Footer
-The footer is the place to reference issues that this commit closes.
+###Examples
 ```
-fix(graphite): stop graphite breaking when width < 0.1
+[#01]fix(graphite): stop graphite breaking when width < 0.1
 
-Closes #28
+[#00]feat(readme): add new conventions
 ```
 ### Branching
-*	master is the only eternal branch
+* master is the only eternal branch
 * develop is branched of master and is also protected
-* create a branch for each story
-* story branches are branched (forked) of develop and fulfill a user story
-*	naming of story branches:
-    ```
-    <IssueID>-<user type>-<keyword>-<keyword(optional)>- story
-
-    ```
-    ```
-    28-user-profile-picture-story
-
-    ```
-* story branches always have 2 subbranches:
-
-
-```
-<IssueID>-<user type>-<keyword>-<keyword(optional)>-frontend
-<IssueID>-<user type>-<keyword>-<keyword(optional)>-backend
-
-```
-```
-28-user-profile-picture-frontend
-28-user-profile-picture-backend
-
-```
-* the subbranches are eventually merged back to the issue branch
-* the issue branches are eventually merged back to develop
+* feature branches are branched of develop and should fullfill a feature
+* the feature branches are eventually merged back to develop
 * the develop branch is eventually merged back to master
 
 ### Merging
@@ -91,17 +62,18 @@ Feature branches are explicitly merged back using pull requests for code review.
 
 **How to rebase your feature branch with develop:**
 ```
-git checkout develop
-git pull
-git checkout feature
-git rebase develop
-git checkout develop
-git merge
-git push
+git checkout develop        //go to develop
+git pull                    //get the latest changes on develop
+git checkout feature        //go back to feature branch
+git rebase develop          //rebase feature with develop
+git checkout develop        //go back to develop
+git merge feature           //conflict-free merge of develop with feature
+git push                    //push changes to servers
 ```
-**If there are rebase conflicts, resolve them then continue rebasing with:**
+**If there are rebase conflicts, resolve them. You have to add the resolved files - see it with __git status__. Finally continue rebasing with:**
 ```
 git rebase --continue
+
 ```
 **The Golden Rule of Rebasing: Never rebase on a public branch such as develop or master!**
 
