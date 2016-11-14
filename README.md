@@ -76,7 +76,7 @@ This enables automatic generation of the changelog from commit messages.
 Each commit message consists of a **featureId**, a **type**, a **scope** and a **subject**:
 
 ```
-[<#featureId]<type>(<scope>): <subject>
+[<#featureId] <type> (<scope>) -> <subject>
 ```
 
 #### Feature ID
@@ -87,14 +87,14 @@ If the Feature ID is unknown or not defined, use [#00].
 
 Must be one of the following:
 
-*	**feat:**A new feature
-*	**fix:**A bug fix
-*	**refactor:**A code change that neither fixes a bug nor adds a feature
-*	**perf:** A code change that improves performance
-* **style:** Changes that do not affect the meaning of the code (white-space, formatting, missing semi-colons, etc)
-*	**docs:** Documentation only changes
-*	**test:** Adding missing tests
-*	**chore:** Changes to the build process or auxiliary tools and libraries such as documentation generation
+*   **feat:** A new feature
+*   **fix:** A bug fix
+*   **refactor:** A code change that neither fixes a bug nor adds a feature
+*   **perf:** A code change that improves performance
+*   **style:** Changes that do not affect the meaning of the code (white-space, formatting, missing semi-colons, etc)
+*   **docs:** Documentation only changes
+*   **test:** Adding missing tests
+*   **chore:** Changes to the build process or auxiliary tools and libraries such as documentation generation
 
 #### Scope
 
