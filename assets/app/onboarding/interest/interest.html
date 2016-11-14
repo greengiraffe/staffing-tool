@@ -1,0 +1,10 @@
+<h1>What do you want to learn?</h1>
+<h3>Tell us in what you're interested in.</h3>
+<div>
+  <input [(ngModel)]="input" placeholder="eg: JavaScript" (keyup)="onInput()">
+  <div *ngIf="suggestions.length > 0">
+    <ul>
+      <li *ngFor="let item of suggestions"><a (click)="select(item)">{{item}}</a></li>
+    </ul>
+  </div>
+</div>
