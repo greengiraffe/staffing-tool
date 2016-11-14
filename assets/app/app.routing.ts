@@ -3,12 +3,12 @@ import { Routes, RouterModule } from "@angular/router";
 import { SkillsComponent } from "./skill/skills.component";
 import { AuthenticationComponent } from "./auth/auth.component";
 import { AUTH_ROUTES } from "./auth/auth.routes";
-import {ProfileComponent} from "./onboarding/profile/profile.component";
-import {InfoComponent} from "./onboarding/info/info.component";
-import {InterestComponent} from "./onboarding/interest/interest.component";
-import {FinishComponent} from "./onboarding/finish/finish.component";
-import {PasswordComponent} from "./onboarding/password/password.component";
-import {SkillComponent} from "./skill/skill.component";
+import { ProfileComponent} from "./onboarding/profile/profile.component";
+import { InfoComponent} from "./onboarding/info/info.component";
+import { InterestComponent} from "./onboarding/interest/interest.component";
+import { FinishComponent} from "./onboarding/finish/finish.component";
+import { PasswordComponent} from "./onboarding/password/password.component";
+import { SkillComponent} from "./skill/skill.component";
 
 const APP_ROUTES: Routes = [
     { path: '', redirectTo: '/skills', pathMatch: 'full'},
