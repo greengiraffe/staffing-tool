@@ -20,8 +20,7 @@ const APP_ROUTES: Routes = [
     { path: 'onboarding/interests', component: InterestComponent},
     { path: 'onboarding/info', component: InfoComponent},
     { path: 'onboarding/profile', component: ProfileComponent},
-    { path: 'onboarding/finish', component: FinishComponent
-    }
+    { path: 'onboarding/finish', component: FinishComponent}
 ];
 
 export const routing = RouterModule.forRoot(APP_ROUTES);
