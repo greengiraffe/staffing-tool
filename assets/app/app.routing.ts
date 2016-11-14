@@ -11,7 +11,7 @@ import { PasswordComponent} from "./onboarding/password/password.component";
 import { SkillComponent} from "./skill/skill.component";
 
 const APP_ROUTES: Routes = [
-    { path: '', redirectTo: '/skills', pathMatch: 'full'},
+    { path: '', redirectTo: 'onboarding/interests', pathMatch: 'full'},
     // { path: '', redirectTo: '/skill-manage', pathMatch: 'full' },
     { path: 'skill-manage', component: SkillsComponent },
     { path: 'auth', component: AuthenticationComponent, children: AUTH_ROUTES },
