@@ -3,4 +3,5 @@
 /typings
 /public/js/app/*
 /public/js/vendor/*
+/.vscode
 *.DS_Store
