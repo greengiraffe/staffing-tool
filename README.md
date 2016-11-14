@@ -30,12 +30,15 @@ HTW Projekt WiSe 16/17 – IXDS Online Staffing Tool
 ## Usage
 
 `npm install`
+
 `npm run gulp` (starts gulp for compilation, separate terminal/ command line window)
+
 `npm start` (starts NodeJS server, separate terminal/ command line window)
 
 ### Autorestart server on file change
 
 `npm install -g nodemon`
+
 `nodemon start`
 
 ### Project Structure:
@@ -134,6 +137,7 @@ The subject contains short description (<50 characters) of the change:
 Feature branches are explicitly merged back using pull requests for code review. A local history clean-up rebase before sharing a feature branch for review is absolutely encouraged.
 
 **How to rebase your feature branch with develop:**
+
 ```
 git checkout develop        //go to develop
 git pull                    //get the latest changes on develop
@@ -143,15 +147,16 @@ git checkout develop        //go back to develop
 git merge feature           //conflict-free merge of develop with feature
 git push                    //push changes to servers
 ```
-**If there are rebase conflicts, resolve them. You have to add the resolved files - see it with __git status__. Finally continue rebasing with:**
+
+If there are rebase conflicts, resolve them. You have to add the resolved files - see it with __git status__. Finally continue rebasing with:
+
 ```
 git rebase --continue
-
 ```
-**The Golden Rule of Rebasing: Never rebase on a public branch such as develop or master!**
 
+The Golden Rule of Rebasing: **Never rebase on a public branch such as develop or master!**
 
-**In general: Never work directly on public branches such as develop and master, to avoid fuckups!**
+In general: **Never work directly on public branches such as develop and master, to avoid fuckups!**
 
 ### Tagging
 
