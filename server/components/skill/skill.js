@@ -3,10 +3,15 @@ let Skill       = require('../../models/skill');
 module.exports = {
 
     createSkill: function(name) {
-        let skill = new Skill({name: name});
-        skill.save(function(err, result) {
-            if (err) {return -1}
-            return result._id;
+       let skill = new Skill({name: name});
+        return new Promise(function(reject, resolve) {
+          skill.save(function(result, err) {
+            if(err) {
+              reject(err);
+            } else {
+              resolve(result);
+            }
+          });
         });
     },
 
