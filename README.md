@@ -8,6 +8,7 @@ HTW Projekt WiSe 16/17 – IXDS Online Staffing Tool
 - [Usage](#usage)
   - [Autorestart server on file change](#autorestart-server-on-file-change)
   - [Project Structure:](#project-structure)
+  - [Troubleshooting](#troubleshooting)
 - [Version control](#version-control)
   - [Commit messages](#commit-messages)
   - [Commit message format](#commit-message-format)
@@ -67,6 +68,16 @@ HTW Projekt WiSe 16/17 – IXDS Online Staffing Tool
 │   └── views       (index.hbs handlebar)
 └── typings         (typescript)
 ```
+
+### Troubleshooting
+
+1. After `npm start` an error occurs _MongoError: failed to connect to server_
+
+> MongoDB Daemon is not running. Start with `mongod`
+
+2. `mongod` doesn't work (_Data directory /data/db not found_)
+
+> Create the missing `/data/db` directory: `sudo mkdir -p /data/db`. Set the necessary rights for the folder, for further instructions (OS X) see [Stackoverflow](https://stackoverflow.com/questions/7948789/mongodb-mongod-complains-that-there-is-no-data-db-folder)
 
 ## Version control
 
