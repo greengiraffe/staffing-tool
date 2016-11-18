@@ -1,37 +1,34 @@
 import { Component, ElementRef } from '@angular/core';
+import { SkillService } from '../../skill/skill.service'
 
 @Component({
   selector: 'my-skill',
   host: {
     '(document:click)': 'handleClick($event)',
   },
-  templateUrl: 'skill.html'
+  templateUrl: 'skill.html',
+  providers: [SkillService]
 })
 
-export class SkillComponent {
+export class OnboardingSkillComponent {
   input = "";
-  skills: string[] = [
-    'AngularJS',
-    'CSS',
-    'HTML5',
-    'JavaScript',
-    'TypeScript',
-    'SASS',
-    'Java',
-    'Ruby',
-    'Python',
-    'Git',
-    'React'
-  ];
+  skills;
   suggestions = [];
   elementRef;
+  errorMessage = "";
 
-  constructor(myElement: ElementRef) {
+  constructor(myElement: ElementRef, private skillService: SkillService) {
+    this.skillService.getSkills()
+      .subscribe(
+        skills => this.skills,
+        error => this.errorMessage = <any>error
+      );
     this.elementRef = myElement;
+    console.log(this.skills);
   }
 
   onInput() {
-    if(this.input !== "") {
+    if(this.input !== "" && this.skills) {
       this.suggestions = this.skills.filter(this.checkIsSkill.bind(this, this.input));
     } else {
       this.suggestions = [];
@@ -39,7 +36,7 @@ export class SkillComponent {
   }
 
   checkIsSkill(input,element) {
-    return element.toLowerCase().includes(input.toLowerCase());
+    return element.name.toLowerCase().includes(input.toLowerCase());
   }
 
   select(item) {

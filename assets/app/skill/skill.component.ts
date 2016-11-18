@@ -5,7 +5,8 @@ import { SkillService } from "./skill.service";
 
 @Component({
     selector: 'app-skill',
-    templateUrl: './skill.template.html'
+    templateUrl: 'skill.template.html',
+    providers: [SkillService]
 })
 export class SkillComponent {
     @Input() skill: Skill;

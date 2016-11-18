@@ -15,11 +15,12 @@ import { LogoutComponent } from "./auth/logout.component";
 import { SignupComponent } from "./auth/signup.component";
 import { SigninComponent } from "./auth/signin.component";
 import { AuthService } from "./auth/auth.service";
-import {FinishComponent} from "./onboarding/finish/finish.component";
-import {ProfileComponent} from "./onboarding/profile/profile.component";
-import {InfoComponent} from "./onboarding/info/info.component";
-import {InterestComponent} from "./onboarding/interest/interest.component";
-import {PasswordComponent} from "./onboarding/password/password.component";
+import { FinishComponent } from "./onboarding/finish/finish.component";
+import { ProfileComponent } from "./onboarding/profile/profile.component";
+import { InfoComponent } from "./onboarding/info/info.component";
+import { InterestComponent } from "./onboarding/interest/interest.component";
+import { PasswordComponent } from "./onboarding/password/password.component";
+import { OnboardingSkillComponent } from "./onboarding/skill/onboarding-skill.component";
 
 @NgModule({
     declarations: [
@@ -39,7 +40,8 @@ import {PasswordComponent} from "./onboarding/password/password.component";
         InterestComponent,
         InfoComponent,
         ProfileComponent,
-        FinishComponent
+        FinishComponent,
+        OnboardingSkillComponent
     ],
     imports: [
         BrowserModule,

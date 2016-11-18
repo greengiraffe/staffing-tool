@@ -9,6 +9,7 @@ import { InterestComponent} from "./onboarding/interest/interest.component";
 import { FinishComponent} from "./onboarding/finish/finish.component";
 import { PasswordComponent} from "./onboarding/password/password.component";
 import { SkillComponent} from "./skill/skill.component";
+import { OnboardingSkillComponent } from "./onboarding/skill/onboarding-skill.component";
 
 const APP_ROUTES: Routes = [
     { path: '', redirectTo: 'onboarding/interests', pathMatch: 'full'},
@@ -16,11 +17,11 @@ const APP_ROUTES: Routes = [
     { path: 'skill-manage', component: SkillsComponent },
     { path: 'auth', component: AuthenticationComponent, children: AUTH_ROUTES },
     { path: 'onboarding/password', component: PasswordComponent},
-    { path: 'onboarding/skills', component: SkillComponent},
+    { path: 'onboarding/skills', component: OnboardingSkillComponent},
     { path: 'onboarding/interests', component: InterestComponent},
     { path: 'onboarding/info', component: InfoComponent},
     { path: 'onboarding/profile', component: ProfileComponent},
-    { path: 'onboarding/finish', component: FinishComponent}
+    { path: 'onboarding/finish', component: FinishComponent},
 ];
 
 export const routing = RouterModule.forRoot(APP_ROUTES);
