@@ -20,69 +20,59 @@ module.exports = {
             location: location,
             role: role
         });
-        return user.save();
+        return new Promise(function(reject, resolve) {
+            user.save(function(result, err) {
+                if(err) { reject(err) }
+                else { resolve(result) }
+            });
 
-        // return user.save(function(err, result) {
-        //     if (err) {return -1}
-        //     return result._id;
-        // }).exec();
+        });
     },
 
     listUsers: function() {
-        // User.find({}, function(err, result) {
-        //     if (err) {return -1}
-        //     return result;
-        // })
         return User.find().exec();
     },
 
     getUserByID: function(id) {
-        User.findById(id, function(err, result){
-            if (err) {return -1}
-            return result;
-        })
+        User.findById(id).exec();
     },
 
     getUserByMail: function(mail) {
-        User.findOne({email: mail}, function(err, result) {
-            if (err) {return -1}
-            return result;
-        })
-    },
-
-    activateUser: function(id) {
-        User.findById(id, function(err, result) {
-            if (err) {return -1}
-            result.register = false;
-            result.save(function(err, result) {
-                if (err) {return -1}
-                return true;
-            })
-        })
-    },
-
-    //Todo: Review...push on sub document
-    addSkill: function(id, skillId, rating) {
-        User.findByIdAndUpdate(
-            id,
-            {$push: {userSkill: {skill: skillId, rating: rating}}},
-            function(err, result) {
-                if (err) {return -1}
-                return true;
-            }
-        );
-    },
-
-    // Todo: Review...pull on sub document
-    removeSkill: function(id, skillId) {
-        User.findByIdAndUpdate(
-            id,
-            {$pull: {userSkill: {skill: skillId}}},
-            function(err, result) {
-                if (err) {return -1}
-                return true;
-            }
-        );
+        User.findOne().exec();
     }
+
+    // activateUser: function(id) {
+    //     User.findByIdAndUpdate id,
+    //         result.register = false;
+    //         result.save(function(err, result) {
+    //             if (err) {return -1}
+    //             return true;
+    //         })
+    //     })
+    // }
+
+    // //Todo: Review...push on sub document
+    // addSkill: function(id, skillId, rating) {
+    //     User.findByIdAndUpdate(
+    //         id,
+    //         {$push: {userSkill: {skill: skillId, rating: rating}}},
+    //         function(err, result) {
+    //             if (err) {return -1}
+    //             return true;
+    //         }
+    //     );
+    // },
+    //
+    // // Todo: Review...pull on sub document
+    // removeSkill: function(id, skillId) {
+    //     User.findByIdAndUpdate(
+    //         id,
+    //         {$pull: {userSkill: {skill: skillId}}},
+    //         function(err, result) {
+    //             if (err) {return -1}
+    //             return true;
+    //         }
+    //     );
+    // }
 
 };

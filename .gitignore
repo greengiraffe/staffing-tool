@@ -1,8 +1,9 @@
-/node_modules
 /.idea
+/node_modules
 /typings
 /.vscode
-*.DS_Store
+/assets/app/**/*.js
 /public/js/
+*.DS_Store
 npm-debug.log
 *.iml
