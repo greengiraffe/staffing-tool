@@ -5,10 +5,11 @@ import { SkillService } from "../_services/skill.service";
 import { Skill } from "../_models/skill.model";
 
 @Component({
-    selector: 'app-skill-input',
-    templateUrl: './skill-input.template.html'
+    selector: 'app-skill-create',
+    templateUrl: './skill.create.template.html',
+    providers: [SkillService]
 })
-export class SkillInputComponent {
+export class SkillCreateComponent {
     constructor(private skillService: SkillService) {}
 
     onSubmit(form: NgForm) {

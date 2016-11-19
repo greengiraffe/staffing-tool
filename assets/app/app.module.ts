@@ -5,8 +5,8 @@ import { HttpModule } from "@angular/http";
 
 import { AppComponent } from "./app.component";
 import { SkillComponent } from "./skill/skill.component";
-import { SkillListComponent } from "./skill/skill-list.component";
-import { SkillInputComponent } from "./skill/skill-input.component";
+import { SkillListComponent } from "./skill/skill.list.component";
+import { SkillCreateComponent } from "./skill/skill.create.component";
 import { SkillsComponent } from "./skill/skills.component";
 import { AuthenticationComponent } from "./auth/auth.component";
 import { HeaderComponent } from "./header.component";
@@ -21,14 +21,16 @@ import { InfoComponent } from "./onboarding/info/info.component";
 import { InterestComponent } from "./onboarding/interest/interest.component";
 import { PasswordComponent } from "./onboarding/password/password.component";
 import { OnboardingSkillComponent } from "./onboarding/skill/onboarding-skill.component";
-import {HomeComponent} from "./home/home.component";
+import { HomeComponent } from "./home/home.component";
+import { UserCreateComponent } from "./user/user.create.component";
+import { UserListComponent } from "./user/user.list.component";
 
 @NgModule({
     declarations: [
         AppComponent,
         SkillComponent,
         SkillListComponent,
-        SkillInputComponent,
+        SkillCreateComponent,
         SkillsComponent,
         AuthenticationComponent,
         HomeComponent,
@@ -43,7 +45,9 @@ import {HomeComponent} from "./home/home.component";
         InfoComponent,
         ProfileComponent,
         FinishComponent,
-        OnboardingSkillComponent
+        OnboardingSkillComponent,
+        UserListComponent,
+        UserCreateComponent
     ],
     imports: [
         BrowserModule,

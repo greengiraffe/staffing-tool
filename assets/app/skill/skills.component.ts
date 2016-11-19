@@ -4,7 +4,7 @@ import { Component } from "@angular/core";
     selector: 'app-skills',
     template: `
         <div class="row">
-            <app-skill-input></app-skill-input>
+            <app-skill-create></app-skill-create>
         </div>
         <hr>
         <div class="row">

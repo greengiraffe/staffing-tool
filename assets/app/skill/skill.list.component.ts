@@ -5,13 +5,8 @@ import { SkillService } from "../_services/skill.service";
 
 @Component({
     selector: 'app-skill-list',
-    template: `
-        <div class="col-md-8 col-md-offset-2">
-            <app-skill
-                   [skill]="skill"
-                    *ngFor="let skill of skills"></app-skill>
-        </div>
-    `
+    templateUrl: './skill.list.template.html',
+    providers: [SkillService]
 })
 export class SkillListComponent implements OnInit {
     skills: Skill[];

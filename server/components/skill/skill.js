@@ -24,8 +24,10 @@ module.exports = {
 
     listSkills: function() {
         Skill.find({}, function(err, result) {
-            if (err) {return -1}
-            return result;
+            return new Promise(function(reject, resolve) {
+                if(err) { reject(err) }
+                else { resolve(result) }
+            })
         })
     },
 
