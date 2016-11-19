@@ -13,14 +13,15 @@ import { HeaderComponent } from "./header.component";
 import { routing } from "./app.routing";
 import { LogoutComponent } from "./auth/logout.component";
 import { SignupComponent } from "./auth/signup.component";
-import { SigninComponent } from "./auth/signin.component";
-import { AuthService } from "./auth/auth.service";
+import { LoginComponent } from "./login/login.component";
+import { UserService } from "./_services/user.service";
 import { FinishComponent } from "./onboarding/finish/finish.component";
 import { ProfileComponent } from "./onboarding/profile/profile.component";
 import { InfoComponent } from "./onboarding/info/info.component";
 import { InterestComponent } from "./onboarding/interest/interest.component";
 import { PasswordComponent } from "./onboarding/password/password.component";
 import { OnboardingSkillComponent } from "./onboarding/skill/onboarding-skill.component";
+import {HomeComponent} from "./home/home.component";
 
 @NgModule({
     declarations: [
@@ -30,10 +31,11 @@ import { OnboardingSkillComponent } from "./onboarding/skill/onboarding-skill.co
         SkillInputComponent,
         SkillsComponent,
         AuthenticationComponent,
+        HomeComponent,
+        LoginComponent,
         HeaderComponent,
         LogoutComponent,
         SignupComponent,
-        SigninComponent,
         AppComponent,
         PasswordComponent,
         SkillComponent,
@@ -50,7 +52,7 @@ import { OnboardingSkillComponent } from "./onboarding/skill/onboarding-skill.co
         ReactiveFormsModule,
         HttpModule
     ],
-    providers: [AuthService],
+    providers: [UserService],
     bootstrap: [AppComponent]
 })
 export class AppModule {

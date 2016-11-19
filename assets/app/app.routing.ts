@@ -2,7 +2,7 @@ import { Routes, RouterModule } from "@angular/router";
 
 import { SkillsComponent } from "./skill/skills.component";
 import { AuthenticationComponent } from "./auth/auth.component";
-import { AUTH_ROUTES } from "./auth/auth.routes";
+// import { AUTH_ROUTES } from "./auth/auth.routes";
 import { ProfileComponent} from "./onboarding/profile/profile.component";
 import { InfoComponent} from "./onboarding/info/info.component";
 import { InterestComponent} from "./onboarding/interest/interest.component";
@@ -10,12 +10,18 @@ import { FinishComponent} from "./onboarding/finish/finish.component";
 import { PasswordComponent} from "./onboarding/password/password.component";
 import { SkillComponent} from "./skill/skill.component";
 import { OnboardingSkillComponent } from "./onboarding/skill/onboarding-skill.component";
+import {LoginComponent} from "./login/login.component";
+import {HomeComponent} from "./home/home.component";
 
 const APP_ROUTES: Routes = [
-    { path: '', redirectTo: 'onboarding/interests', pathMatch: 'full'},
-    // { path: '', redirectTo: '/skill-manage', pathMatch: 'full' },
+    { path: '', redirectTo: 'auth/login', pathMatch: 'full' },
+
+    { path: 'auth/login', component: LoginComponent },
+    { path: 'home', component: HomeComponent },
+
     { path: 'skill-manage', component: SkillsComponent },
-    { path: 'auth', component: AuthenticationComponent, children: AUTH_ROUTES },
+    { path: 'auth', component: AuthenticationComponent},
+
     { path: 'onboarding/password', component: PasswordComponent},
     { path: 'onboarding/skills', component: OnboardingSkillComponent},
     { path: 'onboarding/interests', component: InterestComponent},

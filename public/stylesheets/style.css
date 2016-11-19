@@ -1,6 +1,19 @@
+
+
 body {
-  padding: 50px;
+  background-color: #FAFAFA;
+  padding: 20px 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  /* Margin bottom by footer height */
+  margin-bottom: 60px;
+}
+
+#startup {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 200px;
+  font-size: 1.2em;
 }
 
 a {
@@ -21,3 +34,4 @@ a.danger {
 .spacing {
   margin-bottom: 20px;
 }
+

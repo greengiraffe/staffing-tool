@@ -1,5 +1,5 @@
 import { Component, ElementRef } from '@angular/core';
-import { SkillService } from '../../skill/skill.service'
+import { SkillService } from "../../_services/skill.service";
 
 @Component({
   selector: 'my-skill',
@@ -24,7 +24,7 @@ export class OnboardingSkillComponent {
         error => this.errorMessage = <any>error
       );
     this.elementRef = myElement;
-    console.log(this.skills);
+    // console.log(this.skills);
   }
 
   onInput() {

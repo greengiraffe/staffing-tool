@@ -1,8 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
 
-import { AuthService } from "./auth.service";
-import { User } from "./user.model";
+import { UserService } from "../_services/user.service";
+import { User } from "../_models/user.model";
 
 @Component({
     selector: 'app-signup',
@@ -11,7 +11,7 @@ import { User } from "./user.model";
 export class SignupComponent implements OnInit {
     myForm: FormGroup;
 
-    constructor(private authService: AuthService) {}
+    constructor(private authService: UserService) {}
 
     onSubmit() {
         const user = new User(
