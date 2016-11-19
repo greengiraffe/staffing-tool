@@ -11,7 +11,7 @@ import { UserService } from "../_services/user.service";
     styleUrls: ['./login.style.scss']
 })
 export class LoginComponent {
-    myForm: FormGroup;
+    loginForm: FormGroup;
 
     constructor(private UserService: UserService, private router: Router) {}
 
@@ -31,7 +31,7 @@ export class LoginComponent {
     }
 
     ngOnInit() {
-        this.myForm = new FormGroup({
+        this.loginForm = new FormGroup({
             email: new FormControl(null, [
                 Validators.required,
                 Validators.pattern("[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?")
