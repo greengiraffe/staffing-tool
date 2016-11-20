@@ -18,7 +18,7 @@ router.post('/skill', function(req, res, next) {
 	}	
 });
 
-router.get('/skill/all', function(req, res, next) {
+router.get('/skill/list', function(req, res, next) {
 	Skill.listSkills()
 		.then(function(result) {
 			res.status(200).json(result);
@@ -61,7 +61,7 @@ router.get('/skill/id/:id', function(req, res, next) {
 
 });
 
-router.put('/skill/update', function(req, res, next) {
+router.put('/skill', function(req, res, next) {
 	let id = req.body.id;
 	let new_name = req.body.new_name
 	console.log(req.body.name)
@@ -81,8 +81,8 @@ router.put('/skill/update', function(req, res, next) {
 	}	
 });
 
-router.delete('/skill/delete', function(req, res, next) {
-	let id = req.body.id;
+router.delete('/skill/:id', function(req, res, next) {
+	let id = req.params.id;
 	if(mongoose.Types.ObjectId.isValid(id)) {
 		Skill.removeSkill(id)
 		.then(function(result) {
