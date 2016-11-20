@@ -58,6 +58,7 @@ export class SkillService {
                 this.skillCollection = transformedSkills;
                 return transformedSkills;
             })
+            .catch((error: Response) => Observable.throw(error.json()));
     }
 
 }
