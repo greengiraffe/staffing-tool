@@ -51,8 +51,8 @@ export class SkillService {
                 let transformedSkills: Skill[] = [];
                 for (let skill of res) {
                     transformedSkills.push(new Skill(
-                        skill._id,
-                        skill.name)
+                        skill.name,
+                        skill._id)
                     );
                 }
                 this.skillCollection = transformedSkills;
