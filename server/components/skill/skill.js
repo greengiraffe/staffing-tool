@@ -1,11 +1,11 @@
-let Skill       = require('../../models/skill');
+let Skill = require('../../models/skill');
 
 module.exports = {
 
     createSkill: function(name) {
-       let skill = new Skill({name: name});
-        return new Promise(function(reject, resolve) {
-          skill.save(function(result, err) {
+        let skill = new Skill({name: name});
+        return new Promise(function(resolve, reject) {
+          skill.save(function(err, result) {
             if(err) {
               reject(err);
             } else {
@@ -16,32 +16,54 @@ module.exports = {
     },
 
     removeSkill: function(id) {
-        Skill.remove({_id: id}, function(err) {
-            if (err) {return -1}
-            return true;
-        })
+        return new Promise (function(resolve, reject) {
+            Skill.remove({_id : id}, function(err, result) {
+                if(err) {
+                    reject(err);
+                } else {
+                    if(result.result.n == 0) {
+                        reject(null);
+                    } else {
+                        resolve(result);
+                    }
+                }
+            });
+        });
     },
 
     listSkills: function() {
-        Skill.find({}, function(err, result) {
-            return new Promise(function(reject, resolve) {
-                if(err) { reject(err) }
-                else { resolve(result) }
-            })
-        })
+        return Skill.find().exec();
     },
 
     getSkillByID: function(id) {
-        Skill.findById(id, function(err, result){
-            if (err) {return -1}
-            return result;
-        })
+        return Skill.findById(id).exec();
     },
 
     getSkillByName: function(name) {
-        Skill.findOne({name: name}, function(err, result) {
-            if (err) {return -1}
-            return result;
+        return Skill.findOne({name: name}).exec();
+    },
+
+    updateSkill: function(id, new_name) {
+
+        return new Promise(function(resolve, reject) {
+            Skill.findById(id, function(err, skill) {
+                if(err) {
+                    reject(err);
+                } else if(!skill) {
+                    reject(skill);
+                } else {    
+                    skill.name = new_name;
+                    skill.__v++;
+                    skill.save(function(err, result) {
+                        if(err) {
+                            reject(err);
+                        } else {
+                            resolve(result);
+                        }
+                    });        
+                }
+                
+            });            
         })
     }
 };
