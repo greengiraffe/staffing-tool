@@ -6,7 +6,6 @@ import { SkillService } from "../_services/skill.service";
 @Component({
     selector: 'app-skill-list',
     templateUrl: './skill.list.template.html',
-    providers: [SkillService]
 })
 export class SkillListComponent implements OnInit {
     skills: Skill[];

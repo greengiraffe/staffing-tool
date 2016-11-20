@@ -20,7 +20,7 @@ export class SignupComponent implements OnInit {
             this.myForm.value.firstName,
             this.myForm.value.lastName
         );
-        this.authService.signup(user)
+        this.authService.login(user)
             .subscribe(
                 data => console.log(data),
                 error => console.error(error)

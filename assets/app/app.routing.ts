@@ -29,7 +29,7 @@ const APP_ROUTES: Routes = [
 
     { path: 'skill-manage/list', component: SkillListComponent },
     { path: 'skill-manage/create', component: SkillCreateComponent },
-    { path: 'auth', component: AuthenticationComponent},
+    { path: 'skill-manage', component: SkillsComponent},
 
     { path: 'onboarding/password', component: PasswordComponent},
     { path: 'onboarding/skills', component: OnboardingSkillComponent},

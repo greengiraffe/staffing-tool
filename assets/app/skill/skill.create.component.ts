@@ -7,7 +7,6 @@ import { Skill } from "../_models/skill.model";
 @Component({
     selector: 'app-skill-create',
     templateUrl: './skill.create.template.html',
-    providers: [SkillService]
 })
 export class SkillCreateComponent {
     constructor(private skillService: SkillService) {}

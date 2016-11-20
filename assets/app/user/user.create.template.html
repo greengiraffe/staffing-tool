@@ -1,1 +1,55 @@
 <h4>Will create user</h4>
+
+<div class="container col-md-6 col-md-offset-3">
+
+
+  <form class="form-horizontal" role="form" (ngSubmit)="onSubmit(f)" #f="ngForm">
+    <h3>Registration Form</h3>
+    <div class="form-group">
+      <label for="firstName" class="col-sm-3 control-label">First Name</label>
+      <div class="col-sm-9">
+        <input type="text" id="firstName" placeholder="First Name" class="form-control" name="firstName" [ngModel]="user?.firstName">
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="lastName" class="col-sm-3 control-label">Last Name</label>
+      <div class="col-sm-9">
+        <input type="text" id="lastName" placeholder="Last Name" class="form-control" name="lastName" [ngModel]="user?.lastName">
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="email" class="col-sm-3 control-label">Email</label>
+      <div class="col-sm-9">
+        <input type="email" id="email" placeholder="Email" class="form-control" name="email" [ngModel]="user?.email">
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="password" class="col-sm-3 control-label">Password</label>
+      <div class="col-sm-9">
+        <input type="password" id="password" placeholder="Password" class="form-control" name="password" [ngModel]="user?.password">
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="password" class="col-sm-3 control-label">Confirm Password</label>
+      <div class="col-sm-9">
+        <input type="password" id="password-confirm" placeholder="Confirm Password" class="form-control">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="location" class="col-sm-3 control-label">Location</label>
+      <div class="col-sm-9">
+        <select id="location" class="form-control">
+          <option>Berlin HQ</option>
+          <option>Munich</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="col-sm-9 col-sm-offset-3">
+        <button type="submit" class="btn btn-primary btn-block">Create User</button>
+      </div>
+    </div>
+  </form>
+</div>
