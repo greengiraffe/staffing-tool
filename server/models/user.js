@@ -9,8 +9,8 @@ let userSkill = new Schema({
 });
 
 let schema = new Schema({
-    firstname: {type: String},
-    lastname: {type: String},
+    firstName: {type: String},
+    lastName: {type: String},
     email: {type: String, required: true, index: { unique: true }},
     password: {type: String, required: true},
     skype: {type: String},

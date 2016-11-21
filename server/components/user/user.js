@@ -5,16 +5,16 @@ let authHelper = require('../../services/authHelper');
 module.exports = {
 
     createUser: function(
-                    firstname,
-                    lastname,
+                    firstName,
+                    lastName,
                     email,
                     password,
                     location,
                     role
     ) {
         let user = new User({
-            firstname: firstname,
-            lastname: lastname,
+            firstName: firstName,
+            lastName: lastName,
             email: email,
             password: authHelper.generateSecureHash(password),
             location: location,
@@ -26,6 +26,22 @@ module.exports = {
                 else { resolve(result) }
             });
 
+        });
+    },
+
+    deleteUser: function(id) {
+        return new Promise (function(resolve, reject) {
+            User.remove({_id : id}, function(err, result) {
+                if(err) {
+                    reject(err);
+                } else {
+                    if(result.result.n == 0) {
+                        reject(null);
+                    } else {
+                        resolve(result);
+                    }
+                }
+            });
         });
     },
 

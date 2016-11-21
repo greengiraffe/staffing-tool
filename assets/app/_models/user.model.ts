@@ -10,6 +10,7 @@ export class User {
                 public lastName?: string,
                 public skype?: string,
                 public phone?: string,
-                public userSkill?: Skill
+                public userSkill?: Skill,
+                public userId?: string
                 ) {}
 }

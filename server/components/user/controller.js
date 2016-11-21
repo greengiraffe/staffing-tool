@@ -39,7 +39,7 @@ router.post('/signin', function(req, res, next) {
 /**
  * Get a list of all users
  */
-router.get('/user/all', function(req, res, next) {
+router.get('/user/list', function(req, res, next) {
     User.listUsers()
         .then(function(result) {
             res.status(200).json(result);
@@ -80,6 +80,19 @@ router.post('/user', function(req, res, next) {
         .catch(function(err) {
             res.status(400).json(err);
         });
+});
+
+/**
+ * Delete a user by id
+ */
+router.delete('/user/:id', function(req, res, next) {
+    User.deleteUser(id)
+        .then(function(result) {
+            res.status(200).json(result)
+        })
+        .catch(function(err) {
+            res.status(400).json(err)
+        })
 });
 
 // to verify token...

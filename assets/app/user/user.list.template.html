@@ -1,1 +1,18 @@
 <h4>Will list user</h4>
+
+<div class="col-md-8 col-md-offset-2">
+  <div *ngFor="let user of users">
+    <article class="panel panel-default">
+      <div class="panel-body">
+        email: {{ user.email }}
+        firstname: {{ user.firstName }}
+        lastname: {{ user.lastName }}
+        role: {{ user.role }}
+        id: {{ user.userId }}
+      </div>
+      <footer class="panel-footer">
+        <a (click)="onDelete()">Delete</a>
+      </footer>
+    </article>
+  </div>
+</div>
