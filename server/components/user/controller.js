@@ -67,8 +67,8 @@ router.get('/user/:id', function(req, res, next) {
  */
 router.post('/user', function(req, res, next) {
     User.createUser(
-        req.body.firstname,
-        req.body.lastname,
+        req.body.firstName,
+        req.body.lastName,
         req.body.email,
         req.body.password,
         req.body.location,
