@@ -16,6 +16,8 @@ export class UserCreateComponent {
         const user = new User(
             form.value.email,
             form.value.password,
+            form.value.role,
+            form.value.location,
             form.value.firstName,
             form.value.lastName);
         this.userService.createUser(user)
