@@ -13,8 +13,7 @@ export class SkillService {
 
 
     addSkill(skill: Skill) {
-        this.skillCollection.push(skill);
-
+        // this.skillCollection.push(skill);
         const body = JSON.stringify(skill);
         const headers = new Headers({'Content-Type': 'application/json'});
 
@@ -22,14 +21,14 @@ export class SkillService {
         //     ? '?token=' + localStorage.getItem('token')
         //     : '';
         return this.http.post('http://localhost:3000/skill', body, { headers: headers })
-            .map((response: Response) => response.json())
-            //     const result = response.json();
-            //     const skill = new Skill(
-            //         result.obj._id,
-            //         result.obj.name);
-            //     this.skillCollection.push(skill);
-            //     return skill;
-            // })
+            .map((response: Response) => {
+                const result = response.json();
+                const skill = new Skill(
+                    result.name,
+                    result._id);
+                this.skillCollection.push(skill);
+                return result;
+            })
             .catch((error: Response) => Observable.throw(error.json()));
     }
 
