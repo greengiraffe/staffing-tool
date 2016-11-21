@@ -24,6 +24,7 @@ import { OnboardingSkillComponent } from "./onboarding/skill/onboarding-skill.co
 import { HomeComponent } from "./home/home.component";
 import { UserCreateComponent } from "./user/user.create.component";
 import { UserListComponent } from "./user/user.list.component";
+import { UserProfileComponent } from "./user-profile/user-profile.component";
 
 @NgModule({
     declarations: [
@@ -47,7 +48,8 @@ import { UserListComponent } from "./user/user.list.component";
         FinishComponent,
         OnboardingSkillComponent,
         UserListComponent,
-        UserCreateComponent
+        UserCreateComponent,
+        UserProfileComponent
     ],
     imports: [
         BrowserModule,

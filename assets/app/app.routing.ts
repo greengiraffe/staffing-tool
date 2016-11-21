@@ -10,13 +10,14 @@ import { FinishComponent} from "./onboarding/finish/finish.component";
 import { PasswordComponent} from "./onboarding/password/password.component";
 import { SkillComponent} from "./skill/skill.component";
 import { OnboardingSkillComponent } from "./onboarding/skill/onboarding-skill.component";
-import {LoginComponent} from "./login/login.component";
-import {HomeComponent} from "./home/home.component";
+import { LoginComponent } from "./login/login.component";
+import { HomeComponent } from "./home/home.component";
 
-import {UserCreateComponent} from "./user/user.create.component";
-import {UserListComponent} from "./user/user.list.component";
-import {SkillListComponent} from "./skill/skill.list.component";
-import {SkillCreateComponent} from "./skill/skill.create.component";
+import { UserCreateComponent } from "./user/user.create.component";
+import { UserListComponent } from "./user/user.list.component";
+import { SkillListComponent } from "./skill/skill.list.component";
+import { SkillCreateComponent } from "./skill/skill.create.component";
+import { UserProfileComponent } from "./user-profile/user-profile.component";
 
 const APP_ROUTES: Routes = [
     { path: '', redirectTo: 'auth/login', pathMatch: 'full' },
@@ -37,6 +38,8 @@ const APP_ROUTES: Routes = [
     { path: 'onboarding/info', component: InfoComponent},
     { path: 'onboarding/profile', component: ProfileComponent},
     { path: 'onboarding/finish', component: FinishComponent},
+
+    { path: 'profile', component: UserProfileComponent }
 ];
 
 export const routing = RouterModule.forRoot(APP_ROUTES);
