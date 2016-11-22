@@ -4,7 +4,7 @@
   <input [(ngModel)]="input" placeholder="eg: JavaScript" (keyup)="onInput()">
   <div *ngIf="suggestions.length > 0">
     <ul>
-      <li *ngFor="let item of suggestions"><a (click)="select(item)">{{item}}</a></li>
+      <li *ngFor="let item of suggestions"><a (click)="select(item)">{{item.name}}</a></li>
     </ul>
   </div>
 </div>

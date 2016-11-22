@@ -20,11 +20,10 @@ export class OnboardingSkillComponent {
   constructor(myElement: ElementRef, private skillService: SkillService) {
     this.skillService.getSkills()
       .subscribe(
-        skills => this.skills,
+        skills => this.skills = <any>skills,
         error => this.errorMessage = <any>error
       );
     this.elementRef = myElement;
-    // console.log(this.skills);
   }
 
   onInput() {
@@ -40,7 +39,7 @@ export class OnboardingSkillComponent {
   }
 
   select(item) {
-    this.input = item;
+    this.input = item.name;
     this.suggestions = [];
   }
 
