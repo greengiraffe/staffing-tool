@@ -18,6 +18,7 @@ import { UserListComponent } from "./user/user.list.component";
 import { SkillListComponent } from "./skill/skill.list.component";
 import { SkillCreateComponent } from "./skill/skill.create.component";
 import { UserProfileComponent } from "./user-profile/user-profile.component";
+import { UserProfileEditComponent } from "./user-profile/user-profile-edit.component";
 
 const APP_ROUTES: Routes = [
     { path: '', redirectTo: 'auth/login', pathMatch: 'full' },
@@ -39,7 +40,8 @@ const APP_ROUTES: Routes = [
     { path: 'onboarding/profile', component: ProfileComponent},
     { path: 'onboarding/finish', component: FinishComponent},
 
-    { path: 'profile', component: UserProfileComponent }
+    { path: 'profile', component: UserProfileComponent },
+    { path: 'profile/edit', component: UserProfileEditComponent }
 ];
 
 export const routing = RouterModule.forRoot(APP_ROUTES);
