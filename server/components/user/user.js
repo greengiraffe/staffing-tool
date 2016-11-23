@@ -50,11 +50,11 @@ module.exports = {
     },
 
     getUserByID: function(id) {
-        User.findById(id).exec();
+        return User.findById(id).exec();
     },
 
     getUserByMail: function(mail) {
-        User.findOne().exec();
+        return User.findOne().exec();
     }
 
     // activateUser: function(id) {

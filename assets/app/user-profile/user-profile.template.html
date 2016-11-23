@@ -1,8 +1,8 @@
 <img src="https://api.adorable.io/avatars/200/example" alt="Profile picture">
-<h1>John Doe</h1>
+<h1>{{user?.firstName}}, {{user?.lastName}}</h1>
 <ul>
-    <li><span>Email</span><span>john.doe@example.com</span></li>
-    <li><span>Location</span><span>Berlin HQ</span></li>
+    <li><span>Email</span><span>{{user?.email}}</span></li>
+    <li><span>Location</span><span>{{user?.location}}</span></li>
     <li><span>Phone</span><span>+49 123 456799</span></li>
 </ul>
 

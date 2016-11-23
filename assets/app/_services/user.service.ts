@@ -44,6 +44,15 @@ export class UserService {
             .catch((error: Response) => Observable.throw(error.json()));
     }
 
+    getUserById(userId): Observable<{}> {
+      return this.http.get('http://localhost:3000/user/' + userId)
+        .map((response: Response) => {
+          const res = response.json();
+          return res;
+        })
+        .catch((error: Response) => Observable.throw(error.json()));
+    }
+
     deleteUser(user: User) {
         const body = JSON.stringify(user);
         return this.http.delete('http://localhost:3000/user/' + user.userId)

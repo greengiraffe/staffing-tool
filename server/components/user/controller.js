@@ -53,7 +53,7 @@ router.get('/user/list', function(req, res, next) {
  * Get specific user by id
  */
 router.get('/user/:id', function(req, res, next) {
-    User.getUserByID(id)
+    User.getUserByID(req.params.id)
         .then(function (result) {
             res.status(200).json(result);
         })
