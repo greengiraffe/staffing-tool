@@ -2,26 +2,3 @@
   color: #000;
   text-decoration: none;
 }
-
-ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    display: flex;
-    justify-content: space-between;
-}
-
-li {
-    a {
-        padding: 20px 20px;
-        text-decoration: none;
-        font-size: 0.5em;
-    }
-}
-
-@media (max-width: 975px) {
-  ul{
-    display:block;
-  }
-}
