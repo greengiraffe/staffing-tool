@@ -1,10 +1,28 @@
-<img src="https://api.adorable.io/avatars/200/example" alt="Profile picture">
-<h1>{{user?.firstName}}, {{user?.lastName}}</h1>
-<ul>
-    <li><span>Email</span><span>{{user?.email}}</span></li>
-    <li><span>Location</span><span>{{user?.location}}</span></li>
-    <li><span>Phone</span><span>+49 123 456799</span></li>
-</ul>
+<div class="profile-container">
+  <div class="profile-picture">
+    <img src="https://api.adorable.io/avatars/200/example" alt="Profile picture">
+  </div>
+  <div class="profile-info">
+    <h1>{{user?.firstName}}, {{user?.lastName}}</h1>
+    <div class="profile-info-container">
+        <div class="profile-info-labels">
+          <div>Email</div>
+          <div>Location</div>
+          <div>Phone</div>
+        </div>
+        <div class="profile-info-data">
+          <div>{{user?.email}}</div>
+          <div>{{user?.location}}</div>
+          <div>+49 123 456799</div>
+        </div>
+    </div>
+  </div>
+  <div class="profile-edit">
+    <button routerLink="/profile/edit">Edit profile</button>
+  </div>
+</div>
+
+
 
 <h3>Skills Gold</h3>
 <ul>
@@ -32,5 +50,3 @@
     <li>Skill</li>
     <li>Skill</li>
 </ul>
-
-<button routerLink="/profile/edit">Edit profile</button>

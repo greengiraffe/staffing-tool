@@ -5,7 +5,8 @@ import { User } from '../_models/user.model';
 @Component ({
     selector: 'app-user-profile',
     templateUrl: 'user-profile.template.html',
-    providers: [UserService]
+    providers: [UserService],
+    styleUrls: ['user-profile.style.scss']
 })
 
 export class UserProfileComponent implements OnInit {

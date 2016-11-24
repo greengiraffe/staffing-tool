@@ -1,0 +1,46 @@
+.profile-container {
+  display: flex;
+  margin: 0 auto;
+
+  .profile-picture {
+    width: 25%;
+
+    img {
+      max-width: 90%;
+    }
+  }
+
+  .profile-info {
+    flex-grow: 1;
+
+    .profile-info-container {
+      display: flex;
+      margin-top: 5%;
+
+      .profile-info-labels {
+        width: 30%;
+        text-align: left;
+        font-weight: bold;
+      }
+
+      .profile-info-labels > div {
+        margin-bottom: 10px;
+      }
+
+      .profile-info-data > div {
+        margin-bottom: 10px;
+      }
+
+      .profile-info-data {
+        width: 70%;
+        text-align: right;
+      }
+    }
+
+  }
+
+  .profile-edit {
+    flex-grow:1;
+    text-align: right;
+  }
+}
