@@ -44,3 +44,29 @@
     text-align: right;
   }
 }
+
+.tasks-header {
+  margin-top: 5%;
+}
+
+.tasks-container {
+  margin-top: 5%;
+  display: flex;
+}
+
+.skills-container {
+  display: flex;
+  margin: 5% auto 0px auto;
+
+  .professional-skills {
+    width: 33%;
+  }
+
+  .basic-skills {
+    width: 33%;
+  }
+
+  .interests {
+    width: 33%;
+  }
+}
