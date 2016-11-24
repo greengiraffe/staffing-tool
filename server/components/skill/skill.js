@@ -5,30 +5,78 @@ module.exports = {
     createSkill: function(name) {
         let skill = new Skill({name: name});
         return new Promise(function(resolve, reject) {
-          skill.save(function(err, result) {
-            if(err) {
-              reject(err);
-            } else {
-              resolve(result);
-            }
-          });
+            skill.save(function(err, result) {
+                if(err) {
+                  reject({
+                    message : "Database error",
+                        statusCode: 500,
+                        obj: err
+                    });
+                } else {
+                    resolve(result);
+                }
+            });
         });
     },
 
     removeSkill: function(id) {
-        return new Promise (function(resolve, reject) {
+        return new Promise(function(resolve, reject) {
+            Skill.findById(id, function(err, skill) {
+                if(err) {
+                    reject({
+                        message : "Database error",
+                        statusCode: 500,
+                        obj: err
+                    });
+                } else if(!skill) {
+                    reject({
+                        message : "No skill document for " + id,
+                        statusCode: 404
+                    });
+                } else {    
+                    skill.remove(function(err, result) {
+                        if(err) {
+                            reject({
+                                message : "Database error",
+                                statusCode: 500,
+                                obj: err
+                            });
+                        } else {
+                            resolve({
+                                message : "Skill deleted successfully",
+                                statusCode: 200,
+                                obj: result
+                            });
+                        }
+                    });        
+                }
+                
+            });            
+        });
+        /*return new Promise (function(resolve, reject) {
             Skill.remove({_id : id}, function(err, result) {
                 if(err) {
-                    reject(err);
+                    reject({
+                        message : "Database error",
+                        statusCode: 500,
+                        obj: err
+                    });
                 } else {
                     if(result.result.n == 0) {
-                        reject(null);
+                        reject({
+                            message : "No skill document for " + id,
+                            statusCode: 404,
+                        });
                     } else {
-                        resolve(result);
+                        resolve({
+                            message : "Skill deleted successfully",
+                            statusCode: 200,
+                        });
                     }
                 }
             });
-        });
+        });*/
+
     },
 
     listSkills: function() {
@@ -36,7 +84,24 @@ module.exports = {
     },
 
     getSkillByID: function(id) {
-        return Skill.findById(id).exec();
+        return new Promise(function(resolve, reject) {
+            Skill.findById(id, function(err, skill) {
+                if(err) {
+                    reject({
+                        message : "Database error",
+                        statusCode: 500,
+                        obj: err
+                    });
+                } else if(!skill) {
+                    reject({
+                        message : "No skill document for " + id,
+                        statusCode: 404
+                    });
+                } else {
+                    resolve(skill);
+                }
+            })
+        });
     },
 
     getSkillByName: function(name) {
@@ -48,17 +113,32 @@ module.exports = {
         return new Promise(function(resolve, reject) {
             Skill.findById(id, function(err, skill) {
                 if(err) {
-                    reject(err);
+                    reject({
+                        message : "Database error",
+                        statusCode: 500,
+                        obj: err
+                    });
                 } else if(!skill) {
-                    reject(skill);
+                    reject({
+                        message : "No skill document for " + id,
+                        statusCode: 404
+                    });
                 } else {    
                     skill.name = new_name;
                     skill.__v++;
                     skill.save(function(err, result) {
                         if(err) {
-                            reject(err);
+                            reject({
+                                message : "Database error",
+                                statusCode: 500,
+                                obj: err
+                            });
                         } else {
-                            resolve(result);
+                            resolve({
+                                message : "Skill updated successfully",
+                                statusCode: 200,
+                                obj: result
+                            });
                         }
                     });        
                 }
