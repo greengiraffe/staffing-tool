@@ -1,11 +1,7 @@
 
 
 body {
-  background-color: #FAFAFA;
-  padding: 20px 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-  /* Margin bottom by footer height */
-  margin-bottom: 60px;
+  padding-top: 5rem;
 }
 
 #startup {
@@ -14,24 +10,5 @@ body {
   justify-content: center;
   padding: 200px;
   font-size: 1.2em;
-}
-
-a {
-  color: #00B7FF;
-  cursor: pointer;
-}
-
-a:hover,
-a:active {
-  color: #00B7FF;
-  text-decoration: underline;
-}
-
-a.danger {
-  color: red;
-}
-
-.spacing {
-  margin-bottom: 20px;
 }
 
