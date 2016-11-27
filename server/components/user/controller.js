@@ -4,8 +4,15 @@ let router = express.Router();
 let jwt = require('jsonwebtoken');
 let mongoose = require('mongoose');
 
+let multipart = require('connect-multiparty');
+let mime = require('mime');
+let fs = require('fs');
+
+let multipartMiddleware = multipart();
 let User = require('./user');
 let dbUser = require('../../models/user');
+let imgStorePath = process.env.IMG_STORE_PATH
+let IMAGE_TYPES = ['image/jpeg', 'image/png'];
 
 /**
  * Handle user login
@@ -148,5 +155,38 @@ router.delete('/user/:id', function(req, res, next) {
 //     })
 // });
 
+router.post('/user/img/:id', multipartMiddleware, function(req, res, next) {
+    fs.readFile(req.files.image.path, function (err, data) {
+        var imageName = req.files.image.name
+        if(!imageName){
+            res.redirect("/");
+            res.end();
+        } else {
+            var type = mime.lookup(req.files.image.path);
+            if (IMAGE_TYPES.indexOf(type) == -1) {
+                return res.send(415, 'Supported image formats: jpeg, jpg, jpe, png.');
+            }
+            var newPath = imgStorePath + imageName;
+            fs.writeFile(newPath, data, function (err) {
+                User.addImg(req.params.id, newPath)
+                //TODO error handling
+                res.redirect(req.params.id);
+            });
+        }
+    });
+});
+
+router.get('/user/img/:id', function (req, res){
+    User.getUserByID(req.params.id)
+        .then(function (result) {
+            file = result.picture;
+            var img = fs.readFileSync(file);
+            res.writeHead(200, {'Content-Type': 'image/jpg' });
+            res.end(img, 'binary');
+        })
+        .catch(function (err) {
+            res.status(400).json(err);
+        })
+});
 
 module.exports = router;

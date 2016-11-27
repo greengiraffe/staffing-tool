@@ -1,6 +1,6 @@
 // Get Users Model
 let User = require('../../models/user');
-let Skill = require('../../models/skill'); 
+let Skill = require('../../models/skill');
 let authHelper = require('../../services/authHelper');
 
 module.exports = {
@@ -11,7 +11,8 @@ module.exports = {
                     email,
                     password,
                     location,
-                    role
+                    role,
+                    picture
     ) {
         let user = new User({
             firstName: firstName,
@@ -19,11 +20,12 @@ module.exports = {
             email: email,
             password: authHelper.generateSecureHash(password),
             location: location,
-            role: role
+            role: role,
+            picture: picture
         });
         return new Promise(function(resolve, reject) {
             user.save(function(err, result) {
-                if(err) { 
+                if(err) {
                     reject({
                         message : "Database error",
                         statusCode: 500,
@@ -34,7 +36,7 @@ module.exports = {
                         message : "User created successfully",
                         statusCode: 201,
                         obj: result
-                    }); 
+                    });
                 }
             });
 
@@ -67,6 +69,17 @@ module.exports = {
 
     getUserByMail: function(mail) {
         return User.findOne({email : mail}).exec();
+    },
+
+    addImg: function(id, picture) {
+        User.findByIdAndUpdate(
+            id,
+            {picture : picture},
+            function(err, result) {
+                  if (err) {return -1}
+                  return true;
+            }
+        );
     },
 
     // activateUser: function(id) {
@@ -131,11 +144,11 @@ module.exports = {
                                 }
                             });
                         }
-                    });        
+                    });
                 }
             })
 
-            
+
         });
     }
 
