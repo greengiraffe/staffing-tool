@@ -22,10 +22,15 @@ export class UserListComponent {
             );
     }
 
-    // onDelete() {
-    //     this.userService.deleteUser(this.user)
-    //         .subscribe(
-    //             result => console.log(result)
-    //         );
-    // }
+    editUser(user: User) {
+        // TODO
+    }
+
+    deleteUser(user: User) {
+        // FIXME
+        this.userService.deleteUser(user)
+            .subscribe(
+                result => console.log(result)
+            );
+    }
 }

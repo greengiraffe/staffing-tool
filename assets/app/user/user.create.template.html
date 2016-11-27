@@ -1,59 +1,48 @@
-<div class="container col-md-6 col-md-offset-3">
-  <form class="form-horizontal" role="form" (ngSubmit)="onSubmit(f)" #f="ngForm">
-    <h3>Add a person</h3>
+<div class="col-lg-6">
+  <h2>Add a person</h2>
+
+  <form (ngSubmit)="onSubmit(f)" #f="ngForm">
     <div class="form-group">
-      <label for="firstName" class="col-sm-3 control-label">First Name</label>
-      <div class="col-sm-9">
-        <input type="text" id="firstName" placeholder="e.g. John" class="form-control" name="firstName" [ngModel]="user?.firstName">
-      </div>
+      <label for="firstName">First Name</label>
+      <input required type="text" id="firstName" placeholder="e.g. John" class="form-control" name="firstName" [ngModel]="user?.firstName">
     </div>
     <div class="form-group">
-      <label for="lastName" class="col-sm-3 control-label">Last Name</label>
-      <div class="col-sm-9">
-        <input type="text" id="lastName" placeholder="e.g. Doe" class="form-control" name="lastName" [ngModel]="user?.lastName">
-      </div>
+      <label for="lastName">Last Name</label>
+      <input required type="text" id="lastName" placeholder="e.g. Doe" class="form-control" name="lastName" [ngModel]="user?.lastName">
     </div>
     <div class="form-group">
-      <label for="email" class="col-sm-3 control-label">Email</label>
-      <div class="col-sm-9">
-        <input type="email" id="email" placeholder="john.doe@example.com" class="form-control" name="email" [ngModel]="user?.email">
-      </div>
+      <label for="email">Email</label>
+      <input required type="email" id="email" placeholder="john.doe@example.com" class="form-control" name="email" [ngModel]="user?.email">
     </div>
     <div class="form-group">
-      <label for="location" class="col-sm-3 control-label">Location</label>
-      <div class="col-sm-9">
-        <select id="location" class="form-control" name="location" [ngModel]="user?.location">
-          <option>Berlin HQ</option>
-          <option>Munich</option>
-        </select>
-      </div>
+      <label for="location">Location</label>
+      <select required id="location" class="form-control" name="location" [ngModel]="user?.location">
+        <option selected>Berlin HQ</option>
+        <option>Munich</option>
+      </select>
     </div>
     <div class="form-group">
-      <label for="role" class="col-sm-3 control-label">Role</label>
-      <div class="col-sm-9">
-        <select id="role" class="form-control" name="role" [ngModel]="user?.role">
-          <option>Administrator</option>
-          <option >User</option>
-          <option>User Creator</option>
-        </select>
+      <label for="role">Role</label>
+      <select required id="role" class="form-control" name="role" [ngModel]="user?.role">
+        <option selected>User</option>
+        <option>User Creator</option>
+        <option>Administrator</option>
+      </select>
+    </div>
+    <div class="row">
+      <div class="form-group col-xs-6">
+        <label for="password">Password</label>
+        <input required type="password" id="password" placeholder="Password" class="form-control" name="password" [ngModel]="user?.password">
+        <small class="form-text text-muted">Must be at least 8 characters long.</small>
+      </div>
+      <div class="form-group col-xs-6">
+        <label for="password-confirm">Confirm password</label>
+        <input required type="password" placeholder="Repeat password" id="password-confirm" class="form-control">
       </div>
     </div>
-    <div class="form-group">
-      <label for="password" class="col-sm-3 control-label">Password</label>
-      <div class="col-sm-9">
-        <input type="password" id="password" placeholder="min. 8 characters" class="form-control" name="password" [ngModel]="user?.password">
-      </div>
-    </div>
-    <div class="form-group">
-      <label for="password" class="col-sm-3 control-label">Confirm Password</label>
-      <div class="col-sm-9">
-        <input type="password" id="password-confirm" class="form-control">
-      </div>
-    </div>
-    <div class="form-group">
-      <div class="col-sm-9 col-sm-offset-3">
-        <button type="submit" class="btn btn-primary btn-block">ADD PERSON</button>
-      </div>
+    <div class="text-xs-right">
+      <button type="button" class="btn btn-secondary">Cancel</button>
+      <button type="submit" class="btn btn-primary">Add Person</button>
     </div>
   </form>
 </div>

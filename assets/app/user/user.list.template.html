@@ -1,18 +1,27 @@
-<h4>Will list user</h4>
+<h2>Registered Users</h2>
 
-<div class="col-md-8 col-md-offset-2">
-  <div *ngFor="let user of users">
-    <article class="panel panel-default">
-      <div class="panel-body">
-        email: {{ user.email }}
-        firstname: {{ user.firstName }}
-        lastname: {{ user.lastName }}
-        role: {{ user.role }}
-        id: {{ user.userId }}
-      </div>
-      <footer class="panel-footer">
-        <a (click)="onDelete()">Delete</a>
-      </footer>
-    </article>
-  </div>
-</div>
+<table class="table table-striped">
+  <thead class="thead-inverse">
+    <tr>
+      <th>#</th>
+      <th>Email</th>
+      <th>First name</th>
+      <th>Last name</th>
+      <th>Role</th>
+      <th></th> <!-- Button column -->
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let user of users; let i = index">
+      <th scope="row">{{ i }}</th>
+      <td>{{ user.email }}</td>
+      <td>{{ user.firstName }}</td>
+      <td>{{ user.lastName }}</td>
+      <td>{{ user.role }}</td>
+      <td class="text-xs-right">
+        <button class="btn btn-sm btn-outline-primary" (click)="editUser(user)">Edit</button>
+        <button class="btn btn-sm btn-outline-danger" (click)="deleteUser(user)">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
