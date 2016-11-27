@@ -16,23 +16,28 @@ schema.pre('remove', function(next) {
 
 
     test.then(function(result) {
-        for (var i = 0; i < result.length; i++) {
-            User.update(
-                { '_id' : result[i]._id },
-                {   $pull : { "userSkill" : { skill: this._id }}}, 
-                { safe : true }, 
-                function callback(err, obj) {
-                    if(err) {
-                      console.log(err);
-                      return -1;  
-                    } 
-                    else {
-                        console.log(obj);
-                        next();  
-                    }   
-                }    
-            );
+        if(result.length === 0 ) {
+            next();
+        } else {
+            for(var i = 0; i < result.length; i++) {
+                User.update(
+                    { '_id' : result[i]._id },
+                    {   $pull : { "userSkill" : { skill: this._id }}}, 
+                    { safe : true }, 
+                    function callback(err, obj) {
+                        if(err) {
+                          console.log(err);
+                          return -1;  
+                        } 
+                        else {
+                            console.log(obj);
+                            next();  
+                        }   
+                    }    
+                );
+            }    
         }
+        
         
     })
     .catch(function (argument) {
