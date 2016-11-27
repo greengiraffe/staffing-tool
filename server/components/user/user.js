@@ -43,6 +43,29 @@ module.exports = {
         });
     },
 
+    updateUser: function(updateData) {
+        //TODO Protect Password and Email from being updated
+        return new Promise(function(resolve, reject) {
+            User.findByIdAndUpdate(updateData.id, { $set: updateData}, function(err, user) {
+                if(err) {
+                    reject({
+                        message: "Database error",
+                        statusCode: 500,
+                        obj: err
+                    });
+                } else if(!user) {
+                    reject({
+                        message: "No user document for " + updateData.id,
+                        statusCode: 404
+                    })
+                }
+                else {
+                    resolve();
+                }
+            });
+        });
+    },
+
     deleteUser: function(id) {
         return new Promise (function(resolve, reject) {
             User.remove({_id : id}, function(err, result) {

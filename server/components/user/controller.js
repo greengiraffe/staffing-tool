@@ -96,7 +96,10 @@ router.post('/user', function(req, res, next) {
         req.body.email,
         req.body.password,
         req.body.location,
-        req.body.role
+        req.body.role,
+        req.body.skype,
+        req.body.picture,
+        req.body.phone
     )
         .then(function(result) {
             res.status(result.statusCode).json(result);
@@ -127,6 +130,19 @@ router.put('/user/skill', function(req, res, next) {
             message: "Invalid ID"
         });
     }
+});
+
+/**
+ * Update a user
+ */
+router.put('/user', function(req, res, next) {
+    User.updateUser(req.body)
+        .then(function(result) {
+            res.status(200).json(result);
+        })
+        .catch(function(err) {
+            res.status(err.statusCode).json(err);
+        });
 });
 
 /**
