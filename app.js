@@ -3,6 +3,7 @@
 // ========================================
 const config = require('./config/config');
 const appRoutes = require('./server/routes');
+const setupPassport = require('./server/services/passport');
 
 let express = require('express');
 let path = require('path');
@@ -13,6 +14,7 @@ let bodyParser = require('body-parser');
 let mongoose = require('mongoose');
 let passport = require('passport');
 let expressSession = require('express-session');
+let flash = require('flash');
 
 let app = express();
 
@@ -30,17 +32,19 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(cookieParser());
 app.use(expressSession(config.sessions));
+app.use(flash());
 
 // passport middleware
 app.use(passport.initialize());
 app.use(passport.session());
+setupPassport();
 
 
 // opens api to external domains
 app.use(function (req, res, next) {
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-    res.setHeader('Access-Control-Allow-Methods', 'POST, GET, PATCH, DELETE');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, DELETE');
     next();
 });
 

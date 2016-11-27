@@ -16,7 +16,7 @@ let schema = new Schema({
     skype: {type: String},
     phone: {type: String},
     location: {type: String, default: 'Berlin HQ'},
-    role: {type: String, required: true}, // admin, user, user_creator
+    role: {type: String, required: true, default: 'user'}, // admin, user, user_creator
     userSkill: [userSkill],
     picture: {type: String}, // url to image
     register: {type: Boolean, default: true}

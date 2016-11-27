@@ -2,7 +2,7 @@ let passport = require('passport');
 let LocalStrategy = require('passport-local').Strategy;
 
 let authHelper = require('./authHelper');
-let User = require('../components/user/User');
+let User = require('../components/user/user');
 
 let setupPassport = function () {
 
@@ -10,8 +10,8 @@ let setupPassport = function () {
         done(null, user.id);
     });
 
-    passport.deserializeUser((id, done) => {
-        User.findById(id)
+    passport.deserializeUser((mail, done) => {
+        User.getUserByMail(mail)
             .then((user) => {
                 done(null, user);
             })
@@ -24,21 +24,19 @@ let setupPassport = function () {
         usernameField: 'email',
         passwordField: 'password'
     }, function (email, password, done) {
-        User.findByEmail(email)
+        User.getUserByMail(email)
             .then((user) => {
 
                 if (!user) {
-                    return done(null, false, {
-                        message: 'Ein Benutzer mit dieser E-Mail existiert nicht'
-                    });
+                    return done(null, false,
+                        req.flash('message', 'User Not found.'));
                 }
 
                 if (authHelper.comparePassword(password, user.password)) {
                     return done(null, user);
                 } else {
-                    return done(null, false, {
-                        message: 'Ungültiges Passwort'
-                    });
+                    return done(null, false,
+                        req.flash('message', 'Invalid Password'));
                 }
             })
             .catch((err) => {

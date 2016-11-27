@@ -27,7 +27,7 @@ export class LoginComponent {
         //         error => console.error(error)
         //     );
         // this.myForm.reset();
-        this.router.navigateByUrl('home');
+        // this.router.navigateByUrl('home');
     }
 
     ngOnInit() {
