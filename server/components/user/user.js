@@ -178,9 +178,37 @@ module.exports = {
                     });
                 }
             })
-
-
         });
+    },
+
+    removeSkill: function(userId, skillId) {
+        return new Promise(function(resolve, reject) {
+            User.update(
+                    { '_id' : userId },
+                    {   $pull : { "userSkill" : { skill: skillId }}},
+                    { safe : true },
+                    function callback(err, obj) {
+                        if(err) {
+                            reject({
+                                message: "Database error",
+                                statusCode: 500,
+                                obj: err
+                            });
+                        } else if(obj.nModified == 0) {
+                            reject({
+                                message: "No matching documents",
+                                statusCode: 404
+                            });
+                        } else {
+                            resolve({
+                                message: "Skill removed successfully",
+                                statusCode: 200,
+                                obj: obj
+                            });
+                        }
+                    }
+                );
+        })
     }
 
 };

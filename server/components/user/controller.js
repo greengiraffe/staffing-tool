@@ -133,6 +133,28 @@ router.put('/user/skill', function(req, res, next) {
 });
 
 /**
+ * Delete a specific skill for a specific user
+ */
+router.delete('/user/skill', function(req, res, next) {
+    let userId = req.body.userId;
+    let skillId = req.body.skillId;
+    let rating = req.body.rating
+    if(mongoose.Types.ObjectId.isValid(userId) && mongoose.Types.ObjectId.isValid(skillId) ) {
+        User.removeSkill(userId,skillId ,rating)
+            .then(function(result) {
+                res.status(result.statusCode).json(result);
+            })
+            .catch(function(err) {
+                res.status(err.statusCode).json(err);
+            });
+    } else {
+        res.status(400).json({
+            message: "Invalid ID"
+        });
+    }
+});
+
+/**
  * Update a user
  */
 router.put('/user', function(req, res, next) {
