@@ -1,7 +1,7 @@
 module.exports = [
     {
-        _id: 'adsflkasdflksdf',
-        email: 'admin2@ixds.com',
+        // _id: 'adsflkasdflksdf',
+        email: 'admin@ixds.com',
         password: '$2a$10$cIxLgLqYEVfOQl7VQfulL.zzmiTDn3Ugf1vUdu/OHiwQOyvQ.jz6a', // root
         // userSkill: [
         //     {skill: 'bc1234', rating: 2},
