@@ -11,12 +11,17 @@ let favicon = require('serve-favicon');
 let logger = require('morgan');
 let cookieParser = require('cookie-parser');
 let bodyParser = require('body-parser');
+let seed = require('seed-mongoose')({
+    path: 'config/fixtures/'
+});
 let mongoose = require('mongoose');
 let passport = require('passport');
 let expressSession = require('express-session');
 let flash = require('flash');
 
 let app = express();
+
+
 
 // ========================================
 // App Setup

@@ -1,6 +1,6 @@
-/.idea
-/node_modules
-/typings
+/.idea/
+/typings/
+/node_modules/
 /.vscode
 /assets/app/**/*.js
 /public/js/

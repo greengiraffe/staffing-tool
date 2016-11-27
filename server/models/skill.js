@@ -9,42 +9,42 @@ let schema = new Schema({
 
 schema.pre('remove', function(next) {
     // Remove all the assignment docs that reference the removed person.
-    //	this.model('userSkill').remove(, next);
+    // this.model('userSkill').remove(, next);
     // var id = this._id
-    var test = this.model('User').find({'userSkill.skill' : this._id}).exec().bind(this);/*.populate({
-			path: 'userSkill'})*/;
+    let test = this.model('User').find({'userSkill.skill' : this._id}).exec().bind(this);/*.populate({
+            path: 'userSkill'})*/;
 
 
     test.then(function(result) {
         if(result.length === 0 ) {
             next();
         } else {
-            for(var i = 0; i < result.length; i++) {
+            for(let i = 0; i < result.length; i++) {
                 User.update(
                     { '_id' : result[i]._id },
-                    {   $pull : { "userSkill" : { skill: this._id }}}, 
-                    { safe : true }, 
+                    {   $pull : { "userSkill" : { skill: this._id }}},
+                    { safe : true },
                     function callback(err, obj) {
                         if(err) {
                           console.log(err);
-                          return -1;  
-                        } 
+                          return -1;
+                        }
                         else {
                             console.log(obj);
-                            next();  
-                        }   
-                    }    
+                            next();
+                        }
+                    }
                 );
-            }    
+            }
         }
-        
-        
+
+
     })
     .catch(function (argument) {
-    	console.log(argument);
-    })
+        console.log(argument);
+    });
 
-	console.log('removed pre');
+    console.log('removed pre');
 });
 
 schema.plugin(uniqueValidator);
