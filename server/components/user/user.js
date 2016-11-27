@@ -70,13 +70,21 @@ module.exports = {
         return new Promise (function(resolve, reject) {
             User.remove({_id : id}, function(err, result) {
                 if(err) {
-                    reject(err);
+                    reject({
+                        message: "Database error",
+                        statusCode: 500,
+                        obj: err
+                    });
+                } else if(result.result.n == 0) {
+                    reject({
+                        message: "No user document for " + id,
+                        statusCode: 404
+                    });
                 } else {
-                    if(result.result.n == 0) {
-                        reject(null);
-                    } else {
-                        resolve(result);
-                    }
+                    resolve({
+                        message: "User deleted successfully",
+                        statusCode: 200
+                    });
                 }
             });
         });

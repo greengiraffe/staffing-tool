@@ -149,12 +149,12 @@ router.put('/user', function(req, res, next) {
  * Delete a user by id
  */
 router.delete('/user/:id', function(req, res, next) {
-    User.deleteUser(id)
+    User.deleteUser(req.params.id)
         .then(function(result) {
-            res.status(200).json(result)
+            res.status(result.statusCode).json(result)
         })
         .catch(function(err) {
-            res.status(400).json(err)
+            res.status(err.statusCode).json(err)
         })
 });
 
