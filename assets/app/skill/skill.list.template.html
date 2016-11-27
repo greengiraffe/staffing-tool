@@ -1,5 +1,19 @@
-<div class="col-md-8 col-md-offset-2">
-  <app-skill
-      [skill]="skill"
-      *ngFor="let skill of skills"></app-skill>
-</div>
+<table class="table table-striped">
+  <thead class="thead-inverse">
+    <tr>
+      <th>#</th>
+      <th>Skill</th>
+      <th></th> <!-- Button column -->
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let skill of skills; let i = index">
+      <th scope="row">{{ i }}</th>
+      <td>{{ skill.name }}</td>
+      <td class="text-xs-right">
+        <button class="btn btn-sm btn-outline-primary" (click)="editSkill(skill)">Edit</button>
+        <button class="btn btn-sm btn-outline-danger" (click)="deleteSkill(skill)">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>

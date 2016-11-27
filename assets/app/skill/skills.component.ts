@@ -4,15 +4,12 @@ import {SkillService} from "../_services/skill.service";
 @Component({
     selector: 'app-skills',
     template: `
-        <div class="row">
-            <app-skill-create></app-skill-create>
-        </div>
-        <hr>
-        <div class="row">
-            <app-skill-list></app-skill-list>
-        </div>
+        <h2>Skills</h2>
+        <app-skill-create class="skill-create"></app-skill-create>
+        <app-skill-list class="skill-list"></app-skill-list>
     `,
-    providers: [SkillService]
+    providers: [SkillService],
+    styleUrls: ['skills.style.scss']
 })
 export class SkillsComponent {
 

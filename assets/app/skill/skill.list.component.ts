@@ -20,4 +20,17 @@ export class SkillListComponent implements OnInit {
                 }
             );
     }
+
+    editSkill(skill: Skill) {
+        // TODO
+    }
+
+    deleteSkill(skill: Skill) {
+        // FIXME
+        this.skillService.deleteSkill(skill)
+            .subscribe(
+                result => console.log(result)
+            );
+    }
+
 }
