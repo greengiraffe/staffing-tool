@@ -1,5 +1,6 @@
 import { Component, ElementRef } from '@angular/core';
 import { SkillService } from "../../_services/skill.service";
+import { UserProfileEditService } from "../../_services/user-profile-edit.service";
 
 @Component({
   selector: 'app-skill-suggestions',
@@ -7,6 +8,7 @@ import { SkillService } from "../../_services/skill.service";
     '(document:click)': 'handleClick($event)',
   },
   templateUrl: 'skill-suggestions.template.html',
+  styleUrls: ['skill-suggestions.template.scss'],
   providers: [SkillService]
 })
 
@@ -17,7 +19,7 @@ export class SkillSuggestionsComponent {
   elementRef;
   errorMessage = "";
 
-  constructor(myElement: ElementRef, private skillService: SkillService) {
+  constructor(myElement: ElementRef, private skillService: SkillService, private userProfileEditService: UserProfileEditService) {
     this.skillService.getSkills()
       .subscribe(
         skills => this.skills = <any>skills,
@@ -40,6 +42,7 @@ export class SkillSuggestionsComponent {
 
   select(item) {
     this.input = item.name;
+    this.userProfileEditService.setSelectItem(item);
     this.suggestions = [];
   }
 

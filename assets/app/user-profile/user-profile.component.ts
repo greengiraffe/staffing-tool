@@ -22,5 +22,5 @@ export class UserProfileComponent implements OnInit {
         (user: User) => this.user = user,
         error => console.log(error)
       );
-  }
+  }  
 }

@@ -33,15 +33,38 @@
  <!-- TODO -->
 </div>
 
-<div class="edit-skills-container">
-  <app-skill-suggestions class="edit-skills-container-item"></app-skill-suggestions>
-  <div class="edit-skills-container-item">
+<div class="skills-container">
+  <div class="professional-skills">
     <h2>Professional Skills</h2>
+    <div class="skill" *ngFor="let skill of professionalSkills" (click)="deleteItem(skill, 1)">
+      <div class="skill-name">{{skill.name}}</div>
+      <div class="skill-delete">x</div>
+    </div>
+    <div class="add-skill">
+      <div class="add-skill-input"><app-skill-suggestions></app-skill-suggestions></div>
+      <button class="add-skill-submit" (click)="addItem(1)">Add Skill</button>
+    </div>
   </div>
-  <div class="edit-skills-container-item">
+  <div class="basic-skills">
     <h2>Basic Skills</h2>
+    <div class="skill" *ngFor="let skill of basicSkills" (click)="deleteItem(skill, 2)">
+      <div class="skill-name">{{skill.name}}</div>
+      <div class="skill-delete">x</div>
+    </div>
+    <div class="add-skill">
+      <div class="add-skill-input"><app-skill-suggestions></app-skill-suggestions></div>
+      <button class="add-skill-submit" (click)="addItem(2)">Add Skill</button>
+    </div>
   </div>
-  <div class="edit-skills-container-item">
+  <div class="interests">
     <h2>Interests</h2>
+    <div class="skill" *ngFor="let skill of interests" (click)="deleteItem(skill, 3)">
+      <div class="skill-name">{{skill.name}}</div>
+      <div class="skill-delete">x</div>
+    </div>
+    <div class="add-skill">
+      <div class="add-skill-input"><app-skill-suggestions></app-skill-suggestions></div>
+      <button class="add-skill-submit" (click)="addItem(3)">Add Interest</button>
+    </div>
   </div>
 </div>
