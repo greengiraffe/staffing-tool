@@ -46,7 +46,7 @@ module.exports = {
     updateUser: function(updateData) {
         //TODO Protect Password and Email from being updated
         return new Promise(function(resolve, reject) {
-            User.findByIdAndUpdate(updateData.id, { $set: updateData}, function(err, user) {
+            User.findByIdAndUpdate(updateData._id, { $set: updateData}, function(err, user) {
                 if(err) {
                     reject({
                         message: "Database error",
@@ -55,7 +55,7 @@ module.exports = {
                     });
                 } else if(!user) {
                     reject({
-                        message: "No user document for " + updateData.id,
+                        message: "No user document for " + updateData._id,
                         statusCode: 404
                     })
                 }
