@@ -9,10 +9,10 @@ let schema = new Schema({
 
 schema.pre('remove', function(next) {
     // Remove all the assignment docs that reference the removed person.
-    // this.model('userSkill').remove(, next);
+    // this.model('userSkills').remove(, next);
     // var id = this._id
     let test = this.model('User').find({'userSkill.skill' : this._id}).exec().bind(this);/*.populate({
-            path: 'userSkill'})*/;
+            path: 'userSkills'})*/;
 
 
     test.then(function(result) {
@@ -22,7 +22,7 @@ schema.pre('remove', function(next) {
             for(let i = 0; i < result.length; i++) {
                 User.update(
                     { '_id' : result[i]._id },
-                    {   $pull : { "userSkill" : { skill: this._id }}},
+                    {   $pull : { "userSkills" : { skill: this._id }}},
                     { safe : true },
                     function callback(err, obj) {
                         if(err) {

@@ -2,7 +2,7 @@ let mongoose = require('mongoose');
 let Schema = mongoose.Schema;
 
 let schema = new Schema({
-    project: {type: String, required: true},
+    name: {type: String, required: true},
     description: {type: String},
     start: {type: Date},
     end: {type: Date},

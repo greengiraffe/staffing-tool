@@ -28,6 +28,7 @@ import { UserListComponent } from "./user/user.list.component";
 import { UserProfileComponent } from "./user-profile/user-profile.component";
 import { UserProfileEditComponent } from "./user-profile/user-profile-edit.component";
 import {NavComponent} from "./nav.component";
+import {ProjectComponent} from "./project/project.component";
 
 @NgModule({
     declarations: [
@@ -55,7 +56,8 @@ import {NavComponent} from "./nav.component";
         UserCreateComponent,
         UserProfileComponent,
         UserProfileEditComponent,
-        NavComponent
+        NavComponent,
+        ProjectComponent
     ],
     imports: [
         BrowserModule,
