@@ -8,7 +8,7 @@
   </thead>
   <tbody>
     <tr *ngFor="let skill of skills; let i = index">
-      <th scope="row">{{ i }}</th>
+      <th scope="row">{{ i+1 }}</th>
       <td>{{ skill.name }}</td>
       <td class="text-xs-right">
         <button class="btn btn-sm btn-outline-primary" (click)="editSkill(skill)">Edit</button>

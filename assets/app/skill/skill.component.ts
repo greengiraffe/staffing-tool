@@ -12,10 +12,10 @@ export class SkillComponent {
 
     constructor(private skillService: SkillService) {}
 
-    onDelete() {
+    /*onDelete() {
         this.skillService.deleteSkill(this.skill)
             .subscribe(
                 result => console.log(result)
             );
-    }
+    }*/
 }
