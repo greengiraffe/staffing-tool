@@ -1,4 +1,4 @@
-import {Skill} from "./skill.model";
+import { UserSkill } from "./user-skill.model";
 
 export class User {
     constructor(public email: string,
@@ -10,7 +10,7 @@ export class User {
                 public lastName?: string,
                 public skype?: string,
                 public phone?: string,
-                public userSkill?: Skill,
+                public userSkills?: [UserSkill],
                 public userId?: string
                 ) {}
 }

@@ -11,7 +11,7 @@ schema.pre('remove', function(next) {
     // Remove all the assignment docs that reference the removed person.
     // this.model('userSkills').remove(, next);
     // var id = this._id
-    let test = this.model('User').find({'userSkill.skill' : this._id}).exec().bind(this);/*.populate({
+    let test = this.model('User').find({'userSkills.skill' : this._id}).exec().bind(this);/*.populate({
             path: 'userSkills'})*/;
 
 

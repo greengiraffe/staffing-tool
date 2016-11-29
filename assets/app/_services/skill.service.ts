@@ -46,7 +46,6 @@ export class SkillService {
         return this.http.get('http://localhost:3000/skill/list')
             .map((response: Response) => {
                 const res = response.json();
-                console.log('getSkill:', res);
                 let transformedSkills: Skill[] = [];
                 for (let skill of res) {
                     transformedSkills.push(new Skill(

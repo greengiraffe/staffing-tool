@@ -152,13 +152,13 @@ module.exports = {
                                 message : "No user document for " + userId,
                                 statusCode: 404
                             });
-                        } else if(-1 !== user.userSkill.findIndex((skill) => skill.skill == skillId)) {
+                        } else if(-1 !== user.userSkills.findIndex((skill) => skill.skill == skillId)) {
                             reject({
                                 message: "Skill already exists for user " + userId,
                                 statusCode: 400,
                             });
                         } else {
-                            user.userSkill.push({skill: skillId, rating: rating});
+                            user.userSkills.push({skill: skillId, rating: rating});
                             user.save(function(err) {
                                 if(err) {
                                     reject({
@@ -185,7 +185,7 @@ module.exports = {
         return new Promise(function(resolve, reject) {
             User.update(
                     { '_id' : userId },
-                    {   $pull : { "userSkill" : { skill: skillId }}},
+                    {   $pull : { "userSkills" : { skill: skillId }}},
                     { safe : true },
                     function callback(err, obj) {
                         if(err) {

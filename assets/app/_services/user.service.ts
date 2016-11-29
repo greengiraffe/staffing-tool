@@ -34,7 +34,7 @@ export class UserService {
                         user.lastName,
                         user.skype,
                         user.phone,
-                        user.userSkill,
+                        user.userSkills,
                         user._id)
                     );
                 }
