@@ -18,11 +18,19 @@ let IMAGE_TYPES = ['image/jpeg', 'image/png'];
  * Handle user login
  */
 
-router.post('/login', passport.authenticate('local' , {
-    successRedirect: '/home',
-    failureRedirect: '/',
-    failureFlash: true
-}), function(req, res, next) {
+router.post('/login', function (req, res, next){
+    console.log(req.body.email);
+    console.log(req.body.password);
+});
+
+
+
+// router.post('/login', passport.authenticate('local' , {
+//     successRedirect: '/home',
+//     failureRedirect: '/',
+//     failureFlash: true
+// }), function(req, res, next) {
+
     // User.findOne({email: req.body.email}, function(err, user) {
     //     if (err) {
     //         return res.status(500).json({
@@ -49,7 +57,7 @@ router.post('/login', passport.authenticate('local' , {
     //         userId: user._id
     //     });
     // });
-});
+// });
 
 /**
  *  Handle Logout

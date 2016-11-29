@@ -16,6 +16,15 @@ export class LoginComponent {
     constructor(private UserService: UserService, private router: Router) {}
 
     onSubmit() {
+        let user = new User(this.loginForm.value.email, this.loginForm.value.password);
+            this.UserService.login(user)
+                .subscribe(
+                    data => console.log(data),
+                    error => console.error(error)
+                )
+            this.loginForm.reset();
+            this.router.navigateByUrl('/home');
+        }
         // const user = new User(this.myForm.value.email, this.myForm.value.password);
         // this.authService.signin(user)
         //     .subscribe(
@@ -28,9 +37,8 @@ export class LoginComponent {
         //     );
         // this.myForm.reset();
         // this.router.navigateByUrl('home');
-    }
 
-    ngOnInit() {
+    ngOnInit(){
         this.loginForm = new FormGroup({
             email: new FormControl(null, [
                 Validators.required,
