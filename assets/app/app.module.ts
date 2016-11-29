@@ -29,6 +29,8 @@ import { UserProfileComponent } from "./user-profile/user-profile.component";
 import { UserProfileEditComponent } from "./user-profile/user-profile-edit.component";
 import {NavComponent} from "./nav.component";
 import {ProjectComponent} from "./project/project.component";
+import {SkillSuggestComponent} from './user-profile/skill-suggest.component';
+import {UserSkillListComponent} from "./user-profile/user-skill-list.component";
 
 @NgModule({
     declarations: [
@@ -57,7 +59,9 @@ import {ProjectComponent} from "./project/project.component";
         UserProfileComponent,
         UserProfileEditComponent,
         NavComponent,
-        ProjectComponent
+        ProjectComponent,
+        SkillSuggestComponent,
+        UserSkillListComponent
     ],
     imports: [
         BrowserModule,

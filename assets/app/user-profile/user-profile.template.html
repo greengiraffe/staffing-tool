@@ -3,7 +3,7 @@
     <img src="https://api.adorable.io/avatars/200/example" alt="Profile picture">
   </div>
   <div class="profile-info">
-    <h1>{{user?.firstName}}, {{user?.lastName}}</h1>
+    <h1>{{user?.firstName}} {{user?.lastName}}</h1>
     <div class="profile-info-container">
         <div class="profile-info-labels">
           <div>Email</div>
@@ -29,14 +29,4 @@
  <!-- TODO -->
 </div>
 
-<div class="skills-container">
-  <div class="professional-skills">
-    <h2>Professional Skills</h2>
-  </div>
-  <div class="basic-skills">
-    <h2>Basic Skills</h2>
-  </div>
-  <div class="interests">
-    <h2>Interests</h2>
-  </div>
-</div>
+<app-user-skill-list></app-user-skill-list>

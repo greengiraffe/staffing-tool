@@ -59,4 +59,13 @@ export class SkillService {
             .catch((error: Response) => Observable.throw(error.json()));
     }
 
+    getSkillById(skillId: string): Observable<{}> {
+        return this.http.get('http://localhost:3000/skill/id/' + skillId)
+            .map((response: Response) => {
+                const res = response.json();
+                return res;
+            })
+            .catch((error: Response) => Observable.throw(error.json()));
+    }
+
 }

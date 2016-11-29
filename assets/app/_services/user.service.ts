@@ -45,12 +45,12 @@ export class UserService {
     }
 
     getUserById(userId): Observable<{}> {
-      return this.http.get('http://localhost:3000/user/' + userId)
-        .map((response: Response) => {
-          const res = response.json();
-          return res;
-        })
-        .catch((error: Response) => Observable.throw(error.json()));
+        return this.http.get('http://localhost:3000/user/' + userId)
+            .map((response: Response) => {
+                const res = response.json();
+                return res;
+            })
+            .catch((error: Response) => Observable.throw(error.json()));
     }
 
     deleteUser(user: User) {

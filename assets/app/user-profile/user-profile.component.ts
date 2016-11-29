@@ -11,16 +11,15 @@ import { User } from '../_models/user.model';
 
 export class UserProfileComponent implements OnInit {
 
-  user: User;
+    user: User;
 
-  constructor(private userService: UserService) {}
+    constructor(private userService: UserService) {}
 
-  ngOnInit() {
-
-    this.userService.getUserById('5834d3782930d72869c78616')
-      .subscribe(
-        (user: User) => this.user = user,
-        error => console.log(error)
-      );
-  }  
+    ngOnInit() {
+        this.userService.getUserById('583ddf5f22bb3a5fdf380fd5')
+            .subscribe(
+                (user: User) => this.user = user,
+                error => console.log(error)
+        );
+    }
 }
