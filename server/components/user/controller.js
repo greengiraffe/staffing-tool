@@ -97,7 +97,6 @@ router.post('/user', function(req, res, next) {
         req.body.password,
         req.body.location,
         req.body.role,
-        req.body.skype,
         req.body.picture,
         req.body.phone
     )

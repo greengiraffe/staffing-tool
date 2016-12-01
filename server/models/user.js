@@ -13,7 +13,6 @@ let schema = new Schema({
     lastName: {type: String},
     email: {type: String, required: true, index: { unique: true }},
     password: {type: String, required: true},
-    skype: {type: String},
     phone: {type: String},
     location: {type: String, default: 'Berlin HQ'},
     role: {type: String, required: true, default: 'user'}, // admin, user, user_creator
