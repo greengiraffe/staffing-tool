@@ -93,13 +93,17 @@ router.get('/user/id/:id', function(req, res, next) {
         })
 });
 
+/**
+ * Get specific user by mail
+ */
+
 router.get('/user/mail/:email', function (req, res, next){
     User.getUserByMail(req.params.email)
     .then(function(result){
-      console.log(result);
+      res.status(200).json(result)
     })
     .catch(function(error){
-      console.log(error);
+      res.status(500).json(err);
     })
 });
 
