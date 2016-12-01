@@ -83,7 +83,7 @@ router.get('/user/list', function(req, res, next) {
 /**
  * Get specific user by id
  */
-router.get('/user/:id', function(req, res, next) {
+router.get('/user/id/:id', function(req, res, next) {
     User.getUserByID(req.params.id)
         .then(function (result) {
             res.status(200).json(result);
@@ -91,6 +91,16 @@ router.get('/user/:id', function(req, res, next) {
         .catch(function (err) {
             res.status(400).json(err);
         })
+});
+
+router.get('/user/mail/:email', function (req, res, next){
+    User.getUserByMail(req.params.email)
+    .then(function(result){
+      console.log(result);
+    })
+    .catch(function(error){
+      console.log(error);
+    })
 });
 
 /**
