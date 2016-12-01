@@ -3,6 +3,8 @@ let passport = require('passport');
 let router = express.Router();
 let jwt = require('jsonwebtoken');
 let mongoose = require('mongoose');
+let authHelper = require('../../services/authHelper');
+let config = require('../../../config/config');
 
 let multipart = require('connect-multiparty');
 let mime = require('mime');
@@ -10,54 +12,47 @@ let fs = require('fs');
 
 let multipartMiddleware = multipart();
 let User = require('./user');
-let dbUser = require('../../models/user');
-let imgStorePath = process.env.IMG_STORE_PATH
 let IMAGE_TYPES = ['image/jpeg', 'image/png'];
 
 /**
  * Handle user login
  */
 
-router.post('/login', function (req, res, next){
-    console.log(req.body.email);
-    console.log(req.body.password);
+router.post('/login', function(req, res, next) {
+    console.log(req.body.email, req.body.password);
+    User.getUserByMail(req.body.email)
+        .then(function(user) {
+            if (!user) {
+                return res.status(401).json({
+                    title: 'Login failed',
+                    error: {message: 'Invalid login credentials'}
+                });
+                next();
+            }
+            if (!authHelper.comparePassword(req.body.password, user.password)) {
+                return res.status(401).json({
+                    title: 'Login failed',
+                    error: {message: 'Invalid login credentials'}
+                });
+                next();
+            }
+            delete user.password;
+
+            let token = jwt.sign({user: user}, config.jwt.secret, {expiresIn: config.jwt.expire});
+            return res.status(200).json({
+                message: 'Successfully logged in',
+                token: token,
+                user: user
+            });
+            next();
+        })
+        .catch(function(err) {
+            return res.status(500).json({
+                title: 'An server error occurred',
+                error: err
+            });
+        });
 });
-
-
-
-// router.post('/login', passport.authenticate('local' , {
-//     successRedirect: '/home',
-//     failureRedirect: '/',
-//     failureFlash: true
-// }), function(req, res, next) {
-
-    // User.findOne({email: req.body.email}, function(err, user) {
-    //     if (err) {
-    //         return res.status(500).json({
-    //             title: 'An error occurred',
-    //             error: err
-    //         });
-    //     }
-    //     if (!user) {
-    //         return res.status(401).json({
-    //             title: 'Login failed',
-    //             error: {message: 'Invalid login credentials'}
-    //         });
-    //     }
-    //     if (!bcrypt.compareSync(req.body.password, user.password)) {
-    //         return res.status(401).json({
-    //             title: 'Login failed',
-    //             error: {message: 'Invalid login credentials'}
-    //         });
-    //     }
-    //     var token = jwt.sign({user: user}, 'secret', {expiresIn: 7200});
-    //     res.status(200).json({
-    //         message: 'Successfully logged in',
-    //         token: token,
-    //         userId: user._id
-    //     });
-    // });
-// });
 
 /**
  *  Handle Logout

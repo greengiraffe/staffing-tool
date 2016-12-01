@@ -8,11 +8,7 @@ import { SkillComponent } from "./skill/skill.component";
 import { SkillListComponent } from "./skill/skill.list.component";
 import { SkillCreateComponent } from "./skill/skill.create.component";
 import { SkillsComponent } from "./skill/skills.component";
-import { AuthenticationComponent } from "./auth/auth.component";
-import { HeaderComponent } from "./header.component";
 import { routing } from "./app.routing";
-import { LogoutComponent } from "./auth/logout.component";
-import { SignupComponent } from "./auth/signup.component";
 import { LoginComponent } from "./login/login.component";
 import { UserService } from "./_services/user.service";
 import { FinishComponent } from "./onboarding/finish/finish.component";
@@ -31,6 +27,8 @@ import {NavComponent} from "./nav.component";
 import {ProjectComponent} from "./project/project.component";
 import {SkillSuggestComponent} from './user-profile/skill-suggest.component';
 import {UserSkillListComponent} from "./user-profile/user-skill-list.component";
+import {AuthService} from "./_services/auth.service";
+import {provideAuth} from "angular2-jwt";
 
 @NgModule({
     declarations: [
@@ -40,12 +38,8 @@ import {UserSkillListComponent} from "./user-profile/user-skill-list.component";
         SkillSuggestionsComponent,
         SkillCreateComponent,
         SkillsComponent,
-        AuthenticationComponent,
         HomeComponent,
         LoginComponent,
-        HeaderComponent,
-        LogoutComponent,
-        SignupComponent,
         AppComponent,
         PasswordComponent,
         SkillComponent,
@@ -70,7 +64,20 @@ import {UserSkillListComponent} from "./user-profile/user-skill-list.component";
         ReactiveFormsModule,
         HttpModule
     ],
-    providers: [UserService],
+    providers: [
+        UserService,
+        AuthService,
+    provideAuth({
+        headerName: 'Authorization',
+        headerPrefix: 'Bearer',
+        tokenName: 'id_token',
+        tokenGetter: (() => localStorage.getItem('token')),
+        globalHeaders: [{'Content-Type':'application/json'}],
+        noJwtError: true,
+        noTokenScheme: true
+    })
+
+        ],
     bootstrap: [AppComponent]
 })
 export class AppModule {

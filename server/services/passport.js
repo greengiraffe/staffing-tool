@@ -1,5 +1,7 @@
 let passport = require('passport');
 let LocalStrategy = require('passport-local').Strategy;
+let JwtStrategy = require('passport-jwt').Strategy;
+let extractJwt = require('passport-jwt').ExtractJwt;
 
 let authHelper = require('./authHelper');
 let User = require('../components/user/user');
@@ -43,6 +45,17 @@ let setupPassport = function () {
                 return done(err);
             });
     }));
+
+    passport.use('jwt', new JwtStrategy({
+        jwtFromRequest: extractJwt.fromAuthHeader(),
+        secretOrKey: 'abc',
+    }, function(payload, done) {
+        User.getUserByID(payload.sub)
+            .then((user) => {
+                done(null, user);
+            })
+            .catch(err => done(err, false));
+    }))
 };
 
 module.exports = setupPassport;

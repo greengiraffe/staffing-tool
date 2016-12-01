@@ -1,6 +1,14 @@
 let config = {
+
+    host: "localhost:3000",
+
     database: {
         uri: 'localhost:27017/ixds-staffing'
+    },
+
+    jwt: {
+        secret: 'faTGzyz28BvQjh4anjHgP7hcR63Vhvr9',
+        expire: 7200
     },
 
     // --- Sessions library ---
@@ -15,6 +23,9 @@ let config = {
             maxAge: null
         }
     },
+
+    // Path for user profile pictures
+    img_path: 'datastore/user_avatar'
 };
 
 module.exports = config;

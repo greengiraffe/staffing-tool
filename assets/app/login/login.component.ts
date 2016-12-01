@@ -3,7 +3,7 @@ import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
 
 import { User } from "../_models/user.model";
-import { UserService } from "../_services/user.service";
+import {AuthService} from "../_services/auth.service";
 
 @Component({
     selector: 'app-login',
@@ -13,17 +13,17 @@ import { UserService } from "../_services/user.service";
 export class LoginComponent {
     loginForm: FormGroup;
 
-    constructor(private UserService: UserService, private router: Router) {}
+    constructor(private authService: AuthService, private router: Router) {}
 
     onSubmit() {
         let user = new User(this.loginForm.value.email, this.loginForm.value.password);
-            this.UserService.login(user)
+            this.authService.login(user)
                 .subscribe(
-                    data => console.log(data),
+                    data => this.router.navigateByUrl('/home'),
                     error => console.error(error)
-                )
+                );
             this.loginForm.reset();
-            this.router.navigateByUrl('/home');
+
         }
         // const user = new User(this.myForm.value.email, this.myForm.value.password);
         // this.authService.signin(user)

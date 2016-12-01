@@ -17,7 +17,6 @@ let schema = new Schema({
     location: {type: String, default: 'Berlin HQ'},
     role: {type: String, required: true, default: 'user'}, // admin, user, user_creator
     userSkills: [userSkill],
-    picture: {type: String}, // url to image
     register: {type: Boolean, default: true}
 });
 

@@ -95,11 +95,28 @@ module.exports = {
     },
 
     getUserByID: function(id) {
-       return User.findById(id).exec();
+        return User.findById(id).exec();
+
+        // return new Promise(function(resolve, reject) {
+        //     User.findById(id, function(err, result) {
+        //         if (err) { reject(err) }
+        //         else { resolve(result) }
+        //     });
+        // });
     },
 
     getUserByMail: function(mail) {
         return User.findOne({email : mail}).exec();
+
+        // return new Promise(function(resolve, reject) {
+        //     User.findOne({email: mail}, function(err, result) {
+        //         if (err) {
+        //             console.log("error");
+        //             reject(err) }
+        //         else {
+        //             resolve(result) }
+        //     });
+        // });
     },
 
     addImg: function(id, picture) {

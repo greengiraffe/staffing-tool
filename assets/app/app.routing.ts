@@ -1,7 +1,6 @@
 import { Routes, RouterModule } from "@angular/router";
 
 import { SkillsComponent } from "./skill/skills.component";
-import { AuthenticationComponent } from "./auth/auth.component";
 // import { AUTH_ROUTES } from "./auth/auth.routes";
 import { ProfileComponent} from "./onboarding/profile/profile.component";
 import { InfoComponent} from "./onboarding/info/info.component";
