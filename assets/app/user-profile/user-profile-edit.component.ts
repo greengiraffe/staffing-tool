@@ -35,7 +35,11 @@ export class UserProfileEditComponent {
     saveChanges() {
         this.user.phone = this.phone;
         this.user.userSkills = this.userProfileEditService.userSkills;
-        this.userService.updateUser(this.user);
+        this.userService.updateUser(this.user)
+            .subscribe(
+                data => console.log(data),
+                error => console.log(error)
+            );
     }
 
 }
