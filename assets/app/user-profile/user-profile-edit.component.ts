@@ -29,13 +29,13 @@ export class UserProfileEditComponent {
             );
     }
 
+    /**
+     * Updates the current user
+     */
     saveChanges() {
-        console.log(this.userProfileEditService.userSkills);
-        // TODO Update user
-        // this.user.userSkills = this.userProfileEditService.userSkills;
-        // this.user.email = this.email;
-        // this.user.location = this.location;
-        // this.user.phone = this.phone;
+        this.user.phone = this.phone;
+        this.user.userSkills = this.userProfileEditService.userSkills;
+        this.userService.updateUser(this.user);
     }
 
 }

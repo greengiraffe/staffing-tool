@@ -45,13 +45,17 @@ export class UserService {
     }
 
     getUserById(userId): Observable<{}> {
-
       return this.http.get('http://localhost:3000/user/id/' + userId)
-        .map((response: Response) => {
-          const res = response.json();
-          return res;
-        })
+        .map((response: Response) => response.json())
         .catch((error: Response) => Observable.throw(error.json()));
+    }
+
+    updateUser(user: User): Observable<{}> {
+        const body = JSON.stringify(user);
+        const headers = new Headers({'Content-Type': 'application/json'});
+        return this.http.put('http://localhost:3000/user', body, { headers })
+            .map((response: Response) => response.json())
+            .catch((error: Response) => Observable.throw(error.json()));
     }
 
     deleteUser(user: User) {
