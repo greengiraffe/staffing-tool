@@ -17,7 +17,6 @@ import { InfoComponent } from "./onboarding/info/info.component";
 import { InterestComponent } from "./onboarding/interest/interest.component";
 import { PasswordComponent } from "./onboarding/password/password.component";
 import { OnboardingSkillComponent } from "./onboarding/skill/onboarding-skill.component";
-import { SkillSuggestionsComponent } from "./onboarding/skill/skill-suggestions.component"
 import { HomeComponent } from "./home/home.component";
 import { UserCreateComponent } from "./user/user.create.component";
 import { UserListComponent } from "./user/user.list.component";
@@ -39,7 +38,6 @@ import { SkillSearchComponent } from "./user-profile/skill-search.component";
         AppComponent,
         SkillComponent,
         SkillListComponent,
-        SkillSuggestionsComponent,
         SkillCreateComponent,
         SkillsComponent,
         HomeComponent,
