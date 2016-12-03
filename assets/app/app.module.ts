@@ -23,15 +23,19 @@ import { UserCreateComponent } from "./user/user.create.component";
 import { UserListComponent } from "./user/user.list.component";
 import { UserProfileComponent } from "./user-profile/user-profile.component";
 import { UserProfileEditComponent } from "./user-profile/user-profile-edit.component";
-import {NavComponent} from "./nav.component";
-import {ProjectComponent} from "./project/project.component";
-import {SkillSuggestComponent} from './user-profile/skill-suggest.component';
-import {UserSkillListComponent} from "./user-profile/user-skill-list.component";
-import {AuthService} from "./_services/auth.service";
-import {provideAuth} from "angular2-jwt";
+import { NavComponent } from "./nav.component";
+import { ProjectComponent } from "./project/project.component";
+import { UserSkillListComponent } from "./user-profile/user-skill-list.component";
+import { AuthService } from "./_services/auth.service";
+import { provideAuth } from "angular2-jwt";
+import { FilterPipe } from "./_pipes/filter.pipe";
+import { SkillService } from "./_services/skill.service";
+import { SkillSearchComponent } from "./user-profile/skill-search.component";
 
 @NgModule({
     declarations: [
+        FilterPipe,
+
         AppComponent,
         SkillComponent,
         SkillListComponent,
@@ -54,8 +58,8 @@ import {provideAuth} from "angular2-jwt";
         UserProfileEditComponent,
         NavComponent,
         ProjectComponent,
-        SkillSuggestComponent,
-        UserSkillListComponent
+        UserSkillListComponent,
+        SkillSearchComponent
     ],
     imports: [
         BrowserModule,
@@ -65,8 +69,9 @@ import {provideAuth} from "angular2-jwt";
         HttpModule
     ],
     providers: [
-        UserService,
+		UserService,
         AuthService,
+		SkillService,
     provideAuth({
         headerName: 'Authorization',
         headerPrefix: 'Bearer',
@@ -77,7 +82,7 @@ import {provideAuth} from "angular2-jwt";
         noTokenScheme: true
     })
 
-        ],
+	],
     bootstrap: [AppComponent]
 })
 export class AppModule {

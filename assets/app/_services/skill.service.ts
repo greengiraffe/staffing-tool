@@ -11,7 +11,6 @@ export class SkillService {
 
     constructor(private http: Http) {}
 
-
     addSkill(skill: Skill) {
         // this.skillCollection.push(skill);
         const body = JSON.stringify(skill);

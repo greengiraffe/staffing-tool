@@ -1,138 +1,44 @@
+.profile-header {
+  display: flex;
+}
+
+.profile-edit-btn {
+  margin-left: auto;
+}
+
 .profile-container {
   display: flex;
-  margin: 5% auto 0 auto;
+  margin-top: 1rem;
+}
 
-  .profile-picture {
-    width: 25%;
+.profile-picture {
+  width: 150px;
+  height: 150px;
+}
 
-    img {
-      max-width: 90%;
-    }
+.profile-info {
+  margin-left: 1rem;
+
+  dt {
+    font-weight: normal;
+    color: #818a91; // Bootstrap's 'text-muted' color
   }
 
-  .profile-info {
-    flex-grow: 1;
-
-    h1 {
-      margin-top: 0px;
-    }
-
-    .profile-info-container {
-      display: flex;
-      margin-top: 5%;
-
-      .profile-info-labels {
-        width: 30%;
-        text-align: left;
-        font-weight: bold;
-      }
-
-      .profile-info-labels > div {
-        margin-bottom: 10px;
-        margin-top: 2px;
-      }
-
-      .profile-info-data > div {
-        margin-top: 2px;
-        margin-bottom: 10px;
-      }
-
-      .profile-info-data {
-        width: 70%;
-        text-align: right;
-
-        .edit-input {
-          display: block;
-          margin-bottom: 7px;
-          padding: 0px;
-        }
-      }
-    }
-
+  dd {
+    font-weight: bold;
   }
+}
 
-  .profile-edit {
-    flex-grow:1;
-    text-align: right;
-  }
+.skill-list {
+  display: block;
+  margin-top: 1rem;
+}
+
+.skill-search {
+  display: block;
+  margin-top: 1rem;
 }
 
 .tasks-header {
-  margin-top: 5%;
-}
-
-.tasks-container {
-  margin-top: 5%;
-  display: flex;
-}
-
-.skills-container {
-  display: flex;
-  margin: 5% auto 0px auto;
-
-  .skill {
-    display: inline-block;
-    color: white;
-    background-color: grey;
-    border-radius: 5%;
-    padding: 15px;
-    margin-right: 10px;
-    margin-bottom: 10px;
-
-    &-name {
-      display: inline;
-      padding-right: 10px;
-    }
-
-    &-delete {
-      display: inline;
-      padding: 5px;
-    }
-
-    &:hover {
-      background-color: red;
-    }
-  }
-
-  .professional-skills {
-    width: 33%;
-  }
-
-  .basic-skills {
-    width: 33%;
-  }
-
-  .interests {
-    width: 33%;
-  }
-}
-
-.edit-profile-header {
-  width: 100%;
-  padding: 0;
-  display: flex;
-
-  &-item {
-    flex-grow: 1;
-  }
-
-  &-item:nth-child(2) {
-    text-align: right;
-  }
-}
-
-.add-skill {
-  width: 100%;
-  display: flex;
-
-  &-input {
-    width: 70%;
-  }
-  &-submit {
-    width: 30%;
-    text-align: left;
-    padding-left: 10px;
-    margin-right: 15px;
-    height: 22px;
-  }
+  margin-top: 1rem;
 }

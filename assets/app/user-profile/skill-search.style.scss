@@ -1,0 +1,70 @@
+// Styles for skill-search and user-skill-list
+
+.skill-search {
+  margin-bottom: 12px;
+  width: 100%;
+}
+
+.skill-list {
+  margin-left: -4px;
+  margin-top: -4px;
+  padding: 0;
+}
+
+.skill {
+  list-style: none;
+  padding: 4px 12px;
+  background-color: #ddd;
+  display: inline-block;
+  margin: 4px 4px;
+  border-radius: 4px;
+}
+
+.skill-buttons {
+  margin-left: 4px;
+}
+
+.skill-icon {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background-color: currentColor;
+}
+
+.skill-btn {
+  cursor: pointer;
+  margin-left: 2px;
+  border: 1px solid #333;
+
+  &:hover {
+    border-color: currentColor;
+  }
+}
+
+.skill-icon.professional {
+  color: gold;
+}
+
+.skill-icon.basic {
+  color: royalblue;
+}
+
+.skill-icon.interest {
+  color: #888;
+}
+
+.remove-skill {
+  cursor: pointer;
+  margin-left: 8px;
+
+  &:hover {
+    color: red;
+  }
+}
+
+.skill-type-heading {
+  .skill-icon {
+    margin-right: 8px;
+  }
+}

@@ -1,34 +1,29 @@
-<div class="edit-profile-header">
-  <div class="edit-profile-header-item"><h1>Edit your Profile!</h1></div>
-  <div class="edit-profile-header-item">
-    <button>Save Changes</button>
-  </div>
-</div>
+<header class="profile-header">
+  <h1>{{user?.firstName}} {{user?.lastName}}</h1>
+  <button class="profile-edit-btn btn btn-primary" (click)="saveChanges()">Save Changes</button>
+</header>
 
 <div class="profile-container">
-  <div class="profile-picture">
-    <img src="https://api.adorable.io/avatars/200/example" alt="Profile picture">
-  </div>
-  <div class="profile-info">
-    <h1>{{user?.firstName}} {{user?.lastName}}</h1>
-    <div class="profile-info-container">
-        <div class="profile-info-labels">
-          <div>Email</div>
-          <div>Location</div>
-          <div>Phone</div>
-        </div>
-        <div class="profile-info-data">
-          <input class="edit-input" type="text" placeholder="{{user?.email}}">
-          <input class="edit-input" type="text" placeholder="{{user?.location}}">
-          <input class="edit-input" type="text" placeholder="{{user?.phone}}">
-        </div>
+  <img class="profile-picture" src="https://api.adorable.io/avatars/200/example" alt="Profile picture">
+  <div class="profile-info edit">
+    <div class="form-group">
+      <label for="email-input">Email</label>
+      <input [ngModel]="email" id="email-input" class="form-control" type="text" value="{{user?.email}}">
+    </div>
+    <div class="form-group">
+      <label for="location-input">Location</label>
+      <select id="location-input" class="form-control" name="location" [ngModel]="location">
+        <option>Berlin HQ</option>
+        <option>Munich</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="phone-input">Phone</label>
+      <input [ngModel]="phone" id="phone-input" class="form-control" type="tel" placeholder="e.g. +49 1234 56789" value="{{user?.phone}}">
     </div>
   </div>
 </div>
 
-<h2 class="tasks-header">Current Tasks</h2>
-<div class="tasks-container">
- <!-- TODO -->
-</div>
-
-<app-user-skill-list></app-user-skill-list>
+<h4>Skills</h4>
+<app-skill-search class="skill-search" [showSkillButtons]="true"></app-skill-search>
+<app-user-skill-list class="skill-list" [showRemove]="true"></app-user-skill-list>

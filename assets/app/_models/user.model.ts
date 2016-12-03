@@ -9,7 +9,7 @@ export class User {
                 public firstName?: string,
                 public lastName?: string,
                 public phone?: string,
-                public userSkills?: [UserSkill],
+                public userSkills?: UserSkill[],
                 public userId?: string
                 ) {}
 }

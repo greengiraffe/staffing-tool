@@ -1,30 +1,21 @@
+<header class="profile-header">
+  <h1>{{user?.firstName}} {{user?.lastName}}</h1>
+  <button class="profile-edit-btn btn btn-outline-primary" routerLink="/profile/edit">Edit Profile</button>
+</header>
+
 <div class="profile-container">
-  <div class="profile-picture">
-    <img src="https://api.adorable.io/avatars/200/example" alt="Profile picture">
-  </div>
-  <div class="profile-info">
-    <h1>{{user?.firstName}} {{user?.lastName}}</h1>
-    <div class="profile-info-container">
-        <div class="profile-info-labels">
-          <div>Email</div>
-          <div>Location</div>
-          <div>Phone</div>
-        </div>
-        <div class="profile-info-data">
-          <div>{{user?.email}}</div>
-          <div>{{user?.location}}</div>
-          <div>{{user?.phone}}</div>
-        </div>
-    </div>
-  </div>
-  <div class="profile-edit">
-    <button routerLink="/profile/edit">Edit profile</button>
-  </div>
+  <img class="profile-picture" src="https://api.adorable.io/avatars/200/example" alt="Profile picture">
+  <dl class="profile-info">
+    <dt>Email</dt>
+    <dd>{{user?.email}}</dd>
+    <dt>Location</dt>
+    <dd>{{user?.location}}</dd>
+    <dt>Phone</dt>
+    <dd>{{user?.phone}}</dd>
+  </dl>
 </div>
 
-<h2 class="tasks-header">Current Tasks</h2>
-<div class="tasks-container">
- <!-- TODO -->
-</div>
+<app-user-skill-list class="skill-list"></app-user-skill-list>
 
-<app-user-skill-list></app-user-skill-list>
+<h4 class="tasks-header">Current Tasks</h4>
+ <!-- TODO Task List-->
