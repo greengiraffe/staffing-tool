@@ -17,7 +17,6 @@ import { InfoComponent } from "./onboarding/info/info.component";
 import { InterestComponent } from "./onboarding/interest/interest.component";
 import { PasswordComponent } from "./onboarding/password/password.component";
 import { OnboardingSkillComponent } from "./onboarding/skill/onboarding-skill.component";
-import { SkillSuggestionsComponent } from "./onboarding/skill/skill-suggestions.component"
 import { HomeComponent } from "./home/home.component";
 import { UserCreateComponent } from "./user/user.create.component";
 import { UserListComponent } from "./user/user.list.component";
@@ -29,14 +28,7 @@ import { UserSkillListComponent } from "./user-profile/user-skill-list.component
 import { AuthService } from "./_services/auth.service";
 import { provideAuth } from "angular2-jwt";
 import { FilterPipe } from "./_pipes/filter.pipe";
-import { SkillService } from "./_services/skill.service";
 import { SkillSearchComponent } from "./user-profile/skill-search.component";
-import {NavComponent} from "./nav.component";
-import {ProjectComponent} from "./project/project.component";
-import {SkillSuggestComponent} from './user-profile/skill-suggest.component';
-import {UserSkillListComponent} from "./user-profile/user-skill-list.component";
-import {AuthService} from "./_services/auth.service";
-import {provideAuth} from "angular2-jwt";
 import {FlashMessagesModule} from "angular2-flash-messages";
 
 @NgModule({
@@ -46,7 +38,6 @@ import {FlashMessagesModule} from "angular2-flash-messages";
         AppComponent,
         SkillComponent,
         SkillListComponent,
-        SkillSuggestionsComponent,
         SkillCreateComponent,
         SkillsComponent,
         HomeComponent,
@@ -88,8 +79,7 @@ import {FlashMessagesModule} from "angular2-flash-messages";
         noJwtError: true,
         noTokenScheme: true
     })
-
-	],
+    ],
     bootstrap: [AppComponent]
 })
 export class AppModule {
