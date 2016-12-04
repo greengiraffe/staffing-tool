@@ -1,13 +1,11 @@
 import { Routes, RouterModule } from "@angular/router";
 
 import { SkillsComponent } from "./skill/skills.component";
-// import { AUTH_ROUTES } from "./auth/auth.routes";
 import { ProfileComponent} from "./onboarding/profile/profile.component";
 import { InfoComponent} from "./onboarding/info/info.component";
 import { InterestComponent} from "./onboarding/interest/interest.component";
 import { FinishComponent} from "./onboarding/finish/finish.component";
 import { PasswordComponent} from "./onboarding/password/password.component";
-import { SkillComponent} from "./skill/skill.component";
 import { OnboardingSkillComponent } from "./onboarding/skill/onboarding-skill.component";
 import { LoginComponent } from "./login/login.component";
 import { HomeComponent } from "./home/home.component";
@@ -29,9 +27,9 @@ const APP_ROUTES: Routes = [
     { path: 'usr/create', component: UserCreateComponent },
     { path: 'usr/list', component: UserListComponent },
 
-    { path: 'skill-manage/list', component: SkillListComponent },
-    { path: 'skill-manage/create', component: SkillCreateComponent },
-    { path: 'skill-manage', component: SkillsComponent},
+    { path: 'admin/list', component: SkillListComponent },
+    { path: 'admin/create', component: SkillCreateComponent },
+    { path: 'admin', component: SkillsComponent},
 
     { path: 'project/create', component: ProjectComponent },
 

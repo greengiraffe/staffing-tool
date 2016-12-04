@@ -21,7 +21,7 @@ import { AuthService } from './_services/auth.service';
           <li class="nav-item"><a class="nav-link" routerLink="home">Manage Users</a></li>
           <!-- Owner only -->
           <li class="nav-item"><a class="nav-link" routerLink="home">My Projects</a></li>
-          <li class="nav-item"><a class="nav-link" routerLink="home">Logout</a></li>
+          <li class="nav-item"><a class="nav-link" href='#' (click)="auth.logout()">Logout</a></li>
         </ul>
       </nav>
     `,

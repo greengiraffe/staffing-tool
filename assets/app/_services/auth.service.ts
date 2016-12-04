@@ -6,13 +6,14 @@ import { Observable } from "rxjs";
 
 import { User } from "../_models/user.model";
 import {tokenNotExpired} from "angular2-jwt";
+import {Router} from "@angular/router";
 
 @Injectable()
 export class AuthService {
     // logged in user:
     private user: User;
 
-    constructor(private http: Http) {}
+    constructor(private http: Http, private router: Router) {}
 
     login(user: User) {
         const body = JSON.stringify(user);
@@ -41,6 +42,7 @@ export class AuthService {
 
     logout() {
         localStorage.clear();
+        this.router.navigateByUrl('/login');
     }
 
     loggedIn() {
