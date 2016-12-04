@@ -1,15 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../_services/user.service';
+import { SkillService } from '../_services/skill.service';
 import { User } from '../_models/user.model';
 import { Skill } from '../_models/skill.model';
-import {UserSkill} from "../_models/user-skill.model";
-import {UserProfileEditService} from "../_services/user-profile-edit.service";
+import { UserSkill } from "../_models/user-skill.model";
+import { UserProfileEditService } from "../_services/user-profile-edit.service";
 
 @Component({
   selector: 'app-user-profile-edit',
   templateUrl: 'user-profile-edit.template.html',
   styleUrls: ['user-profile.style.scss'],
-  providers: [UserService, UserProfileEditService]
+  providers: [UserService, SkillService, UserProfileEditService]
 })
 
 export class UserProfileEditComponent {
