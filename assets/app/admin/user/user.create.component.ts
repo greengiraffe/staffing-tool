@@ -1,8 +1,10 @@
 import { Component } from "@angular/core";
 import { NgForm } from "@angular/forms";
-import {User} from "../_models/user.model";
-import {UserService} from "../_services/user.service";
 import { FlashMessagesService } from "angular2-flash-messages";
+
+import { UserService } from "../../_services/user.service";
+import { User } from "../../_models/user.model";
+
 
 @Component({
     selector: 'app-user-create',

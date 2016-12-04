@@ -3,8 +3,8 @@ import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
 
 import { User } from "../_models/user.model";
-import {AuthService} from "../_services/auth.service";
-import {FlashMessagesService} from "angular2-flash-messages";
+import { AuthService } from "../_services/auth.service";
+import { FlashMessagesService } from "angular2-flash-messages";
 
 @Component({
     selector: 'app-login',

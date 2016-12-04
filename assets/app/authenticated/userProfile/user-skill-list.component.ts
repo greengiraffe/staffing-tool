@@ -1,11 +1,13 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { UserService } from '../_services/user.service';
-import { SkillService } from '../_services/skill.service';
-import { User } from '../_models/user.model';
-import { UserSkill } from '../_models/user-skill.model';
-import { Skill } from '../_models/skill.model';
 import { Observable } from 'rxjs/Observable';
-import { UserProfileEditService } from '../_services/user-profile-edit.service'
+
+import { User } from "../../_models/user.model";
+import { Skill } from "../../_models/skill.model";
+import { UserService } from "../../_services/user.service";
+import { SkillService } from "../../_services/skill.service";
+import { UserSkill } from "../../_models/user-skill.model";
+import { UserProfileEditService } from "../../_services/user-profile-edit.service";
+
 
 @Component({
     selector: 'app-user-skill-list',
@@ -64,7 +66,7 @@ export class UserSkillListComponent implements OnInit {
      * a Skill object to be able to access the name field.
      */
     addSkill(userSkill: UserSkill) {
-        const associatedSkill = this.getAssociatedSkill(userSkill)
+        const associatedSkill = this.getAssociatedSkill(userSkill);
 
         switch (userSkill.rating) {
             case 0:
@@ -96,5 +98,4 @@ export class UserSkillListComponent implements OnInit {
         skillList.delete(skill);
         this.userProfileEditService.removeSkill(skill);
     }
-
 }

@@ -1,5 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
+//Todo: Comments, peps. Comments...
 @Pipe({ name: 'filter' })
 export class FilterPipe implements PipeTransform {
     transform(items: any[], key : string, value : string): any[] {

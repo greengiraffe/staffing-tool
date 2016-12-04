@@ -2,8 +2,9 @@ import { Component, OnInit } from "@angular/core";
 import { NgForm } from "@angular/forms";
 import { FlashMessagesService } from "angular2-flash-messages";
 
-import { SkillService } from "../_services/skill.service";
-import { Skill } from "../_models/skill.model";
+import { SkillService } from "../../_services/skill.service";
+import { Skill } from "../../_models/skill.model";
+
 
 @Component({
     selector: 'app-skill-create',

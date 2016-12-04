@@ -1,8 +1,9 @@
 import { Component, OnInit, EventEmitter, Input, Output } from '@angular/core';
-import { SkillService } from "../_services/skill.service";
-import { UserProfileEditService } from "../_services/user-profile-edit.service";
-import { Skill } from "../_models/skill.model";
-import { UserSkill } from "../_models/user-skill.model";
+
+import { Skill } from "../../_models/skill.model";
+import { SkillService } from "../../_services/skill.service";
+import { UserProfileEditService } from "../../_services/user-profile-edit.service";
+import { UserSkill } from "../../_models/user-skill.model";
 
 @Component({
   selector: 'app-skill-search',

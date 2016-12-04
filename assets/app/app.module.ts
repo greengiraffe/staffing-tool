@@ -2,72 +2,41 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { HttpModule } from "@angular/http";
+import { provideAuth } from "angular2-jwt";
+import { FlashMessagesModule } from "angular2-flash-messages";
+
+import { AuthService } from "./_services/auth.service";
+import { UserService } from "./_services/user.service";
+
+import { FilterPipe } from "./_pipes/filter.pipe";
 
 import { AppComponent } from "./app.component";
-import { SkillComponent } from "./skill/skill.component";
-import { SkillListComponent } from "./skill/skill.list.component";
-import { SkillCreateComponent } from "./skill/skill.create.component";
-import { SkillsComponent } from "./skill/skills.component";
-import { routing } from "./app.routing";
-import { LoginComponent } from "./login/login.component";
-import { UserService } from "./_services/user.service";
-import { FinishComponent } from "./onboarding/finish/finish.component";
-import { ProfileComponent } from "./onboarding/profile/profile.component";
-import { InfoComponent } from "./onboarding/info/info.component";
-import { InterestComponent } from "./onboarding/interest/interest.component";
-import { PasswordComponent } from "./onboarding/password/password.component";
-import { OnboardingSkillComponent } from "./onboarding/skill/onboarding-skill.component";
-import { HomeComponent } from "./home/home.component";
-import { UserCreateComponent } from "./user/user.create.component";
-import { UserListComponent } from "./user/user.list.component";
-import { UserProfileComponent } from "./user-profile/user-profile.component";
-import { UserProfileEditComponent } from "./user-profile/user-profile-edit.component";
+import { AppRoutingModule } from "./app.routing";
+
 import { NavComponent } from "./nav.component";
-import { UserSkillListComponent } from "./user-profile/user-skill-list.component";
-import { AuthService } from "./_services/auth.service";
-import { provideAuth } from "angular2-jwt";
-import { FilterPipe } from "./_pipes/filter.pipe";
-import { SkillSearchComponent } from "./user-profile/skill-search.component";
-import { FlashMessagesModule } from "angular2-flash-messages";
-import { ChangePasswordComponent } from './user-profile/change-password.component';
-import { ProjectCreateComponent } from './project/project.create.component';
+import { LoginComponent } from "./login/login.component";
+import { OnboardingModule } from "./onboarding/onboarding.module";
+import { UserModule } from "./authenticated/user.module";
+import { AdminModule } from "./admin/admin.module";
 
 @NgModule({
     declarations: [
         FilterPipe,
+        AppComponent,
 
-        AppComponent,
-        SkillComponent,
-        SkillListComponent,
-        SkillCreateComponent,
-        SkillsComponent,
-        HomeComponent,
         LoginComponent,
-        AppComponent,
-        PasswordComponent,
-        SkillComponent,
-        InterestComponent,
-        InfoComponent,
-        ProfileComponent,
-        FinishComponent,
-        OnboardingSkillComponent,
-        UserListComponent,
-        UserCreateComponent,
-        UserProfileComponent,
-        UserProfileEditComponent,
         NavComponent,
-        UserSkillListComponent,
-        SkillSearchComponent,
-        ChangePasswordComponent,
-        ProjectCreateComponent
     ],
     imports: [
+        AppRoutingModule,
+        HttpModule,
         BrowserModule,
         FormsModule,
-        routing,
         ReactiveFormsModule,
-        HttpModule,
-        FlashMessagesModule
+        FlashMessagesModule,
+        AdminModule,
+        UserModule,
+        OnboardingModule
     ],
     providers: [
         UserService,
