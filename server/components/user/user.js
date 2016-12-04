@@ -60,32 +60,30 @@ module.exports = {
                     })
                 }
                 else {
-                    resolve();
+                    resolve({
+                        message: "User updated successfully"
+                    });
                 }
             });
         });
     },
 
     changePassword: function(id, updatedPassword) {
-      return new Promise(function(resolve, reject) {
-        User.findByIdAndUpdate(id, {$set: {password: updatedPassword}}, function(err, user){
-          if(err) {
-              reject({
-                  message: "Database error",
-                  statusCode: 500,
-                  obj: err
-              });
-          } else if(!user) {
-              reject({
-                  message: "No user document for " + id,
-                  statusCode: 404
-              })
-          }
-          else {
-              resolve();
-          }
-        })
-      });
+        return new Promise(function(resolve, reject) {
+            User.findByIdAndUpdate(id, {$set: {password: updatedPassword}}, function(err, user){
+                if(err) {
+                    reject({
+                        message: "Database error",
+                        statusCode: 500,
+                        obj: err
+                    });
+                } else {
+                    resolve({
+                        message: "Password updated successfully"
+                    });
+                }
+            });
+        });
     },
     deleteUser: function(id) {
         return new Promise (function(resolve, reject) {

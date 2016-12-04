@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { UserService } from '../_services/user.service';
 
 @Component({
   selector: 'app-change-password',
@@ -8,15 +9,17 @@ import { Component } from '@angular/core';
 
 export class ChangePasswordComponent {
 
+  constructor(private userService: UserService) {}
+
   onSubmit(form: any, currentPassword: string, newPassword: string, newPasswordConfirm: string) {
-    console.log(currentPassword);
-    console.log(newPassword);
-    console.log(newPasswordConfirm);
-    if(newPassword.localeCompare(newPasswordConfirm)===0) {
-      console.log("TRUE");
-      form.reset();
+    if(newPassword.localeCompare(newPasswordConfirm) === 0) {
+        this.userService.updateUserPassword("58433892c39c721b14976675", currentPassword, newPassword)
+            .subscribe(
+                data => form.reset(),
+                error => console.log(error)
+            );
     } else {
-      console.log("false");
+      alert("New passwords do not match");
     }
   }
 

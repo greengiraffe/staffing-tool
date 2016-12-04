@@ -188,29 +188,32 @@ router.put('/user', function(req, res, next) {
 router.put('/user/password', function(req, res, next) {
   let oldPassword = req.body.oldPassword
   let newPassword = req.body.newPassword
-  let id = req.body._id
-  var user;
-  User.getUserByID(id).
-    then(function(result) {
-      if(result)
-      user = result
-      if(authHelper.comparePassword(oldPassword, user.password)){
-        console.log('passwords match');
-      }
+  let id = req.body.id
+  User.getUserByID(id)
+    .then(function(user) {
+        if(!user) {
+            res.status(404).json({
+                message: "No user document for " + id,
+                statusCode: 404
+            });
+        } else if(authHelper.comparePassword(oldPassword, user.password)){
+            newPassword = authHelper.generateSecureHash(newPassword);
+            User.changePassword(id, newPassword)
+                .then(function(result) {
+                    res.status(200).json(result);
+                })
+                .catch(function(err) {
+                    res.status(err.statusCode).json(err);
+                });
+        } else {
+            res.status(400).json({
+                message : "Wrong password" 
+            });
+        }
     })
     .catch(function(err){
       res.status(500).json(err)
-    });
-
-
-
-    // User.changePassword(id, newPassword)
-    //     .then(function(result) {
-    //         res.status(200).json(result);
-    //     })
-    //     .catch(function(err) {
-    //         res.status(err.statusCode).json(err);
-    //     });
+    });    
 });
 
 /**

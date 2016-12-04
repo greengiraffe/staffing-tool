@@ -49,6 +49,18 @@ export class UserService {
         .map((response: Response) => response.json())
         .catch((error: Response) => Observable.throw(error.json()));
     }
+    
+    updateUserPassword(id: string, oldPassword: string, newPassword: string): Observable<{}> {
+        const body = {
+            id,
+            oldPassword,
+            newPassword
+        };
+        const headers = new Headers({'Content-Type': 'application/json'});
+        return this.http.put('http://localhost:3000/user/password', body, { headers })
+            .map((response: Response) => response.json())
+            .catch((error: Response) => Observable.throw(error.json()));
+    }
 
     updateUser(user: User): Observable<{}> {
         const body = JSON.stringify(user);
