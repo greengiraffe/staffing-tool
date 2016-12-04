@@ -66,6 +66,27 @@ module.exports = {
         });
     },
 
+    changePassword: function(id, updatedPassword) {
+      return new Promise(function(resolve, reject) {
+        User.findByIdAndUpdate(id, {$set: {password: updatedPassword}}, function(err, user){
+          if(err) {
+              reject({
+                  message: "Database error",
+                  statusCode: 500,
+                  obj: err
+              });
+          } else if(!user) {
+              reject({
+                  message: "No user document for " + id,
+                  statusCode: 404
+              })
+          }
+          else {
+              resolve();
+          }
+        })
+      });
+    },
     deleteUser: function(id) {
         return new Promise (function(resolve, reject) {
             User.remove({_id : id}, function(err, result) {

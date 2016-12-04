@@ -5,7 +5,6 @@ let jwt = require('jsonwebtoken');
 let mongoose = require('mongoose');
 let authHelper = require('../../services/authHelper');
 let config = require('../../../config/config');
-
 let multipart = require('connect-multiparty');
 let mime = require('mime');
 let fs = require('fs');
@@ -181,6 +180,37 @@ router.put('/user', function(req, res, next) {
         .catch(function(err) {
             res.status(err.statusCode).json(err);
         });
+});
+
+/**
+ * Update a user's password
+ */
+router.put('/user/password', function(req, res, next) {
+  let oldPassword = req.body.oldPassword
+  let newPassword = req.body.newPassword
+  let id = req.body._id
+  var user;
+  User.getUserByID(id).
+    then(function(result) {
+      if(result)
+      user = result
+      if(authHelper.comparePassword(oldPassword, user.password)){
+        console.log('passwords match');
+      }
+    })
+    .catch(function(err){
+      res.status(500).json(err)
+    });
+
+
+
+    // User.changePassword(id, newPassword)
+    //     .then(function(result) {
+    //         res.status(200).json(result);
+    //     })
+    //     .catch(function(err) {
+    //         res.status(err.statusCode).json(err);
+    //     });
 });
 
 /**
