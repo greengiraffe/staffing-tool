@@ -29,7 +29,8 @@ import { AuthService } from "./_services/auth.service";
 import { provideAuth } from "angular2-jwt";
 import { FilterPipe } from "./_pipes/filter.pipe";
 import { SkillSearchComponent } from "./user-profile/skill-search.component";
-import {FlashMessagesModule} from "angular2-flash-messages";
+import { FlashMessagesModule } from "angular2-flash-messages";
+import { ChangePasswordComponent } from './user-profile/change-password.component';
 
 @NgModule({
     declarations: [
@@ -56,8 +57,14 @@ import {FlashMessagesModule} from "angular2-flash-messages";
         UserProfileEditComponent,
         NavComponent,
         ProjectComponent,
+<<<<<<< 494c02c15cfaca32f0dac3a9c01aba9f96fb6e60
         UserSkillListComponent,
         SkillSearchComponent
+=======
+        SkillSuggestComponent,
+        UserSkillListComponent,
+        ChangePasswordComponent
+>>>>>>> [#62] feat (change-password) -> add change-password component
     ],
     imports: [
         BrowserModule,

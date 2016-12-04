@@ -25,8 +25,6 @@ export class UserCreateComponent {
                 data => console.log(data),
                 error => console.error(error)
             );
-        form.resetForm();
+        form.reset();
     }
 }
-
-
