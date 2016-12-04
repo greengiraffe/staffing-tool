@@ -57,14 +57,9 @@ import { ChangePasswordComponent } from './user-profile/change-password.componen
         UserProfileEditComponent,
         NavComponent,
         ProjectComponent,
-<<<<<<< 494c02c15cfaca32f0dac3a9c01aba9f96fb6e60
         UserSkillListComponent,
-        SkillSearchComponent
-=======
-        SkillSuggestComponent,
-        UserSkillListComponent,
+        SkillSearchComponent,
         ChangePasswordComponent
->>>>>>> [#62] feat (change-password) -> add change-password component
     ],
     imports: [
         BrowserModule,
