@@ -31,6 +31,7 @@ import { FilterPipe } from "./_pipes/filter.pipe";
 import { SkillSearchComponent } from "./user-profile/skill-search.component";
 import { FlashMessagesModule } from "angular2-flash-messages";
 import { ChangePasswordComponent } from './user-profile/change-password.component';
+import { ProjectCreateComponent } from './project/project.create.component';
 
 @NgModule({
     declarations: [
@@ -59,7 +60,8 @@ import { ChangePasswordComponent } from './user-profile/change-password.componen
         ProjectComponent,
         UserSkillListComponent,
         SkillSearchComponent,
-        ChangePasswordComponent
+        ChangePasswordComponent,
+        ProjectCreateComponent
     ],
     imports: [
         BrowserModule,

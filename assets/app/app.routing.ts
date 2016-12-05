@@ -16,7 +16,7 @@ import { SkillListComponent } from "./skill/skill.list.component";
 import { SkillCreateComponent } from "./skill/skill.create.component";
 import { UserProfileComponent } from "./user-profile/user-profile.component";
 import { UserProfileEditComponent } from "./user-profile/user-profile-edit.component";
-import {ProjectComponent} from "./project/project.component";
+import { ProjectCreateComponent} from "./project/project.create.component";
 
 const APP_ROUTES: Routes = [
     { path: '', redirectTo: 'auth/login', pathMatch: 'full' },
@@ -31,7 +31,7 @@ const APP_ROUTES: Routes = [
     { path: 'admin/create', component: SkillCreateComponent },
     { path: 'admin', component: SkillsComponent},
 
-    { path: 'project/create', component: ProjectComponent },
+    { path: 'project/create', component: ProjectCreateComponent },
 
     { path: 'onboarding/password', component: PasswordComponent},
     { path: 'onboarding/skills', component: OnboardingSkillComponent},
