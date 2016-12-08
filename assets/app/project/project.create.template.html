@@ -1,16 +1,65 @@
-<header> class="project-header"
+<header class="project-header">
   <h1> Create Project </h1>
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script>
+    // If not native HTML5 support, fallback to jQuery datePicker
+    let i = document.createElement("input");
+    i.setAttribute("type", "date");
+    if (i.type == "text") {
+      $( function() {
+        $( "#start-input" ).datepicker();
+      } );
+    }
+  </script>
 </header>
 
 <div class="project-container">
     <div class="form-group">
       <label for="title">Title</label>
-      <label for="description">Description</label>
-      <label for="type">Type</label>
-      <label for="client">Client</label>
-      <label for="buget">Budget</label>
-      <label for="exBudget">Expanded Budget</label>
-      <label for="start">Start</label>
-      <label for="end">End</label>
-      </div>
+      <input for="title-input" class="form-control" placeholder="Enter Project Title">
+    </div>
+        <div class="project-info">
+          <div class="form-group">
+            <label for="description">Description</label>
+            <input id="description-input " class="form-control" placeholder="Enter Project Description">
+          </div>
+          <div class="form-group">
+            <label for="type">Type</label>
+            <select id="type-input" class="form-control" name="type">
+              <option>Confirmed</option>
+              <option>Internal</option>
+              <option>Tentative</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="client">Client</label>
+            <input id="client-input" class="form-control" placeholder="Enter/Select a Client">
+          </div>
+          <div class="form-group">
+            <label for="buget">Budget</label>
+            <input id="budget-input" class="form-control" placeholder="Enter Budget">
+          </div>
+          <div class="form-group">
+            <label for="expBudget">Expanded Budget</label>
+            <input id="expBudget-input" class="form-control" placeholder="Enter Expanded Budget">
+          </div>
+          <div class="form-group">
+            <label for="priority">Priority</label>
+            <input id="priority-input-default" class="form-control" name="priority" type ="radio" value="Default" checked>
+            <label for="priority-input-default">Default</label>
+            <input id="priority-input-high" class="form-control" name="priority" type ="radio" value="High">
+            <label for="priority-input-high">High</label>
+          <div class="form-group">
+            <label for="start">Start</label>
+            <input id="start-input" class="form-control" type="date" name="start">
+          </div>
+          <div class="form-group">
+            <label for="end">End</label>
+            <input id="end-input" class="form-control" type="date" name="end">
+          </div>
+       </div>
+      <button class="add-task-btn btn btn-primary" routerLink="/project/add">Add Task</button>
+</div>
 </div>
