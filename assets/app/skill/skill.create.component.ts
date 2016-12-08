@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { NgForm } from "@angular/forms";
+import { FlashMessagesService } from "angular2-flash-messages";
 
 import { SkillService } from "../_services/skill.service";
 import { Skill } from "../_models/skill.model";
@@ -9,7 +10,8 @@ import { Skill } from "../_models/skill.model";
     templateUrl: './skill.create.template.html',
 })
 export class SkillCreateComponent {
-    constructor(private skillService: SkillService) {}
+    constructor(private skillService: SkillService,
+    private _flashMessagesService: FlashMessagesService) {}
 
     onSubmit(form: NgForm) {
         // Create
@@ -17,7 +19,7 @@ export class SkillCreateComponent {
         this.skillService.addSkill(skill)
             .subscribe(
                 data => console.log(data),
-                error => console.error(error)
+                error => {this._flashMessagesService.show(error.error.message, { cssClass: 'alert-danger', timeout: 5000 });}
             );
         form.resetForm();
     }

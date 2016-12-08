@@ -2,6 +2,7 @@ import { Component } from "@angular/core";
 import { NgForm } from "@angular/forms";
 import {User} from "../_models/user.model";
 import {UserService} from "../_services/user.service";
+import { FlashMessagesService } from "angular2-flash-messages";
 
 @Component({
     selector: 'app-user-create',
@@ -9,7 +10,8 @@ import {UserService} from "../_services/user.service";
     // styleUrls: ['./home.style.scss']
 })
 export class UserCreateComponent {
-    constructor(private userService: UserService) {}
+    constructor(private userService: UserService,
+    private _flashMessagesService: FlashMessagesService) {}
 
     onSubmit(form: NgForm) {
         // Create
@@ -22,8 +24,10 @@ export class UserCreateComponent {
             form.value.lastName);
         this.userService.createUser(user)
             .subscribe(
-                data => console.log(data),
-                error => console.error(error)
+                //data => console.log(data),
+                data => {this._flashMessagesService.show("User successfully added", { cssClass: 'alert-success', timeout: 5000 });},
+                //error => console.error(error)
+                error => {this._flashMessagesService.show(error.error.message, { cssClass: 'alert-danger', timeout: 5000 });}
             );
         form.reset();
     }
