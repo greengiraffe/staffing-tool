@@ -1,30 +1,35 @@
 <div class="col-lg-6">
   <h2>Add a person</h2>
 
-  <form (ngSubmit)="onSubmit(f)" #f="ngForm">
+  <form (ngSubmit)="onSubmit(createUserForm.value)" [formGroup]="createUserForm">
     <div class="form-group">
       <label for="firstName">First Name</label>
-      <input required type="text" id="firstName" placeholder="e.g. John" class="form-control" name="firstName" [ngModel]="user?.firstName">
+      <input required type="text" id="firstName" placeholder="e.g. John" class="form-control"
+             [formControl]="createUserForm['firstName']">
     </div>
     <div class="form-group">
       <label for="lastName">Last Name</label>
-      <input required type="text" id="lastName" placeholder="e.g. Doe" class="form-control" name="lastName" [ngModel]="user?.lastName">
+      <input required type="text" id="lastName" placeholder="e.g. Doe" class="form-control"
+             [formControl]="createUserForm['lastName']">
     </div>
     <div class="form-group">
       <label for="email">Email</label>
-      <input required type="email" id="email" placeholder="john.doe@example.com" class="form-control" name="email" [ngModel]="user?.email">
+      <input required type="email" id="email" placeholder="john.doe@example.com" class="form-control"
+             [formControl]="createUserForm['email']">
     </div>
     <div class="form-group">
       <label for="location">Location</label>
-      <select required id="location" class="form-control" name="location" [ngModel]="user?.location">
+      <select required id="location" class="form-control"
+              [formControl]="createUserForm['location']">
         <option selected>Berlin HQ</option>
         <option>Munich</option>
       </select>
     </div>
     <div class="form-group">
       <label for="role">Role</label>
-      <select required id="role" class="form-control" name="role" [ngModel]="user?.role">
-        <option selected="selected">User</option>
+      <select required id="role" class="form-control"
+              [formControl]="createUserForm['role']">
+        <option>User</option>
         <option>User Creator</option>
         <option>Administrator</option>
       </select>
@@ -32,12 +37,14 @@
     <div class="row">
       <div class="form-group col-xs-6">
         <label for="password">Password</label>
-        <input required type="password" id="password" placeholder="Password" class="form-control" name="password" [ngModel]="user?.password">
+        <input required type="password" id="password" placeholder="Password" class="form-control"
+               [formControl]="createUserForm['password']">
         <small class="form-text text-muted">Must be at least 8 characters long.</small>
       </div>
       <div class="form-group col-xs-6">
         <label for="password-confirm">Confirm password</label>
-        <input required type="password" placeholder="Repeat password" id="password-confirm" class="form-control">
+        <input required type="password" placeholder="Repeat password" id="password-confirm" class="form-control"
+               [formControl]="createUserForm['confirmPassword']">
       </div>
     </div>
     <div class="text-xs-right">

@@ -2,8 +2,8 @@ import { Component, OnInit } from "@angular/core";
 import { NgForm } from "@angular/forms";
 import { FlashMessagesService } from "angular2-flash-messages";
 
-import { SkillService } from "../../_services/skill.service";
 import { Skill } from "../../_models/skill.model";
+import { SkillService } from "../../_services/skill.service";
 
 
 @Component({
@@ -12,7 +12,7 @@ import { Skill } from "../../_models/skill.model";
 })
 export class SkillCreateComponent {
     constructor(private skillService: SkillService,
-    private _flashMessagesService: FlashMessagesService) {}
+                private _flashMessagesService: FlashMessagesService) {}
 
     onSubmit(form: NgForm) {
         // Create

@@ -1,9 +1,10 @@
 import { Component } from "@angular/core";
-import { NgForm } from "@angular/forms";
+import { NgForm, FormGroup } from "@angular/forms";
 import { FlashMessagesService } from "angular2-flash-messages";
 
-import { UserService } from "../../_services/user.service";
+
 import { User } from "../../_models/user.model";
+import { UserService } from "../../_services/user.service";
 
 
 @Component({
@@ -12,8 +13,10 @@ import { User } from "../../_models/user.model";
     // styleUrls: ['./home.style.scss']
 })
 export class UserCreateComponent {
+    createUserForm: FormGroup;
+
     constructor(private userService: UserService,
-    private _flashMessagesService: FlashMessagesService) {}
+                private _flashMessagesService: FlashMessagesService) {}
 
     onSubmit(form: NgForm) {
         // Create
