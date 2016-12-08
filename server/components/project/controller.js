@@ -6,8 +6,7 @@ let mongoose = require('mongoose');
 //create Projekt
 
 router.post('/project', function(req, res, next){
-    console.log('posted')
-    Project.createProject(req.body.name)
+    Project.createProject(req.body)
         .then(function(result){
            res.status(result.statusCode).json(result);
         })

@@ -5,7 +5,8 @@ import { ProjectService} from "../_services/project.service";
 
 @Component({
     selector: 'app-project-create',
-    templateUrl: './project.create.template.html'
+    templateUrl: './project.create.template.html',
+    providers: [ProjectService]
     // styleUrls: ['./project.create.style.scss']
 })
 export class ProjectCreateComponent {
@@ -13,16 +14,17 @@ export class ProjectCreateComponent {
 
   onSubmit(form: NgForm) {
       // Create
+      console.log(form)
       const project = new Project(
         form.value.title,
         form.value.description,
         form.value.type,
         form.value.client,
         form.value.budget,
-        form.value.expBudget,
         form.value.priority,
         form.value.start,
-        form.value.end
+        form.value.end,
+        form.value.expbudget
       )
       this.ProjectService.createProject(project)
           .subscribe(

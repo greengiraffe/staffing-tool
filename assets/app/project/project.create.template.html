@@ -14,20 +14,20 @@
     }
   </script>
 </header>
-
-<div class="project-container">
+<form (ngSubmit)="onSubmit(f)" #f="ngForm">
+  <div class="project-container">
     <div class="form-group">
       <label for="title">Title</label>
-      <input for="title-input" class="form-control" placeholder="Enter Project Title">
+      <input required for="title-input" class="form-control" placeholder="Enter Project Title" name="title" [ngModel]="project?.title">
     </div>
         <div class="project-info">
           <div class="form-group">
             <label for="description">Description</label>
-            <input id="description-input " class="form-control" placeholder="Enter Project Description">
+            <input id="description-input" class="form-control" placeholder="Enter Project Description" name="description" [ngModel]="project?.description">
           </div>
           <div class="form-group">
             <label for="type">Type</label>
-            <select id="type-input" class="form-control" name="type">
+            <select required id="type-input" class="form-control" name="type" [ngModel]="project?.type">
               <option>Confirmed</option>
               <option>Internal</option>
               <option>Tentative</option>
@@ -35,31 +35,36 @@
           </div>
           <div class="form-group">
             <label for="client">Client</label>
-            <input id="client-input" class="form-control" placeholder="Enter/Select a Client">
+            <input id="client-input" class="form-control" placeholder="Enter/Select a Client" name="client" [ngModel]="project?.client">
           </div>
           <div class="form-group">
             <label for="buget">Budget</label>
-            <input id="budget-input" class="form-control" placeholder="Enter Budget">
+            <input required id="budget-input" class="form-control" placeholder="Enter Budget" name="budget" [ngModel]="project?.budget">
           </div>
           <div class="form-group">
-            <label for="expBudget">Expanded Budget</label>
-            <input id="expBudget-input" class="form-control" placeholder="Enter Expanded Budget">
+            <label for="expbudget">Expanded Budget</label>
+            <input id="expbudget-input" class="form-control" placeholder="Enter Expanded Budget" name="expbudget" [ngModel]="project?.expbudget">
           </div>
           <div class="form-group">
             <label for="priority">Priority</label>
-            <input id="priority-input-default" class="form-control" name="priority" type ="radio" value="Default" checked>
+            <input id="priority-input-default" class="form-control" name="priority" type ="radio" value="false" checked  [ngModel]="project?.priority">
             <label for="priority-input-default">Default</label>
-            <input id="priority-input-high" class="form-control" name="priority" type ="radio" value="High">
+            <input id="priority-input-high" class="form-control" name="priority" type ="radio" value="true" [ngModel]="project?.priority">
             <label for="priority-input-high">High</label>
           <div class="form-group">
             <label for="start">Start</label>
-            <input id="start-input" class="form-control" type="date" name="start">
+            <input required id="start-input" class="form-control" type="date" name="start" [ngModel]="project?.start">
           </div>
           <div class="form-group">
             <label for="end">End</label>
-            <input id="end-input" class="form-control" type="date" name="end">
+            <input required id="end-input" class="form-control" type="date" name="end" [ngModel]="project?.end">
           </div>
        </div>
-      <button class="add-task-btn btn btn-primary" routerLink="/project/add">Add Task</button>
-</div>
-</div>
+       <!--<button class="add-task-btn btn btn-primary" routerLink="/project/add">Add Task</button>-->
+       <div class="text-xs-right">
+         <button type="button" class="btn btn-secondary">Cancel</button>
+         <button type="submit" class="btn btn-primary">Add Project</button>
+       </div>
+     </div>
+   </div>
+  </form>

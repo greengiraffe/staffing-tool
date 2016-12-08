@@ -23,7 +23,6 @@ import { UserListComponent } from "./user/user.list.component";
 import { UserProfileComponent } from "./user-profile/user-profile.component";
 import { UserProfileEditComponent } from "./user-profile/user-profile-edit.component";
 import { NavComponent } from "./nav.component";
-import { ProjectComponent } from "./project/project.component";
 import { UserSkillListComponent } from "./user-profile/user-skill-list.component";
 import { AuthService } from "./_services/auth.service";
 import { provideAuth } from "angular2-jwt";
@@ -57,7 +56,6 @@ import { ProjectCreateComponent } from './project/project.create.component';
         UserProfileComponent,
         UserProfileEditComponent,
         NavComponent,
-        ProjectComponent,
         UserSkillListComponent,
         SkillSearchComponent,
         ChangePasswordComponent,

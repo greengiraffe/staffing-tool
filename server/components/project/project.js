@@ -2,13 +2,21 @@ let Project = require('../../models/project');
 
 module.exports = {
 
-    createProject: function(name) {
-        let project = new Project({
-          name: name
+    createProject: function(project) {
+        let newProject = new Project({
+          title: project.title,
+          description: project.description,
+          type: project.type,
+          client: project.client,
+          budget: project.budget,
+          expbudget: project.expbudget,
+          priority: project.priority,
+          start: project.start,
+          end: project.end
         });
 
         return new Promise(function (resolve, reject) {
-            project.save(function(err, result) {
+            newProject.save(function(err, result) {
                 if(err) {
                     console.log(err);
                     reject({
