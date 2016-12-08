@@ -18,7 +18,8 @@ export class SkillCreateComponent {
         const skill = new Skill(form.value.name, form.value.rating);
         this.skillService.addSkill(skill)
             .subscribe(
-                data => console.log(data),
+                //data => console.log(data),
+                data => {this._flashMessagesService.show("Skill successfully added", { cssClass: 'alert-success', timeout: 5000 });},
                 error => {this._flashMessagesService.show(error.error.message, { cssClass: 'alert-danger', timeout: 5000 });}
             );
         form.resetForm();

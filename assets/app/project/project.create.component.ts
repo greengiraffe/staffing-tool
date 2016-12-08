@@ -1,5 +1,7 @@
 import { Component } from "@angular/core";
 import { NgForm } from "@angular/forms";
+import { FlashMessagesService } from "angular2-flash-messages";
+
 import { Project } from "../_models/project.model";
 import { ProjectService} from "../_services/project.service";
 
@@ -10,7 +12,8 @@ import { ProjectService} from "../_services/project.service";
     // styleUrls: ['./project.create.style.scss']
 })
 export class ProjectCreateComponent {
-  constructor(private ProjectService: ProjectService) {}
+  constructor(private ProjectService: ProjectService,
+  private _flashMessagesService: FlashMessagesService) {}
 
   onSubmit(form: NgForm) {
       // Create
@@ -28,8 +31,8 @@ export class ProjectCreateComponent {
       )
       this.ProjectService.createProject(project)
           .subscribe(
-              data => console.log(data),
-              error => console.error(error)
+            data => {this._flashMessagesService.show("Project successfully added", { cssClass: 'alert-success', timeout: 5000 });},
+            error => {this._flashMessagesService.show(error.error.message, { cssClass: 'alert-danger', timeout: 5000 });}
           );
       form.reset();
     }

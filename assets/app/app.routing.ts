@@ -27,9 +27,9 @@ const APP_ROUTES: Routes = [
     { path: 'usr/create', component: UserCreateComponent },
     { path: 'usr/list', component: UserListComponent },
 
-    { path: 'admin/list', component: SkillListComponent },
-    { path: 'admin/create', component: SkillCreateComponent },
-    { path: 'admin', component: SkillsComponent},
+    { path: 'skill-manage/list', component: SkillListComponent },
+    { path: 'skill-manage/create', component: SkillCreateComponent },
+    { path: 'skill-manage', component: SkillsComponent},
 
     { path: 'project/create', component: ProjectCreateComponent },
 

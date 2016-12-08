@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { FlashMessagesService } from "angular2-flash-messages";
 
 import { Skill } from "../_models/skill.model";
 import { SkillService } from "../_services/skill.service";
@@ -10,7 +11,8 @@ import { SkillService } from "../_services/skill.service";
 export class SkillListComponent implements OnInit {
     skills: Skill[];
 
-    constructor(private skillService: SkillService) {}
+    constructor(private skillService: SkillService,
+    private _flashMessagesService: FlashMessagesService) {}
 
     ngOnInit() {
         this.skillService.getSkills()
@@ -26,10 +28,10 @@ export class SkillListComponent implements OnInit {
     }
 
     deleteSkill(skill: Skill) {
-        // FIXME
         this.skillService.deleteSkill(skill)
             .subscribe(
-                result => console.log(result)
+              data => {this._flashMessagesService.show("Skill successfully deleted", { cssClass: 'alert-success', timeout: 5000 });},
+              error => {this._flashMessagesService.show(error.error.message, { cssClass: 'alert-danger', timeout: 5000 });}
             );
     }
 
