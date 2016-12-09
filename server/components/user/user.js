@@ -11,8 +11,7 @@ module.exports = {
                     email,
                     password,
                     location,
-                    role,
-                    picture
+                    role
     ) {
         let user = new User({
             firstName: firstName,
@@ -21,7 +20,6 @@ module.exports = {
             password: authHelper.generateSecureHash(password),
             location: location,
             role: role,
-            picture: picture
         });
         return new Promise(function(resolve, reject) {
             user.save(function(err, result) {

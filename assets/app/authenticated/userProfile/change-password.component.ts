@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../_services/user.service';
-import { FormGroup, FormControl, Validators } from "@angular/forms";
+import { FormGroup, FormControl, Validators, FormBuilder } from "@angular/forms";
 
 @Component({
   selector: 'app-change-password',
@@ -11,15 +11,16 @@ import { FormGroup, FormControl, Validators } from "@angular/forms";
 export class ChangePasswordComponent implements OnInit{
     changeForm: FormGroup;
 
-    constructor(private userService: UserService) {}
+    constructor(private userService: UserService,
+                private _fb: FormBuilder,) {}
 
     ngOnInit(){
-        this.changeForm = new FormGroup({
-            oldPw: new FormControl(null, Validators.required),
-            newPw: new FormGroup({
+        this.changeForm = this._fb.group({
+            oldPw: ['', Validators.required],
+            newPw: this._fb.group({
                 password: new FormControl(null, Validators.required),
                 confirm: new FormControl(null, Validators.required)
-            }, this.matchPassword)
+            }, { validator: this.matchPassword })
         });
     }
 

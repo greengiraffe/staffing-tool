@@ -22,14 +22,14 @@ export class UserCreateComponent implements OnInit {
         this.createUserForm = this._fb.group({
             firstName: ['', [<any>Validators.required, <any>Validators.minLength(2)]],
             lastName: ['', [<any>Validators.required, <any>Validators.minLength(2)]],
-            email: ['', <any>Validators.required],
+            email: ['', [<any>Validators.required],
+                Validators.pattern("[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?")],
             location: ['Berlin HQ', <any>Validators.required],
             role: ['user', <any>Validators.required],
             pw: this._fb.group({
                 password: ['', [<any>Validators.required, <any>Validators.minLength(8)]],
-                confirm: ['', [<any>Validators.required, <any>Validators.minLength(8)]],
-
-            }, this.matchPassword)
+                confirm: ['', [<any>Validators.required, <any>Validators.minLength(8)]]
+            }, {validator: this.matchPassword})
         });
     }
 
@@ -57,20 +57,18 @@ export class UserCreateComponent implements OnInit {
     onSubmit(form: FormGroup) {
         // Create
         const user = new User(
-            form.get('email').value,
-            form.get('pw').get('password').value,
-            form.get('role').value,
-            form.get('location').value,
-            form.get('firstName').value,
-            form.get('lastName').value
+            form['email'],
+            form['pw']['password'],
+            form['role'],
+            form['location'],
+            form['firstName'],
+            form['lastName']
         );
         this.userService.createUser(user)
             .subscribe(
-                //data => console.log(data),
                 data => {this._flash.show("User successfully added", { cssClass: 'alert-success', timeout: 5000 });},
-                //error => console.error(error)
                 error => {this._flash.show(error.error.message, { cssClass: 'alert-danger', timeout: 5000 });}
             );
-        // form.reset();
+        this.createUserForm.reset();
     }
 }

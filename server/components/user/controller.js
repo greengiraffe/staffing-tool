@@ -105,7 +105,6 @@ router.get('/user/mail/:email', function (req, res, next){
  * Create a user
  */
 router.post('/user', function(req, res, next) {
-    console.log(req.body.role);
     User.createUser(
         req.body.firstName,
         req.body.lastName,
@@ -113,7 +112,6 @@ router.post('/user', function(req, res, next) {
         req.body.password,
         req.body.location,
         req.body.role,
-        req.body.picture,
         req.body.phone
     )
         .then(function(result) {

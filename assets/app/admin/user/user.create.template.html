@@ -21,7 +21,7 @@
       <label for="location">Location</label>
       <select required id="location" class="form-control"
               formControlName="location">
-        <option selected>Berlin HQ</option>
+        <option>Berlin HQ</option>
         <option>Munich</option>
       </select>
     </div>
@@ -34,12 +34,12 @@
         <option value="admin">Administrator</option>
       </select>
     </div>
-    <div class="row">
+    <div class="row" formGroupName="pw">
       <div class="form-group col-xs-6">
         <label for="password">Password</label>
         <input required type="password" id="password" placeholder="Password" class="form-control"
                formControlName="password">
-        <small [hidden]="createUserForm.controls.password.valid">
+        <small [hidden]="createUserForm.controls.pw.controls.password.valid">
           Minimum 8 characters.
         </small>
       </div>
@@ -47,6 +47,9 @@
         <label for="password-confirm">Confirm password</label>
         <input required type="password" placeholder="Repeat password" id="password-confirm" class="form-control"
                formControlName="confirm">
+        <small [hidden]="createUserForm.controls.pw.valid">
+          Passwords must match.
+        </small>
       </div>
     </div>
     <div class="text-xs-right">
