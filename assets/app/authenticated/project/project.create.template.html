@@ -1,58 +1,72 @@
+<div class="col-lg-6">
 
-<h1> Create Project </h1>
+  <h1> Create Project </h1>
 
-<form (ngSubmit)="onSubmit(f)" #f="ngForm">
-  <div class="project-container">
-    <div class="form-group">
-      <label for="title-input">Title</label>
-      <input required id="title-input" class="form-control" placeholder="Enter Project Title" name="title" [ngModel]="project?.title">
-    </div>
-        <div class="project-info">
-          <div class="form-group">
-            <label for="description-input">Description</label>
-            <input id="description-input" class="form-control" placeholder="Enter Project Description" name="description" [ngModel]="project?.description">
-          </div>
-          <div class="form-group">
-            <label for="type-input">Type</label>
-            <select required id="type-input" class="form-control" name="type" [ngModel]="project?.type">
-              <option>Confirmed</option>
-              <option>Internal</option>
-              <option>Tentative</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label for="client-input">Client</label>
-            <input id="client-input" class="form-control" placeholder="Enter/Select a Client" name="client" [ngModel]="project?.client">
-          </div>
-          <div class="form-group">
-            <label for="budget-input">Budget</label>
-            <input required id="budget-input" class="form-control" placeholder="Enter Budget" name="budget" [ngModel]="project?.budget">
-          </div>
-          <div class="form-group">
-            <label for="expbudget-input">Expanded Budget</label>
-            <input id="expbudget-input" class="form-control" placeholder="Enter Expanded Budget" name="expbudget" [ngModel]="project?.expbudget">
-          </div>
-          <div class="form-group">
-            <span>Priority</span>
-            <label for="priority-input-default">Default</label>
-            <input id="priority-input-default" class="form-control" name="priority" type ="radio" value="false" checked  [ngModel]="project?.priority">
+  <form (ngSubmit)="onSubmit(projectForm.value)" [formGroup]="projectForm">
+    <div class="project-container">
+      <div class="form-group">
+        <label for="title-input">Title</label>
+        <input required id="title-input" class="form-control" placeholder="Enter Project Title"
+               formControlName="title">
+      </div>
+      <div class="project-info">
+        <div class="form-group">
+          <label for="description-input">Description</label>
+          <input id="description-input" class="form-control" placeholder="Enter Project Description"
+                 formControlName="description">
+        </div>
+        <div class="form-group">
+          <label for="type-input">Type</label>
+          <select required id="type-input" class="form-control"
+                  formControlName="type">
+            <option value="confirmed">Confirmed</option>
+            <option value="internal">Internal</option>
+            <option value="tentative">Tentative</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="client-input">Client</label>
+          <input id="client-input" class="form-control" placeholder="Enter/Select a Client"
+                 formControlName="client">
+        </div>
+        <div class="form-group">
+          <label for="budget-input">Budget</label>
+          <input required id="budget-input" class="form-control" placeholder="Enter Budget"
+                 formControlName="budget">
+        </div>
+        <div class="form-group">
+          <label for="expbudget-input">Expanded Budget</label>
+          <input id="expbudget-input" class="form-control" placeholder="Enter Expanded Budget"
+                 formControlName="expBudget">
+        </div>
+        <div class="form-group">
 
-            <input id="priority-input-high" class="form-control" name="priority" type ="radio" value="true" [ngModel]="project?.priority">
-            <label for="priority-input-high">High</label>
+          <div class="switch-field">
+            <div class="switch-title">Priority</div>
+            <input type="radio" id="switch_left" name="isPriority" value="false" formControlName="isPriority" />
+            <label for="switch_left">Normal</label>
+            <input type="radio" id="switch_right" name="isPriority" value="true" formControlName="isPriority" />
+            <label for="switch_right">High</label>
+          </div>
+
+
           <div class="form-group">
             <label for="start-input">Start</label>
-            <input required id="start-input" class="form-control" type="date" name="start" [ngModel]="project?.start">
+            <input required id="start-input" class="form-control" type="date"
+                   formControlName="projectStart">
           </div>
           <div class="form-group">
             <label for="end-input">End</label>
-            <input required id="end-input" class="form-control" type="date" name="end" [ngModel]="project?.end">
+            <input required id="end-input" class="form-control" type="date"
+                   formControlName="projectEnd">
           </div>
-       </div>
-       <div class="text-xs-right">
-         <button type="button" class="btn btn-secondary">Cancel</button>
-         <button type="submit" class="btn btn-primary">Add Project</button>
-         <flash-messages></flash-messages>
-       </div>
-     </div>
-   </div>
+        </div>
+        <div class="text-xs-right">
+          <button type="button" class="btn btn-secondary">Cancel</button>
+          <button type="submit" class="btn btn-primary">Add Project</button>
+          <flash-messages></flash-messages>
+        </div>
+      </div>
+    </div>
   </form>
+</div>

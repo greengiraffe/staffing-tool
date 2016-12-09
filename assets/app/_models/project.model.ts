@@ -6,7 +6,7 @@ export class Project {
               public type: string,
               public client: string,
               public budget: number,
-              public priority: boolean,
+              public isPriority: boolean,
               public start: Date,
               public end: Date,
 

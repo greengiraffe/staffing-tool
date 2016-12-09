@@ -11,7 +11,7 @@ import { SkillService } from "../../_services/skill.service";
 export class SkillComponent {
     @Input() skill: Skill;
 
-    constructor(private skillService: SkillService) {}
+    constructor() {}
 
     /*onDelete() {
         this.skillService.deleteSkill(this.skill)

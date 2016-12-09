@@ -1,5 +1,5 @@
-import { Component } from "@angular/core";
-import { NgForm } from "@angular/forms";
+import { Component, OnInit } from "@angular/core";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { FlashMessagesService } from "angular2-flash-messages";
 
 import { Project } from "../../_models/project.model";
@@ -9,25 +9,42 @@ import { ProjectService } from "../../_services/project.service";
 @Component({
     selector: 'app-project-create',
     templateUrl: './project.create.template.html',
-    providers: [ProjectService]
-    // styleUrls: ['./project.create.style.scss']
+    providers: [ProjectService],
+    styleUrls: ['project.create.style.scss']
 })
-export class ProjectCreateComponent {
+export class ProjectCreateComponent implements OnInit {
     constructor(private ProjectService: ProjectService,
-                private _flash: FlashMessagesService) {}
+                private _flash: FlashMessagesService,
+                private _fb: FormBuilder) {}
 
-    onSubmit(form: NgForm) {
+    projectForm: FormGroup;
+
+    ngOnInit() {
+        this.projectForm = this._fb.group({
+            title: ['', Validators.required],
+            description: ['', Validators.required],
+            type: ['tentative', Validators.required],
+            client: ['', Validators.required],
+            budget: ['', Validators.required],
+            expBudget: ['', Validators.required],
+            isPriority: ['false', Validators.required],
+            projectStart: ['', Validators.required],
+            projectEnd: ['', Validators.required]
+        })
+    }
+
+    onSubmit(form: FormGroup) {
         // Create
         const project = new Project(
-            form.value.title,
-            form.value.description,
-            form.value.type,
-            form.value.client,
-            form.value.budget,
-            form.value.priority,
-            form.value.start,
-            form.value.end,
-            form.value.expbudget
+            form['title'],
+            form['description'],
+            form['type'],
+            form['client'],
+            form['budget'],
+            form['isPriority'],
+            form['projectStart'],
+            form['projectEnd'],
+            form['expBudget']
         );
         this.ProjectService.createProject(project)
             .subscribe(
