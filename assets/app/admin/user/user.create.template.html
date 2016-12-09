@@ -29,9 +29,9 @@
       <label for="role">Role</label>
       <select required id="role" class="form-control"
               formControlName="role">
-        <option>User</option>
-        <option>User Creator</option>
-        <option>Administrator</option>
+        <option value="user">User</option>
+        <option value="user_creator">User Creator</option>
+        <option value="admin">Administrator</option>
       </select>
     </div>
     <div class="row">
@@ -46,13 +46,13 @@
       <div class="form-group col-xs-6">
         <label for="password-confirm">Confirm password</label>
         <input required type="password" placeholder="Repeat password" id="password-confirm" class="form-control"
-               formControlName="confirmPassword">
+               formControlName="confirm">
       </div>
     </div>
     <div class="text-xs-right">
       <flash-messages></flash-messages>
       <button type="button" class="btn btn-secondary">Cancel</button>
-      <button type="submit" class="btn btn-primary">Add Person</button>
+      <button type="submit" class="btn btn-primary" [disabled]="!createUserForm.valid">Add Person</button>
     </div>
   </form>
 </div>

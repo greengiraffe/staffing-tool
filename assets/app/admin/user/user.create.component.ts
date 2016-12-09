@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { NgForm, FormGroup, FormBuilder, Validators } from "@angular/forms";
+import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { FlashMessagesService } from "angular2-flash-messages";
 
 import { User } from "../../_models/user.model";
@@ -23,22 +23,47 @@ export class UserCreateComponent implements OnInit {
             firstName: ['', [<any>Validators.required, <any>Validators.minLength(2)]],
             lastName: ['', [<any>Validators.required, <any>Validators.minLength(2)]],
             email: ['', <any>Validators.required],
-            location: ['', <any>Validators.required],
-            role: ['', <any>Validators.required],
-            password: ['', [<any>Validators.required, <any>Validators.minLength(8)]],
-            confirmPassword: ['', [<any>Validators.required, <any>Validators.minLength(8)]],
+            location: ['Berlin HQ', <any>Validators.required],
+            role: ['user', <any>Validators.required],
+            pw: this._fb.group({
+                password: ['', [<any>Validators.required, <any>Validators.minLength(8)]],
+                confirm: ['', [<any>Validators.required, <any>Validators.minLength(8)]],
+
+            }, this.matchPassword)
         });
     }
 
-    onSubmit(form: NgForm) {
+    matchPassword(group): any {
+        let password = group.controls.password;
+        let confirm = group.controls.confirm;
+
+        // Don't kick in until user touches both fields
+        if (password.pristine || confirm.pristine) {
+            return null;
+        }
+
+        // Mark group as touched so we can add invalid class easily
+        group.markAsTouched();
+
+        if (password.value === confirm.value) {
+            return null;
+        }
+
+        return {
+            isValid: false
+        };
+    }
+
+    onSubmit(form: FormGroup) {
         // Create
         const user = new User(
-            form.value.email,
-            form.value.password,
-            form.value.role,
-            form.value.location,
-            form.value.firstName,
-            form.value.lastName);
+            form.get('email').value,
+            form.get('pw').get('password').value,
+            form.get('role').value,
+            form.get('location').value,
+            form.get('firstName').value,
+            form.get('lastName').value
+        );
         this.userService.createUser(user)
             .subscribe(
                 //data => console.log(data),
@@ -46,6 +71,6 @@ export class UserCreateComponent implements OnInit {
                 //error => console.error(error)
                 error => {this._flash.show(error.error.message, { cssClass: 'alert-danger', timeout: 5000 });}
             );
-        form.reset();
+        // form.reset();
     }
 }

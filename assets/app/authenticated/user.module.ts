@@ -1,6 +1,7 @@
 import { NgModule }       from '@angular/core';
 import { CommonModule }   from '@angular/common';
 import { ReactiveFormsModule, FormsModule } from "@angular/forms";
+import { FlashMessagesModule } from "angular2-flash-messages";
 import { BrowserModule } from "@angular/platform-browser";
 
 import { UserComponent } from "./user.component";
@@ -22,6 +23,7 @@ import { FilterPipe } from "../_pipes/filter.pipe";
         BrowserModule,
         FormsModule,
         ReactiveFormsModule,
+        FlashMessagesModule
     ],
     declarations: [
         UserComponent,

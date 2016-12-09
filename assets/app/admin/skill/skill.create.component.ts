@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
-import { NgForm } from "@angular/forms";
 import { FlashMessagesService } from "angular2-flash-messages";
+import { NgForm } from "@angular/forms";
 
 import { Skill } from "../../_models/skill.model";
 import { SkillService } from "../../_services/skill.service";
