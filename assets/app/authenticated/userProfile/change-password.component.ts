@@ -18,8 +18,8 @@ export class ChangePasswordComponent implements OnInit{
         this.changeForm = this._fb.group({
             oldPw: ['', Validators.required],
             newPw: this._fb.group({
-                password: new FormControl(null, Validators.required),
-                confirm: new FormControl(null, Validators.required)
+                password: ['', Validators.required],
+                confirm: ['', Validators.required]
             }, { validator: this.matchPassword })
         });
     }
