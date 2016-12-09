@@ -45,13 +45,13 @@ export class ChangePasswordComponent implements OnInit{
         };
     }
 
-    onSubmit(f: FormGroup) {
+    onSubmit(form: FormGroup) {
         this.userService.updateUserPassword(
             localStorage.getItem("userId"),
-            f.value.oldPw,
-            f.value.password)
+            form['oldPw'],
+            form['newPw']['password'])
             .subscribe(
-                data => f.reset(),
+                data => this.changeForm.reset(),
                 error => console.log(error)
             );
     }
