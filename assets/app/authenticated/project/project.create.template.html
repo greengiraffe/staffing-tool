@@ -1,32 +1,19 @@
-<header class="project-header">
-  <h1> Create Project </h1>
-  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-  <script>
-    // If not native HTML5 support, fallback to jQuery datePicker
-    let i = document.createElement("input");
-    i.setAttribute("type", "date");
-    if (i.type == "text") {
-      $( function() {
-        $( "#start-input" ).datepicker();
-      } );
-    }
-  </script>
-</header>
+
+<h1> Create Project </h1>
+
 <form (ngSubmit)="onSubmit(f)" #f="ngForm">
   <div class="project-container">
     <div class="form-group">
-      <label for="title">Title</label>
-      <input required for="title-input" class="form-control" placeholder="Enter Project Title" name="title" [ngModel]="project?.title">
+      <label for="title-input">Title</label>
+      <input required id="title-input" class="form-control" placeholder="Enter Project Title" name="title" [ngModel]="project?.title">
     </div>
         <div class="project-info">
           <div class="form-group">
-            <label for="description">Description</label>
+            <label for="description-input">Description</label>
             <input id="description-input" class="form-control" placeholder="Enter Project Description" name="description" [ngModel]="project?.description">
           </div>
           <div class="form-group">
-            <label for="type">Type</label>
+            <label for="type-input">Type</label>
             <select required id="type-input" class="form-control" name="type" [ngModel]="project?.type">
               <option>Confirmed</option>
               <option>Internal</option>
@@ -34,33 +21,33 @@
             </select>
           </div>
           <div class="form-group">
-            <label for="client">Client</label>
+            <label for="client-input">Client</label>
             <input id="client-input" class="form-control" placeholder="Enter/Select a Client" name="client" [ngModel]="project?.client">
           </div>
           <div class="form-group">
-            <label for="buget">Budget</label>
+            <label for="budget-input">Budget</label>
             <input required id="budget-input" class="form-control" placeholder="Enter Budget" name="budget" [ngModel]="project?.budget">
           </div>
           <div class="form-group">
-            <label for="expbudget">Expanded Budget</label>
+            <label for="expbudget-input">Expanded Budget</label>
             <input id="expbudget-input" class="form-control" placeholder="Enter Expanded Budget" name="expbudget" [ngModel]="project?.expbudget">
           </div>
           <div class="form-group">
-            <label for="priority">Priority</label>
-            <input id="priority-input-default" class="form-control" name="priority" type ="radio" value="false" checked  [ngModel]="project?.priority">
+            <span>Priority</span>
             <label for="priority-input-default">Default</label>
+            <input id="priority-input-default" class="form-control" name="priority" type ="radio" value="false" checked  [ngModel]="project?.priority">
+
             <input id="priority-input-high" class="form-control" name="priority" type ="radio" value="true" [ngModel]="project?.priority">
             <label for="priority-input-high">High</label>
           <div class="form-group">
-            <label for="start">Start</label>
+            <label for="start-input">Start</label>
             <input required id="start-input" class="form-control" type="date" name="start" [ngModel]="project?.start">
           </div>
           <div class="form-group">
-            <label for="end">End</label>
+            <label for="end-input">End</label>
             <input required id="end-input" class="form-control" type="date" name="end" [ngModel]="project?.end">
           </div>
        </div>
-       <!--<button class="add-task-btn btn btn-primary" routerLink="/project/add">Add Task</button>-->
        <div class="text-xs-right">
          <button type="button" class="btn btn-secondary">Cancel</button>
          <button type="submit" class="btn btn-primary">Add Project</button>

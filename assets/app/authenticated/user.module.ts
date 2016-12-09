@@ -6,7 +6,7 @@ import { BrowserModule } from "@angular/platform-browser";
 import { UserComponent } from "./user.component";
 import { UserRoutingModule } from "./user.routes";
 import { HomeComponent } from "./home/home.component";
-import { ProjectComponent } from "./project/project.component";
+import { ProjectCreateComponent } from "./project/project.create.component";
 import { ChangePasswordComponent } from "./userProfile/change-password.component";
 import { SkillSearchComponent } from "./userProfile/skill-search.component";
 import { UserProfileComponent } from "./userProfile/user-profile.component";
@@ -26,12 +26,12 @@ import { FilterPipe } from "../_pipes/filter.pipe";
     declarations: [
         UserComponent,
         HomeComponent,
-        ProjectComponent,
         ChangePasswordComponent,
         SkillSearchComponent,
         UserProfileComponent,
         UserProfileEditComponent,
         UserSkillListComponent,
+        ProjectCreateComponent,
         FilterPipe
     ]
 })
