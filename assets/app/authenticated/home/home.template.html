@@ -1,19 +1,20 @@
-<h3>Landingpage:</h3>
+<h3>Landingpage:</h3> <br/><br/>
 
 <header class="nav">
-  <div class="nav-item"><a routerLink="">Login</a></div>
-  <div class="nav-item"><a routerLink="/usr/create">Create User</a></div>
-  <div class="nav-item"><a routerLink="/usr/list">List User</a></div>
-  <div class="nav-item"><a routerLink="/skill-manage">Skill</a></div>
-  <div class="nav-item"><a routerLink="/profile">User Profile</a></div>
-  <div class="nav-item"><a routerLink="/profile/edit">Edit User Profile</a></div>
-  <div class="nav-item"><a routerLink="/project/create">Create Project</a></div>
+  <h5>Public</h5>
+  <div class="nav-item"><a routerLink="auth/login">Login</a></div>
+  <span>Onboarding</span>
 
-  <h4>Onboarding Links:</h4>
-  <div class="nav-item"><a routerLink="/onboarding/password">Set Password</a></div>
-  <div class="nav-item"><a routerLink="/onboarding/skills">Select Skills</a></div>
-  <div class="nav-item"><a routerLink="/onboarding/interests">Select Interests</a></div>
-  <div class="nav-item"><a routerLink="/onboarding/info">Add more Information</a></div>
-  <div class="nav-item"><a routerLink="/onboarding/profile">Preview Profile</a></div>
-  <div class="nav-item"><a routerLink="/onboarding/finish">Finish Onboarding</a></div>
+  <br/>
+  <h5>Admin</h5>
+  <div class="nav-item"><a routerLink="/admin/user/create">Create User</a></div>
+  <div class="nav-item"><a routerLink="/admin/user/list">List User</a></div>
+  <div class="nav-item"><a routerLink="/admin/skill">Skill</a></div>
+
+  <br/>
+  <h5>Authenticated</h5>
+  <div class="nav-item"><a routerLink="/usr/profile">User Profile</a></div>
+  <div class="nav-item"><a routerLink="/usr/profile/edit">Edit User Profile</a></div>
+
+
 </header>

@@ -1,7 +1,6 @@
-import { Component } from "@angular/core";
-import { NgForm, FormGroup } from "@angular/forms";
+import { Component, OnInit } from "@angular/core";
+import { NgForm, FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { FlashMessagesService } from "angular2-flash-messages";
-
 
 import { User } from "../../_models/user.model";
 import { UserService } from "../../_services/user.service";
@@ -12,11 +11,24 @@ import { UserService } from "../../_services/user.service";
     templateUrl: './user.create.template.html'
     // styleUrls: ['./home.style.scss']
 })
-export class UserCreateComponent {
+export class UserCreateComponent implements OnInit {
     createUserForm: FormGroup;
 
     constructor(private userService: UserService,
+                private _fb: FormBuilder,
                 private _flashMessagesService: FlashMessagesService) {}
+
+    ngOnInit() {
+        this.createUserForm = this._fb.group({
+            firstName: ['', [<any>Validators.required, <any>Validators.minLength(2)]],
+            lastName: ['', [<any>Validators.required, <any>Validators.minLength(2)]],
+            email: ['', <any>Validators.required],
+            location: ['', <any>Validators.required],
+            role: ['', <any>Validators.required],
+            password: ['', [<any>Validators.required, <any>Validators.minLength(8)]],
+            confirmPassword: ['', [<any>Validators.required, <any>Validators.minLength(8)]],
+        });
+    }
 
     onSubmit(form: NgForm) {
         // Create

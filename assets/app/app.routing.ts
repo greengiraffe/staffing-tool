@@ -8,8 +8,7 @@ import { HomeComponent } from "./authenticated/home/home.component";
 const APP_ROUTES: Routes = [
     { path: '', redirectTo: 'auth/login', pathMatch: 'full' },
 
-    { path: 'auth/login', component: LoginComponent },
-    { path: 'home', component: HomeComponent },
+    { path: 'auth/login', component: LoginComponent }
 ];
 
 @NgModule({

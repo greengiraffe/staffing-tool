@@ -1,5 +1,7 @@
 import { NgModule }       from '@angular/core';
 import { CommonModule }   from '@angular/common';
+import { ReactiveFormsModule, FormsModule } from "@angular/forms";
+import { BrowserModule } from "@angular/platform-browser";
 
 import { AdminComponent } from "./admin.component";
 import { AdminRoutingModule } from "./admin.routes";
@@ -14,7 +16,10 @@ import { UserListComponent } from "./user/user.list.component";
 @NgModule({
     imports: [
         CommonModule,
-        AdminRoutingModule
+        AdminRoutingModule,
+        BrowserModule,
+        FormsModule,
+        ReactiveFormsModule,
     ],
     declarations: [
         AdminComponent,

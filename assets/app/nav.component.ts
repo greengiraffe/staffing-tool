@@ -10,7 +10,7 @@ import { AuthService } from './_services/auth.service';
            IXDS Staffingtool
         </a>
         <ul class="nav navbar-nav">
-          <li class="nav-item active"><a class="nav-link" routerLink="home">Dashboard</a></li>
+          <li class="nav-item active"><a class="nav-link" routerLink="usr/dashboard">Dashboard</a></li>
           <li class="nav-item"><a class="nav-link" routerLink="home">My Tasks</a></li>
           <li class="nav-item"><a class="nav-link" routerLink="home">All Projects</a></li>
           <li class="nav-item"><a class="nav-link" routerLink="home">Add Project</a></li>

@@ -19,16 +19,9 @@ import { OnboardingModule } from "./onboarding/onboarding.module";
 import { UserModule } from "./authenticated/user.module";
 import { AdminModule } from "./admin/admin.module";
 
-@NgModule({
-    declarations: [
-        FilterPipe,
-        AppComponent,
 
-        LoginComponent,
-        NavComponent,
-    ],
+@NgModule({
     imports: [
-        AppRoutingModule,
         HttpModule,
         BrowserModule,
         FormsModule,
@@ -36,7 +29,14 @@ import { AdminModule } from "./admin/admin.module";
         FlashMessagesModule,
         AdminModule,
         UserModule,
-        OnboardingModule
+        OnboardingModule,
+        AppRoutingModule
+    ],
+    declarations: [
+        AppComponent,
+
+        LoginComponent,
+        NavComponent,
     ],
     providers: [
         UserService,

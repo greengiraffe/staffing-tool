@@ -1,5 +1,7 @@
 import { NgModule }       from '@angular/core';
 import { CommonModule }   from '@angular/common';
+import { BrowserModule } from "@angular/platform-browser";
+import { ReactiveFormsModule, FormsModule } from "@angular/forms";
 
 import { PasswordComponent } from "./password/password.component";
 import { OnboardingSkillComponent } from "./skill/onboarding-skill.component";
@@ -13,7 +15,10 @@ import { OnboardingRoutingModule } from "./onboarding.routes";
 @NgModule({
     imports: [
         CommonModule,
-        OnboardingRoutingModule
+        OnboardingRoutingModule,
+        BrowserModule,
+        FormsModule,
+        ReactiveFormsModule,
     ],
     declarations: [
         PasswordComponent,
