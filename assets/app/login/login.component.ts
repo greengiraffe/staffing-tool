@@ -16,7 +16,7 @@ export class LoginComponent implements OnInit{
 
     constructor(private authService: AuthService,
                 private router: Router,
-                private _flashMessagesService: FlashMessagesService) {}
+                private _flash: FlashMessagesService) {}
 
     onSubmit() {
         let user = new User(this.loginForm.value.email, this.loginForm.value.password);
@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit{
                 .subscribe(
                     data => this.router.navigateByUrl('/home'),
                     error => {
-                        this._flashMessagesService.show(error.error.message, { cssClass: 'alert-danger', timeout: 5000 });
+                        this._flash.show(error.error.message, { cssClass: 'alert-danger', timeout: 5000 });
                     }
                 );
             this.loginForm.reset();

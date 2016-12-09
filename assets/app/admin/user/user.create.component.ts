@@ -16,7 +16,7 @@ export class UserCreateComponent implements OnInit {
 
     constructor(private userService: UserService,
                 private _fb: FormBuilder,
-                private _flashMessagesService: FlashMessagesService) {}
+                private _flash: FlashMessagesService) {}
 
     ngOnInit() {
         this.createUserForm = this._fb.group({
@@ -42,9 +42,9 @@ export class UserCreateComponent implements OnInit {
         this.userService.createUser(user)
             .subscribe(
                 //data => console.log(data),
-                data => {this._flashMessagesService.show("User successfully added", { cssClass: 'alert-success', timeout: 5000 });},
+                data => {this._flash.show("User successfully added", { cssClass: 'alert-success', timeout: 5000 });},
                 //error => console.error(error)
-                error => {this._flashMessagesService.show(error.error.message, { cssClass: 'alert-danger', timeout: 5000 });}
+                error => {this._flash.show(error.error.message, { cssClass: 'alert-danger', timeout: 5000 });}
             );
         form.reset();
     }

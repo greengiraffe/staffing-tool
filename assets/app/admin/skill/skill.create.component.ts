@@ -12,7 +12,7 @@ import { SkillService } from "../../_services/skill.service";
 })
 export class SkillCreateComponent {
     constructor(private skillService: SkillService,
-                private _flashMessagesService: FlashMessagesService) {}
+                private _flash: FlashMessagesService) {}
 
     onSubmit(form: NgForm) {
         // Create
@@ -20,8 +20,8 @@ export class SkillCreateComponent {
         this.skillService.addSkill(skill)
             .subscribe(
                 //data => console.log(data),
-                data => {this._flashMessagesService.show("Skill successfully added", { cssClass: 'alert-success', timeout: 5000 });},
-                error => {this._flashMessagesService.show(error.error.message, { cssClass: 'alert-danger', timeout: 5000 });}
+                data => {this._flash.show("Skill successfully added", { cssClass: 'alert-success', timeout: 5000 });},
+                error => {this._flash.show(error.error.message, { cssClass: 'alert-danger', timeout: 5000 });}
             );
         form.resetForm();
     }
