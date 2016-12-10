@@ -1,6 +1,7 @@
 let express = require('express');
 let passport = require('passport');
 let router = express.Router();
+let path  = require('path');
 let jwt = require('jsonwebtoken');
 let mongoose = require('mongoose');
 let authHelper = require('../../services/authHelper');
@@ -12,6 +13,7 @@ let fs = require('fs');
 let multipartMiddleware = multipart();
 let User = require('./user');
 let IMAGE_TYPES = ['image/jpeg', 'image/png'];
+let imgStorePath = "server/uploads/user/";
 
 /**
  * Handle user login
@@ -241,8 +243,9 @@ router.delete('/user/:id', function(req, res, next) {
 // });
 
 router.post('/user/img/:id', multipartMiddleware, function(req, res, next) {
+    console.log(req.files)
     fs.readFile(req.files.image.path, function (err, data) {
-        var imageName = req.files.image.name
+        var imageName = path.extname(req.files.image.name);
         if(!imageName){
             res.redirect("/");
             res.end();
@@ -251,11 +254,12 @@ router.post('/user/img/:id', multipartMiddleware, function(req, res, next) {
             if (IMAGE_TYPES.indexOf(type) == -1) {
                 return res.send(415, 'Supported image formats: jpeg, jpg, jpe, png.');
             }
-            var newPath = imgStorePath + imageName;
+            var newPath = imgStorePath + req.params.id + imageName;
             fs.writeFile(newPath, data, function (err) {
                 User.addImg(req.params.id, newPath)
                 //TODO error handling
                 res.redirect(req.params.id);
+                //res.status(200).json({'nice' : 'worked'});
             });
         }
     });
@@ -264,7 +268,7 @@ router.post('/user/img/:id', multipartMiddleware, function(req, res, next) {
 router.get('/user/img/:id', function (req, res){
     User.getUserByID(req.params.id)
         .then(function (result) {
-            file = result.picture;
+            file = imgStorePath +  result._id + '.jpg';
             var img = fs.readFileSync(file);
             res.writeHead(200, {'Content-Type': 'image/jpg' });
             res.end(img, 'binary');

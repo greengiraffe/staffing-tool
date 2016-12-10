@@ -44,7 +44,7 @@ module.exports = {
     updateUser: function(updateData) {
         //TODO Protect Password and Email from being updated
         return new Promise(function(resolve, reject) {
-            User.findByIdAndUpdate(updateData._id, { $set: updateData}, function(err, user) {
+            User.findByIdAndUpdate(updateData.userId, { $set: updateData}, function(err, user) {
                 if(err) {
                     reject({
                         message: "Database error",

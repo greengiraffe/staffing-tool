@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { Http, Headers, Response } from "@angular/http";
+import { Http, Headers, Response, ResponseContentType } from "@angular/http";
 import 'rxjs/Rx';
 import { Observable } from "rxjs";
 // import config = require ("../../../config/config");
@@ -64,10 +64,26 @@ export class UserService {
 
     updateUser(user: User): Observable<{}> {
         const body = JSON.stringify(user);
+        console.log(body)
         const headers = new Headers({'Content-Type': 'application/json'});
         return this.http.put('http://localhost:3000/user', body, { headers })
             .map((response: Response) => response.json())
             .catch((error: Response) => Observable.throw(error.json()));
+    }
+
+    getUserImage(userId): Observable<{}> {
+      return this.http.get('http://localhost:3000/user/img/' + userId, {responseType: ResponseContentType.Blob
+      })
+        .map((response: Response) => this.createImageUrl(response.blob()))
+        .catch((error: Response) => Observable.throw(error.json()));
+    }
+
+    uploadUserImage(userId, image: File): Observable<{}> {
+        var formData  =  new FormData();
+        formData.append('image', image);
+        return this.http.post('http://localhost:3000/user/img/' + userId, formData, {responseType: ResponseContentType.Blob})
+            .map((response: Response) => this.createImageUrl(response.blob()))
+            .catch((error: Response) => Observable.throw(error))
     }
 
     deleteUser(user: User) {
@@ -76,5 +92,10 @@ export class UserService {
         return this.http.delete('http://localhost:3000/user/' + user.userId)
             .map((response: Response) => response.json())
             .catch((error: Response) => Observable.throw(error.json()));
+    }
+
+    createImageUrl(blob: Blob) {
+        let urlCreator = window.URL;
+        return urlCreator.createObjectURL(blob);
     }
 }
