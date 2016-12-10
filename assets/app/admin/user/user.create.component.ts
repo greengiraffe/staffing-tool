@@ -20,17 +20,32 @@ export class UserCreateComponent implements OnInit {
 
     ngOnInit() {
         this.createUserForm = this._fb.group({
-            firstName: ['', [<any>Validators.required, <any>Validators.minLength(2)]],
-            lastName: ['', [<any>Validators.required, <any>Validators.minLength(2)]],
-            email: ['', [<any>Validators.required],
-                Validators.pattern("[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?")],
-            location: ['Berlin HQ', <any>Validators.required],
-            role: ['user', <any>Validators.required],
+            firstName: ['', [Validators.required, Validators.minLength(2)]],
+            lastName: ['', [Validators.required, Validators.minLength(2)]],
+            email: ['', [Validators.required,Validators.pattern("[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?")]],
+            location: ['Berlin HQ', Validators.required],
+            role: ['user', Validators.required],
             pw: this._fb.group({
-                password: ['', [<any>Validators.required, <any>Validators.minLength(8)]],
-                confirm: ['', [<any>Validators.required, <any>Validators.minLength(8)]]
+                password: ['', [Validators.required, Validators.minLength(8), this.noCapital, this.noNumber]],
+                confirm: ['', [Validators.required, Validators.minLength(8)]]
             }, {validator: this.matchPassword})
         });
+    }
+
+    noCapital(control): any {
+      if(!control.value.match(/(?=.*[A-Z])/)) {
+        return {noCapital: true};
+      } else {
+        return null;
+      }
+    }
+
+    noNumber(control): any {
+      if(!control.value.match(/^(?=.*\d).+$/)) {
+        return {noNumber: true};
+      } else {
+        return null;
+      }
     }
 
     matchPassword(group): any {
