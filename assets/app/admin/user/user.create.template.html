@@ -1,21 +1,32 @@
 <div class="col-lg-6">
   <h2>Add a person</h2>
+  <h5><span class="red">*</span> Required Fields</h5>
+  <br/>
 
   <form (ngSubmit)="onSubmit(createUserForm.value)" [formGroup]="createUserForm">
     <div class="form-group">
-      <label for="firstName">First Name</label>
+      <div class="flex-container">
+        <label for="firstName" class="flex-container-left">First Name <span class="red">*</span></label>
+        <div class="flex-container-right red" *ngIf="!createUserForm.get('firstName').valid && createUserForm.get('firstName').dirty">This field is required.</div>
+      </div>
       <input required type="text" id="firstName" placeholder="e.g. John" class="form-control"
-             formControlName="firstName">
+             formControlName="firstName" [class.error]="!createUserForm.get('firstName').valid && createUserForm.get('firstName').dirty">
     </div>
     <div class="form-group">
-      <label for="lastName">Last Name</label>
+      <div class="flex-container">
+        <label for="lastName" class="flex-container-left">Last Name <span class="red">*</span></label>
+        <div class="flex-container-right red" *ngIf="!createUserForm.get('lastName').valid && createUserForm.get('lastName').dirty">This field is required.</div>
+      </div>
       <input required type="text" id="lastName" placeholder="e.g. Doe" class="form-control"
-             formControlName="lastName">
+             formControlName="lastName" [class.error]="!createUserForm.get('lastName').valid && createUserForm.get('lastName').dirty">
     </div>
     <div class="form-group">
-      <label for="email">Email</label>
+      <div class="flex-container">
+        <label for="email" class="flex-container-left">Email <span class="red">*</span></label>
+        <div *ngIf="!createUserForm.get('email').valid && createUserForm.get('email').dirty" class="flex-container-right red">Please enter a valid email address.</div>
+      </div>
       <input required type="email" id="email" placeholder="john.doe@example.com" class="form-control"
-             formControlName="email">
+             formControlName="email" [class.error]="!createUserForm.get('email').valid && createUserForm.get('email').dirty">
     </div>
     <div class="form-group">
       <label for="location">Location</label>
@@ -36,26 +47,28 @@
     </div>
     <div class="row" formGroupName="pw">
       <div class="form-group col-xs-6">
-        <label for="password">Password</label>
+        <label for="password">Password <span class="red">*</span></label>
         <input required type="password" id="password" placeholder="Password" class="form-control"
-               formControlName="password">
-        <div *ngIf="createUserForm?.controls?.pw?.controls?.password?.hasError('minlength')">
+               formControlName="password" [class.error]="!createUserForm.get('pw').get('password').valid && createUserForm.get('pw').get('password').dirty">
+        <div *ngIf="createUserForm.get('pw').get('password').hasError('required') && createUserForm.get('pw').get('password').dirty" class="red">This field is required.</div>
+        <div *ngIf="createUserForm?.controls?.pw?.controls?.password?.hasError('minlength')" class="red">
           Minimum 8 characters.
         </div>
-        <div *ngIf="createUserForm?.controls?.pw?.controls?.password?.hasError('noCapital')">
+        <div *ngIf="createUserForm.get('pw').get('password').hasError('noCapital') && createUserForm.get('pw').get('password').dirty" class="red">
           At least 1 capital letter.
         </div>
-        <div *ngIf="createUserForm?.controls?.pw?.controls?.password?.hasError('noNumber')">
+        <div *ngIf="createUserForm?.controls?.pw?.controls?.password?.hasError('noNumber') && createUserForm.get('pw').get('password').dirty" class="red">
           At least 1 number.
         </div>
       </div>
       <div class="form-group col-xs-6">
-        <label for="password-confirm">Confirm password</label>
+        <label for="password-confirm">Confirm password <span class="red">*</span></label>
         <input required type="password" placeholder="Repeat password" id="password-confirm" class="form-control"
-               formControlName="confirm">
-        <small *ngIf="createUserForm.controls.pw.valid">
+               formControlName="confirm" [class.error]="!createUserForm.get('pw').get('confirm').valid  && createUserForm.get('pw').get('confirm').dirty">
+        <div *ngIf="createUserForm.get('pw').get('confirm').hasError('required') && createUserForm.get('pw').get('confirm').dirty" class="red">This field is required.</div>
+        <div *ngIf="!createUserForm.controls.pw.valid && createUserForm.controls.pw.controls.confirm.dirty" class="red">
           Passwords must match.
-        </small>
+        </div>
       </div>
     </div>
     <div class="text-xs-right">

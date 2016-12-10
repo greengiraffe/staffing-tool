@@ -1,0 +1,21 @@
+.error {
+  border-color: red;
+}
+
+.red {
+  color: red;
+}
+
+.flex-container {
+  display: flex;
+
+  &-left {
+    width: 50%;
+    text-align: left;
+  }
+
+  &-right {
+    width: 50%;
+    text-align: right;
+  }
+}

@@ -8,8 +8,8 @@ import { UserService } from "../../_services/user.service";
 
 @Component({
     selector: 'app-user-create',
-    templateUrl: './user.create.template.html'
-    // styleUrls: ['./home.style.scss']
+    templateUrl: './user.create.template.html',
+    styleUrls: ['./user.create.style.scss']
 })
 export class UserCreateComponent implements OnInit {
     createUserForm: FormGroup;
@@ -20,8 +20,8 @@ export class UserCreateComponent implements OnInit {
 
     ngOnInit() {
         this.createUserForm = this._fb.group({
-            firstName: ['', [Validators.required, Validators.minLength(2)]],
-            lastName: ['', [Validators.required, Validators.minLength(2)]],
+            firstName: ['', [Validators.required]],
+            lastName: ['', [Validators.required]],
             email: ['', [Validators.required,Validators.pattern("[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?")]],
             location: ['Berlin HQ', Validators.required],
             role: ['user', Validators.required],
