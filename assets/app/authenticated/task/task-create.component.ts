@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { NgForm } from "@angular/forms";
 import { Task } from "../../_models/task.model";
 import { SkillService } from "../../_services/skill.service";
@@ -11,17 +11,18 @@ import { Skill } from "../../_models/skill.model";
     styleUrls: ['task-create.styles.scss'],
     providers: [SkillService, SkillSearchService]
 })
-export class TaskCreateComponent implements OnInit {
+export class TaskCreateComponent implements OnInit, OnDestroy {
 
     task: Task;
     requiredSkills: Set<Skill>;
+    skillSearchServiceSubscription;
 
     constructor(private skillService: SkillService, private skillSearchService: SkillSearchService) {
         this.requiredSkills = new Set<Skill>();
     }
 
     ngOnInit() {
-        this.skillSearchService.skillAdded$
+        this.skillSearchServiceSubscription = this.skillSearchService.skillAdded$
             .subscribe(skill => {
                 this.addRequiredSkill(skill);
             });
@@ -39,6 +40,11 @@ export class TaskCreateComponent implements OnInit {
 
     addTask(form: NgForm) {
         // TODO
+    }
+
+    ngOnDestroy() {
+        // Prevent memory leaks
+        this.skillSearchServiceSubscription.unsubscribe();
     }
 
 }

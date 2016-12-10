@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 
 import { User } from "../../_models/user.model";
@@ -15,7 +15,7 @@ import { SkillSearchService } from "../../_services/skill-search.service";
     styleUrls: ['skill-search.style.scss']
 })
 
-export class UserSkillListComponent implements OnInit {
+export class UserSkillListComponent implements OnInit, OnDestroy {
 
     @Input() showRemove = false;
 
@@ -24,7 +24,7 @@ export class UserSkillListComponent implements OnInit {
     professionalSkills:Set<Skill> = new Set<Skill>();
     basicSkills:Set<Skill> = new Set<Skill>();
     interestSkills:Set<Skill> = new Set<Skill>();
-    userProfileEditSubscription;
+    skillSearchServiceSubscription;
 
     constructor(private userService: UserService,
                 private skillService: SkillService,
@@ -42,7 +42,7 @@ export class UserSkillListComponent implements OnInit {
         });
 
         // Add a new skill when it's selected in the skill-search
-        this.skillSearchService.userSkillAdded$.subscribe(
+        this.skillSearchServiceSubscription = this.skillSearchService.userSkillAdded$.subscribe(
             userSkill => {
                 this.addSkill(userSkill);
             });
@@ -97,5 +97,10 @@ export class UserSkillListComponent implements OnInit {
     removeSkill(skill: Skill, skillList: Set<Skill>) {
         skillList.delete(skill);
         this.skillSearchService.removeSkill(skill);
+    }
+
+    ngOnDestroy() {
+        // Prevent memory leaks
+        this.skillSearchServiceSubscription.unsubscribe();
     }
 }
