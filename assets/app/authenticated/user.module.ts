@@ -38,6 +38,7 @@ import { ModalComponent } from "../modal/modal.component";
         UserSkillListComponent,
         ProjectCreateComponent,
         ProjectListComponent,
+        TaskCreateComponent,
         ModalComponent,
         TaskCreateComponent,
         FilterPipe
