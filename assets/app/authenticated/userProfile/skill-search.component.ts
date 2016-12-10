@@ -13,22 +13,23 @@ import { UserSkill } from "../../_models/user-skill.model";
       class="skill-search form-control"
       placeholder="Search for a Skill"
       type="text">
-    <ul class="skill-list">
-      <li class="skill" *ngFor="let skill of skills | filter : 'name' : searchText">
+    <ul class="skill-list" [ngSwitch]="clickableSkill">
+      <li class="skill" *ngFor="let skill of skills | filter : 'name' : searchText" (click)="selectSkill(skill)">
         {{ skill.name }}
         <span *ngIf="showSkillButtons" class="skill-buttons">
             <span class="skill-icon skill-btn professional"
-                  title="Add skill to professional skills"
-                  (click)="selectSkill(skill, 2)"></span>
+				(click)="selectUserSkill(skill, 2)"
+				title="Add skill to professional skills"></span>
             <span class="skill-icon skill-btn basic"
-                  title="Add skill to basic skills"
-                  (click)="selectSkill(skill, 1)"></span>
+				(click)="selectUserSkill(skill, 1)"
+				title="Add skill to basic skills"></span>
             <span class="skill-icon skill-btn interest"
-                  title="Add skill to interests"
-                  (click)="selectSkill(skill, 0)"></span>
+				(click)="selectUserSkill(skill, 0)"
+				title="Add skill to interests"></span>
         </span>
       </li>
     </ul>
+    <p *ngIf="skills.length === 0">There are no more available skills.</p>
   `,
   styleUrls: ['skill-search.style.scss']
 })
@@ -36,17 +37,21 @@ import { UserSkill } from "../../_models/user-skill.model";
 export class SkillSearchComponent implements OnInit {
     @Input() showSkillButtons = false;
 
-    skills: Skill[] = [];
-    hiddenSkills: Skill[] = [];
+    skills: Skill[];
+    hiddenSkills: Skill[];
     searchText;
 
-    constructor(private skillService: SkillService, private userProfileEditService: UserProfileEditService) {}
+    constructor(private skillService: SkillService, private userProfileEditService: UserProfileEditService) {
+        this.skills = [];
+        this.hiddenSkills = [];
+    }
 
     ngOnInit() {
         this.skillService.getSkills()
             .subscribe(
                 skills => {
                     this.skills = skills as Skill[];
+                    this.sortSkills();
                 },
                 error => console.log(error)
             );
@@ -56,6 +61,14 @@ export class SkillSearchComponent implements OnInit {
 
         this.userProfileEditService.skillRemoved$.subscribe(
             removedSkill => this.showSkill(removedSkill));
+    }
+
+    sortSkills() {
+        this.skills.sort((a, b) => {
+            if (a.name < b.name) return -1;
+            else if (a.name > b.name) return 1;
+            else return 0;
+        })
     }
 
     /**
@@ -72,13 +85,26 @@ export class SkillSearchComponent implements OnInit {
     showSkill(skill: Skill) {
         this.skills.push(skill);
         this.hiddenSkills = this.hiddenSkills.filter(hiddenSkill => hiddenSkill.skillId !== skill.skillId);
+        this.sortSkills();
     }
 
     /**
      * Stream the selected skill as a UserSkill
      */
-    selectSkill(skill, rating) {
+    selectUserSkill(skill, rating) {
+        this.searchText = null;
         const userSkill = new UserSkill(skill.skillId, rating);
         this.userProfileEditService.addUserSkill(userSkill);
     }
+
+    /**
+     * Stream the selected skill as a Skill
+     */
+    selectSkill(skill) {
+        this.searchText = null;
+        this.userProfileEditService.addSkill(skill);
+    }
+
+
+
 }

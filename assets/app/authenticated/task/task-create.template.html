@@ -1,0 +1,37 @@
+
+<div class="col-lg-6">
+  <h2>Create a New Task</h2>
+
+  <form (ngSubmit)="addTask(f)" #f="ngForm">
+    <div class="form-group">
+      <label for="title-input">Name</label>
+      <input required type="text" id="title-input" placeholder="Add a task name" class="form-control" name="title" [ngModel]="task?.title">
+    </div>
+    <div class="form-group">
+      <label for="description-input">Description</label>
+      <textarea required type="text" id="description-input" placeholder="Add a description" rows="4" class="form-control" name="description" [ngModel]="task?.description"></textarea>
+    </div>
+
+    <p>Required Skills:</p>
+    <ul class="required-skill-list">
+      <li
+        class="required-skill"
+        *ngFor="let skill of requiredSkills">
+        {{ skill?.name }}
+        <span
+          (click)="removeRequiredSkill(skill)"
+          class="remove-skill fa fa-remove"
+          aria-hidden="true">
+        </span>
+      </li>
+    </ul>
+    <p *ngIf="requiredSkills.size === 0" class="required-skills-hint">Add required skills by clicking on the skill tags below.</p>
+
+    <app-skill-search></app-skill-search>
+
+    <div class="text-xs-right">
+      <button type="button" class="btn btn-secondary">Cancel</button>
+      <button type="submit" class="btn btn-primary">Save Task</button>
+    </div>
+  </form>
+</div>
