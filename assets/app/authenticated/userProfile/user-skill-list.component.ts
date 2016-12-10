@@ -6,7 +6,7 @@ import { Skill } from "../../_models/skill.model";
 import { UserService } from "../../_services/user.service";
 import { SkillService } from "../../_services/skill.service";
 import { UserSkill } from "../../_models/user-skill.model";
-import { UserProfileEditService } from "../../_services/user-profile-edit.service";
+import { SkillSearchService } from "../../_services/skill-search.service";
 
 
 @Component({
@@ -28,7 +28,7 @@ export class UserSkillListComponent implements OnInit {
 
     constructor(private userService: UserService,
                 private skillService: SkillService,
-                private userProfileEditService: UserProfileEditService) {}
+                private skillSearchService: SkillSearchService) {}
 
     ngOnInit() {
         // Fork join two streams to get the user and the skills simultaneously
@@ -42,12 +42,12 @@ export class UserSkillListComponent implements OnInit {
         });
 
         // Add a new skill when it's selected in the skill-search
-        this.userProfileEditService.userSkillAdded$.subscribe(
+        this.skillSearchService.userSkillAdded$.subscribe(
             userSkill => {
                 this.addSkill(userSkill);
             });
 
-        // Fill userSkill array in userProfileEditService with current skills
+        // Fill userSkill array in skillSearchService with current skills
     }
 
     /**
@@ -56,7 +56,7 @@ export class UserSkillListComponent implements OnInit {
     fillArrays() {
         for (let userSkill of this.user.userSkills) {
             this.addSkill(userSkill);
-            this.userProfileEditService.userSkills.push(userSkill)
+            this.skillSearchService.userSkills.push(userSkill)
         }
     };
 
@@ -79,7 +79,7 @@ export class UserSkillListComponent implements OnInit {
                 this.professionalSkills.add(associatedSkill);
                 break;
         }
-        this.userProfileEditService.skillAdded(associatedSkill)
+        this.skillSearchService.skillAdded(associatedSkill)
     }
 
     /**
@@ -96,6 +96,6 @@ export class UserSkillListComponent implements OnInit {
      */
     removeSkill(skill: Skill, skillList: Set<Skill>) {
         skillList.delete(skill);
-        this.userProfileEditService.removeSkill(skill);
+        this.skillSearchService.removeSkill(skill);
     }
 }

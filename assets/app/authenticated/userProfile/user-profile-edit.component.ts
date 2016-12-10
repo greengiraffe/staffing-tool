@@ -3,14 +3,14 @@ import { Router } from "@angular/router";
 import { User } from "../../_models/user.model";
 import { UserService } from "../../_services/user.service";
 import { SkillService } from "../../_services/skill.service";
-import { UserProfileEditService } from "../../_services/user-profile-edit.service";
+import { SkillSearchService } from "../../_services/skill-search.service";
 
 
 @Component({
   selector: 'app-user-profile-edit',
   templateUrl: 'user-profile-edit.template.html',
   styleUrls: ['user-profile.style.scss'],
-  providers: [UserService, SkillService, UserProfileEditService]
+  providers: [UserService, SkillService, SkillSearchService]
 })
 
 export class UserProfileEditComponent {
@@ -23,9 +23,9 @@ export class UserProfileEditComponent {
     imgToUpload: File;
 
     constructor(private userService: UserService,
-                private userProfileEditService: UserProfileEditService,
-                private renderer: Renderer,
-                private router: Router) {}
+				private skillSearchService: SkillSearchService,
+				private renderer: Renderer,
+				private router: Router) {}
 
     ngOnInit() {
         this.userService.getUserById(localStorage.getItem("userId"))
@@ -57,11 +57,10 @@ export class UserProfileEditComponent {
      */
     saveChanges() {
         this.user.phone = this.phone;
-        this.user.userSkills = this.userProfileEditService.userSkills;
+        this.user.userSkills = this.skillSearchService.userSkills;
         this.userService.updateUser(this.user)
             .subscribe(
                 data => {
-                    console.log('successfully updated user');
                     this.router.navigate(['/usr/profile/']);
                 },
                 error => console.log(error)

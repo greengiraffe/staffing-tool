@@ -4,7 +4,7 @@ import { Skill } from "../_models/skill.model";
 import {UserSkill} from "../_models/user-skill.model";
 
 @Injectable()
-export class UserProfileEditService {
+export class SkillSearchService {
 
     // Keep track of the user's skills
     userSkills: UserSkill[] = [];

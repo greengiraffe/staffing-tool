@@ -2,13 +2,13 @@ import { Component, OnInit, Renderer } from '@angular/core';
 import { User } from "../../_models/user.model";
 import { UserService } from "../../_services/user.service";
 import { SkillService } from "../../_services/skill.service";
-import { UserProfileEditService } from "../../_services/user-profile-edit.service";
+import { SkillSearchService } from "../../_services/skill-search.service";
 
 @Component ({
     selector: 'app-user-profile',
     templateUrl: 'user-profile.template.html',
     styleUrls: ['user-profile.style.scss'],
-    providers: [UserService, SkillService, UserProfileEditService]
+    providers: [UserService, SkillService, SkillSearchService]
 })
 
 export class UserProfileComponent implements OnInit {

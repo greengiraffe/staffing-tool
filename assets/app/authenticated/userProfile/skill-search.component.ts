@@ -2,7 +2,7 @@ import { Component, OnInit, EventEmitter, Input, Output } from '@angular/core';
 
 import { Skill } from "../../_models/skill.model";
 import { SkillService } from "../../_services/skill.service";
-import { UserProfileEditService } from "../../_services/user-profile-edit.service";
+import { SkillSearchService } from "../../_services/skill-search.service";
 import { UserSkill } from "../../_models/user-skill.model";
 
 @Component({
@@ -41,7 +41,7 @@ export class SkillSearchComponent implements OnInit {
     hiddenSkills: Skill[];
     searchText;
 
-    constructor(private skillService: SkillService, private userProfileEditService: UserProfileEditService) {
+    constructor(private skillService: SkillService, private skillSearchService: SkillSearchService) {
         this.skills = [];
         this.hiddenSkills = [];
     }
@@ -56,10 +56,10 @@ export class SkillSearchComponent implements OnInit {
                 error => console.log(error)
             );
 
-        this.userProfileEditService.skillReceived$.subscribe(
+        this.skillSearchService.skillReceived$.subscribe(
             receivedSkill => this.hideSkill(receivedSkill));
 
-        this.userProfileEditService.skillRemoved$.subscribe(
+        this.skillSearchService.skillRemoved$.subscribe(
             removedSkill => this.showSkill(removedSkill));
     }
 
@@ -94,7 +94,7 @@ export class SkillSearchComponent implements OnInit {
     selectUserSkill(skill, rating) {
         this.searchText = null;
         const userSkill = new UserSkill(skill.skillId, rating);
-        this.userProfileEditService.addUserSkill(userSkill);
+        this.skillSearchService.addUserSkill(userSkill);
     }
 
     /**
@@ -102,7 +102,7 @@ export class SkillSearchComponent implements OnInit {
      */
     selectSkill(skill) {
         this.searchText = null;
-        this.userProfileEditService.addSkill(skill);
+        this.skillSearchService.addSkill(skill);
     }
 
 
