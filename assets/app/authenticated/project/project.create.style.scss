@@ -1,3 +1,26 @@
+.error {
+  border-color: red;
+}
+
+.red {
+  color: red;
+  font-size: 0.8em;
+}
+
+.flex-container {
+  display: flex;
+
+  &-left {
+    width: 50%;
+    text-align: left;
+  }
+
+  &-right {
+    width: 50%;
+    text-align: right;
+  }
+}
+
 .switch-title {
   margin-bottom: 6px;
 }

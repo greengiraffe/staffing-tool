@@ -1,22 +1,37 @@
 <div class="col-lg-6">
 
   <h1> Create Project </h1>
+  <h5><span class="red">*</span> Required Fields</h5>
 
   <form (ngSubmit)="onSubmit(projectForm.value)" [formGroup]="projectForm">
     <div class="project-container">
       <div class="form-group">
-        <label for="title-input">Title</label>
+        <div class="flex-container">
+          <label for="title-input" class="flex-container-left">Title <span class="red">*</span></label>
+          <div class="flex-container-right red"
+               *ngIf="!projectForm.get('title').valid && projectForm.get('title').dirty">
+            This field is required.
+          </div>
+        </div>
         <input required id="title-input" class="form-control" placeholder="Enter Project Title"
-               formControlName="title">
+               formControlName="title"
+               [class.error]="!projectForm.get('title').valid && projectForm.get('title').dirty">
       </div>
       <div class="project-info">
         <div class="form-group">
-          <label for="description-input">Description</label>
+          <div class="flex-container">
+            <label for="title-input" class="flex-container-left">Description <span class="red">*</span></label>
+            <div class="flex-container-right red"
+                 *ngIf="!projectForm.get('description').valid && projectForm.get('description').dirty">
+              This field is required.
+            </div>
+          </div>
           <input id="description-input" class="form-control" placeholder="Enter Project Description"
-                 formControlName="description">
+                 formControlName="description"
+                 [class.error]="!projectForm.get('description').valid && projectForm.get('description').dirty">
         </div>
         <div class="form-group">
-          <label for="type-input">Type</label>
+          <label for="type-input">Type <span class="red">*</span></label>
           <select required id="type-input" class="form-control"
                   formControlName="type">
             <option value="confirmed">Confirmed</option>
@@ -25,19 +40,40 @@
           </select>
         </div>
         <div class="form-group">
-          <label for="client-input">Client</label>
+          <div class="flex-container">
+            <label for="title-input" class="flex-container-left">Client <span class="red">*</span></label>
+            <div class="flex-container-right red"
+                 *ngIf="!projectForm.get('client').valid && projectForm.get('client').dirty">
+              This field is required.
+            </div>
+          </div>
           <input id="client-input" class="form-control" placeholder="Enter/Select a Client"
-                 formControlName="client">
+                 formControlName="client"
+                 [class.error]="!projectForm.get('client').valid && projectForm.get('client').dirty">
         </div>
         <div class="form-group">
-          <label for="budget-input">Budget</label>
+          <div class="flex-container">
+            <label for="title-input" class="flex-container-left">Budget <span class="red">*</span></label>
+            <div class="flex-container-right red"
+                 *ngIf="!projectForm.get('budget').valid && projectForm.get('budget').dirty">
+              This field is required.
+            </div>
+          </div>
           <input required id="budget-input" class="form-control" placeholder="Enter Budget"
-                 formControlName="budget">
+                 formControlName="budget"
+                 [class.error]="!projectForm.get('budget').valid && projectForm.get('budget').dirty">
         </div>
         <div class="form-group">
-          <label for="expbudget-input">Expanded Budget</label>
+          <div class="flex-container">
+            <label for="title-input" class="flex-container-left">Expanded Budget <span class="red">*</span></label>
+            <div class="flex-container-right red"
+                 *ngIf="!projectForm.get('expBudget').valid && projectForm.get('expBudget').dirty">
+              This field is required.
+            </div>
+          </div>
           <input id="expbudget-input" class="form-control" placeholder="Enter Expanded Budget"
-                 formControlName="expBudget">
+                 formControlName="expBudget"
+                 [class.error]="!projectForm.get('expBudget').valid && projectForm.get('expBudget').dirty">
         </div>
         <div class="form-group">
 
@@ -51,14 +87,16 @@
 
 
           <div class="form-group">
-            <label for="start-input">Start</label>
+            <label for="start-input">Start <span class="red">*</span></label>
             <input required id="start-input" class="form-control" type="date"
-                   formControlName="projectStart">
+                   formControlName="projectStart"
+                   [class.error]="!projectForm.get('projectStart').valid && projectForm.get('projectStart').dirty">
           </div>
           <div class="form-group">
-            <label for="end-input">End</label>
+            <label for="end-input">End <span class="red">*</span></label>
             <input required id="end-input" class="form-control" type="date"
-                   formControlName="projectEnd">
+                   formControlName="projectEnd"
+                   [class.error]="!projectForm.get('projectEnd').valid && projectForm.get('projectEnd').dirty">
           </div>
         </div>
         <div class="text-xs-right">
