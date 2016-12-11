@@ -10,6 +10,7 @@ import { FormGroup, FormControl, Validators, FormBuilder } from "@angular/forms"
 
 export class ChangePasswordComponent implements OnInit{
     changeForm: FormGroup;
+    formsVisible = false;
 
     constructor(private userService: UserService,
                 private _fb: FormBuilder,) {}
