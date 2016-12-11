@@ -55,8 +55,12 @@
           <div class="flex-container">
             <label for="title-input" class="flex-container-left">Budget <span class="red">*</span></label>
             <div class="flex-container-right red"
-                 *ngIf="!projectForm.get('budget').valid && projectForm.get('budget').dirty">
+                 *ngIf="projectForm.get('budget').hasError('required') && projectForm.get('budget').dirty">
               This field is required.
+            </div>
+            <div class="flex-container-right red"
+                 *ngIf="projectForm.get('budget').hasError('notInteger') && projectForm.get('budget').dirty">
+              Please enter integers.
             </div>
           </div>
           <input required id="budget-input" class="form-control" placeholder="Enter Budget"
@@ -65,10 +69,10 @@
         </div>
         <div class="form-group">
           <div class="flex-container">
-            <label for="title-input" class="flex-container-left">Expanded Budget <span class="red">*</span></label>
+            <label for="title-input" class="flex-container-left">Expanded Budget</label>
             <div class="flex-container-right red"
                  *ngIf="!projectForm.get('expBudget').valid && projectForm.get('expBudget').dirty">
-              This field is required.
+              Please enter integers.
             </div>
           </div>
           <input id="expbudget-input" class="form-control" placeholder="Enter Expanded Budget"
