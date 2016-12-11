@@ -1,20 +1,32 @@
-<header class="profile-header">
-  <h1>{{user?.firstName}} {{user?.lastName}}</h1>
-  <button class="profile-edit-btn btn btn-outline-primary" routerLink="edit">Edit Profile</button>
+<header class="row">
+  <div class="profile-header col-xs-12">
+    <h1>{{user?.firstName}} {{user?.lastName}}</h1>
+    <button class="profile-edit-btn btn btn-secondary" routerLink="edit">Edit Profile</button>
+  </div>
 </header>
 
-<div class="profile-container">
-  <div class="picture-container">
+<div class="profile-container row">
+
+  <div class="picture-container col-md-4">
     <img class="profile-picture" src="/img/user.png" alt="Profile picture">  
   </div>
-  <dl class="profile-info">
+
+  <dl class="profile-info col-md-4">
     <dt>Email</dt>
     <dd>{{user?.email}}</dd>
+
     <dt>Location</dt>
     <dd>{{user?.location}}</dd>
+
     <dt>Phone</dt>
-    <dd>{{user?.phone}}</dd>
+    <template [ngIf]="user?.phone">
+      <dd>{{user?.phone}}</dd>
+    </template>
+    <template [ngIf]="!user?.phone">
+      <dd>n/a</dd>
+    </template>
   </dl>
+
 </div>
 
 <app-user-skill-list class="skill-list"></app-user-skill-list>

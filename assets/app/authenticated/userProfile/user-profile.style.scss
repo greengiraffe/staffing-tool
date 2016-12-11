@@ -4,16 +4,21 @@
 
 .profile-edit-btn {
   margin-left: auto;
+  height: 100%;
 }
 
 .profile-container {
-  display: flex;
   margin-top: 1rem;
 }
 
-.picture-container{
-  width: auto;
-  width: 250px
+.picture-container {
+  position: relative;
+}
+
+.image-upload-label {
+  position: absolute;
+  bottom: 0;
+  right: 1.5rem;
 }
 
 .profile-picture {
@@ -22,32 +27,31 @@
 }
 
 .profile-info {
-  margin-left: 1rem;
-
   dt {
     font-weight: normal;
-    color: #818a91; // Bootstrap's 'text-muted' color
   }
 
   dd {
     font-weight: bold;
+    margin-bottom: 1rem;
   }
 }
 
 .skill-list {
   display: block;
-  margin-top: 1rem;
+  margin-top: 2rem;
 }
 
-.skill-search {
+.skill-section {
   display: block;
-  margin-top: 1rem;
+  margin-top: 2rem;
+
+  .skill-list {
+    margin-top: 1rem;
+  }
 }
 
 .tasks-header {
   margin-top: 1rem;
 }
 
-#changePassword input {
-  display: block;
-}

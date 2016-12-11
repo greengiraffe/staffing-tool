@@ -1,36 +1,46 @@
-<header class="profile-header">
-  <h1>{{user?.firstName}} {{user?.lastName}}</h1>
-  <button class="profile-edit-btn btn btn-primary" (click)="saveChanges()">Save Changes</button>
+<header class="row">
+  <div class="profile-header col-xs-12">
+    <h1>{{user?.firstName}} {{user?.lastName}}</h1>
+    <button class="profile-edit-btn btn btn-primary" (click)="saveChanges()">Save Changes</button>
+  </div>
 </header>
 
-<div class="profile-container">
-  <div class="picture-container">
-    <img class="profile-picture" src="/img/user.png" alt="Profile picture">
-    <label class="btn btn-primary" for="imgUpload">Change Picture</label>
-    <input id="imgUpload" type="file" (change)="fileChanged($event)" style="display: none;">   
-  </div>
+<div class="profile-container row">
 
+  <div class="picture-container col-md-4">
+    <img class="profile-picture" src="/img/user.png" alt="Profile picture">
+    <label class="image-upload-label btn btn-secondary btn-sm" for="img-upload-input">Change Picture</label>
+    <input class="image-upload-input" id="img-upload-input" type="file" (change)="fileChanged($event)" style="display: none;">
+  </div>
   
-  <div class="profile-info edit">
+  <div class="profile-info edit col-md-4">
     <div class="form-group">
       <label for="email-input">Email</label>
       <input disabled id="email-input" class="form-control" type="text" value="{{user?.email}}">
     </div>
     <div class="form-group">
       <label for="location-input">Location</label>
-      <select disabled id="location-input" class="form-control" name="location">
-        <option>Berlin HQ</option>
-        <option>Munich</option>
-      </select>
+      <input disabled id="location-input" class="form-control" name="location" value="{{user?.location}}">
     </div>
     <div class="form-group">
       <label for="phone-input">Phone</label>
-      <input [(ngModel)]="phone" id="phone" class="form-control" type="tel" placeholder="e.g. +49 1234 56789" value="{{user?.phone}}">
+      <input [(ngModel)]="phone" id="phone-input" class="form-control" type="tel" placeholder="e.g. +49 1234 56789" value="{{user?.phone}}">
     </div>
   </div>
-</div>
-<app-change-password style="float:right;"></app-change-password>
 
-<h4>Skills</h4>
-<app-skill-search class="skill-search" [showSkillButtons]="true"></app-skill-search>
-<app-user-skill-list class="skill-list" [showRemove]="true"></app-user-skill-list>
+  <div class="col-md-4">
+    <app-change-password></app-change-password>
+  </div>
+
+</div>
+
+<div class="skill-section row">
+
+  <div class="col-md-6">
+    <h4>Skills</h4>
+    <app-skill-search [showSkillButtons]="true"></app-skill-search>
+  </div>
+
+  <app-user-skill-list class="col-md-12 skill-list" [showRemove]="true"></app-user-skill-list>
+
+</div>
