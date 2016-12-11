@@ -34,6 +34,10 @@ module.exports = {
                 }
             })
         })
+    },
+
+    listProjects: function() {
+        return Project.find().exec();
     }
 
 };

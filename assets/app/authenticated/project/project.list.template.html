@@ -1,0 +1,29 @@
+<h2>All Projects</h2>
+
+<table class="table table-striped">
+  <thead class="thead-inverse">
+    <tr>
+      <th>#</th>
+      <th>Title</th>
+      <th>Type</th>
+      <th>Client</th>
+      <th>Priority</th>
+      <th>Period</th>
+      <th></th> <!-- Button column -->
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let project of projects; let i = index">
+      <th scope="row">{{ i }}</th>
+      <td>{{ project?.title }}</td>
+      <td>{{ project?.type }}</td>
+      <td>{{ project?.client }}</td>
+      <td>{{ project?.isPriority }}</td>
+      <td>{{ project?.projectStart }} - {{ project?.projectEnd }}</td>
+      <td class="text-xs-right">
+        <button class="btn btn-sm btn-outline-primary" (click)="editUser(user)">Show</button>
+        <button class="btn btn-sm btn-outline-danger" (click)="deleteUser(user)">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>

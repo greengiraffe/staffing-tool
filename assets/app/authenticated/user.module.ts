@@ -8,6 +8,7 @@ import { UserComponent } from "./user.component";
 import { UserRoutingModule } from "./user.routes";
 import { HomeComponent } from "./home/home.component";
 import { ProjectCreateComponent } from "./project/project.create.component";
+import { ProjectListComponent } from "./project/project.list.component";
 import { ChangePasswordComponent } from "./userProfile/change-password.component";
 import { SkillSearchComponent } from "./userProfile/skill-search.component";
 import { UserProfileComponent } from "./userProfile/user-profile.component";
@@ -34,6 +35,7 @@ import { FilterPipe } from "../_pipes/filter.pipe";
         UserProfileEditComponent,
         UserSkillListComponent,
         ProjectCreateComponent,
+        ProjectListComponent,
         FilterPipe
     ]
 })

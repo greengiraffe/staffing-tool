@@ -18,5 +18,18 @@ router.post('/project', function(req, res, next){
         });
 });
 
+/**
+ * Get a list of all projects
+ */
+router.get('/project/list', function(req, res, next) {
+    Project.listProjects()
+        .then(function(result) {
+            res.status(200).json(result);
+        })
+        .catch(function(err) {
+            res.status(400).json(err);
+        });
+});
+
 
 module.exports = router;
