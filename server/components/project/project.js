@@ -10,7 +10,7 @@ module.exports = {
           client: project.client,
           budget: project.budget,
           expbudget: project.expbudget,
-          priority: project.priority,
+          priority: project.isPriority,
           start: project.start,
           end: project.end
         });

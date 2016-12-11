@@ -34,11 +34,11 @@ export class ProjectService {
                         project.type,
                         project.client,
                         project.budget,
-                        project.isPriority,
+                        project.priority,
                         project.start,
                         project.end,
                         project.expbudget,
-                        project.projectId)
+                        project._id)
                     );
                 }
                 this.projects = newProjects;

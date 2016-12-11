@@ -41,7 +41,8 @@ export class ProjectCreateComponent implements OnInit {
             form['type'],
             form['client'],
             form['budget'],
-            form['isPriority'],
+            //convert string to boolean
+            (form['isPriority'] === "true"),
             form['projectStart'],
             form['projectEnd'],
             form['expBudget']
