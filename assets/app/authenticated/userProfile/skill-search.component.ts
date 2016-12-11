@@ -10,16 +10,22 @@ import { UserSkill } from "../../_models/user-skill.model";
   template: `
     <input
       [(ngModel)]="searchText"
-      class="skill-search"
+      class="skill-search form-control"
       placeholder="Search for a Skill"
       type="text">
     <ul class="skill-list">
       <li class="skill" *ngFor="let skill of skills | filter : 'name' : searchText">
         {{ skill.name }}
         <span *ngIf="showSkillButtons" class="skill-buttons">
-            <span class="skill-icon skill-btn professional" (click)="selectSkill(skill, 2)"></span>
-            <span class="skill-icon skill-btn basic" (click)="selectSkill(skill, 1)"></span>
-            <span class="skill-icon skill-btn interest" (click)="selectSkill(skill, 0)"></span>
+            <span class="skill-icon skill-btn professional"
+                  title="Add skill to professional skills"
+                  (click)="selectSkill(skill, 2)"></span>
+            <span class="skill-icon skill-btn basic"
+                  title="Add skill to basic skills"
+                  (click)="selectSkill(skill, 1)"></span>
+            <span class="skill-icon skill-btn interest"
+                  title="Add skill to interests"
+                  (click)="selectSkill(skill, 0)"></span>
         </span>
       </li>
     </ul>
