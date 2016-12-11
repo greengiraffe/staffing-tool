@@ -18,7 +18,7 @@
       <td>{{ project?.title }}</td>
       <td>{{ project?.type }}</td>
       <td>{{ project?.client }}</td>
-      <td>{{ project?.isPriority }}</td>
+      <td>{{ convertPriority(project?.isPriority) }}</td>
       <td>{{ project?.start | date:"dd/MM/yy" }} - {{ project?.end | date:"dd/MM/yy"}}</td>
       <td class="text-xs-right">
         <button class="btn btn-sm btn-outline-primary" (click)="editUser(user)">Show</button>

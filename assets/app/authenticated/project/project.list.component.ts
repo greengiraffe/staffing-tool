@@ -23,4 +23,12 @@ export class ProjectListComponent implements OnInit {
                 }
             );
     }
+
+    convertPriority(priority: boolean) {
+        if(priority) {
+            return "high";
+        } else {
+            return "medium";
+        }
+    }
 }
