@@ -105,6 +105,4 @@ export class SkillSearchComponent implements OnInit {
         this.skillSearchService.addSkill(skill);
     }
 
-
-
 }

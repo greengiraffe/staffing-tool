@@ -1,7 +1,13 @@
 let mongoose = require('mongoose');
 let Schema = mongoose.Schema;
 
-let schema = new Schema({
+let projectTask = new Schema({
+    title: {type: String, required: true},
+    description: {type: String, required: true},
+    requiredSkills: [{type: Schema.Types.ObjectId, ref: 'Skill'}]
+});
+
+let projectSchema = new Schema({
     title: {type: String, required: true},
     description: {type: String},
     type: {type: String, required: true},
@@ -9,9 +15,9 @@ let schema = new Schema({
     budget: {type: Number, required: true},
     expbudget: {type: Number},
     priority: {type: Boolean},
-    //projectTasks: [projectTask],
+    projectTasks: [projectTask],
     start: {type: Date, required: true},
     end: {type: Date, required: true}
 });
 
-module.exports = mongoose.model('Project', schema);
+module.exports = mongoose.model('Project', projectSchema);

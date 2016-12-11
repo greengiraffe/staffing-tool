@@ -4,15 +4,16 @@ module.exports = {
 
     createProject: function(project) {
         let newProject = new Project({
-          title: project.title,
-          description: project.description,
-          type: project.type,
-          client: project.client,
-          budget: project.budget,
-          expbudget: project.expbudget,
-          priority: project.isPriority,
-          start: project.start,
-          end: project.end
+            title: project.title,
+            description: project.description,
+            type: project.type,
+            client: project.client,
+            budget: project.budget,
+            expbudget: project.expbudget,
+            priority: project.isPriority,
+            start: project.start,
+            projectTasks: project.projectTasks,
+            end: project.end
         });
 
         return new Promise(function (resolve, reject) {

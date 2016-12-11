@@ -1,4 +1,4 @@
-//import { ProjectTask } from "./project-task.model";
+import { ProjectTask } from "./project-task.model";
 
 export class Project {
   constructor(public title: string,
@@ -10,7 +10,7 @@ export class Project {
               public start: Date,
               public end: Date,
 
-              //public projectTasks?: ProjectTask[],
+              public projectTasks?: ProjectTask[],
               public expbudget?: number,
               public projectId?: string
               ) {}
