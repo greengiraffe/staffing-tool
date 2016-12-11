@@ -1,4 +1,5 @@
 import { Component, OnInit, Renderer } from '@angular/core';
+import { Router } from "@angular/router";
 import { User } from "../../_models/user.model";
 import { UserService } from "../../_services/user.service";
 import { SkillService } from "../../_services/skill.service";
@@ -21,7 +22,10 @@ export class UserProfileEditComponent {
     currentProfilePicture;
     imgToUpload: File;
 
-    constructor(private userService: UserService, private userProfileEditService: UserProfileEditService, private renderer: Renderer) {}
+    constructor(private userService: UserService,
+                private userProfileEditService: UserProfileEditService,
+                private renderer: Renderer,
+                private router: Router) {}
 
     ngOnInit() {
         this.userService.getUserById(localStorage.getItem("userId"))
@@ -56,7 +60,10 @@ export class UserProfileEditComponent {
         this.user.userSkills = this.userProfileEditService.userSkills;
         this.userService.updateUser(this.user)
             .subscribe(
-                data => console.log(data),
+                data => {
+                    console.log('successfully updated user');
+                    this.router.navigate(['/usr/profile/']);
+                },
                 error => console.log(error)
             );
     }
