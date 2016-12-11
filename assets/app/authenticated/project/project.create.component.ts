@@ -25,21 +25,12 @@ export class ProjectCreateComponent implements OnInit {
             description: ['', Validators.required],
             type: ['tentative', Validators.required],
             client: ['', Validators.required],
-            budget: ['', [Validators.required, this.notInteger]],
-            expBudget: ['', this.notInteger],
+            budget: ['', Validators.required],
+            expBudget: [''],
             isPriority: ['false', Validators.required],
             projectStart: ['', Validators.required],
             projectEnd: ['', Validators.required]
         })
-    }
-
-    //Check if given Input is an integer or not
-    notInteger(control): any {
-        if(!control.value.match(/^\d+$/)) {
-            if(control.value == "") { return null;} else {
-                return { notInteger: true };
-            }
-        }
     }
 
     onSubmit(form: FormGroup) {
