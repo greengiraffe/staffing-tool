@@ -29,7 +29,7 @@ export class UserProfileEditComponent {
                 (user: any)  => {
                     this.user = new User(
                                     user.email, 
-                                    null, 
+                                    user.password, 
                                     user.role, 
                                     user.location, 
                                     user.firstName, 
