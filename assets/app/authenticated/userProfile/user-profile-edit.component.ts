@@ -24,7 +24,7 @@ export class UserProfileEditComponent {
     constructor(private userService: UserService, private userProfileEditService: UserProfileEditService, private renderer: Renderer) {}
 
     ngOnInit() {
-        this.userService.getUserById('58433892c39c721b14976675')
+        this.userService.getUserById(localStorage.getItem("userId"))
             .subscribe(
                 (user: any)  => {
                     this.user = new User(
@@ -41,7 +41,7 @@ export class UserProfileEditComponent {
                 error => console.log(error)
             );
         this.currentProfilePicture = document.getElementsByClassName('profile-picture')[0];
-        this.userService.getUserImage('58433892c39c721b14976675')
+        this.userService.getUserImage(localStorage.getItem("userId"))
             .subscribe(
                 data =>  this.renderer.setElementProperty(this.currentProfilePicture, 'src', data),
                 error => console.log(error)

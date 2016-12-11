@@ -25,7 +25,7 @@ let config = {
     },
 
     // Path for user profile pictures
-    img_path: 'datastore/user_avatar'
+    img_path: 'server/uploads/user/',
 };
 
 module.exports = config;

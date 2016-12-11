@@ -17,16 +17,16 @@ export class UserProfileComponent implements OnInit {
     constructor(private userService: UserService, private renderer: Renderer) {}
 
     ngOnInit() {
-        this.userService.getUserById('58433892c39c721b14976675')
+        this.userService.getUserById(localStorage.getItem("userId"))
             .subscribe(
                 (user: User) => this.user = user,
                 error => console.log(error)
         );
-        this.userService.getUserImage('58433892c39c721b14976675')
+        this.userService.getUserImage(localStorage.getItem("userId"))
             .subscribe(
                 data => {
-                    let preview = document.getElementsByClassName('profile-picture')[0];
-                    this.renderer.setElementProperty(preview, 'src', data);
+                    let profilePicture = document.getElementsByClassName('profile-picture')[0];
+                    this.renderer.setElementProperty(profilePicture, 'src', data);
                 },
                 error => console.log(error)
             );

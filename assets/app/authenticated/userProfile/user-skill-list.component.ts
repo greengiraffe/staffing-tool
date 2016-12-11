@@ -33,7 +33,7 @@ export class UserSkillListComponent implements OnInit {
     ngOnInit() {
         // Fork join two streams to get the user and the skills simultaneously
         Observable.forkJoin(
-            this.userService.getUserById('583ddf5f22bb3a5fdf380fd5'),
+            this.userService.getUserById(localStorage.getItem("userId")),
             this.skillService.getSkills()
         ).subscribe(res => {
             this.user = res[0] as User;

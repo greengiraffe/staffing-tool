@@ -13,7 +13,7 @@ let fs = require('fs');
 let multipartMiddleware = multipart();
 let User = require('./user');
 let IMAGE_TYPES = ['image/jpeg', 'image/png'];
-let imgStorePath = "server/uploads/user/";
+let imgStorePath = config.img_path;
 
 /**
  * Handle user login
