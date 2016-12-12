@@ -16,6 +16,7 @@ import { LoginComponent } from "./login/login.component";
 import { OnboardingModule } from "./onboarding/onboarding.module";
 import { UserModule } from "./authenticated/user.module";
 import { AdminModule } from "./admin/admin.module";
+import {ModalService} from "./_services/modal.service";
 
 
 @NgModule({
@@ -34,11 +35,12 @@ import { AdminModule } from "./admin/admin.module";
         AppComponent,
 
         LoginComponent,
-        NavComponent,
+        NavComponent
     ],
     providers: [
         UserService,
         AuthService,
+        ModalService,
     provideAuth({
         headerName: 'Authorization',
         headerPrefix: 'Bearer',

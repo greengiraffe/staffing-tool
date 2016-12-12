@@ -1,0 +1,20 @@
+<div *ngIf="isOpen" class="modal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div *ngIf="modalTitle" class="modal-header">
+        <button *ngIf="!isBlocking" type="button" class="close" aria-label="Close" (click)="close()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title">{{ modalTitle }}</h4>
+      </div>
+      <div class="modal-body">
+        <ng-content select="[modal-body]"></ng-content>
+      </div>
+      <div class="modal-footer">
+        <ng-content select="[modal-footer]"></ng-content>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="isOpen" class="modal-backdrop fade in"></div>
