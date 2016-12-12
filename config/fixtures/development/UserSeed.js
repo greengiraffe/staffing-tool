@@ -1,6 +1,6 @@
 module.exports = [
     {
-        email: 'admin@ixds.com',
+        email: 'adminexample.com',
         password: '$2a$10$cIxLgLqYEVfOQl7VQfulL.zzmiTDn3Ugf1vUdu/OHiwQOyvQ.jz6a', // root
         firstName: 'Admin',
         lastName: 'Nimda',
@@ -11,7 +11,7 @@ module.exports = [
         role: 'admin'
     },
     {
-        email: 'user@ixds.com',
+        email: 'userexample.com',
         password: '$2a$10$cIxLgLqYEVfOQl7VQfulL.zzmiTDn3Ugf1vUdu/OHiwQOyvQ.jz6a', // root
         firstName: 'User',
         lastName: 'Resu',
@@ -29,7 +29,7 @@ module.exports = [
         role: 'user'
     },
     {
-        email: 'john@ixds.com',
+        email: 'johnexample.com',
         password: '$2a$10$cIxLgLqYEVfOQl7VQfulL.zzmiTDn3Ugf1vUdu/OHiwQOyvQ.jz6a', // root
         firstName: 'John',
         lastName: 'Johanson',
@@ -41,7 +41,7 @@ module.exports = [
         role: 'user'
     },
     {
-        email: 'miriam@ixds.com',
+        email: 'miriamexample.com',
         password: '$2a$10$cIxLgLqYEVfOQl7VQfulL.zzmiTDn3Ugf1vUdu/OHiwQOyvQ.jz6a', // root
         firstName: 'Miriam',
         lastName: 'Müller',
