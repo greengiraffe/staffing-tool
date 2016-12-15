@@ -42,6 +42,10 @@ module.exports = {
         return Project.find().exec();
     },
 
+    getProjectById: function(id) {
+        return Project.findById(id).exec();
+    },
+
     createProjectTask: function(id, projectTask) {
         return new Promise(function (resolve, reject) {
 
@@ -70,10 +74,6 @@ module.exports = {
 
             });
         });
-    }
-
-    getProjectById: function(id) {
-        return Project.findById(id).exec();
     }
 
 };
