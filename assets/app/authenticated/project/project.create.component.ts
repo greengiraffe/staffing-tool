@@ -3,7 +3,10 @@ import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { FlashMessagesService } from "angular2-flash-messages";
 
 import { Project } from "../../_models/project.model";
+import { ProjectTask } from "../../_models/project-task.model";
 import { ProjectService } from "../../_services/project.service";
+import { ModalService } from "../../_services/modal.service";
+import {TaskCreateComponent} from "../task/task-create.component";
 
 
 @Component({
@@ -15,9 +18,12 @@ import { ProjectService } from "../../_services/project.service";
 export class ProjectCreateComponent implements OnInit {
     constructor(private ProjectService: ProjectService,
                 private _flash: FlashMessagesService,
-                private _fb: FormBuilder) {}
+                private _fb: FormBuilder,
+                private modalService: ModalService) {}
 
     projectForm: FormGroup;
+    projectTasks = new Array<ProjectTask>();
+    addTaskModalId = "modal-add-task";
 
     ngOnInit() {
         this.projectForm = this._fb.group({
@@ -31,6 +37,13 @@ export class ProjectCreateComponent implements OnInit {
             projectStart: ['', Validators.required],
             projectEnd: ['', Validators.required]
         })
+    }
+
+    addProjectTask(taskComponent: TaskCreateComponent) {
+        let task = taskComponent.task;
+        console.log(taskComponent);
+        this.projectTasks.push(task);
+        this.modalService.close(this.addTaskModalId);
     }
 
     onSubmit(form: FormGroup) {

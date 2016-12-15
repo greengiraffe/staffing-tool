@@ -1,7 +1,7 @@
 <div class="col-lg-6">
 
   <h1> Create Project </h1>
-  <h5><span class="red">*</span> Required Fields</h5>
+  <p class="text-xs-right"><span class="red">*</span> Required Fields</p>
 
   <form (ngSubmit)="onSubmit(projectForm.value)" [formGroup]="projectForm">
     <div class="project-container">
@@ -17,7 +17,9 @@
                formControlName="title"
                [class.error]="!projectForm.get('title').valid && projectForm.get('title').dirty">
       </div>
+
       <div class="project-info">
+
         <div class="form-group">
           <div class="flex-container">
             <label for="title-input" class="flex-container-left">Description <span class="red">*</span></label>
@@ -30,6 +32,7 @@
                  formControlName="description"
                  [class.error]="!projectForm.get('description').valid && projectForm.get('description').dirty">
         </div>
+
         <div class="form-group">
           <label for="type-input">Type <span class="red">*</span></label>
           <select required id="type-input" class="form-control"
@@ -39,6 +42,7 @@
             <option value="tentative">Tentative</option>
           </select>
         </div>
+
         <div class="form-group">
           <div class="flex-container">
             <label for="title-input" class="flex-container-left">Client <span class="red">*</span></label>
@@ -51,6 +55,7 @@
                  formControlName="client"
                  [class.error]="!projectForm.get('client').valid && projectForm.get('client').dirty">
         </div>
+
         <div class="form-group">
           <div class="flex-container">
             <label for="title-input" class="flex-container-left">Budget in EUR <span class="red">*</span></label>
@@ -63,6 +68,7 @@
                  type="number" min="0" formControlName="budget"
                  [class.error]="!projectForm.get('budget').valid && projectForm.get('budget').dirty">
         </div>
+
         <div class="form-group">
           <div class="flex-container">
             <label for="title-input" class="flex-container-left">Expanded Budget in EUR</label>
@@ -70,8 +76,8 @@
           <input id="expbudget-input" class="form-control" placeholder="Enter Expanded Budget"
                  formControlName="expBudget" type="number" min="0">
         </div>
-        <div class="form-group">
 
+        <div class="form-group">
           <div class="switch-field">
             <div class="switch-title">Priority</div>
             <input type="radio" id="switch_left" name="isPriority" value="false" formControlName="isPriority" />
@@ -79,7 +85,7 @@
             <input type="radio" id="switch_right" name="isPriority" value="true" formControlName="isPriority" />
             <label for="switch_right">High</label>
           </div>
-
+        </div>
 
           <div class="form-group">
             <label for="start-input">Start <span class="red">*</span></label>
@@ -87,18 +93,35 @@
                    formControlName="projectStart"
                    [class.error]="!projectForm.get('projectStart').valid && projectForm.get('projectStart').dirty">
           </div>
+
           <div class="form-group">
             <label for="end-input">End <span class="red">*</span></label>
             <input required id="end-input" class="form-control" type="date"
                    formControlName="projectEnd"
                    [class.error]="!projectForm.get('projectEnd').valid && projectForm.get('projectEnd').dirty">
           </div>
-        </div>
+
+        <h3>Tasks:</h3>
+        <button type="button" class="btn btn-secondary" (click)="modalService.open(addTaskModalId)">Add Task</button>
+        <app-modal [modal-id]="addTaskModalId" modal-title="Add a new Task">
+          <app-task-create #taskComponent modal-body></app-task-create>
+          <div modal-footer class="text-xs-right">
+            <button type="button" class="btn btn-secondary" (click)="modalService.close(addTaskModalId)">Cancel</button>
+            <button type="button" class="btn btn-primary" (click)="addProjectTask(taskComponent)">Add Project</button>
+          </div>
+        </app-modal>
+        <ul class="project-tasks">
+          <li *ngFor="let projectTask of projectTasks">
+            {{ projectTask.title }}
+          </li>
+        </ul>
+
         <div class="text-xs-right">
           <button type="button" class="btn btn-secondary">Cancel</button>
           <button type="submit" class="btn btn-primary" [disabled]="!projectForm.valid">Add Project</button>
           <flash-messages></flash-messages>
         </div>
+
       </div>
     </div>
   </form>

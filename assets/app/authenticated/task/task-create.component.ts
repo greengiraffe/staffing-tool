@@ -1,9 +1,8 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { NgForm } from "@angular/forms";
-import { Task } from "../../_models/task.model";
+import {Component, OnInit, OnDestroy, Input} from '@angular/core';
 import { SkillService } from "../../_services/skill.service";
 import { SkillSearchService } from "../../_services/skill-search.service";
 import { Skill } from "../../_models/skill.model";
+import {ProjectTask} from "../../_models/project-task.model";
 
 @Component({
     selector: 'app-task-create',
@@ -13,13 +12,11 @@ import { Skill } from "../../_models/skill.model";
 })
 export class TaskCreateComponent implements OnInit, OnDestroy {
 
-    task: Task;
-    requiredSkills: Set<Skill>;
+    @Input('task') task: ProjectTask = new ProjectTask(null,null,[]);
     skillSearchServiceSubscription;
+    private requiredSkills = new Array<Skill>();
 
-    constructor(private skillService: SkillService, private skillSearchService: SkillSearchService) {
-        this.requiredSkills = new Set<Skill>();
-    }
+    constructor(private skillService: SkillService, private skillSearchService: SkillSearchService) { }
 
     ngOnInit() {
         this.skillSearchServiceSubscription = this.skillSearchService.skillAdded$
@@ -28,18 +25,16 @@ export class TaskCreateComponent implements OnInit, OnDestroy {
             });
     }
 
-    addRequiredSkill(skill) {
-        this.requiredSkills.add(skill);
+    addRequiredSkill(skill: Skill) {
+        this.task.requiredSkills.push(skill.skillId);
+        this.requiredSkills.push(skill);
         this.skillSearchService.skillAdded(skill);
     }
 
-    removeRequiredSkill(skill) {
-        this.requiredSkills.delete(skill);
+    removeRequiredSkill(skill: Skill) {
+        this.task.requiredSkills.slice(this.task.requiredSkills.indexOf(skill.skillId), 1);
+        this.requiredSkills.slice(this.requiredSkills.indexOf(skill), 1);
         this.skillSearchService.removeSkill(skill);
-    }
-
-    addTask(form: NgForm) {
-        // TODO
     }
 
     ngOnDestroy() {
