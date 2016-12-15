@@ -256,8 +256,6 @@ router.post('/user/img/:id', multipartMiddleware, function(req, res, next) {
             }
             var newPath = imgStorePath + req.params.id + imageName;
             fs.writeFile(newPath, data, function (err) {
-                User.addImg(req.params.id, newPath)
-                //TODO error handling
                 res.redirect(req.params.id);
                 //res.status(200).json({'nice' : 'worked'});
             });
