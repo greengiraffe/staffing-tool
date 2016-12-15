@@ -55,16 +55,52 @@
   margin-top: 1rem;
 }
 
-.project-container {
-  display: flex;
+.project-type {
+  display: inline-block;
+  width: 100px;
+  border-radius: 4px;
+  text-align: center;
+  color: white;
 }
 
 .card-block {
-  border: 1px solid rgba(80,80,80, .125);
-  border-radius: 10%;
+  border: 1px solid rgba(80, 80, 80, 0.125);
+  border-radius: 12px;
   margin: 20px 20px 20px 0;
   min-width: 210px;
-  padding-top: 20px;
+  padding: 0;
+  display: inline-block;
+  transition: box-shadow .5s;
+  position: relative;
+  &:hover {
+    box-shadow:  0 8px 8px rgba(0,0,0,0.24),0 0 8px rgba(0,0,0,0.12);
+    cursor: pointer;
+  }
+}
+
+.card-title {
+    margin-bottom: .75rem;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    padding: 10px 8px;
+    color: white;
+    text-transform: uppercase;
+}
+
+.tentative {
+  background-color: #ccc;
+}
+
+.confirmed {
+  background-color: #070;
+}
+
+.internal {
+  background-color: #6495ED;
+}
+
+.card-text {
+  padding: 10px
 }
 
 
