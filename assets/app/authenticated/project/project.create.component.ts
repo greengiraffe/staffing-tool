@@ -55,11 +55,10 @@ export class ProjectCreateComponent implements OnInit {
             form['type'],
             form['client'],
             form['budget'],
-            //convert string to boolean
             (form['isPriority'] === "true"),
             form['projectStart'],
             form['projectEnd'],
-            null, //TODO add created tasks here
+            this.projectTasks,
             form['expBudget']
         );
         this.ProjectService.createProject(project)
