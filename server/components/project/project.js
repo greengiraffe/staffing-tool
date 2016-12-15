@@ -4,6 +4,7 @@ module.exports = {
 
     createProject: function(project) {
         let newProject = new Project({
+            creator: project.creator,
             title: project.title,
             description: project.description,
             type: project.type,

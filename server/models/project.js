@@ -8,6 +8,7 @@ let projectTask = new Schema({
 });
 
 let projectSchema = new Schema({
+    creator: {type: Schema.Types.ObjectId, ref: 'User', required: true},
     title: {type: String, required: true},
     description: {type: String},
     type: {type: String, required: true},
@@ -17,7 +18,7 @@ let projectSchema = new Schema({
     priority: {type: Boolean},
     projectTasks: [projectTask],
     start: {type: Date, required: true},
-    end: {type: Date, required: true}
+    end: {type: Date, required: true},
 });
 
 module.exports = mongoose.model('Project', projectSchema);
