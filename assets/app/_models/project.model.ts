@@ -1,7 +1,9 @@
 import { ProjectTask } from "./project-task.model";
 
 export class Project {
-  constructor(public title: string,
+  constructor(
+              public creator: string,
+              public title: string,
               public description: string,
               public type: string,
               public client: string,

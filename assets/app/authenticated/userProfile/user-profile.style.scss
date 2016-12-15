@@ -51,7 +51,20 @@
   }
 }
 
-.tasks-header {
+.tasks-header, .projects-header {
   margin-top: 1rem;
 }
+
+.project-container {
+  display: flex;
+}
+
+.card-block {
+  border: 1px solid rgba(80,80,80, .125);
+  border-radius: 10%;
+  margin: 20px 20px 20px 0;
+  min-width: 210px;
+  padding-top: 20px;
+}
+
 

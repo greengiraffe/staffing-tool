@@ -5,10 +5,12 @@ import { Observable } from "rxjs";
 // import config = require ("../../../config/config");
 
 import { User } from "../_models/user.model";
+import { Project } from "../_models/project.model";
 
 @Injectable()
 export class UserService {
     private users: User[] = [];
+    private ownedProjects: Project[] = [];
 
     constructor(private http: Http) {}
 
@@ -48,6 +50,31 @@ export class UserService {
       return this.http.get('http://localhost:3000/user/id/' + userId)
         .map((response: Response) => response.json())
         .catch((error: Response) => Observable.throw(error.json()));
+    }
+
+    getProjectsCreatedByUser(userId): Observable<{}> {
+        return this.http.get('http://localhost:3000/user/projects/' + userId)
+            .map((response: Response) => {
+                const res = response.json();
+                let ownedProjects: Project[] = [];
+                for (let project of res) {
+                    ownedProjects.push(new Project(
+                        userId,
+                        project.title,
+                        project.description,
+                        project.type,
+                        project.client,
+                        project.budget,
+                        project.isPriority,
+                        project.start,
+                        project.end,
+                        )
+                    );
+                }
+                this.ownedProjects = ownedProjects;
+                return ownedProjects;
+            })
+            .catch((error: Response) => Observable.throw(error.json()));
     }
     
     updateUserPassword(id: string, oldPassword: string, newPassword: string): Observable<{}> {

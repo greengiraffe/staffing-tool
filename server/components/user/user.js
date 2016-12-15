@@ -1,5 +1,6 @@
 // Get Users Model
 let User = require('../../models/user');
+let Project = require('../../models/project');
 let Skill = require('../../models/skill');
 let authHelper = require('../../services/authHelper');
 
@@ -136,15 +137,8 @@ module.exports = {
         // });
     },
 
-    addImg: function(id, picture) {
-        User.findByIdAndUpdate(
-            id,
-            {picture : picture},
-            function(err, result) {
-                  if (err) {return -1}
-                  return true;
-            }
-        );
+   getOwnedProjects(userId) {
+        return Project.find({creator: userId}).exec();
     },
 
     // activateUser: function(id) {

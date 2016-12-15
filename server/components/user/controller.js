@@ -278,4 +278,19 @@ router.get('/user/img/:id', function (req, res){
         })
 });
 
+
+/**
+ * Get all projects owned by a user 
+ */
+router.get('/user/projects/:id', function(req, res, next) {
+    User.getOwnedProjects(req.params.id)
+        .then(function(result) {
+            res.status(200).json(result);
+        })
+        .catch(function(err) {
+            res.status(400).json(err);
+        });
+});
+
+
 module.exports = router;

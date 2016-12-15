@@ -36,6 +36,7 @@ export class ProjectCreateComponent implements OnInit {
     onSubmit(form: FormGroup) {
         // Create
         const project = new Project(
+            localStorage.getItem('userId'),
             form['title'],
             form['description'],
             form['type'],
