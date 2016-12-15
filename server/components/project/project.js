@@ -40,6 +40,36 @@ module.exports = {
 
     listProjects: function() {
         return Project.find().exec();
+    },
+
+    createProjectTask: function(id, projectTask) {
+        return new Promise(function (resolve, reject) {
+
+            Project.findById(id, function (err, project) {
+                if (err) return handleError(err);
+
+                project.projectTasks = new Project.Task({title: projectTask.title, description: projectTask.description,
+                  taskSkills: projectTask.taskSkill
+                });
+
+                project.save(function (err, result) {
+                    if(err) {
+                        reject({
+                            message: "Database error",
+                            statusCode: 500,
+                            obj: err
+                        });
+                    } else {
+                        resolve({
+                            message: "Project successfully created",
+                            statusCode: 201,
+                            obj: result
+                        });
+                    }
+                });
+
+            });
+        });
     }
 
 };

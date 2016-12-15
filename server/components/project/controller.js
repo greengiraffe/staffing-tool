@@ -31,5 +31,17 @@ router.get('/project/list', function(req, res, next) {
         });
 });
 
+/**
+ * Add Task to Project
+ */
+router.post('/project/task/:id', function(req, res, next) {
+    Project.createProjectTask(req.params.id, req.body)
+        .then(function(result){
+           res.status(result.statusCode).json(result);
+        })
+        .catch(function(err){
+            res.status(err.statusCode).json(err);
+        });
+});
 
 module.exports = router;
