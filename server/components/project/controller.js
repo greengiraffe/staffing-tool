@@ -32,6 +32,19 @@ router.get('/project/list', function(req, res, next) {
 });
 
 /**
+ * Get specific project by id
+ */
+router.get('/project/:id', function(req, res, next) {
+    Project.getProjectById(req.params.id)
+        .then(function (result) {
+            res.status(200).json(result);
+        })
+        .catch(function (err) {
+            res.status(400).json(err);
+        })
+});
+
+/**
  * Add Task to Project
  */
 router.post('/project/task/:id', function(req, res, next) {

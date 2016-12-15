@@ -48,4 +48,10 @@ export class ProjectService {
             })
             .catch((error: Response) => Observable.throw(error.json()));
     }
+
+    getProjectById(projectId): Observable<{}> {
+      return this.http.get('http://localhost:3000/project/' + projectId)
+        .map((response: Response) => response.json())
+        .catch((error: Response) => Observable.throw(error.json()));
+    }
 }

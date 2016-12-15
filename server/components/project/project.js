@@ -72,4 +72,8 @@ module.exports = {
         });
     }
 
+    getProjectById: function(id) {
+        return Project.findById(id).exec();
+    }
+
 };
