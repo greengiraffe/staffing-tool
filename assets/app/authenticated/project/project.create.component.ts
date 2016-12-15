@@ -44,6 +44,7 @@ export class ProjectCreateComponent implements OnInit {
         console.log(taskComponent);
         this.projectTasks.push(task);
         this.modalService.close(this.addTaskModalId);
+        taskComponent.reset();
     }
 
     onSubmit(form: FormGroup) {

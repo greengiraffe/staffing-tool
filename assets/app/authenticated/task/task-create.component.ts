@@ -32,9 +32,17 @@ export class TaskCreateComponent implements OnInit, OnDestroy {
     }
 
     removeRequiredSkill(skill: Skill) {
-        this.task.requiredSkills.slice(this.task.requiredSkills.indexOf(skill.skillId), 1);
-        this.requiredSkills.slice(this.requiredSkills.indexOf(skill), 1);
+        this.task.requiredSkills.splice(this.task.requiredSkills.indexOf(skill.skillId), 1);
+        this.requiredSkills.splice(this.requiredSkills.indexOf(skill), 1);
         this.skillSearchService.removeSkill(skill);
+    }
+
+    reset() {
+        this.task = new ProjectTask(null,null,[]);
+        for (let skill of this.requiredSkills) {
+            this.skillSearchService.removeSkill(skill);
+        }
+        this.requiredSkills = new Array<Skill>();
     }
 
     ngOnDestroy() {
