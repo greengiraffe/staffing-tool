@@ -46,13 +46,19 @@ export class ProjectCreateComponent implements OnInit {
             (form['isPriority'] === "true"),
             form['projectStart'],
             form['projectEnd'],
+            null, //TODO add created tasks here
             form['expBudget']
         );
         this.ProjectService.createProject(project)
             .subscribe(
-                data => {this._flash.show("Project successfully added", { cssClass: 'alert-success', timeout: 5000 });},
+                data => {
+                    this._flash.show("Project successfully added", { cssClass: 'alert-success', timeout: 5000 }); 
+                    this.projectForm.reset({
+                        type: "tentative",
+                        isPriority: "false"
+                    });
+                },
                 error => {this._flash.show(error.error.message, { cssClass: 'alert-danger', timeout: 5000 });}
             );
-        form.reset();
     }
 }
