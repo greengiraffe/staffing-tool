@@ -27,19 +27,21 @@ export class ProjectService {
                 const res = response.json();
                 let newProjects: Project[] = [];
                 for (let project of res) {
-                    console.log(project);
-                    newProjects.push(new Project(
+                    const newProject = new Project(
+                        project.creator,
                         project.title,
                         project.description,
                         project.type,
                         project.client,
                         project.budget,
-                        project.priority,
+                        project.isPriority,
                         project.start,
                         project.end,
+                        project.projectTasks,
                         project.expbudget,
-                        project._id)
+                        project._id
                     );
+                    newProjects.push(newProject);
                 }
                 this.projects = newProjects;
                 return newProjects

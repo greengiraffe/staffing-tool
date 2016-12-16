@@ -11,7 +11,7 @@ module.exports = {
             client: project.client,
             budget: project.budget,
             expbudget: project.expbudget,
-            priority: project.isPriority,
+            isPriority: project.isPriority,
             start: project.start,
             projectTasks: project.projectTasks,
             end: project.end
