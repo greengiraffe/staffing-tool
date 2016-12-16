@@ -16,7 +16,12 @@ export class TaskCreateComponent implements OnInit, OnDestroy {
     skillSearchServiceSubscription;
     private requiredSkills = new Array<Skill>();
 
-    constructor(private skillService: SkillService, private skillSearchService: SkillSearchService) { }
+    constructor(private skillService: SkillService, private skillSearchService: SkillSearchService) {
+        /*for (let skillId of this.task.requiredSkills) {
+            this.skillSearchService.addRequiredSkill(skill);
+            this.skillSearchService.removeSkill(skill);
+        }*/
+    }
 
     ngOnInit() {
         this.skillSearchServiceSubscription = this.skillSearchService.skillAdded$

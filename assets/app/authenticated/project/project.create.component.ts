@@ -6,7 +6,7 @@ import { Project } from "../../_models/project.model";
 import { ProjectTask } from "../../_models/project-task.model";
 import { ProjectService } from "../../_services/project.service";
 import { ModalService } from "../../_services/modal.service";
-import {TaskCreateComponent} from "../task/task-create.component";
+import { TaskCreateComponent } from "../task/task-create.component";
 
 
 @Component({
@@ -24,6 +24,7 @@ export class ProjectCreateComponent implements OnInit {
     projectForm: FormGroup;
     projectTasks = new Array<ProjectTask>();
     addTaskModalId = "modal-add-task";
+    editTaskModalId = "modal-edit-task";
 
     ngOnInit() {
         this.projectForm = this._fb.group({
@@ -47,6 +48,17 @@ export class ProjectCreateComponent implements OnInit {
         taskComponent.reset();
     }
 
+    editProjectTask(taskComponent: TaskCreateComponent, index: number) {
+        let task = taskComponent.task;
+        this.projectTasks[index] = task;
+        this.modalService.close(this.editTaskModalId + index);
+    }
+
+    removeProjectTask(task: ProjectTask) {
+        const taskIndex = this.projectTasks.indexOf(task);
+        this.projectTasks.splice(taskIndex,1);
+    }
+
     onSubmit(form: FormGroup) {
         // Create
         const project = new Project(
@@ -65,7 +77,7 @@ export class ProjectCreateComponent implements OnInit {
         this.ProjectService.createProject(project)
             .subscribe(
                 data => {
-                    this._flash.show("Project successfully added", { cssClass: 'alert-success', timeout: 5000 }); 
+                    this._flash.show("Project successfully added", { cssClass: 'alert-success', timeout: 5000 });
                     this.projectForm.reset({
                         type: "tentative",
                         isPriority: "false",
