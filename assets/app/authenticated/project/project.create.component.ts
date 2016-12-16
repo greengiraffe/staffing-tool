@@ -68,8 +68,9 @@ export class ProjectCreateComponent implements OnInit {
                     this._flash.show("Project successfully added", { cssClass: 'alert-success', timeout: 5000 }); 
                     this.projectForm.reset({
                         type: "tentative",
-                        isPriority: "false"
+                        isPriority: "false",
                     });
+                    this.projectTasks = new Array<ProjectTask>();
                 },
                 error => {this._flash.show(error.error.message, { cssClass: 'alert-danger', timeout: 5000 });}
             );
