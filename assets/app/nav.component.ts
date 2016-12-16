@@ -10,7 +10,6 @@ import { AuthService } from './_services/auth.service';
            IXDS Staffingtool
         </a>
         <ul class="nav navbar-nav">
-          <li class="nav-item"><a class="nav-link" routerLink="usr/dashboard">Dashboard</a></li>
           <li class="nav-item"><a class="nav-link" href='#' (click)="auth.logout()">Logout</a></li>
         </ul>
       </nav>

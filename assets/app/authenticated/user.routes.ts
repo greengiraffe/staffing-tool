@@ -16,7 +16,6 @@ const userRoutes: Routes = [
             {
                 path: '',
                 children: [
-                    { path: 'dashboard', component: HomeComponent },
                     { path: 'profile', component: UserProfileComponent },
                     { path: 'profile/edit', component: UserProfileEditComponent },
                     { path: 'project/create', component: ProjectCreateComponent },
