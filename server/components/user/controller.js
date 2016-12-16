@@ -14,6 +14,7 @@ let multipartMiddleware = multipart();
 let User = require('./user');
 let IMAGE_TYPES = ['image/jpeg', 'image/png'];
 let imgStorePath = config.img_path;
+let sharp = require('sharp');
 
 /**
  * Handle user login
@@ -243,7 +244,6 @@ router.delete('/user/:id', function(req, res, next) {
 // });
 
 router.post('/user/img/:id', multipartMiddleware, function(req, res, next) {
-    console.log(req.files)
     fs.readFile(req.files.image.path, function (err, data) {
         var imageName = path.extname(req.files.image.name);
         if(!imageName){
@@ -254,11 +254,14 @@ router.post('/user/img/:id', multipartMiddleware, function(req, res, next) {
             if (IMAGE_TYPES.indexOf(type) == -1) {
                 return res.send(415, 'Supported image formats: jpeg, jpg, jpe, png.');
             }
-            var newPath = imgStorePath + req.params.id + imageName;
-            fs.writeFile(newPath, data, function (err) {
-                res.redirect(req.params.id);
-                //res.status(200).json({'nice' : 'worked'});
-            });
+            var newPath = imgStorePath + req.params.id + '.png';
+
+            sharp(req.files.image.path)
+                .resize(200,200)
+                .toFile(newPath, function(err, info) {
+                    if (err) console.log(err);
+                    res.redirect(req.params.id);
+                });
         }
     });
 });
@@ -266,9 +269,9 @@ router.post('/user/img/:id', multipartMiddleware, function(req, res, next) {
 router.get('/user/img/:id', function (req, res){
     User.getUserByID(req.params.id)
         .then(function (result) {
-            file = imgStorePath +  result._id + '.jpg';
+            file = imgStorePath +  result._id + '.png';
             var img = fs.readFileSync(file);
-            res.writeHead(200, {'Content-Type': 'image/jpg' });
+            res.writeHead(200, {'Content-Type': 'image/png' });
             res.end(img, 'binary');
         })
         .catch(function (err) {
