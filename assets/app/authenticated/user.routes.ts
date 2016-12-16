@@ -14,16 +14,13 @@ const userRoutes: Routes = [
         path: 'usr',
         // component: UserComponent,
         children: [
-            {
-                path: '',
-                children: [
-                    { path: 'profile', component: UserProfileComponent },
-                    { path: 'profile/edit', component: UserProfileEditComponent },
-                    { path: 'project/create', component: ProjectCreateComponent },
-                    { path: 'project/list', component: ProjectListComponent },
-                    { path: 'task/create', component: TaskCreateComponent }
-                ]
-            }
+            { path: '', redirectTo: '/home', component: HomeComponent},
+            { path: 'profile', component: UserProfileComponent },
+            { path: 'profile/edit', component: UserProfileEditComponent },
+            { path: 'project/show/:id', component: ProjectShowComponent },
+            { path: 'project/create', component: ProjectCreateComponent },
+            { path: 'project/list', component: ProjectListComponent },
+            { path: 'task/create', component: TaskCreateComponent }
         ]
     }
 ];

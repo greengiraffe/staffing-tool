@@ -21,8 +21,8 @@
       <td>{{ convertPriority(project?.isPriority) }}</td>
       <td>{{ project?.start | date:"dd/MM/yy" }} - {{ project?.end | date:"dd/MM/yy"}}</td>
       <td class="text-xs-right">
-        <button class="btn btn-sm btn-outline-primary" (click)="editUser(user)">Show</button>
-        <button class="btn btn-sm btn-outline-danger" (click)="deleteUser(user)">Delete</button>
+        <button class="btn btn-sm btn-outline-primary" (click)="showProject(project)">Show</button>
+        <button class="btn btn-sm btn-outline-danger" (click)="deleteProject(project)">Delete</button>
       </td>
     </tr>
   </tbody>

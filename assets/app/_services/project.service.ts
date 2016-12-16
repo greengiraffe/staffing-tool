@@ -51,7 +51,22 @@ export class ProjectService {
 
     getProjectById(projectId): Observable<{}> {
       return this.http.get('http://localhost:3000/project/' + projectId)
-        .map((response: Response) => response.json())
+        .map((response: Response) => {
+            const res = response.json();
+            return new Project(
+                res.title,
+                res.description,
+                res.type,
+                res.client,
+                res.budget,
+                res.priority,
+                res.start,
+                res.end,
+                res.expbudget,
+                res._id
+            );
+
+        })
         .catch((error: Response) => Observable.throw(error.json()));
     }
 }

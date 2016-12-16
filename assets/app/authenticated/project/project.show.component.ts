@@ -23,7 +23,6 @@ export class ProjectShowComponent implements OnInit {
     ) {}
 
     ngOnInit() {
-        console.log("show");
         this.route.params
             .switchMap((params: Params) =>
                 this.projectService.getProjectById(params['id']))
