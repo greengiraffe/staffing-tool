@@ -4,6 +4,7 @@ import { NgModule } from "@angular/core";
 import { HomeComponent } from "./home/home.component";
 import { ProjectCreateComponent } from "./project/project.create.component";
 import { ProjectListComponent } from "./project/project.list.component";
+import { ProjectShowComponent } from "./project/project.show.component";
 import { UserProfileComponent } from "./userProfile/user-profile.component";
 import { UserProfileEditComponent } from "./userProfile/user-profile-edit.component";
 import { TaskCreateComponent } from "./task/task-create.component";

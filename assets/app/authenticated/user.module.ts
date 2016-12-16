@@ -9,6 +9,7 @@ import { UserRoutingModule } from "./user.routes";
 import { HomeComponent } from "./home/home.component";
 import { ProjectCreateComponent } from "./project/project.create.component";
 import { ProjectListComponent } from "./project/project.list.component";
+import { ProjectShowComponent } from "./project/project.show.component";
 import { ChangePasswordComponent } from "./userProfile/change-password.component";
 import { SkillSearchComponent } from "./userProfile/skill-search.component";
 import { UserProfileComponent } from "./userProfile/user-profile.component";
@@ -37,6 +38,7 @@ import { ModalComponent } from "../modal/modal.component";
         UserProfileEditComponent,
         UserSkillListComponent,
         ProjectCreateComponent,
+        ProjectShowComponent,
         ProjectListComponent,
         TaskCreateComponent,
         ModalComponent,
