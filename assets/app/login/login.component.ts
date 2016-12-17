@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit{
         let user = new User(this.loginForm.value.email, this.loginForm.value.password);
             this.authService.login(user)
                 .subscribe(
-                    data => this.router.navigateByUrl('/usr/dashboard'),
+                    data => this.router.navigateByUrl('/home'),
                     error => {
                         this._flash.show(error.error.message, { cssClass: 'alert-danger', timeout: 5000 });
                     }
