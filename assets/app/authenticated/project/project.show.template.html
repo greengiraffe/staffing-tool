@@ -1,3 +1,10 @@
-<h1>{{project?.projectId}}</h1>
 <h1>{{project?.title}}</h1>
-<h1>{{project?.type}}</h1>
+<h4>{{ project?.start | date:"dd/MM/yy" }} - {{ project?.end | date:"dd/MM/yy"}}</h4>
+<br/>
+<h4><b>Type:</b> {{project?.type}}</h4>
+<h4><b>Client:</b> {{project?.client}}</h4>
+<h4><b>Budget:</b> {{project?.budget}}</h4>
+<h4><b>Expense Budget:</b> {{project?.expbudget}}</h4>
+<br/>
+<h4><b>Description:</b></h4>
+<p>{{project?.description}}</p>
