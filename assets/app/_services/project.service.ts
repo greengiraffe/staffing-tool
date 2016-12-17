@@ -54,6 +54,7 @@ export class ProjectService {
         .map((response: Response) => {
             const res = response.json();
             return new Project(
+                res.creator,
                 res.title,
                 res.description,
                 res.type,
@@ -62,6 +63,7 @@ export class ProjectService {
                 res.priority,
                 res.start,
                 res.end,
+                res.projectTasks,
                 res.expbudget,
                 res._id
             );
