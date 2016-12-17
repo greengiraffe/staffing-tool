@@ -14,7 +14,8 @@ const userRoutes: Routes = [
         path: 'usr',
         // component: UserComponent,
         children: [
-            { path: '', redirectTo: '/home', component: HomeComponent},
+            { path: '', redirectTo: 'home', component: HomeComponent},
+            { path: 'home', component: HomeComponent},
             { path: 'profile', component: UserProfileComponent },
             { path: 'profile/edit', component: UserProfileEditComponent },
             { path: 'project/show/:id', component: ProjectShowComponent },
