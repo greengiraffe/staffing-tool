@@ -20,8 +20,7 @@ const userRoutes: Routes = [
             { path: 'profile/edit', component: UserProfileEditComponent },
             { path: 'project/show/:id', component: ProjectShowComponent },
             { path: 'project/create', component: ProjectCreateComponent },
-            { path: 'project/list', component: ProjectListComponent },
-            { path: 'task/create', component: TaskCreateComponent }
+            { path: 'project/list', component: ProjectListComponent }
         ]
     }
 ];
