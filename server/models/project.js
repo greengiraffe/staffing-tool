@@ -14,7 +14,7 @@ let projectSchema = new Schema({
     type: {type: String, required: true},
     client: {type: String},
     budget: {type: Number, required: true},
-    expbudget: {type: Number},
+    expBudget: {type: Number},
     isPriority: {type: Boolean},
     projectTasks: [projectTask],
     start: {type: Date, required: true},

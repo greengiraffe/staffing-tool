@@ -10,7 +10,7 @@ module.exports = {
             type: project.type,
             client: project.client,
             budget: project.budget,
-            expbudget: project.expbudget,
+            expBudget: project.expBudget,
             isPriority: project.isPriority,
             start: project.start,
             projectTasks: project.projectTasks,

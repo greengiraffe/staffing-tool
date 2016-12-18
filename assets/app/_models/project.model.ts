@@ -13,7 +13,7 @@ export class Project {
               public end: Date,
 
               public projectTasks?: ProjectTask[],
-              public expbudget?: number,
+              public expBudget?: number,
               public projectId?: string
               ) {}
 }

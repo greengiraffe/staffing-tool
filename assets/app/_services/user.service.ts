@@ -69,7 +69,7 @@ export class UserService {
                         project.start,
                         project.end,
                         project.projectTasks,
-                        project.expbudget,
+                        project.expBudget,
                         project._id
                         )
                     );

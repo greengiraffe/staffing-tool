@@ -38,7 +38,7 @@ export class ProjectService {
                         project.start,
                         project.end,
                         project.projectTasks,
-                        project.expbudget,
+                        project.expBudget,
                         project._id
                     );
                     newProjects.push(newProject);
@@ -64,7 +64,7 @@ export class ProjectService {
                 res.start,
                 res.end,
                 res.projectTasks,
-                res.expbudget,
+                res.expBudget,
                 res._id
             );
 
