@@ -108,7 +108,9 @@ router.get('/user/mail/:email', function (req, res, next){
  * Create a user
  */
 router.post('/user', function(req, res, next) {
-    User.createUser(
+
+    if(authHelper.passwordIsValid(req.body.password)) {
+        User.createUser(
         req.body.firstName,
         req.body.lastName,
         req.body.email,
@@ -123,6 +125,13 @@ router.post('/user', function(req, res, next) {
         .catch(function(err) {
             res.status(err.statusCode).json(err);
         });
+    } else {
+        res.status(400).json({
+                        message : "Bad password",
+                        statusCode: 400,
+                        value: req.body.password
+        })
+    }
 });
 
 
@@ -190,31 +199,39 @@ router.put('/user/password', function(req, res, next) {
   let oldPassword = req.body.oldPassword
   let newPassword = req.body.newPassword
   let id = req.body.id
-  User.getUserByID(id)
-    .then(function(user) {
-        if(!user) {
-            res.status(404).json({
-                message: "No user document for " + id,
-                statusCode: 404
-            });
-        } else if(authHelper.comparePassword(oldPassword, user.password)){
-            newPassword = authHelper.generateSecureHash(newPassword);
-            User.changePassword(id, newPassword)
-                .then(function(result) {
-                    res.status(200).json(result);
-                })
-                .catch(function(err) {
-                    res.status(err.statusCode).json(err);
+  if(authHelper.passwordIsValid(newPassword)) {
+      User.getUserByID(id)
+        .then(function(user) {
+            if(!user) {
+                res.status(404).json({
+                    message: "No user document for " + id,
+                    statusCode: 404
                 });
-        } else {
-            res.status(400).json({
-                message : "Wrong password" 
-            });
-        }
-    })
-    .catch(function(err){
-      res.status(500).json(err)
-    });    
+            } else if(authHelper.comparePassword(oldPassword, user.password)){
+                newPassword = authHelper.generateSecureHash(newPassword);
+                User.changePassword(id, newPassword)
+                    .then(function(result) {
+                        res.status(200).json(result);
+                    })
+                    .catch(function(err) {
+                        res.status(err.statusCode).json(err);
+                    });
+            } else {
+                res.status(400).json({
+                    message : "Wrong password"
+                });
+            }
+        })
+        .catch(function(err){
+          res.status(500).json(err)
+        });
+    } else {
+        res.status(400).json({
+                        message : "Bad password",
+                        statusCode: 400,
+                        value: req.body.password
+        })
+    }
 });
 
 /**

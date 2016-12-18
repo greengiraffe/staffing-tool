@@ -1,5 +1,6 @@
 let bcrypt = require('bcryptjs');
 let crypto = require('crypto');
+let passwordRegex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,})");
 
 function generateSecureHash (string) {
     let salt = bcrypt.genSaltSync();
@@ -26,9 +27,14 @@ function ensureAuthenticated (req, res, next) {
     }
 }
 
+function passwordIsValid (string) {
+    return string && string.search(passwordRegex) !== -1;
+}
+
 module.exports = {
     generateSecureHash,
     generateToken,
     comparePassword,
-    ensureAuthenticated
+    ensureAuthenticated,
+    passwordIsValid
 };
