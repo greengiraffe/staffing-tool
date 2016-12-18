@@ -68,6 +68,9 @@ export class UserService {
                         project.isPriority,
                         project.start,
                         project.end,
+                        project.projectTasks,
+                        project.expbudget,
+                        project._id
                         )
                     );
                 }

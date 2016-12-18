@@ -38,12 +38,12 @@
 <div class="project-type confirmed">confirmed</div>
 <div class="project-type tentative">tentative</div>
 <div class="project-type internal">internal</div>
-<div class="project-container"  >
-  <!-- TODO route to project detail page -->
-  <div class="card-block" routerLink="../project/list" *ngFor="let project of projects; let i = index"  >
+<div class="project-container">
+  <div class="card-block"  *ngFor="let project of projects; let i = index" routerLink="../project/show/{{project?.projectId}}" >
     <h5 class="card-title {{ project?.type }}">{{ project?.title }}</h5>
     <div class="card-text" >{{ project?.client }}</div>
     <div class="card-text">{{ project?.start | date:"dd/MM/yy" }} - {{ project?.end | date:"dd/MM/yy"}}</div>
+
   </div>
 </div>
 
