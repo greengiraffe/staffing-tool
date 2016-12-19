@@ -1,8 +1,9 @@
-import {Component, OnInit, OnDestroy, Input} from '@angular/core';
+import { Component, OnInit, OnDestroy, Input } from '@angular/core';
+import { FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { SkillService } from "../../_services/skill.service";
 import { SkillSearchService } from "../../_services/skill-search.service";
 import { Skill } from "../../_models/skill.model";
-import {ProjectTask} from "../../_models/project-task.model";
+import { ProjectTask } from "../../_models/project-task.model";
 
 @Component({
     selector: 'app-task-create',
@@ -12,11 +13,14 @@ import {ProjectTask} from "../../_models/project-task.model";
 })
 export class TaskCreateComponent implements OnInit, OnDestroy {
 
+    taskForm: FormGroup;
+
     @Input('task') task: ProjectTask = new ProjectTask(null,null,[]);
     skillSearchServiceSubscription;
     private requiredSkills = new Array<Skill>();
 
-    constructor(private skillService: SkillService, private skillSearchService: SkillSearchService) {
+    constructor(private skillService: SkillService, private skillSearchService: SkillSearchService,
+                private fb: FormBuilder) {
         /*for (let skillId of this.task.requiredSkills) {
             this.skillSearchService.addRequiredSkill(skill);
             this.skillSearchService.removeSkill(skill);
@@ -28,6 +32,11 @@ export class TaskCreateComponent implements OnInit, OnDestroy {
             .subscribe(skill => {
                 this.addRequiredSkill(skill);
             });
+
+        this.taskForm = this.fb.group({
+            title: ['', Validators.required],
+            description: ['', Validators.required]
+        });
     }
 
     addRequiredSkill(skill: Skill) {

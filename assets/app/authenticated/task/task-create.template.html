@@ -1,11 +1,34 @@
-<form>
+<p class="align-right"><span class="red">*</span> Required Fields</p>
+<form [formGroup]="taskForm">
   <div class="form-group">
-    <label for="title-input">Name</label>
-    <input required type="text" id="title-input" placeholder="Add a task name" class="form-control" name="title" [(ngModel)]="task.title">
+    <div class="flex-container">
+      <label for="title-input" class="flex-container-left">
+        Name <span class="red">*</span>
+      </label>
+      <div class="flex-container-right red"
+           *ngIf="!taskForm.get('title').valid && taskForm.get('title').dirty">
+           This field is required.
+      </div>
+    </div>
+    <input required type="text" id="title-input" placeholder="Add a task name"
+     name="title" [(ngModel)]="task.title" formControlName="title" class="form-control"
+     [class.error]="!taskForm.get('title').valid && taskForm.get('title').dirty">
   </div>
   <div class="form-group">
-    <label for="description-input">Description</label>
-    <textarea required type="text" id="description-input" placeholder="Add a description" rows="4" class="form-control" name="description" [(ngModel)]="task.description"></textarea>
+    <div class="flex-container">
+      <label for="description-input" class="flex-container-left">
+        Description <span class="red">*</span>
+      </label>
+      <div class="flex-container-right red"
+           *ngIf="!taskForm.get('description').valid && taskForm.get('description').dirty">
+           This field is required
+      </div>
+    </div>
+    <textarea required type="text" id="description-input" placeholder="Add a description"
+     class="form-control" name="description" [(ngModel)]="task.description" rows="4"
+     [class.error]="!taskForm.get('description').valid && taskForm.get('description').dirty"
+     formControlName="description">
+    </textarea>
   </div>
 
   <p>Required Skills:</p>
