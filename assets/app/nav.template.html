@@ -1,0 +1,15 @@
+<nav class="navbar navbar-fixed-top navbar-dark bg-inverse">
+  <a routerLink="/home" class="navbar-brand">
+    <i class="fa fa-home" aria-hidden="true"></i>
+     IXDS Staffingtool
+  </a>
+  <ul class="nav navbar-nav">
+    <li class="nav-item"><a class="nav-link" href='/home'>Dashboard</a></li>
+    <li class="nav-item"><a class="nav-link" href='/usr/project/list'>List Projects</a></li>
+    <li class="nav-item"><a class="nav-link" href='/usr/project/create'>Create Project</a></li>
+    <li class="nav-item"><a class="nav-link" href='/admin/user/create'>Create User</a></li>
+    <li class="nav-item"><a class="nav-link" href='/admin/user/list'>List Users</a></li>
+    <li class="nav-item"><a class="nav-link" href='/admin/skill'>Administrate Skill</a></li>
+    <li class="nav-item"><a class="nav-link" href='#' (click)="auth.logout()">Logout</a></li>
+  </ul>
+</nav>
