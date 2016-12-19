@@ -58,6 +58,19 @@ router.post('/project/task/:id', function(req, res, next) {
 });
 
 /**
+ * Update a project
+ */
+router.put('/project', function(req, res, next) {
+    Project.updateProject(req.body)
+        .then(function(result) {
+            res.status(200).json(result);
+        })
+        .catch(function(err) {
+            res.status(err.statusCode).json(err);
+        });
+});
+
+/**
  * Delete a specific project object
  */
 router.delete('/project/:id', function(req, res, next) {

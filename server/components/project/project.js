@@ -76,6 +76,30 @@ module.exports = {
         });
     },
 
+    updateProject: function(updateData) {
+        return new Promise(function(resolve, reject) {
+            Project.findByIdAndUpdate(updateData.projectId, { $set: updateData}, function(err, user) {
+                if(err) {
+                    reject({
+                        message: "Database error",
+                        statusCode: 500,
+                        obj: err
+                    });
+                } else if(!user) {
+                    reject({
+                        message: "No project document for " + updateData._id,
+                        statusCode: 404
+                    })
+                }
+                else {
+                    resolve({
+                        message: "Project updated successfully"
+                    });
+                }
+            });
+        });
+    },
+
     removeProject: function(id) {
         return new Promise(function(resolve, reject) {
             Project.findById(id, function(err, project) {
