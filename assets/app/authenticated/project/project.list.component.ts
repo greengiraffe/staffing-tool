@@ -34,4 +34,14 @@ export class ProjectListComponent implements OnInit {
     showProject(project: Project) {
         this.router.navigate(['/usr/project/show', project.projectId]);
     }
+
+    deleteProject(project: Project) {
+        var r = confirm("Do you want to delete this project?");
+        if(r == true) {
+            this.projectService.deleteProject(project)
+                .subscribe(
+                  result => console.log(result)
+                );
+        }
+    }
 }

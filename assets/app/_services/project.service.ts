@@ -71,4 +71,12 @@ export class ProjectService {
         })
         .catch((error: Response) => Observable.throw(error.json()));
     }
+
+    deleteProject(project: Project) {
+        this.projects.splice(this.projects.indexOf(project), 1);
+        const body = JSON.stringify(project);
+        return this.http.delete('http://localhost:3000/project/' + project.projectId)
+            .map((response: Response) => response.json())
+            .catch((error: Response) => Observable.throw(error.json()));
+    }
 }

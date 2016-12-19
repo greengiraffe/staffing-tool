@@ -57,4 +57,24 @@ router.post('/project/task/:id', function(req, res, next) {
         });
 });
 
+/**
+ * Delete a specific project object
+ */
+router.delete('/project/:id', function(req, res, next) {
+    let id = req.params.id;
+    if(mongoose.Types.ObjectId.isValid(id)) {
+        Project.removeProject(id)
+        .then(function(result) {
+            res.status(result.statusCode).json(result);
+        })
+        .catch(function(err) {
+            res.status(err.statusCode).json(err);
+        });
+    } else {
+        res.status(400).json({
+            message: "Invalid ID"
+        });
+    }
+});
+
 module.exports = router;

@@ -74,6 +74,42 @@ module.exports = {
 
             });
         });
+    },
+
+    removeProject: function(id) {
+        return new Promise(function(resolve, reject) {
+            Project.findById(id, function(err, project) {
+                if(err) {
+                    reject({
+                        message : "Database error",
+                        statusCode: 500,
+                        obj: err
+                    });
+                } else if(!project) {
+                    reject({
+                        message : "No project document for " + id,
+                        statusCode: 404
+                    });
+                } else {
+                    project.remove(function(err, result) {
+                        if(err) {
+                            reject({
+                                message : "Database error",
+                                statusCode: 500,
+                                obj: err
+                            });
+                        } else {
+                            resolve({
+                                message : "Project deleted successfully",
+                                statusCode: 200,
+                                obj: result
+                            });
+                        }
+                    });
+                }
+
+            });
+        });
     }
 
 };
