@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from './_services/auth.service';
 import { User } from "./_models/user.model";
 import { UserService } from "./_services/user.service";
+import { Router } from "@angular/router";
 
 
 @Component({
@@ -13,7 +14,9 @@ import { UserService } from "./_services/user.service";
 export class NavComponent {
     user: User;
 
-    constructor(private auth: AuthService, private userService: UserService) {}
+    constructor(private auth: AuthService,
+                private userService: UserService,
+                private router: Router) {}
 
     ngOnInit() {
         let currentUserId = localStorage.getItem("userId")

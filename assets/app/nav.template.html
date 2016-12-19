@@ -3,7 +3,7 @@
     <i class="fa fa-home" aria-hidden="true"></i>
      IXDS Staffingtool
   </a>
-  <ul class="nav navbar-nav">
+  <ul class="nav navbar-nav" *ngIf="this.router.url != '/auth/login'">
     <li class="nav-item"><a class="nav-link" href='/usr/profile'>{{user?.firstName}}</a></li>
     <li class="nav-item"><a class="nav-link" href='/usr/project/list'>List Projects</a></li>
     <li class="nav-item"><a class="nav-link" href='/usr/project/create'>Create Project</a></li>
