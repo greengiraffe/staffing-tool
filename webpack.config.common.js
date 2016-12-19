@@ -1,8 +1,10 @@
 let webpack = require('webpack');
+let path = require('path');
+
 
 module.exports = {
     entry: {
-        'app': './assets/app/main.ts'
+        'app': './assets/app/main.ts',
     },
 
     resolve: {

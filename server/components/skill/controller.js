@@ -14,10 +14,15 @@ router.post('/skill', function(req, res, next) {
             res.status(200).json(result);
         })
         .catch(function(err) {
-            res.status(500).json(err);
+            res.status(500).json({
+                message: 'Internal Error while creating Skill.',
+                obj: err
+            });
         });
     } else {
-        res.status(400).json({/*TODO*/});
+        res.status(400).json({
+            message: 'Was not able to create Skill',
+        });
     }
 });
 
@@ -31,7 +36,11 @@ router.get('/skill/list', function(req, res, next) {
             res.status(200).json(result);
         })
         .catch(function(err) {
-            res.status(500).json(err);
+            res.status(500).json({
+                    message: 'Server error while retrieving Skills',
+                    obj: err
+                }
+            );
         });
 });
 
@@ -45,10 +54,16 @@ router.get('/skill/name/:name', function(req, res, next) {
             if(result)
             res.status(200).json(result);
             else
-            res.status(404).json({/*TODO*/});
+            res.status(404).json({
+                message: 'Error while getting skill. Check form input.',
+                obj: result
+            });
         })
         .catch(function(err) {
-            res.status(500).json(err);
+            res.status(500).json({
+                message: 'Server error while getting skill. Try later.',
+                obj: err
+            });
         });
 });
 
@@ -64,7 +79,10 @@ router.get('/skill/id/:id', function(req, res, next) {
             res.status(200).json(result);
         })
         .catch(function(err) {
-            res.status(err.statusCode).json(err);
+            res.status(err.statusCode).json({
+                message: 'Error while getting Skill. Check form input',
+                obj: err
+            });
         });
     } else {
         res.status(400).json({

@@ -1,16 +1,13 @@
-<form class="form" (ngSubmit)="onSubmit(f)" #f>
+<form class="form" [formGroup]="skillForm" (ngSubmit)="onSubmit(skillForm.value)">
     <label for="skill-input" class="sr-only">New Skill</label>
+    <flash-messages></flash-messages>
     <div class="input-group">
       <input
-          type="text"
-          id="skill-input"
-          class="form-control"
-          placeholder="Name of the skill"
-          name="name"
-          required>
+          id="skill-input" class="form-control"
+          type="text" placeholder="Name of the skill" required
+          formGroupName="skillName">
       <span class="input-group-btn">
         <button class="btn btn-primary" type="submit">Add Skill</button>
       </span>
   </div>
-  <flash-messages></flash-messages>
 </form>

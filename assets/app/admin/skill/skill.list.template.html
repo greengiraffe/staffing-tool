@@ -11,12 +11,11 @@
       <th scope="row">{{ i+1 }}</th>
       <td>{{ skill.name }}</td>
       <td class="text-xs-right">
-        <button class="btn btn-sm btn-outline-primary" (click)="editSkill(skill)">Edit</button>
         <button class="btn btn-sm btn-outline-danger" (click)="deleteSkill(skill)">Delete</button>
       </td>
     </tr>
-    <flash-messages></flash-messages>
+    <!--<flash-messages></flash-messages>-->
   </tbody>
 </table>
 <!--Überschriebt flash-messages aus skill create-->
-<flash-messages></flash-messages>
+<!--<flash-messages></flash-messages>-->

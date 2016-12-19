@@ -24,15 +24,11 @@ export class SkillListComponent implements OnInit {
             );
     }
 
-    editSkill(skill: Skill) {
-        // TODO
-    }
-
     deleteSkill(skill: Skill) {
         this.skillService.deleteSkill(skill)
             .subscribe(
-              data => {this._flash.show("Skill successfully deleted", { cssClass: 'alert-success', timeout: 5000 });},
-              error => {this._flash.show(error.error.message, { cssClass: 'alert-danger', timeout: 5000 });}
+              // data => {this._flash.show("Skill successfully deleted", { cssClass: 'alert-success', timeout: 5000 });},
+              // error => {this._flash.show(error.error.message, { cssClass: 'alert-danger', timeout: 5000 });}
             );
     }
 

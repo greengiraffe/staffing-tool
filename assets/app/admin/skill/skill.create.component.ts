@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { FlashMessagesService } from "angular2-flash-messages";
-import { NgForm } from "@angular/forms";
+import { FormGroup, Form, FormControl, Validators } from "@angular/forms";
 
 import { Skill } from "../../_models/skill.model";
 import { SkillService } from "../../_services/skill.service";
@@ -10,25 +10,31 @@ import { SkillService } from "../../_services/skill.service";
     selector: 'app-skill-create',
     templateUrl: './skill.create.template.html',
 })
-export class SkillCreateComponent {
+export class SkillCreateComponent implements OnInit {
+    skillForm: FormGroup;
+
     constructor(private skillService: SkillService,
                 private _flash: FlashMessagesService) {}
 
-    onSubmit(form: NgForm) {
-        // Create
-        const skill = new Skill(form.value.name, form.value.rating);
-        this.skillService.addSkill(skill)
-            .subscribe(
-                //data => console.log(data),
-                data => {this._flash.show("Skill successfully added", { cssClass: 'alert-success', timeout: 5000 });},
-                error => {this._flash.show(error.error.message, { cssClass: 'alert-danger', timeout: 5000 });}
-            );
-        form.resetForm();
+    ngOnInit() {
+        this.skillForm = new FormGroup({
+            skillName: new FormControl('', Validators.required)
+        })
     }
 
-    // onClear(form: NgForm) {
-    //     this.skill = null;
-    //     form.resetForm();
-    // }
-
+    onSubmit(form: FormGroup) {
+        // Create
+        const skill = new Skill(form['skillName']);
+        console.log(skill, form);
+        this.skillService.addSkill(skill)
+            .subscribe(
+                data => {
+                    console.log('success');
+                    this._flash.show("Skill successfully added", { cssClass: 'alert-success', timeout: 10000 });},
+                error => {
+                    console.log('err', error);
+                    this._flash.show(error.message, { cssClass: 'alert-danger', timeout: 10000 });}
+            );
+        // form.resetForm();
+    }
 }

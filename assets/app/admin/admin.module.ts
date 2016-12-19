@@ -6,7 +6,6 @@ import { FlashMessagesModule } from "angular2-flash-messages";
 
 import { AdminComponent } from "./admin.component";
 import { AdminRoutingModule } from "./admin.routes";
-import { SkillComponent } from "./skill/skill.component";
 import { SkillCreateComponent } from "./skill/skill.create.component";
 import { SkillListComponent } from "./skill/skill.list.component";
 import { SkillsComponent } from "./skill/skills.component";
@@ -25,7 +24,6 @@ import { UserListComponent } from "./user/user.list.component";
     ],
     declarations: [
         AdminComponent,
-        SkillComponent,
         SkillCreateComponent,
         SkillListComponent,
         SkillsComponent,
