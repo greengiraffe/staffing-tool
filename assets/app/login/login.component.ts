@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit{
             this.authService.login(user)
                 .subscribe(
                     data => {
-                        this.router.navigateByUrl('/home');
+                        this.router.navigateByUrl('/usr/profile');
                         this.loginForm.reset();
                     },
                     error => {
