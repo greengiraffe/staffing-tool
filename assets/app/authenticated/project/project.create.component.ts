@@ -46,6 +46,7 @@ export class ProjectCreateComponent implements OnInit {
         this.projectTasks.push(task);
         this.modalService.close(this.addTaskModalId);
         taskComponent.reset();
+        this._flash.show("Task successfully added", { cssClass: 'alert-success', timeout: 5000 });
     }
 
     editProjectTask(taskComponent: TaskCreateComponent, index: number) {
