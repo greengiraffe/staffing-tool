@@ -1,6 +1,6 @@
 module.exports = [
     {
-        email: 'adminexample.com',
+        email: 'admin@example.com',
         password: '$2a$10$cIxLgLqYEVfOQl7VQfulL.zzmiTDn3Ugf1vUdu/OHiwQOyvQ.jz6a', // root
         firstName: 'Admin',
         lastName: 'Nimda',
@@ -11,7 +11,7 @@ module.exports = [
         role: 'admin'
     },
     {
-        email: 'userexample.com',
+        email: 'user@example.com',
         password: '$2a$10$cIxLgLqYEVfOQl7VQfulL.zzmiTDn3Ugf1vUdu/OHiwQOyvQ.jz6a', // root
         firstName: 'User',
         lastName: 'Resu',
@@ -20,7 +20,7 @@ module.exports = [
         role: 'user'
     },
     {
-        email: 'alex@ixds.com',
+        email: 'alex@example.com',
         password: '$2a$10$cIxLgLqYEVfOQl7VQfulL.zzmiTDn3Ugf1vUdu/OHiwQOyvQ.jz6a', // root
         firstName: 'Alex',
         lastName: 'Mirkova',
@@ -29,7 +29,7 @@ module.exports = [
         role: 'user'
     },
     {
-        email: 'johnexample.com',
+        email: 'john@example.com',
         password: '$2a$10$cIxLgLqYEVfOQl7VQfulL.zzmiTDn3Ugf1vUdu/OHiwQOyvQ.jz6a', // root
         firstName: 'John',
         lastName: 'Johanson',
@@ -41,7 +41,7 @@ module.exports = [
         role: 'user'
     },
     {
-        email: 'miriamexample.com',
+        email: 'miriam@example.com',
         password: '$2a$10$cIxLgLqYEVfOQl7VQfulL.zzmiTDn3Ugf1vUdu/OHiwQOyvQ.jz6a', // root
         firstName: 'Miriam',
         lastName: 'Müller',
