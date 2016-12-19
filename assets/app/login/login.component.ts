@@ -22,13 +22,14 @@ export class LoginComponent implements OnInit{
         let user = new User(this.loginForm.value.email, this.loginForm.value.password);
             this.authService.login(user)
                 .subscribe(
-                    data => this.router.navigateByUrl('usr/home'),
+                    data => {
+                        this.router.navigateByUrl('/home');
+                        this.loginForm.reset();
+                    },
                     error => {
                         this._flash.show(error.error.message, { cssClass: 'alert-danger', timeout: 5000 });
                     }
                 );
-            this.loginForm.reset();
-
         }
         // const user = new User(this.myForm.value.email, this.myForm.value.password);
         // this.authService.signin(user)
