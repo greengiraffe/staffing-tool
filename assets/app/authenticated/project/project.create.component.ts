@@ -24,7 +24,8 @@ export class ProjectCreateComponent implements OnInit {
     projectForm: FormGroup;
     projectTasks = new Array<ProjectTask>();
     addTaskModalId = "modal-add-task";
-    editTaskModalId = "modal-edit-task";
+    editTaskModalId = new Array<String>();
+    //editTaskModalId = "modal-edit-task";
 
     ngOnInit() {
         this.projectForm = this._fb.group({
@@ -44,6 +45,8 @@ export class ProjectCreateComponent implements OnInit {
         let task = taskComponent.task;
         console.log(taskComponent);
         this.projectTasks.push(task);
+        const taskIndex = this.projectTasks.indexOf(task);
+        this.editTaskModalId.push("editTaskModalId" + taskIndex);
         this.modalService.close(this.addTaskModalId);
         taskComponent.reset();
         this._flash.show("Task successfully added", { cssClass: 'alert-success', timeout: 5000 });
@@ -52,12 +55,13 @@ export class ProjectCreateComponent implements OnInit {
     editProjectTask(taskComponent: TaskCreateComponent, index: number) {
         let task = taskComponent.task;
         this.projectTasks[index] = task;
-        this.modalService.close(this.editTaskModalId + index);
+        //this.modalService.close(this.editTaskModalId + index);
     }
 
     removeProjectTask(task: ProjectTask) {
         const taskIndex = this.projectTasks.indexOf(task);
         this.projectTasks.splice(taskIndex,1);
+        this.editTaskModalId.splice(taskIndex,1);
     }
 
     onSubmit(form: FormGroup) {
