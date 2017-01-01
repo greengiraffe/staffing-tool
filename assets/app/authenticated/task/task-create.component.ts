@@ -29,8 +29,8 @@ export class TaskCreateComponent implements OnInit, OnDestroy {
             });
 
         this.taskForm = this.fb.group({
-            title: ['', Validators.required],
-            description: ['', Validators.required]
+            title: [this.task.title, Validators.required],
+            description: [this.task.description, Validators.required]
         });
     }
 

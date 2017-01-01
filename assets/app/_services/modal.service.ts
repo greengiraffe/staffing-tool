@@ -14,7 +14,7 @@ export class ModalService {
 
         // Delete existing to replace the modal
         if (modal) {
-            this.modals.splice(this.modals.indexOf(modal));
+            this.modals.splice(this.modals.indexOf(modal),1);
         }
 
         this.modals.push(newModal);

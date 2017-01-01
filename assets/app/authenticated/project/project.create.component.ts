@@ -41,17 +41,26 @@ export class ProjectCreateComponent implements OnInit {
     }
 
     addProjectTask(taskComponent: TaskCreateComponent) {
-        const task = taskComponent.task;
-        const taskIndex = this.projectTasks.indexOf(task);
+        const task = new ProjectTask(
+            taskComponent.taskForm.controls["title"]["_value"],
+            taskComponent.taskForm.controls["description"]["value"],
+            taskComponent.task.requiredSkills
+        );
 
         this.projectTasks.push(task);
+        const taskIndex = this.projectTasks.indexOf(task);
         this.editTaskModalIds.push("editTaskModalIds" + taskIndex);
         this.modalService.close(this.addTaskModalId);
         this._flash.show("Task successfully added", { cssClass: 'alert-success', timeout: 5000 });
     }
 
     editProjectTask(taskComponent: TaskCreateComponent, index: number) {
-        this.projectTasks[index] = taskComponent.task;
+        const task = new ProjectTask(
+            taskComponent.taskForm.controls["title"]["_value"],
+            taskComponent.taskForm.controls["description"]["value"],
+            taskComponent.task.requiredSkills
+        );
+        this.projectTasks[index] = task;
         this.modalService.close(this.editTaskModalIds[index]);
     }
 
