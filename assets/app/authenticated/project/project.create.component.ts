@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { FlashMessagesService } from "angular2-flash-messages";
-
+import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Project } from "../../_models/project.model";
 import { ProjectTask } from "../../_models/project-task.model";
 import { ProjectService } from "../../_services/project.service";
@@ -19,25 +19,61 @@ export class ProjectCreateComponent implements OnInit {
     constructor(private ProjectService: ProjectService,
                 private _flash: FlashMessagesService,
                 private _fb: FormBuilder,
-                private modalService: ModalService) {}
+                private modalService: ModalService,
+                private route: ActivatedRoute,
+                private router: Router) {}
 
+    project: Project;
     projectForm: FormGroup;
     projectTasks = new Array<ProjectTask>();
     addTaskModalId = "modal-add-task";
     editTaskModalIds = new Array<string>();
+    isEditing: Boolean = false;
+    //editTaskModalId = "modal-edit-task";
 
     ngOnInit() {
         this.projectForm = this._fb.group({
-            title: ['', Validators.required],
-            description: ['', Validators.required],
-            type: ['tentative', Validators.required],
-            client: ['', Validators.required],
-            budget: ['', Validators.required],
-            expBudget: [''],
-            isPriority: ['false', Validators.required],
-            projectStart: ['', Validators.required],
-            projectEnd: ['', Validators.required]
-        })
+                title: ['', Validators.required],
+                description: ['', Validators.required],
+                type: ['tentative', Validators.required],
+                client: ['', Validators.required],
+                budget: ['', Validators.required],
+                expBudget: [''],
+                isPriority: ['false', Validators.required],
+                projectStart: ['', Validators.required],
+                projectEnd: ['', Validators.required]
+            });
+        if(this.router.url.includes('edit')) {
+            this.prepareEdit();
+        }
+    }
+
+    prepareEdit() {
+        this.route.params
+            .switchMap((params: Params) =>
+                this.ProjectService.getProjectById(params['id']))
+                .subscribe((project: Project) => {
+                    this.project = project;
+                    this.isEditing = true;
+                    this.fillForm(project);
+                });
+    }
+
+    fillForm(project: Project) {
+        console.log(project)
+        this.projectForm = this._fb.group({
+            title: [project.title, Validators.required],
+            description: [project.description, Validators.required],
+            type: [project.type, Validators.required],
+            client: [project.client, Validators.required],
+            budget: [project.budget, Validators.required],
+            expBudget: [project.expBudget],
+            isPriority: [project.isPriority.toString(), Validators.required],
+            projectStart: [project.start.toString().substring(0,10), Validators.required],
+            projectEnd: [project.end.toString().substring(0,10), Validators.required],
+        });
+
+        this.projectTasks = project.projectTasks;
     }
 
     addProjectTask(taskComponent: TaskCreateComponent) {
@@ -83,9 +119,11 @@ export class ProjectCreateComponent implements OnInit {
             form['projectStart'],
             form['projectEnd'],
             this.projectTasks,
-            form['expBudget']
+            form['expBudget'],
+            this.project.projectId
         );
-        this.ProjectService.createProject(project)
+        if(!this.isEditing) {
+            this.ProjectService.createProject(project)
             .subscribe(
                 data => {
                     this._flash.show("Project successfully added", { cssClass: 'alert-success', timeout: 5000 });
@@ -97,5 +135,15 @@ export class ProjectCreateComponent implements OnInit {
                 },
                 error => {this._flash.show(error.error.message, { cssClass: 'alert-danger', timeout: 5000 });}
             );
+        } else {
+            this.ProjectService.updateProject(project)
+                .subscribe(
+                    data => {
+                        this._flash.show("Project successfully updated", { cssClass: 'alert-success', timeout: 5000 });
+                        this.router.navigateByUrl('usr/project/show/' + this.project.projectId);
+                    },
+                    error => {this._flash.show(error.error.message, { cssClass: 'alert-danger', timeout: 5000 });}
+            );
+        }
     }
 }

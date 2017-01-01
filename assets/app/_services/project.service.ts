@@ -21,6 +21,15 @@ export class ProjectService {
             .catch((error: Response) => Observable.throw(error.json()));
     }
 
+    updateProject(project: Project): Observable<{}> {
+        const body = JSON.stringify(project);
+        const headers = new Headers({'Content-Type': 'application/json'});
+
+        return this.http.put('http://localhost:3000/project', body, {headers: headers})
+            .map((response: Response) => response.json())
+            .catch((error: Response) => Observable.throw(error.json()));
+    }
+
     getProjects(): Observable<{}> {
         return this.http.get('http://localhost:3000/project/list')
             .map((response: Response) => {
@@ -60,7 +69,7 @@ export class ProjectService {
                 res.type,
                 res.client,
                 res.budget,
-                res.priority,
+                res.isPriority,
                 res.start,
                 res.end,
                 res.projectTasks,

@@ -1,6 +1,6 @@
 <div class="col-lg-6">
-
-  <h1> Create Project </h1>
+  <h1 *ngIf="!isEditing" > Create Project </h1>
+  <h1 *ngIf="isEditing" > Edit Project {{ project.title }} </h1>
   <p class="text-xs-right"><span class="red">*</span> Required Fields</p>
 
   <form (ngSubmit)="onSubmit(projectForm.value)" [formGroup]="projectForm">
@@ -133,7 +133,8 @@
 
         <div class="text-xs-right">
           <button type="button" class="btn btn-secondary">Cancel</button>
-          <button type="submit" class="btn btn-primary" [disabled]="!projectForm.valid">Add Project</button>
+          <button *ngIf="isEditing" type="submit" class="btn btn-primary" [disabled]="!projectForm.valid">Edit Project</button>
+          <button *ngIf="!isEditing" type="submit" class="btn btn-primary" [disabled]="!projectForm.valid">Add Project</button>
           <flash-messages></flash-messages>
         </div>
 
