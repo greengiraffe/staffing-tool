@@ -10,7 +10,8 @@ const transformProjectTaskSkills = function (projectTasks) {
         let projectTask = {
             title: task.title,
             description: task.description,
-            requiredSkills: task.requiredSkills.map(skill => skill.skillId)
+            requiredSkills: task.requiredSkills.map(skill => skill.skillId),
+            taskMember: task.taskMember
         };
         transformedProjectTasks.push(projectTask);
     });
