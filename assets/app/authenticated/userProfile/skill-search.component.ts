@@ -91,16 +91,16 @@ export class SkillSearchComponent implements OnInit {
     /**
      * Stream the selected skill as a UserSkill
      */
-    selectUserSkill(skill, rating) {
+    selectUserSkill(skill: Skill, rating: number) {
         this.searchText = null;
-        const userSkill = new UserSkill(skill.skillId, rating);
+        const userSkill = new UserSkill(skill, rating);
         this.skillSearchService.addUserSkill(userSkill);
     }
 
     /**
      * Stream the selected skill as a Skill
      */
-    selectSkill(skill) {
+    selectSkill(skill: Skill) {
         this.searchText = null;
         this.skillSearchService.addSkill(skill);
     }

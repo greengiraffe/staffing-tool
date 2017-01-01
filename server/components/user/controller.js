@@ -247,19 +247,9 @@ router.delete('/user/:id', function(req, res, next) {
         })
 });
 
-// to verify token...
-// router.use('/', function (req, res, next) {
-//     jwt.verify(req.query.token, 'secret', function (err, decoded) {
-//         if (err) {
-//             return res.status(401).json({
-//                 title: 'Not Authenticated',
-//                 error: err
-//             });
-//         }
-//         next();
-//     })
-// });
-
+/**
+ * Add a profile image to a user
+ */
 router.post('/user/img/:id', multipartMiddleware, function(req, res, next) {
     fs.readFile(req.files.image.path, function (err, data) {
         var imageName = path.extname(req.files.image.name);
@@ -283,6 +273,9 @@ router.post('/user/img/:id', multipartMiddleware, function(req, res, next) {
     });
 });
 
+/**
+ * Get the profile image of a specific user
+ */
 router.get('/user/img/:id', function (req, res){
     User.getUserByID(req.params.id)
         .then(function (result) {

@@ -20,10 +20,9 @@ export class UserSkillListComponent implements OnInit, OnDestroy {
     @Input() showRemove = false;
 
     user: User;
-    skillList: Skill[];
-    professionalSkills:Set<Skill> = new Set<Skill>();
-    basicSkills:Set<Skill> = new Set<Skill>();
-    interestSkills:Set<Skill> = new Set<Skill>();
+    professionalSkills:Array<Skill> = new Array<Skill>();
+    basicSkills:Array<Skill> = new Array<Skill>();
+    interestSkills:Array<Skill> = new Array<Skill>();
     skillSearchServiceSubscription;
 
     constructor(private userService: UserService,
@@ -31,23 +30,18 @@ export class UserSkillListComponent implements OnInit, OnDestroy {
                 private skillSearchService: SkillSearchService) {}
 
     ngOnInit() {
-        // Fork join two streams to get the user and the skills simultaneously
-        Observable.forkJoin(
-            this.userService.getUserById(localStorage.getItem("userId")),
-            this.skillService.getSkills()
-        ).subscribe(res => {
-            this.user = res[0] as User;
-            this.skillList = res[1] as Skill[];
-            this.fillArrays();
+        this.userService.getUserById(localStorage.getItem("userId"))
+            .subscribe(res => {
+                this.user = res as User;
+                this.fillArrays();
         });
 
         // Add a new skill when it's selected in the skill-search
-        this.skillSearchServiceSubscription = this.skillSearchService.userSkillAdded$.subscribe(
-            userSkill => {
+        this.skillSearchServiceSubscription = this.skillSearchService.userSkillAdded$
+            .subscribe(userSkill => {
                 this.addSkill(userSkill);
             });
 
-        // Fill userSkill array in skillSearchService with current skills
     }
 
     /**
@@ -66,36 +60,29 @@ export class UserSkillListComponent implements OnInit, OnDestroy {
      * a Skill object to be able to access the name field.
      */
     addSkill(userSkill: UserSkill) {
-        const associatedSkill = this.getAssociatedSkill(userSkill);
+        const skill = userSkill.skill;
+
+        console.log(skill);
 
         switch (userSkill.rating) {
             case 0:
-                this.interestSkills.add(associatedSkill);
+                this.interestSkills.push(skill);
                 break;
             case 1:
-                this.basicSkills.add(associatedSkill);
+                this.basicSkills.push(skill);
                 break;
             case 2:
-                this.professionalSkills.add(associatedSkill);
+                this.professionalSkills.push(skill);
                 break;
         }
-        this.skillSearchService.skillAdded(associatedSkill)
-    }
-
-    /**
-     * Returns the Skill corresponding to the UserSkill.
-     */
-    getAssociatedSkill(userSkill: UserSkill) {
-        return this.skillList.find((skill) => {
-            return skill.skillId === userSkill.skill;
-        });
+        this.skillSearchService.skillAdded(skill)
     }
 
     /**
      * Remove a skill from a skill set and inform the service.
      */
-    removeSkill(skill: Skill, skillList: Set<Skill>) {
-        skillList.delete(skill);
+    removeSkill(skill: Skill, skillList: Array<Skill>) {
+        skillList.splice(skillList.indexOf(skill), 1);
         this.skillSearchService.removeSkill(skill);
     }
 

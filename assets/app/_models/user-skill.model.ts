@@ -1,9 +1,8 @@
-export class UserSkill {
-    skill: string;
-    rating: number;
+import { Skill } from "./skill.model";
 
-    constructor(skill: string, rating: number) {
-        this.skill = skill;
-        this.rating = rating;
-    }
+export class UserSkill {
+
+    constructor(
+        public skill: Skill,
+        public rating: number) {}
 }

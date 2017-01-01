@@ -4,6 +4,23 @@ let Project = require('../../models/project');
 let Skill = require('../../models/skill');
 let authHelper = require('../../services/authHelper');
 
+/**
+ * Transforms the Skill object inside the userSkills to an array of skillID strings.
+ */
+const transformUserSkillSkillObjects = function (userSkills) {
+    let transformedUserSkills = [];
+
+    userSkills.forEach(oldUserSkill => {
+        let userSkill = {
+            rating: oldUserSkill.rating,
+            skill: oldUserSkill.skill.skillId
+        };
+        transformedUserSkills.push(userSkill);
+    });
+
+    return transformedUserSkills;
+};
+
 module.exports = {
 
     createUser: function(
@@ -43,6 +60,8 @@ module.exports = {
     },
 
     updateUser: function(updateData) {
+        updateData.userSkills = transformUserSkillSkillObjects(updateData.userSkills);
+
         //TODO Protect Password and Email from being updated
         return new Promise(function(resolve, reject) {
             User.findByIdAndUpdate(updateData.userId, { $set: updateData}, function(err, user) {
@@ -109,47 +128,26 @@ module.exports = {
     },
 
     listUsers: function() {
-        return User.find().exec();
+        return User
+            .find()
+            .populate('userSkills.skill')
+            .exec();
     },
 
     getUserByID: function(id) {
-        return User.findById(id).exec();
-
-        // return new Promise(function(resolve, reject) {
-        //     User.findById(id, function(err, result) {
-        //         if (err) { reject(err) }
-        //         else { resolve(result) }
-        //     });
-        // });
+        return User
+            .findById(id)
+            .populate('userSkills.skill')
+            .exec();
     },
 
     getUserByMail: function(mail) {
         return User.findOne({email : mail}).exec();
-
-        // return new Promise(function(resolve, reject) {
-        //     User.findOne({email: mail}, function(err, result) {
-        //         if (err) {
-        //             console.log("error");
-        //             reject(err) }
-        //         else {
-        //             resolve(result) }
-        //     });
-        // });
     },
 
    getOwnedProjects(userId) {
         return Project.find({creator: userId}).exec();
     },
-
-    // activateUser: function(id) {
-    //     User.findByIdAndUpdate id,
-    //         result.register = false;
-    //         result.save(function(err, result) {
-    //             if (err) {return -1}
-    //             return true;
-    //         })
-    //     })
-    // }
 
     //Todo: Review...push on sub document
     addSkill: function(userId, skillId, rating) {
