@@ -1,3 +1,7 @@
-body {
-  padding-top: 5rem;
-}
+// Import order is important
+@import 'base';
+
+// Import components here
+// NOTE: The order of the component imports shouldn't matter, otherwise
+// we may have some code smell (bad separation of concerns, unnecessary dependencies...)
+@import 'components/flash-messages';

@@ -1,0 +1,9 @@
+// General global styles should be defined here,
+// only element selectors like 'body' or 'h2' are allowed.
+//
+// NOTE: For styling specific components, create a file inside components/
+// and import it in main.scss
+
+body {
+  padding-top: 5rem;
+}
