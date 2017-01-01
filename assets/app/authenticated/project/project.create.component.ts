@@ -56,6 +56,7 @@ export class ProjectCreateComponent implements OnInit {
                     this.project = project;
                     this.isEditing = true;
                     this.fillForm(project);
+                    this.setUpModals(project);
                 });
     }
 
@@ -72,8 +73,14 @@ export class ProjectCreateComponent implements OnInit {
             projectStart: [project.start.toString().substring(0,10), Validators.required],
             projectEnd: [project.end.toString().substring(0,10), Validators.required],
         });
+    }
 
-        this.projectTasks = project.projectTasks;
+    setUpModals(project: Project) {
+        project.projectTasks.forEach(task => {
+            this.projectTasks.push(task);
+            const taskIndex = this.projectTasks.indexOf(task);
+            this.editTaskModalIds.push("editTaskModalIds" + taskIndex);
+        })
     }
 
     addProjectTask(taskComponent: TaskCreateComponent) {
