@@ -22,6 +22,12 @@ export class ProjectService {
     }
 
     updateProject(project: Project): Observable<{}> {
+        for(let task of project.projectTasks) {
+            for(let skill of task.requiredSkills) {
+                var test: any = skill;
+                skill.skillId = test._id || test.skillId;
+            }
+        }
         const body = JSON.stringify(project);
         const headers = new Headers({'Content-Type': 'application/json'});
 

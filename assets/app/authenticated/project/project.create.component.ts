@@ -119,9 +119,9 @@ export class ProjectCreateComponent implements OnInit {
             form['projectStart'],
             form['projectEnd'],
             this.projectTasks,
-            form['expBudget'],
-            this.project.projectId
+            form['expBudget']
         );
+
         if(!this.isEditing) {
             this.ProjectService.createProject(project)
             .subscribe(
@@ -136,6 +136,7 @@ export class ProjectCreateComponent implements OnInit {
                 error => {this._flash.show(error.error.message, { cssClass: 'alert-danger', timeout: 5000 });}
             );
         } else {
+            project.projectId = this.project.projectId;
             this.ProjectService.updateProject(project)
                 .subscribe(
                     data => {
