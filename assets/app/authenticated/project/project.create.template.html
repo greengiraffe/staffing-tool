@@ -104,13 +104,13 @@
         <h3>Tasks:</h3>
         <ul class="project-tasks">
           <li class="project-task" *ngFor="let projectTask of projectTasks; let i = index">
-            <span (click)="modalService.open(editTaskModalId[i])"
+            <span (click)="modalService.open(editTaskModalIds[i])"
               class="edit-project-task">
               {{ projectTask.title }}</span>
-          <app-modal [modal-id]="editTaskModalId[i]" modal-title="Edit {{ projectTask.title }}">
+          <app-modal [modal-id]="editTaskModalIds[i]" modal-title="Edit {{ projectTask.title }}">
               <app-task-create #taskComponent [task]="projectTask" modal-body></app-task-create>
               <div modal-footer class="text-xs-right">
-                <button type="button" class="btn btn-secondary" (click)="modalService.close(editTaskModalId[i])">Cancel</button>
+                <button type="button" class="btn btn-secondary" (click)="modalService.close(editTaskModalIds[i])">Cancel</button>
                 <button type="button" class="btn btn-primary" (click)="editProjectTask(taskComponent, i)">Save Changes</button>
               </div>
             </app-modal>

@@ -31,18 +31,6 @@ export class ProjectShowComponent implements OnInit {
                 this.projectService.getProjectById(params['id']))
                 .subscribe((project: Project) => {
                     this.project = project;
-                    if (project.projectTasks)
-                        this.convertSkillIdsToNames();
-
                 });
-    }
-
-    convertSkillIdsToNames() {
-        for (let task of this.project.projectTasks ) {
-            for (let i in task.requiredSkills) {
-                this.skillService.getSkillById(task.requiredSkills[i])
-                    .subscribe((skill: Skill) => task.requiredSkills[i] = skill.name)
-            }
-        }
     }
 }

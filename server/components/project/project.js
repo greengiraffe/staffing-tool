@@ -1,8 +1,27 @@
 let Project = require('../../models/project');
 
+/**
+ * Transforms the Skill object array inside the projectTasks to an array of skillID strings.
+ */
+const transformProjectTaskSkills = function (projectTasks) {
+    let transformedProjectTasks = [];
+
+    projectTasks.forEach(task => {
+        let projectTask = {
+            title: task.title,
+            description: task.description,
+            requiredSkills: task.requiredSkills.map(skill => skill.skillId)
+        };
+        transformedProjectTasks.push(projectTask);
+    });
+
+    return transformedProjectTasks;
+};
+
 module.exports = {
 
     createProject: function(project) {
+
         let newProject = new Project({
             creator: project.creator,
             title: project.title,
@@ -13,7 +32,7 @@ module.exports = {
             expBudget: project.expBudget,
             isPriority: project.isPriority,
             start: project.start,
-            projectTasks: project.projectTasks,
+            projectTasks: transformProjectTaskSkills(project.projectTasks),
             end: project.end
         });
 
@@ -39,11 +58,17 @@ module.exports = {
     },
 
     listProjects: function() {
-        return Project.find().exec();
+        return Project
+            .find()
+            .populate('projectTasks.requiredSkills')
+            .exec();
     },
 
     getProjectById: function(id) {
-        return Project.findById(id).exec();
+        return Project
+            .findById(id)
+            .populate('projectTasks.requiredSkills')
+            .exec();
     },
 
     createProjectTask: function(id, projectTask) {
@@ -77,15 +102,17 @@ module.exports = {
     },
 
     updateProject: function(updateData) {
+        console.log(updateData);
         return new Promise(function(resolve, reject) {
-            Project.findByIdAndUpdate(updateData.projectId, { $set: updateData}, function(err, user) {
+            // TODO transform Skill objects to skillID strings in updateData.projectTasks.requiredSkills
+            Project.findByIdAndUpdate(updateData._id, { $set: updateData}, function(err, project) {
                 if(err) {
                     reject({
                         message: "Database error",
                         statusCode: 500,
                         obj: err
                     });
-                } else if(!user) {
+                } else if(!project) {
                     reject({
                         message: "No project document for " + updateData._id,
                         statusCode: 404

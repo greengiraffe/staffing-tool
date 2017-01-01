@@ -17,14 +17,9 @@ export class TaskCreateComponent implements OnInit, OnDestroy {
 
     @Input('task') task: ProjectTask = new ProjectTask(null,null,[]);
     skillSearchServiceSubscription;
-    private requiredSkills = new Array<Skill>();
 
     constructor(private skillService: SkillService, private skillSearchService: SkillSearchService,
                 private fb: FormBuilder) {
-        /*for (let skillId of this.task.requiredSkills) {
-            this.skillSearchService.addRequiredSkill(skill);
-            this.skillSearchService.removeSkill(skill);
-        }*/
     }
 
     ngOnInit() {
@@ -40,23 +35,13 @@ export class TaskCreateComponent implements OnInit, OnDestroy {
     }
 
     addRequiredSkill(skill: Skill) {
-        this.task.requiredSkills.push(skill.skillId);
-        this.requiredSkills.push(skill);
+        this.task.requiredSkills.push(skill);
         this.skillSearchService.skillAdded(skill);
     }
 
     removeRequiredSkill(skill: Skill) {
-        this.task.requiredSkills.splice(this.task.requiredSkills.indexOf(skill.skillId), 1);
-        this.requiredSkills.splice(this.requiredSkills.indexOf(skill), 1);
+        this.task.requiredSkills.splice(this.task.requiredSkills.indexOf(skill), 1);
         this.skillSearchService.removeSkill(skill);
-    }
-
-    reset() {
-        this.task = new ProjectTask(null,null,[]);
-        for (let skill of this.requiredSkills) {
-            this.skillSearchService.removeSkill(skill);
-        }
-        this.requiredSkills = new Array<Skill>();
     }
 
     ngOnDestroy() {

@@ -13,7 +13,7 @@
 <ul>
   <li *ngFor= "let task of project?.projectTasks;">{{ task.title }}
     <ul *ngFor= "let skill of task.requiredSkills">
-      <li>{{ skill }}</li>
+      <li>{{ skill.name }}</li>
     </ul>
   </li>
 </ul>
