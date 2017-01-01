@@ -22,11 +22,18 @@
       <td>{{ project?.start | date:"dd/MM/yy" }} - {{ project?.end | date:"dd/MM/yy"}}</td>
       <td class="text-xs-right">
         <button class="btn btn-sm btn-outline-primary" (click)="showProject(project)">Show</button>
-        <button class="btn btn-sm btn-outline-danger" (click)="deleteProject(project)"
+        <button class="btn btn-sm btn-outline-danger" (click)="modalService.open(deleteProjectModalIds[i])"
         *ngIf="userRole === 'admin' || userRole === 'user_creator' || project.creator === userId">
           Delete
         </button>
       </td>
+      <app-modal [modal-id]="deleteProjectModalIds[i]" modal-title="Delete Project {{ project?.title }}">
+        <span modal-body>Do you want to delete this project "{{ project?.title }}"?</span>
+        <div modal-footer class="text-xs-right">
+          <button type="button" class="btn btn-sm btn-outline-primary" (click)="modalService.close(deleteProjectModalIds[i])">Cancel</button>
+          <button type="button" class="btn btn-sm btn-outline-danger" (click)="deleteProject(project,i)">Delete</button>
+        </div>
+      </app-modal>
     </tr>
   </tbody>
 </table>
