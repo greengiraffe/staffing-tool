@@ -22,7 +22,10 @@
       <td>{{ project?.start | date:"dd/MM/yy" }} - {{ project?.end | date:"dd/MM/yy"}}</td>
       <td class="text-xs-right">
         <button class="btn btn-sm btn-outline-primary" (click)="showProject(project)">Show</button>
-        <button class="btn btn-sm btn-outline-danger" (click)="deleteProject(project)">Delete</button>
+        <button class="btn btn-sm btn-outline-danger" (click)="deleteProject(project)"
+        *ngIf="userRole === 'admin' || userRole === 'user_creator' || project.creator === userId">
+          Delete
+        </button>
       </td>
     </tr>
   </tbody>

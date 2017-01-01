@@ -11,6 +11,8 @@ import { Project } from "../../_models/project.model";
 
 export class ProjectListComponent implements OnInit {
     projects: Project[];
+    userRole: string;
+    userId: string;
 
     constructor(private projectService: ProjectService, private router: Router) {}
 
@@ -21,6 +23,9 @@ export class ProjectListComponent implements OnInit {
                     this.projects = projects;
                 }
             );
+
+        this.userRole = localStorage.getItem('role');
+        this.userId = localStorage.getItem('userId');
     }
 
     convertPriority(priority: boolean) {
