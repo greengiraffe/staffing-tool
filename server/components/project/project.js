@@ -102,10 +102,10 @@ module.exports = {
     },
 
     updateProject: function(updateData) {
-        console.log(updateData);
+        updateData.projectTasks = transformProjectTaskSkills(updateData.projectTasks);
+
         return new Promise(function(resolve, reject) {
-            // TODO transform Skill objects to skillID strings in updateData.projectTasks.requiredSkills
-            Project.findByIdAndUpdate(updateData._id, { $set: updateData}, function(err, project) {
+            Project.findByIdAndUpdate(updateData.projectId, { $set: updateData}, function(err, project) {
                 if(err) {
                     reject({
                         message: "Database error",
