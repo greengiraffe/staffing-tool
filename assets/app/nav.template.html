@@ -4,12 +4,12 @@
      IXDS Staffingtool
   </a>
   <ul class="nav navbar-nav" *ngIf="this.router.url != '/auth/login'">
-    <li class="nav-item"><a class="nav-link" href='/usr/profile'>{{user?.firstName}}</a></li>
-    <li class="nav-item"><a class="nav-link" href='/usr/project/list'>List Projects</a></li>
-    <li class="nav-item"><a class="nav-link" href='/usr/project/create'>Create Project</a></li>
-    <li class="nav-item"><a class="nav-link" href='/admin/user/create'>Create User</a></li>
-    <li class="nav-item"><a class="nav-link" href='/admin/user/list'>List Users</a></li>
-    <li class="nav-item"><a class="nav-link" href='/admin/skill'>Administrate Skill</a></li>
-    <li class="nav-item"><a class="nav-link" href='#' (click)="auth.logout()">Logout</a></li>
+    <li class="nav-item"><a class="nav-link" routerLink='/usr/profile'>{{user?.firstName}}</a></li>
+    <li class="nav-item"><a class="nav-link" routerLink='/usr/project/list'>List Projects</a></li>
+    <li class="nav-item"><a class="nav-link" routerLink='/usr/project/create'>Create Project</a></li>
+    <li class="nav-item"><a class="nav-link" routerLink='/admin/user/create'>Create User</a></li>
+    <li class="nav-item"><a class="nav-link" routerLink='/admin/user/list'>List Users</a></li>
+    <li class="nav-item"><a class="nav-link" routerLink='/admin/skill'>Administrate Skill</a></li>
+    <li class="nav-item"><a class="nav-link" routerLink='#' (click)="auth.logout()">Logout</a></li>
   </ul>
 </nav>
