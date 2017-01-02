@@ -147,7 +147,6 @@ export class ProjectCreateComponent implements OnInit {
             this.ProjectService.updateProject(project)
                 .subscribe(
                     data => {
-                        this._flash.show("Project successfully updated", { cssClass: 'alert-success', timeout: 5000 });
                         this.router.navigateByUrl('usr/project/show/' + this.project.projectId);
                     },
                     error => {this._flash.show(error.error.message, { cssClass: 'alert-danger', timeout: 5000 });}
