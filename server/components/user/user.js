@@ -4,23 +4,6 @@ let Project = require('../../models/project');
 let Skill = require('../../models/skill');
 let authHelper = require('../../services/authHelper');
 
-/**
- * Transforms the Skill object inside the userSkills to an array of skillID strings.
- */
-const transformUserSkillSkillObjects = function (userSkills) {
-    let transformedUserSkills = [];
-
-    userSkills.forEach(oldUserSkill => {
-        let userSkill = {
-            rating: oldUserSkill.rating,
-            skill: oldUserSkill.skill.skillId
-        };
-        transformedUserSkills.push(userSkill);
-    });
-
-    return transformedUserSkills;
-};
-
 module.exports = {
 
     createUser: function(
@@ -60,11 +43,9 @@ module.exports = {
     },
 
     updateUser: function(updateData) {
-        updateData.userSkills = transformUserSkillSkillObjects(updateData.userSkills);
-
         //TODO Protect Password and Email from being updated
         return new Promise(function(resolve, reject) {
-            User.findByIdAndUpdate(updateData.userId, { $set: updateData}, function(err, user) {
+            User.findByIdAndUpdate(updateData._id, { $set: updateData}, function(err, user) {
                 if(err) {
                     reject({
                         message: "Database error",
