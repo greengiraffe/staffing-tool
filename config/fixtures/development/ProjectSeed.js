@@ -1,6 +1,6 @@
 module.exports = [
     {
-        "creator" : "586a6e33b04ea104ae0dc763",
+        "creator" : "586ae418b04ea104ae0dc851",
         "title" : "Design Workshop",
         "description" : "Leverage agile frameworks to provide a robust synopsis for high level overviews. Iterative approaches to corporate strategy foster collaborative thinking to further the overall value proposition. Organically grow the holistic world view of disruptive innovation via workplace diversity and empowerment.",
         "type" : "internal",
@@ -13,7 +13,7 @@ module.exports = [
         "projectTasks" : []
     },
     {
-        "creator" : "586a6e33b04ea104ae0dc763",
+        "creator" : "586ae418b04ea104ae0dc851",
         "title" : "Bosch App Prototype",
         "description" : "Capitalize on low hanging fruit to identify a ballpark value added activity to beta test. Override the digital divide with additional clickthroughs from DevOps. Nanotechnology immersion along the information highway will close the loop on focusing solely on the bottom line.",
         "type" : "confirmed",
@@ -26,7 +26,7 @@ module.exports = [
         "projectTasks" : []
     },
     {
-        "creator" : "586a83b7b04ea104ae0dc796",
+        "creator" : "586ae418b04ea104ae0dc852",
         "title" : "Next Generation Radio",
         "description" : "Podcasting operational change management inside of workflows to establish a framework. Taking seamless key performance indicators offline to maximise the long tail. Keeping your eye on the ball while performing a deep dive on the start-up mentality to derive convergence on cross-platform integration.",
         "type" : "tentative",

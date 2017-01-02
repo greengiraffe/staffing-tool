@@ -27,7 +27,6 @@ export class ProjectListComponent implements OnInit {
                     this.projects = projects;
                     this.projects.forEach((project, index) => {
                         this.deleteProjectModalIds.push("deleteProjectModalId" + index);
-                        console.log(this.deleteProjectModalIds[index]);
                     });
                 }
             );
