@@ -11,11 +11,18 @@
       <th scope="row">{{ i+1 }}</th>
       <td>{{ skill.name }}</td>
       <td class="text-xs-right">
-        <button class="btn btn-sm btn-outline-danger" (click)="deleteSkill(skill)">Delete</button>
+        <button class="btn btn-sm btn-outline-danger" (click)="modalService.open(deleteSkillModalIds[i])"
+        *ngIf="userRole === 'admin' || userRole === 'user_creator'">
+          Delete
+        </button>
       </td>
+      <app-modal [modal-id]="deleteSkillModalIds[i]" modal-title="Delete Skill {{ skill.name }}">
+        <span modal-body>Do you want to delete this skill "{{ skill.name }}"?</span>
+        <div modal-footer class="text-xs-right">
+          <button type="button" class="btn btn-secondary" (click)="modalService.close(deleteSkillModalIds[i])">Cancel</button>
+          <button type="button" class="btn btn-danger" (click)="deleteSkill(skill,i)">Delete</button>
+        </div>
+      </app-modal>
     </tr>
-    <!--<flash-messages></flash-messages>-->
   </tbody>
 </table>
-<!--Überschriebt flash-messages aus skill create-->
-<!--<flash-messages></flash-messages>-->
