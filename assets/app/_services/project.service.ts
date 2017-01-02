@@ -84,7 +84,7 @@ export class ProjectService {
     deleteProject(project: Project) {
         this.projects.splice(this.projects.indexOf(project), 1);
         const body = JSON.stringify(project);
-        return this.http.delete('http://localhost:3000/project/' + project_id)
+        return this.http.delete('http://localhost:3000/project/' + project._id)
             .map((response: Response) => response.json())
             .catch((error: Response) => Observable.throw(error.json()));
     }
