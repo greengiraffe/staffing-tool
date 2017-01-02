@@ -3,7 +3,7 @@ import { User } from "./user.model";
 
 export class Project {
   constructor(
-              public creator: User,
+              public creator: any,
               public title: string,
               public description: string,
               public type: string,

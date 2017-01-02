@@ -127,8 +127,13 @@ export class ProjectCreateComponent implements OnInit {
 
     onSubmit(form: FormGroup) {
         // Create
+        let creator = localStorage.getItem('userId');
+        if(this.isEditing) {
+            creator = this.project.creator._id
+        }
+
         const project = new Project(
-            localStorage.getItem('userId'),
+            creator,
             form['title'],
             form['description'],
             form['type'],
