@@ -1,7 +1,7 @@
 <h1>{{project?.title}}</h1>
 <h4>{{ project?.start | date:"dd/MM/yy" }} - {{ project?.end | date:"dd/MM/yy"}}</h4>
 <br/>
-<h4><b>Creator:</b> {{project?.creator}}</h4>
+<h4><b>Creator:</b> {{project?.creator.firstName}} {{project?.creator.lastName}}</h4>
 <h4><b>Type:</b> {{project?.type}}</h4>
 <h4><b>Client:</b> {{project?.client}}</h4>
 <h4><b>Budget:</b> {{project?.budget}}</h4>

@@ -1,8 +1,9 @@
 import { ProjectTask } from "./project-task.model";
+import { User } from "./user.model";
 
 export class Project {
   constructor(
-              public creator: string,
+              public creator: User,
               public title: string,
               public description: string,
               public type: string,

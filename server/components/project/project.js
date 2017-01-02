@@ -61,6 +61,7 @@ module.exports = {
     listProjects: function() {
         return Project
             .find()
+            .populate('creator', '_id firstName lastName')
             .populate('projectTasks.requiredSkills')
             .populate('projectTasks.taskMember', '-password -email -__v -role')
             .exec();
@@ -69,6 +70,7 @@ module.exports = {
     getProjectById: function(id) {
         return Project
             .findById(id)
+            .populate('creator', '_id firstName lastName')
             .populate('projectTasks.requiredSkills')
             .populate('projectTasks.taskMember', '-password -email -__v -role')
             .exec();

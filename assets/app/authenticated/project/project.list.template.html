@@ -23,7 +23,7 @@
       <td class="text-xs-right">
         <button class="btn btn-sm btn-outline-primary" (click)="showProject(project)">Show</button>
         <button class="btn btn-sm btn-outline-danger" (click)="modalService.open(deleteProjectModalIds[i])"
-        *ngIf="userRole === 'admin' || userRole === 'user_creator' || project.creator === userId">
+        *ngIf="userRole === 'admin' || userRole === 'user_creator' || project.creator._id === userId">
           Delete
         </button>
       </td>
