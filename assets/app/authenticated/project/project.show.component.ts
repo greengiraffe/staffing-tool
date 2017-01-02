@@ -11,6 +11,7 @@ import 'rxjs/add/operator/switchMap';
 @Component({
     selector: 'app-project-show',
     templateUrl: 'project.show.template.html',
+    styleUrls: ['project.show.style.scss'],
     providers: [ ProjectService, SkillService ]
 })
 
