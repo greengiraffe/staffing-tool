@@ -3,12 +3,15 @@
      Staffing Tool
   </a>
   <ul class="nav navbar-nav" *ngIf="this.router.url != '/auth/login'">
-    <li class="nav-item"><a class="nav-link" routerLink='/usr/profile'>{{user?.firstName}}</a></li>
-    <li class="nav-item"><a class="nav-link" routerLink='/usr/project/list'>List Projects</a></li>
-    <li class="nav-item"><a class="nav-link" routerLink='/usr/project/create'>Create Project</a></li>
-    <li class="nav-item"><a class="nav-link" routerLink='/admin/user/create'>Create User</a></li>
-    <li class="nav-item"><a class="nav-link" routerLink='/admin/user/list'>List Users</a></li>
-    <li class="nav-item"><a class="nav-link" routerLink='/admin/skill'>Administrate Skill</a></li>
-    <li class="nav-item"><a class="nav-link" routerLink='/auth/login' (click)="auth.logout()">Logout</a></li>
+    <li class="nav-item"><a class="nav-link" routerLink='/usr/profile'><i class="fa fa-asterisk" aria-hidden="true"></i>
+      {{user?.firstName}}</a></li>
+    <li class="nav-item"><a class="nav-link" routerLink='/usr/project/list'><i class="fa fa-list-ul" aria-hidden="true"></i>
+      Projects</a></li>
+    <li class="nav-item"><a class="nav-link" routerLink='/usr/project/create'><i class="fa fa-plus" aria-hidden="true"></i>
+      New Project</a></li>
+    <!--<li class="nav-item"><a class="nav-link" routerLink='/admin/user/create'>Create User</a></li>-->
+    <!--<li class="nav-item"><a class="nav-link" routerLink='/admin/user/list'>List Users</a></li>-->
+    <!--<li class="nav-item"><a class="nav-link" routerLink='/admin/skill'>Administrate Skill</a></li>-->
+    <li class="nav-item right"><a class="nav-link" routerLink='/auth/login' (click)="auth.logout()">Logout</a></li>
   </ul>
 </nav>
