@@ -1,7 +1,6 @@
 <nav class="navbar navbar-fixed-top navbar-dark bg-inverse">
   <a routerLink="/home" class="navbar-brand">
-    <i class="fa fa-home" aria-hidden="true"></i>
-     IXDS Staffingtool
+     Staffing Tool
   </a>
   <ul class="nav navbar-nav" *ngIf="this.router.url != '/auth/login'">
     <li class="nav-item"><a class="nav-link" routerLink='/usr/profile'>{{user?.firstName}}</a></li>
