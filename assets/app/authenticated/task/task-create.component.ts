@@ -15,7 +15,8 @@ export class TaskCreateComponent implements OnInit, OnDestroy {
 
     taskForm: FormGroup;
 
-    @Input('task') task: ProjectTask = new ProjectTask(null,null,[]);
+    @Input('task') task: ProjectTask = new ProjectTask(null,null,[],[]);
+
     skillSearchServiceSubscription;
 
     constructor(private skillService: SkillService, private skillSearchService: SkillSearchService,
@@ -42,6 +43,19 @@ export class TaskCreateComponent implements OnInit, OnDestroy {
     removeRequiredSkill(skill: Skill) {
         this.task.requiredSkills.splice(this.task.requiredSkills.indexOf(skill), 1);
         this.skillSearchService.removeSkill(skill);
+    }
+
+    setSelectedSkills(skills: Skill[]) {
+        this.skillSearchService.resetSearch();
+        for (let skill of skills) {
+            this.addRequiredSkill(skill);
+        }
+    }
+
+    resetForm() {
+        this.taskForm.reset();
+        this.skillSearchService.resetSearch();
+        this.task = new ProjectTask(null,null,[],[]);
     }
 
     ngOnDestroy() {

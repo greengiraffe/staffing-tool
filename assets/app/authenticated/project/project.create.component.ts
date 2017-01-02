@@ -29,7 +29,6 @@ export class ProjectCreateComponent implements OnInit {
     addTaskModalId = "modal-add-task";
     editTaskModalIds = new Array<string>();
     isEditing: Boolean = false;
-    //editTaskModalId = "modal-edit-task";
 
     ngOnInit() {
         this.projectForm = this._fb.group({
@@ -87,23 +86,31 @@ export class ProjectCreateComponent implements OnInit {
         const task = new ProjectTask(
             taskComponent.taskForm.controls["title"]["_value"],
             taskComponent.taskForm.controls["description"]["value"],
-            taskComponent.task.requiredSkills
+            taskComponent.task.requiredSkills,
+            taskComponent.task.taskMembers
         );
 
         this.projectTasks.push(task);
         const taskIndex = this.projectTasks.indexOf(task);
         this.editTaskModalIds.push("editTaskModalIds" + taskIndex);
         this.modalService.close(this.addTaskModalId);
+        taskComponent.resetForm();
         this._flash.show("Task successfully added", { cssClass: 'alert-success', timeout: 5000 });
     }
 
-    editProjectTask(taskComponent: TaskCreateComponent, index: number) {
-        const task = new ProjectTask(
+    editProjectTask(i) {
+        // taskComponent.setSelectedSkills(taskComponent.task.requiredSkills);
+        this.modalService.open(this.editTaskModalIds[i]);
+    }
+
+    saveEditedProjectTask(taskComponent: TaskCreateComponent, index: number) {
+        const editedTask = new ProjectTask(
             taskComponent.taskForm.controls["title"]["_value"],
             taskComponent.taskForm.controls["description"]["value"],
-            taskComponent.task.requiredSkills
+            taskComponent.task.requiredSkills,
+            taskComponent.task.taskMembers
         );
-        this.projectTasks[index] = task;
+        this.projectTasks[index] = editedTask;
         this.modalService.close(this.editTaskModalIds[index]);
     }
 
@@ -111,6 +118,11 @@ export class ProjectCreateComponent implements OnInit {
         const taskIndex = this.projectTasks.indexOf(task);
         this.projectTasks.splice(taskIndex,1);
         this.editTaskModalIds.splice(taskIndex,1);
+    }
+
+    showNewTaskModal() {
+        // this.emptyProjectTask = new ProjectTask("","",[]);
+        this.modalService.open(this.addTaskModalId);
     }
 
     onSubmit(form: FormGroup) {

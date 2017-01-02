@@ -14,12 +14,14 @@ export class SkillSearchService {
     private skillAddedSource = new Subject<Skill>();
     private skillReceivedSource = new Subject<Skill>();
     private skillRemovedSource = new Subject<Skill>();
+    private resetSearchSource = new Subject<any>();
 
     // Observable streams
     userSkillAdded$ = this.userSkillAddedSource.asObservable();
     skillAdded$ = this.skillAddedSource.asObservable();
     skillRemoved$ = this.skillRemovedSource.asObservable();
     skillReceived$ = this.skillReceivedSource.asObservable();
+    searchReset$ = this.resetSearchSource.asObservable();
 
     addUserSkill(userSkill: UserSkill) {
         this.userSkillAddedSource.next(userSkill);
@@ -40,5 +42,9 @@ export class SkillSearchService {
             userSkill => {
                 return userSkill.skill.skillId !== skill.skillId
             })
+    }
+
+    resetSearch() {
+        this.resetSearchSource.next();
     }
 }

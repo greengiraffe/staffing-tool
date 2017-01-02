@@ -12,7 +12,6 @@ import { TaskCreateComponent } from "./task/task-create.component";
 const userRoutes: Routes = [
     {
         path: 'usr',
-        // component: UserComponent,
         children: [
             { path: '', redirectTo: 'home', component: HomeComponent},
             { path: 'home', component: HomeComponent},

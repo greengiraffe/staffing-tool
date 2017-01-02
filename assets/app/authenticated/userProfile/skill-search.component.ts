@@ -14,7 +14,7 @@ import { UserSkill } from "../../_models/user-skill.model";
       placeholder="Search for a Skill"
       type="text">
     <ul class="skill-list" [ngSwitch]="clickableSkill">
-      <li class="skill" *ngFor="let skill of skills | filter : 'name' : searchText" (click)="selectSkill(skill)">
+      <li class="skill" *ngFor="let skill of visibleSkills | filter : 'name' : searchText" (click)="selectSkill(skill)">
         {{ skill.name }}
         <span *ngIf="showSkillButtons" class="skill-buttons">
             <span class="skill-icon skill-btn professional"
@@ -29,7 +29,7 @@ import { UserSkill } from "../../_models/user-skill.model";
         </span>
       </li>
     </ul>
-    <p *ngIf="skills.length === 0">There are no more available skills.</p>
+    <p *ngIf="visibleSkills.length === 0">There are no more available skills.</p>
   `,
   styleUrls: ['skill-search.style.scss']
 })
@@ -37,20 +37,19 @@ import { UserSkill } from "../../_models/user-skill.model";
 export class SkillSearchComponent implements OnInit {
     @Input() showSkillButtons = false;
 
-    skills: Skill[];
-    hiddenSkills: Skill[];
+    skills: Skill[] = [];
+    visibleSkills: Skill[] = [];
+    hiddenSkills: Skill[] = [];
     searchText;
 
-    constructor(private skillService: SkillService, private skillSearchService: SkillSearchService) {
-        this.skills = [];
-        this.hiddenSkills = [];
-    }
+    constructor(private skillService: SkillService, private skillSearchService: SkillSearchService) { }
 
     ngOnInit() {
         this.skillService.getSkills()
             .subscribe(
                 skills => {
                     this.skills = skills as Skill[];
+                    this.visibleSkills = skills as Skill[];
                     this.sortSkills();
                 },
                 error => console.log(error)
@@ -61,10 +60,14 @@ export class SkillSearchComponent implements OnInit {
 
         this.skillSearchService.skillRemoved$.subscribe(
             removedSkill => this.showSkill(removedSkill));
+
+        this.skillSearchService.searchReset$.subscribe(() => {
+            this.reset();
+        });
     }
 
     sortSkills() {
-        this.skills.sort((a, b) => {
+        this.visibleSkills.sort((a, b) => {
             if (a.name < b.name) return -1;
             else if (a.name > b.name) return 1;
             else return 0;
@@ -76,14 +79,14 @@ export class SkillSearchComponent implements OnInit {
      */
     hideSkill(skill: Skill) {
         this.hiddenSkills.push(skill);
-        this.skills = this.skills.filter(visibleSkill => visibleSkill.skillId !== skill.skillId);
+        this.visibleSkills = this.visibleSkills.filter(visibleSkill => visibleSkill.skillId !== skill.skillId);
     }
 
     /**
      * Show (i.e. add) a skill to the list as it was removed from the user-skill list
      */
     showSkill(skill: Skill) {
-        this.skills.push(skill);
+        this.visibleSkills.push(skill);
         this.hiddenSkills = this.hiddenSkills.filter(hiddenSkill => hiddenSkill.skillId !== skill.skillId);
         this.sortSkills();
     }
@@ -103,6 +106,15 @@ export class SkillSearchComponent implements OnInit {
     selectSkill(skill: Skill) {
         this.searchText = null;
         this.skillSearchService.addSkill(skill);
+    }
+
+    /**
+     * Resets the search so it displays all visibleSkills again (i.e. no visibleSkills are hidden)
+     */
+    reset() {
+        this.visibleSkills = new Array<Skill>();
+        this.visibleSkills.push(...this.skills);
+        this.sortSkills();
     }
 
 }
