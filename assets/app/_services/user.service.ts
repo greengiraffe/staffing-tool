@@ -93,8 +93,18 @@ export class UserService {
     }
 
     updateUser(user: User): Observable<{}> {
+        const newUserSkills = [];
+        user.userSkills.forEach(oldUserSkill => {
+            let userSkill = {
+                rating: oldUserSkill.rating,
+                skill: oldUserSkill.skill._id
+            };
+            newUserSkills.push(userSkill);
+        });
+
+        user.userSkills = newUserSkills;
+
         const body = JSON.stringify(user);
-        console.log(body)
         const headers = new Headers({'Content-Type': 'application/json'});
         return this.http.put('http://localhost:3000/user', body, { headers })
             .map((response: Response) => response.json())
