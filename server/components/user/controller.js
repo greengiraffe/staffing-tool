@@ -264,7 +264,7 @@ router.post('/user/img/:id', multipartMiddleware, function(req, res, next) {
             var newPath = imgStorePath + req.params.id + '.png';
 
             sharp(req.files.image.path)
-                .resize(200,200)
+                .resize(600,600)
                 .toFile(newPath, function(err, info) {
                     if (err) console.log(err);
                     res.redirect(req.params.id);
