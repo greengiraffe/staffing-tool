@@ -52,5 +52,21 @@ module.exports = [
             {skill: '542c2b97bac0595474108b51', rating: 2}
             ],
         role: 'user'
-    }
+    },
+    {
+        email: 'christina.dicke@ixds.com',
+        password: '$2a$10$cIxLgLqYEVfOQl7VQfulL.zzmiTDn3Ugf1vUdu/OHiwQOyvQ.jz6a', // root
+        firstName: 'Christina',
+        lastName: 'Dicke',
+        userSkills: [
+            {skill: '542c2b97bac0595474108b73', rating: 2},
+            {skill: '542c2b97bac0595474108b76', rating: 2},
+            {skill: '542c2b97bac0595474108b75', rating: 2},
+            {skill: '542c2b97bac0595474108b56', rating: 1},
+            {skill: '542c2b97bac0595474108b60', rating: 1},
+            {skill: '542c2b97bac0595474108b48', rating: 0},
+            {skill: '542c2b97bac0595474108b74', rating: 0}
+        ],
+        role: 'user'
+    },
 ];
