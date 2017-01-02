@@ -10,7 +10,7 @@ const transformProjectTaskSkills = function (projectTasks) {
         let projectTask = {
             title: task.title,
             description: task.description,
-            requiredSkills: task.requiredSkills.map(skill => skill.skillId),
+            requiredSkills: task.requiredSkills.map(skill => skill._id),
             taskMember: task.taskMember
         };
         transformedProjectTasks.push(projectTask);
@@ -110,7 +110,7 @@ module.exports = {
         updateData.projectTasks = transformProjectTaskSkills(updateData.projectTasks);
 
         return new Promise(function(resolve, reject) {
-            Project.findByIdAndUpdate(updateData.projectId, { $set: updateData}, function(err, project) {
+            Project.findByIdAndUpdate(updateData._id, { $set: updateData}, function(err, project) {
                 if(err) {
                     reject({
                         message: "Database error",
