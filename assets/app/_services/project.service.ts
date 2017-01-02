@@ -22,12 +22,6 @@ export class ProjectService {
     }
 
     updateProject(project: Project): Observable<{}> {
-        for(let task of project.projectTasks) {
-            for(let skill of task.requiredSkills) {
-                var test: any = skill;
-                skill.skillId = test._id || test.skillId;
-            }
-        }
         const body = JSON.stringify(project);
         const headers = new Headers({'Content-Type': 'application/json'});
 
@@ -90,7 +84,7 @@ export class ProjectService {
     deleteProject(project: Project) {
         this.projects.splice(this.projects.indexOf(project), 1);
         const body = JSON.stringify(project);
-        return this.http.delete('http://localhost:3000/project/' + project.projectId)
+        return this.http.delete('http://localhost:3000/project/' + project_id)
             .map((response: Response) => response.json())
             .catch((error: Response) => Observable.throw(error.json()));
     }

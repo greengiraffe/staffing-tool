@@ -10,6 +10,6 @@ export class User {
                 public lastName?: string,
                 public phone?: string,
                 public userSkills?: UserSkill[],
-                public userId?: string
+                public _id?: string
                 ) {}
 }

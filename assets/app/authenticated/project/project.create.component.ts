@@ -155,11 +155,11 @@ export class ProjectCreateComponent implements OnInit {
                 error => {this._flash.show(error.error.message, { cssClass: 'alert-danger', timeout: 5000 });}
             );
         } else {
-            project.projectId = this.project.projectId;
+            project._id = this.project._id;
             this.ProjectService.updateProject(project)
                 .subscribe(
                     data => {
-                        this.router.navigateByUrl('usr/project/show/' + this.project.projectId);
+                        this.router.navigateByUrl('usr/project/show/' + this.project._id);
                     },
                     error => {this._flash.show(error.error.message, { cssClass: 'alert-danger', timeout: 5000 });}
             );

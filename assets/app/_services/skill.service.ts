@@ -36,7 +36,7 @@ export class SkillService {
         const token = localStorage.getItem('token')
             ? '?token=' + localStorage.getItem('token')
             : '';
-        return this.http.delete('http://localhost:3000/skill/' + skill.skillId)
+        return this.http.delete('http://localhost:3000/skill/' + skill._id)
             .map((response: Response) => response.json())
             .catch((error: Response) => Observable.throw(error.json()));
     }

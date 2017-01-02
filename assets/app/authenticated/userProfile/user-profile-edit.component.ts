@@ -71,7 +71,7 @@ export class UserProfileEditComponent {
     * Uploads the chosen image as profile picture
     */
     upload() {
-        this.userService.uploadUserImage(this.user.userId, this.imgToUpload)
+        this.userService.uploadUserImage(this.user._id, this.imgToUpload)
             .subscribe(
                 data =>  this.renderer.setElementProperty(this.currentProfilePicture, 'src', data),
                 error => console.log(error)

@@ -119,7 +119,7 @@ export class UserService {
     deleteUser(user: User) {
         this.users.splice(this.users.indexOf(user), 1);
         const body = JSON.stringify(user);
-        return this.http.delete('http://localhost:3000/user/' + user.userId)
+        return this.http.delete('http://localhost:3000/user/' + user._id)
             .map((response: Response) => response.json())
             .catch((error: Response) => Observable.throw(error.json()));
     }

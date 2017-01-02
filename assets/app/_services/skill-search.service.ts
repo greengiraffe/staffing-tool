@@ -40,7 +40,7 @@ export class SkillSearchService {
         this.skillRemovedSource.next(skill);
         this.userSkills = this.userSkills.filter(
             userSkill => {
-                return userSkill.skill.skillId !== skill.skillId
+                return userSkill.skill._id !== skill._id
             })
     }
 

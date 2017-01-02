@@ -14,6 +14,6 @@ export class Project {
 
               public projectTasks?: ProjectTask[],
               public expBudget?: number,
-              public projectId?: string
+              public _id?: string
               ) {}
 }

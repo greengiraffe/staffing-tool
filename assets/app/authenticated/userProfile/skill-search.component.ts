@@ -79,7 +79,7 @@ export class SkillSearchComponent implements OnInit {
      */
     hideSkill(skill: Skill) {
         this.hiddenSkills.push(skill);
-        this.visibleSkills = this.visibleSkills.filter(visibleSkill => visibleSkill.skillId !== skill.skillId);
+        this.visibleSkills = this.visibleSkills.filter(visibleSkill => visibleSkill._id !== skill._id);
     }
 
     /**
@@ -87,7 +87,7 @@ export class SkillSearchComponent implements OnInit {
      */
     showSkill(skill: Skill) {
         this.visibleSkills.push(skill);
-        this.hiddenSkills = this.hiddenSkills.filter(hiddenSkill => hiddenSkill.skillId !== skill.skillId);
+        this.hiddenSkills = this.hiddenSkills.filter(hiddenSkill => hiddenSkill._id !== skill._id);
         this.sortSkills();
     }
 
