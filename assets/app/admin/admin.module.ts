@@ -3,6 +3,7 @@ import { CommonModule }   from '@angular/common';
 import { ReactiveFormsModule, FormsModule } from "@angular/forms";
 import { BrowserModule } from "@angular/platform-browser";
 import { FlashMessagesModule } from "angular2-flash-messages";
+import { SharedModule } from "../shared.module";
 
 import { AdminComponent } from "./admin.component";
 import { AdminRoutingModule } from "./admin.routes";
@@ -11,11 +12,14 @@ import { SkillListComponent } from "./skill/skill.list.component";
 import { SkillsComponent } from "./skill/skills.component";
 import { UserCreateComponent } from "./user/user.create.component";
 import { UserListComponent } from "./user/user.list.component";
+import { ModalComponent } from "../modal/modal.component";
+
 
 
 @NgModule({
     imports: [
         CommonModule,
+        SharedModule,
         AdminRoutingModule,
         BrowserModule,
         FormsModule,

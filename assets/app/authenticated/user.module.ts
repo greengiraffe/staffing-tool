@@ -4,6 +4,7 @@ import { ReactiveFormsModule, FormsModule } from "@angular/forms";
 import { FlashMessagesModule } from "angular2-flash-messages";
 import { BrowserModule } from "@angular/platform-browser";
 
+import { SharedModule } from "../shared.module";
 import { UserComponent } from "./user.component";
 import { UserRoutingModule } from "./user.routes";
 import { HomeComponent } from "./home/home.component";
@@ -23,6 +24,7 @@ import { ModalComponent } from "../modal/modal.component";
 @NgModule({
     imports: [
         CommonModule,
+        SharedModule,
         UserRoutingModule,
         BrowserModule,
         FormsModule,
@@ -41,9 +43,8 @@ import { ModalComponent } from "../modal/modal.component";
         ProjectShowComponent,
         ProjectListComponent,
         TaskCreateComponent,
-        ModalComponent,
         TaskCreateComponent,
-        FilterPipe
+        FilterPipe,
     ]
 })
 export class UserModule {}

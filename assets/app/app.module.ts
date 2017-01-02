@@ -10,14 +10,16 @@ import { UserService } from "./_services/user.service";
 
 import { AppComponent } from "./app.component";
 import { AppRoutingModule } from "./app.routing";
+import { SharedModule } from "./shared.module";
 
 import { NavComponent } from "./nav.component";
 import { LoginComponent } from "./login/login.component";
+import { ModalComponent } from "./modal/modal.component";
 import { OnboardingModule } from "./onboarding/onboarding.module";
 import { UserModule } from "./authenticated/user.module";
 import { AdminModule } from "./admin/admin.module";
-import {ModalService} from "./_services/modal.service";
 
+import { ModalService } from "./_services/modal.service";
 
 @NgModule({
     imports: [
@@ -29,11 +31,11 @@ import {ModalService} from "./_services/modal.service";
         AdminModule,
         UserModule,
         OnboardingModule,
-        AppRoutingModule
+        AppRoutingModule,
+        SharedModule
     ],
     declarations: [
         AppComponent,
-
         LoginComponent,
         NavComponent
     ],
