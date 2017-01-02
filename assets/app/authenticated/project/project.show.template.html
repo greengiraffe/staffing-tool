@@ -1,21 +1,28 @@
-<h1>{{project?.title}}</h1>
-<h4>{{ project?.start | date:"dd/MM/yy" }} - {{ project?.end | date:"dd/MM/yy"}}</h4>
-<br/>
-<h4><b>Creator:</b> {{project?.creator.firstName}} {{project?.creator.lastName}}</h4>
-<h4><b>Type:</b> {{project?.type}}</h4>
-<h4><b>Client:</b> {{project?.client}}</h4>
-<h4><b>Budget:</b> {{project?.budget}}</h4>
-<h4><b>Expense Budget:</b> {{project?.expBudget}}</h4>
-<br/>
-<h4>Description:</h4>
-<p>{{project?.description}}</p>
-
-<ul>
-  <li *ngFor= "let task of project?.projectTasks;">{{ task.title }}
-    <ul *ngFor= "let skill of task.requiredSkills">
-      <li>{{ skill.name }}</li>
+<div class="show-project-page">
+  <header>
+    <h4 class="client">{{ project?.client }}</h4>
+    <h1 class="project-title">{{project?.title}}</h1>
+    <div class="badge">{{ project?.type }}</div>
+    <ul class="meta-list">
+      <li><b>Period:</b> {{ project?.start | date:"dd/MM/yyyy" }} - {{ project?.end | date:"dd/MM/yyyy"}}</li>
+      <li><b>Created by:</b> {{ project?.creator.firstName }} {{ project?.creator.lastName }}</li>
+      <li><b>Budget:</b> {{ project?.budget }} €</li>
+      <li><b>Expense Budget:</b> {{ project?.expBudget }} €</li>
+      <li><b>Description:</b> {{project?.description}}</li>
     </ul>
-  </li>
-</ul>
+    <button class="edit-project-btn btn btn-secondary" routerLink="../../edit/{{project?._id}}">Edit Project</button>
+  </header>
 
-<button class="profile-edit-btn btn btn-secondary" routerLink="../../edit/{{project?._id}}">Edit Project</button>
+  <section class="task-section">
+    <h3 class="task-title">Tasks</h3>
+    <div class="project-task-list">
+      <div class="card-block" *ngFor="let projectTask of project?.projectTasks">
+        <h5 class="card-title internal">{{ projectTask.title }}</h5>
+        <div class="card-text">{{ projectTask.description }}</div>
+        <ul class="task-skill-list">
+          <li class="skill" *ngFor="let skill of projectTask.requiredSkills">{{ skill.name }}</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</div>

@@ -1,0 +1,97 @@
+@import "../../../styles/variables";
+
+.show-project-page {
+  margin-bottom: 5rem;
+}
+
+header {
+  position: relative;
+}
+
+.badge {
+  background-color: $grey-dark;
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 6px;
+  font-size: 14px;
+  color: white;
+  margin: 0 0 0.5rem 1rem;
+  vertical-align: super;
+
+  .fa {
+    margin-right: 4px;
+  }
+}
+
+.project-title {
+  font-weight: 700;
+  display: inline-block;
+  letter-spacing: 0.01em;
+}
+
+.client {
+  font-weight: 300;
+}
+
+.meta-list {
+  padding: 0;
+  list-style: none;
+}
+
+.edit-project-btn {
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.task-section {
+  margin-top: 2rem;
+}
+
+.project-task-list {
+  margin-top: 1rem;
+}
+
+// TODO make card-block a global component
+.card-block {
+  border: 1px solid #a2a2a2;
+  background-color: #f7f7f7;
+  border-radius: 12px;
+  display: inline-block;
+  transition: all .2s;
+  max-width: 400px;
+  padding: 0;
+  vertical-align: top;
+
+
+  + .card-block {
+    margin-left: 1rem;
+  }
+}
+
+.card-title {
+  border-top-right-radius: 10px;
+  padding: 9px 18px;
+  margin-bottom: 0;
+  border-bottom: 1px solid #ccc;
+}
+
+.card-text {
+  padding: 18px 18px 9px;
+}
+
+.task-skill-list {
+  list-style: none;
+  padding: 0 16px;
+  margin-top: 0.5rem;
+}
+
+.skill {
+  list-style: none;
+  padding: 4px 12px;
+  background-color: $white;
+  display: inline-block;
+  margin: 4px 4px;
+  border-radius: 4px;
+  border: 1px solid #a2a2a2;
+}
