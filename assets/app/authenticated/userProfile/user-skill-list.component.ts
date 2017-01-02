@@ -62,8 +62,6 @@ export class UserSkillListComponent implements OnInit, OnDestroy {
     addSkill(userSkill: UserSkill) {
         const skill = userSkill.skill;
 
-        console.log(skill);
-
         switch (userSkill.rating) {
             case 0:
                 this.interestSkills.push(skill);
