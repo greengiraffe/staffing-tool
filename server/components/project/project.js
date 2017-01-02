@@ -62,6 +62,7 @@ module.exports = {
         return Project
             .find()
             .populate('projectTasks.requiredSkills')
+            .populate('projectTasks.taskMember', '-password -email -__v -role')
             .exec();
     },
 
@@ -69,6 +70,7 @@ module.exports = {
         return Project
             .findById(id)
             .populate('projectTasks.requiredSkills')
+            .populate('projectTasks.taskMember', '-password -email -__v -role')
             .exec();
     },
 
