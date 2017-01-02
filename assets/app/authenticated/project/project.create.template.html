@@ -13,7 +13,7 @@
             This field is required.
           </div>
         </div>
-        <input required id="title-input" class="form-control" placeholder="Enter Project Title"
+        <input required id="title-input" class="form-control" placeholder="Enter a title"
                formControlName="title"
                [class.error]="!projectForm.get('title').valid && projectForm.get('title').dirty">
       </div>
@@ -28,9 +28,9 @@
               This field is required.
             </div>
           </div>
-          <input id="description-input" class="form-control" placeholder="Enter Project Description"
+          <textarea id="description-input" class="form-control" placeholder="Enter a description"
                  formControlName="description"
-                 [class.error]="!projectForm.get('description').valid && projectForm.get('description').dirty">
+                    [class.error]="!projectForm.get('description').valid && projectForm.get('description').dirty"></textarea>
         </div>
 
         <div class="form-group">
