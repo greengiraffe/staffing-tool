@@ -52,32 +52,16 @@ header {
   margin-top: 1rem;
 }
 
-// TODO make card-block a global component
 .card-block {
-  border: 1px solid #a2a2a2;
-  background-color: #f7f7f7;
-  border-radius: 12px;
-  display: inline-block;
-  transition: all .2s;
-  max-width: 400px;
-  padding: 0;
-  vertical-align: top;
 
-
-  + .card-block {
-    margin-left: 1rem;
-  }
 }
 
 .card-title {
-  border-top-right-radius: 10px;
-  padding: 9px 18px;
-  margin-bottom: 0;
-  border-bottom: 1px solid #ccc;
+
 }
 
 .card-text {
-  padding: 18px 18px 9px;
+
 }
 
 .task-skill-list {

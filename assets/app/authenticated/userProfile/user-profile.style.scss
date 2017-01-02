@@ -1,3 +1,8 @@
+.user-profile-page {
+  margin-bottom: 5rem;
+}
+
+
 .profile-header {
   display: flex;
 }
@@ -63,28 +68,21 @@
   color: white;
 }
 
+.project-container {
+  margin-top: 2rem;
+}
+
 .card-block {
-  border: 1px solid rgba(80, 80, 80, 0.125);
-  border-radius: 12px;
-  margin: 20px 20px 20px 0;
-  min-width: 210px;
-  padding: 0;
-  display: inline-block;
-  transition: box-shadow .5s;
-  position: relative;
+
   &:hover {
-    box-shadow:  0 8px 8px rgba(0,0,0,0.24),0 0 8px rgba(0,0,0,0.12);
+    border-color: #2b2d2f;
+    box-shadow: 0 2px 2px rgba(0,0,0,0.24);
     cursor: pointer;
   }
 }
 
 .card-title {
-    margin-bottom: .75rem;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-    padding: 10px 8px;
-    color: white;
-    text-transform: uppercase;
+
 }
 
 .tentative {
