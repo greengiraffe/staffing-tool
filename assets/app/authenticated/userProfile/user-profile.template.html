@@ -1,48 +1,50 @@
-<header class="row">
-  <div class="profile-header col-xs-12">
-    <h1>{{user?.firstName}} {{user?.lastName}} <span *ngIf="user?.role == 'user_creator'">(HR)</span></h1>
-    <button class="profile-edit-btn btn btn-secondary" routerLink="edit">Edit Profile</button>
+<div class="user-profile-page">
+  <header class="row">
+    <div class="profile-header col-xs-12">
+      <h1>{{user?.firstName}} {{user?.lastName}} <span *ngIf="user?.role == 'user_creator'">(HR)</span></h1>
+      <button class="profile-edit-btn btn btn-secondary" routerLink="edit">Edit Profile</button>
+    </div>
+  </header>
+
+  <div class="profile-container row">
+
+    <div class="picture-container col-md-4">
+      <img class="profile-picture" src="/img/user.png" alt="Profile picture">
+    </div>
+
+    <dl class="profile-info col-md-4">
+      <dt>Email</dt>
+      <dd>{{user?.email}}</dd>
+
+      <dt>Location</dt>
+      <dd>{{user?.location}}</dd>
+
+      <dt>Phone</dt>
+      <template [ngIf]="user?.phone">
+        <dd>{{user?.phone}}</dd>
+      </template>
+      <template [ngIf]="!user?.phone">
+        <dd>n/a</dd>
+      </template>
+    </dl>
+
   </div>
-</header>
 
-<div class="profile-container row">
+  <app-user-skill-list class="skill-list"></app-user-skill-list>
 
-  <div class="picture-container col-md-4">
-    <img class="profile-picture" src="/img/user.png" alt="Profile picture">
-  </div>
+  <!--<h4 class="tasks-header">Current Tasks</h4>-->
+   <!--&lt;!&ndash; TODO Task List&ndash;&gt;-->
 
-  <dl class="profile-info col-md-4">
-    <dt>Email</dt>
-    <dd>{{user?.email}}</dd>
+  <h4 class="projects-header">Created Projects</h4>
+  <div class="project-type confirmed">confirmed</div>
+  <div class="project-type tentative">tentative</div>
+  <div class="project-type internal">internal</div>
+  <div class="project-container">
+    <div class="card-block"  *ngFor="let project of projects; let i = index" routerLink="../project/show/{{project?._id}}" >
+      <h5 class="card-title {{ project?.type }}">{{ project?.title }}</h5>
+      <div class="card-text" >{{ project?.client }}</div>
+      <div class="card-text">{{ project?.start | date:"dd/MM/yy" }} - {{ project?.end | date:"dd/MM/yy"}}</div>
 
-    <dt>Location</dt>
-    <dd>{{user?.location}}</dd>
-
-    <dt>Phone</dt>
-    <template [ngIf]="user?.phone">
-      <dd>{{user?.phone}}</dd>
-    </template>
-    <template [ngIf]="!user?.phone">
-      <dd>n/a</dd>
-    </template>
-  </dl>
-
-</div>
-
-<app-user-skill-list class="skill-list"></app-user-skill-list>
-
-<h4 class="tasks-header">Current Tasks</h4>
- <!-- TODO Task List-->
-
-<h4 class="projects-header">Created Projects</h4>
-<div class="project-type confirmed">confirmed</div>
-<div class="project-type tentative">tentative</div>
-<div class="project-type internal">internal</div>
-<div class="project-container">
-  <div class="card-block"  *ngFor="let project of projects; let i = index" routerLink="../project/show/{{project?._id}}" >
-    <h5 class="card-title {{ project?.type }}">{{ project?.title }}</h5>
-    <div class="card-text" >{{ project?.client }}</div>
-    <div class="card-text">{{ project?.start | date:"dd/MM/yy" }} - {{ project?.end | date:"dd/MM/yy"}}</div>
-
+    </div>
   </div>
 </div>

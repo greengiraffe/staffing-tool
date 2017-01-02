@@ -1,6 +1,6 @@
-<div class="col-lg-6">
-  <h1 *ngIf="!isEditing" > Create Project </h1>
-  <h1 *ngIf="isEditing" > Edit Project {{ project.title }} </h1>
+<div class="col-lg-6 project-create-page">
+  <h1 *ngIf="!isEditing">Create Project</h1>
+  <h1 *ngIf="isEditing">Edit Project: {{ project?.title }}</h1>
   <p class="text-xs-right"><span class="red">*</span> Required Fields</p>
 
   <form (ngSubmit)="onSubmit(projectForm.value)" [formGroup]="projectForm">
@@ -28,7 +28,7 @@
               This field is required.
             </div>
           </div>
-          <textarea id="description-input" class="form-control" placeholder="Enter a description"
+          <textarea id="description-input" class="form-control" placeholder="Enter a description" rows="4"
                  formControlName="description"
                     [class.error]="!projectForm.get('description').valid && projectForm.get('description').dirty"></textarea>
         </div>
@@ -51,7 +51,7 @@
               This field is required.
             </div>
           </div>
-          <input id="client-input" class="form-control" placeholder="Enter/Select a Client"
+          <input id="client-input" class="form-control" placeholder="Enter a client"
                  formControlName="client"
                  [class.error]="!projectForm.get('client').valid && projectForm.get('client').dirty">
         </div>
@@ -64,7 +64,7 @@
               This field is required.
             </div>
           </div>
-          <input required id="budget-input" class="form-control" placeholder="Enter Budget"
+          <input required id="budget-input" class="form-control" placeholder="Enter a budget"
                  type="number" min="0" formControlName="budget"
                  [class.error]="!projectForm.get('budget').valid && projectForm.get('budget').dirty">
         </div>
@@ -73,7 +73,7 @@
           <div class="flex-container">
             <label for="title-input" class="flex-container-left">Expanded Budget in EUR</label>
           </div>
-          <input id="expbudget-input" class="form-control" placeholder="Enter Expanded Budget"
+          <input id="expbudget-input" class="form-control" placeholder="Enter an expanded budget"
                  formControlName="expBudget" type="number" min="0">
         </div>
 
@@ -102,11 +102,14 @@
           </div>
 
         <h3>Tasks:</h3>
-        <ul class="project-tasks">
-          <li class="project-task" *ngFor="let projectTask of projectTasks; let i = index">
-            <span (click)="modalService.open(editTaskModalIds[i])"
-              class="edit-project-task">
-              {{ projectTask.title }}</span>
+        <div class="project-tasks">
+          <div class="card-block" *ngFor="let projectTask of projectTasks; let i = index" (click)="modalService.open(editTaskModalIds[i])">
+            <h5 class="card-title internal">{{ projectTask.title }}<span
+              (click)="removeProjectTask(projectTask)"
+              class="remove-project-task fa fa-remove"
+              aria-hidden="true"></span></h5>
+            <div class="card-text">{{ projectTask.description }}</div>
+
             <app-modal [modal-id]="editTaskModalIds[i]" modal-title="Edit {{ projectTask.title }}">
               <app-task-create #taskComponent [task]="projectTask" modal-body></app-task-create>
               <div modal-footer class="text-xs-right">
@@ -114,13 +117,9 @@
                 <button type="button" class="btn btn-primary" (click)="saveEditedProjectTask(taskComponent, i)">Save Changes</button>
               </div>
             </app-modal>
-            <span
-              (click)="removeProjectTask(projectTask)"
-              class="remove-project-task fa fa-remove"
-              aria-hidden="true">
-            </span>
-          </li>
-        </ul>
+
+          </div>
+        </div>
 
         <button type="button" class="btn btn-secondary" (click)="showNewTaskModal()">Add Task</button>
         <app-modal [modal-id]="addTaskModalId" modal-title="Add a new Task">
@@ -133,8 +132,8 @@
 
         <div class="text-xs-right">
           <button type="button" class="btn btn-secondary">Cancel</button>
-          <button *ngIf="isEditing" type="submit" class="btn btn-primary" [disabled]="!projectForm.valid">Edit Project</button>
-          <button *ngIf="!isEditing" type="submit" class="btn btn-primary" [disabled]="!projectForm.valid">Add Project</button>
+          <button *ngIf="isEditing" type="submit" class="btn btn-primary" [disabled]="!projectForm.valid">Save Project</button>
+          <button *ngIf="!isEditing" type="submit" class="btn btn-primary" [disabled]="!projectForm.valid">Create Project</button>
           <flash-messages></flash-messages>
         </div>
 
