@@ -8,6 +8,7 @@ import { Router } from "@angular/router";
 @Component({
     selector: 'app-nav',
     templateUrl: 'nav.template.html',
+    styleUrls: ['nav.style.scss'],
     providers: [UserService]
 })
 
@@ -19,7 +20,8 @@ export class NavComponent {
                 private router: Router) {}
 
     ngOnInit() {
-        let currentUserId = localStorage.getItem("userId")
+        let currentUserId = localStorage.getItem("userId");
+
         this.userService.getUserById(currentUserId)
             .subscribe(
                 (user: User) => this.user = user,

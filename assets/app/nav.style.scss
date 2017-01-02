@@ -1,0 +1,19 @@
+@import "../styles/variables";
+
+.nav-item.right {
+  float: right;
+}
+
+.navbar-nav .nav-item + .nav-item {
+  margin-left: 1.5rem;
+}
+
+.navbar-brand {
+  margin-right: 2rem;
+}
+
+.nav-item {
+  .fa {
+    margin-right: 4px;
+  }
+}
