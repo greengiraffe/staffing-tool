@@ -2,7 +2,7 @@ import { Component } from "@angular/core";
 
 import { User } from "../../_models/user.model";
 import { UserService } from "../../_services/user.service";
-
+import { ModalService } from "../../_services/modal.service";
 
 @Component({
     selector: 'app-user-list',
@@ -11,25 +11,32 @@ import { UserService } from "../../_services/user.service";
 })
 export class UserListComponent {
     users: User[];
+    deleteUserModalIds = new Array<string>();
+    userRole: string;
 
-    constructor(private userService: UserService) {}
+    constructor(private userService: UserService,
+                private modalService: ModalService) {}
 
     ngOnInit() {
         this.userService.getUsers()
             .subscribe(
                 (users: User[]) => {
                     this.users = users;
-                    console.log(this.users)
+                    this.users.forEach((user, index) => {
+                        this.deleteUserModalIds.push("deleteUserModalId" + index);
+                        console.log(this.deleteUserModalIds[index]);
+                    });
                 }
             );
+        this.userRole = localStorage.getItem('role');
     }
 
     editUser(user: User) {
         // TODO
     }
 
-    deleteUser(user: User) {
-        // FIXME
+    deleteUser(user: User, index: number) {
+        this.deleteUserModalIds.splice(index,1);
         this.userService.deleteUser(user)
             .subscribe(
                 result => console.log(result)
