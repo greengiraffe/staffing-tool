@@ -14,7 +14,7 @@
   </thead>
   <tbody>
     <tr *ngFor="let project of projects; let i = index">
-      <th scope="row">{{ i }}</th>
+      <th scope="row">{{ i +1 }}</th>
       <td>{{ project?.title }}</td>
       <td>{{ project?.type }}</td>
       <td>{{ project?.client }}</td>
