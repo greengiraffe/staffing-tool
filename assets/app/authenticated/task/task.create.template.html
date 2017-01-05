@@ -47,4 +47,21 @@
   <p *ngIf="task.requiredSkills.length === 0" class="required-skills-hint">Add required skills by selecting some skills from the list below.</p>
 
   <app-skill-search></app-skill-search>
+
+  <p>Assigned Users:</p>
+  <ul class="assigned-user-list">
+    <li
+      class="assigned-user"
+      *ngFor="let user of task.assignedUsers">
+      {{ user.firstName }} {{ user.lastName }}
+      <span
+        (click)="removeAssignedUser(user)"
+        class="remove-user fa fa-remove"
+        aria-hidden="true">
+      </span>
+    </li>
+  </ul>
+  <p *ngIf="task.assignedUsers.length === 0" class ="assigned-users-hint">Assign users by selecting them from the list below. </p>
+
+  <app-user-search></app-user-search>
 </form>

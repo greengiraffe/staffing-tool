@@ -6,7 +6,7 @@ import { Project } from "../../_models/project.model";
 import { ProjectTask } from "../../_models/project-task.model";
 import { ProjectService } from "../../_services/project.service";
 import { ModalService } from "../../_services/modal.service";
-import { TaskCreateComponent } from "../task/task-create.component";
+import { TaskCreateComponent } from "../task/task.create.component";
 
 
 @Component({
@@ -87,7 +87,7 @@ export class ProjectCreateComponent implements OnInit {
             taskComponent.taskForm.controls["title"]["_value"],
             taskComponent.taskForm.controls["description"]["value"],
             taskComponent.task.requiredSkills,
-            taskComponent.task.taskMembers
+            taskComponent.task.assignedUsers
         );
 
         this.projectTasks.push(task);
@@ -108,7 +108,7 @@ export class ProjectCreateComponent implements OnInit {
             taskComponent.taskForm.controls["title"]["_value"],
             taskComponent.taskForm.controls["description"]["value"],
             taskComponent.task.requiredSkills,
-            taskComponent.task.taskMembers
+            taskComponent.task.assignedUsers
         );
         this.projectTasks[index] = editedTask;
         this.modalService.close(this.editTaskModalIds[index]);

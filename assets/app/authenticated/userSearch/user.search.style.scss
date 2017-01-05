@@ -1,0 +1,19 @@
+.user-list {
+  position: relative;
+  top: -2px;
+  border: 1px solid rgba(0,0,0,.15);
+  border-bottom-right-radius: .25rem;
+  border-bottom-left-radius: .25rem;
+  max-height: 140px;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+
+.user {
+  transition: background-color 0.2s;
+  padding: .5rem .75rem;
+  &:hover {
+    background-color: #ccc;
+    cursor: pointer;
+  }
+}

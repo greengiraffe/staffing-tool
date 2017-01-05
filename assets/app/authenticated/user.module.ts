@@ -13,10 +13,11 @@ import { ProjectListComponent } from "./project/project.list.component";
 import { ProjectShowComponent } from "./project/project.show.component";
 import { ChangePasswordComponent } from "./userProfile/change-password.component";
 import { SkillSearchComponent } from "./userProfile/skill-search.component";
+import { UserSearchComponent } from "./userSearch/user.search.component";
 import { UserProfileComponent } from "./userProfile/user-profile.component";
 import { UserProfileEditComponent } from "./userProfile/user-profile-edit.component";
 import { UserSkillListComponent } from "./userProfile/user-skill-list.component";
-import { TaskCreateComponent } from "./task/task-create.component";
+import { TaskCreateComponent } from "./task/task.create.component";
 import { FilterPipe } from "../_pipes/filter.pipe";
 import { ModalComponent } from "../modal/modal.component";
 
@@ -36,6 +37,7 @@ import { ModalComponent } from "../modal/modal.component";
         HomeComponent,
         ChangePasswordComponent,
         SkillSearchComponent,
+        UserSearchComponent,
         UserProfileComponent,
         UserProfileEditComponent,
         UserSkillListComponent,

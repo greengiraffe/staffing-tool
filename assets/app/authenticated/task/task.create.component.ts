@@ -4,12 +4,16 @@ import { SkillService } from "../../_services/skill.service";
 import { SkillSearchService } from "../../_services/skill-search.service";
 import { Skill } from "../../_models/skill.model";
 import { ProjectTask } from "../../_models/project-task.model";
+import { User } from "../../_models/user.model";
+import { UserSearchService } from "../../_services/user.search.service";
 
 @Component({
     selector: 'app-task-create',
-    templateUrl: 'task-create.template.html',
-    styleUrls: ['task-create.styles.scss'],
-    providers: [SkillService, SkillSearchService]
+    templateUrl: 'task.create.template.html',
+    styleUrls: ['task.create.styles.scss'],
+    providers: [SkillService,
+                SkillSearchService,
+                UserSearchService]
 })
 export class TaskCreateComponent implements OnInit, OnDestroy {
 
@@ -18,8 +22,11 @@ export class TaskCreateComponent implements OnInit, OnDestroy {
     @Input('task') task: ProjectTask = new ProjectTask(null,null,[],[]);
 
     skillSearchServiceSubscription;
+    userSearchServiceSubscription;
 
-    constructor(private skillService: SkillService, private skillSearchService: SkillSearchService,
+    constructor(private skillService: SkillService,
+                private skillSearchService: SkillSearchService,
+                private userSearchService: UserSearchService,
                 private fb: FormBuilder) {
     }
 
@@ -28,6 +35,11 @@ export class TaskCreateComponent implements OnInit, OnDestroy {
             .subscribe(skill => {
                 this.addRequiredSkill(skill);
             });
+
+        this.userSearchServiceSubscription = this.userSearchService.userAdded$
+            .subscribe(user => {
+                this.addAssignedUser(user);
+            })
 
         this.taskForm = this.fb.group({
             title: [this.task.title, Validators.required],
@@ -52,15 +64,27 @@ export class TaskCreateComponent implements OnInit, OnDestroy {
         }
     }
 
+    addAssignedUser(user: User){
+        this.task.assignedUsers.push(user);
+        this.userSearchService.userAdded(user);
+    }
+
+    removeAssignedUser(user: User){
+        this.task.assignedUsers.splice(this.task.assignedUsers.indexOf(user), 1);
+        this.userSearchService.userRemoved(user);
+    }
+
     resetForm() {
         this.taskForm.reset();
         this.skillSearchService.resetSearch();
+        this.userSearchService.resetSearch();
         this.task = new ProjectTask(null,null,[],[]);
     }
 
     ngOnDestroy() {
         // Prevent memory leaks
         this.skillSearchServiceSubscription.unsubscribe();
+        this.userSearchServiceSubscription.unsubscribe();
     }
 
 }
