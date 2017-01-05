@@ -104,7 +104,7 @@
         <h3>Tasks:</h3>
         <ul class="project-tasks">
           <li class="project-task" *ngFor="let projectTask of projectTasks; let i = index">
-            <span (click)="modalService.open(editTaskModalIds[i])"
+            <span (click)="editProjectTask(i)"
               class="edit-project-task">
               {{ projectTask.title }}</span>
             <app-modal [modal-id]="editTaskModalIds[i]" modal-title="Edit {{ projectTask.title }}">

@@ -98,9 +98,9 @@ export class ProjectCreateComponent implements OnInit {
         this._flash.show("Task successfully added", { cssClass: 'alert-success', timeout: 5000 });
     }
 
-    editProjectTask(i) {
+    editProjectTask(index: number) {
         // taskComponent.setSelectedSkills(taskComponent.task.requiredSkills);
-        this.modalService.open(this.editTaskModalIds[i]);
+        this.modalService.open(this.editTaskModalIds[index]);
     }
 
     saveEditedProjectTask(taskComponent: TaskCreateComponent, index: number) {
