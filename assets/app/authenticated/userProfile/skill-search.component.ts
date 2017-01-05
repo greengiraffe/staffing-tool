@@ -29,7 +29,7 @@ import { UserSkill } from "../../_models/user-skill.model";
         </span>
       </li>
     </ul>
-    <p *ngIf="visibleSkills.length === 0">There are no more available skills.</p>
+    <p *ngIf="visibleSkills?.length === 0">There are no more available skills.</p>
   `,
   styleUrls: ['skill-search.style.scss']
 })
@@ -42,7 +42,8 @@ export class SkillSearchComponent implements OnInit {
     hiddenSkills: Skill[] = [];
     searchText;
 
-    constructor(private skillService: SkillService, private skillSearchService: SkillSearchService) { }
+    constructor(private skillService: SkillService,
+                private skillSearchService: SkillSearchService) { }
 
     ngOnInit() {
         this.skillService.getSkills()
