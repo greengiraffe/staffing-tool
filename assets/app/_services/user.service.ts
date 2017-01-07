@@ -2,7 +2,6 @@ import { Injectable } from "@angular/core";
 import { Http, Headers, Response, ResponseContentType } from "@angular/http";
 import 'rxjs/Rx';
 import { Observable } from "rxjs";
-// import config = require ("../../../config/config");
 
 import { User } from "../_models/user.model";
 import { Project } from "../_models/project.model";

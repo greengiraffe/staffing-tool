@@ -2,7 +2,6 @@ import { Injectable } from "@angular/core";
 import { Http, Headers, Response } from "@angular/http";
 import 'rxjs/Rx';
 import { Observable } from "rxjs";
-// import config = require ("../../../config/config");
 
 import { User } from "../_models/user.model";
 import {tokenNotExpired} from "angular2-jwt";

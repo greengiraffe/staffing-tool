@@ -25,16 +25,12 @@ export class SkillCreateComponent implements OnInit {
     onSubmit(form: FormGroup) {
         // Create
         const skill = new Skill(form['skillName']);
-        console.log(skill, form);
         this.skillService.addSkill(skill)
             .subscribe(
                 data => {
-                    console.log('success');
                     this._flash.show("Skill successfully added", { cssClass: 'alert-success', timeout: 10000 });},
                 error => {
-                    console.log('err', error);
                     this._flash.show(error.message, { cssClass: 'alert-danger', timeout: 10000 });}
             );
-        // form.resetForm();
     }
 }

@@ -48,8 +48,6 @@ export class ProjectListComponent implements OnInit {
     }
 
     deleteProject(project: Project, index: number) {
-        //var r = confirm("Do you want to delete this project?");
-        //if(r == true) {
         this.deleteProjectModalIds.splice(index,1);
         this.projectService.deleteProject(project)
             .subscribe(

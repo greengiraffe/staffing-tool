@@ -12,7 +12,6 @@ export class ProjectService {
     constructor(private http: Http) {}
 
     createProject(project: Project): Observable<{}> {
-        console.log(project);
         const body = JSON.stringify(project);
         const headers = new Headers({'Content-Type': 'application/json'});
 

@@ -26,7 +26,6 @@ export class SkillListComponent implements OnInit {
                     this.skills = skills;
                     this.skills.forEach((skill, index) => {
                         this.deleteSkillModalIds.push("deleteSkillModalId" + index);
-                        console.log(this.deleteSkillModalIds[index]);
                     });
                 }
             );

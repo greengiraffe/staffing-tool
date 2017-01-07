@@ -60,7 +60,6 @@ export class ProjectCreateComponent implements OnInit {
     }
 
     fillForm(project: Project) {
-        console.log(project)
         this.projectForm = this._fb.group({
             title: [project.title, Validators.required],
             description: [project.description, Validators.required],

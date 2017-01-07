@@ -31,18 +31,6 @@ export class LoginComponent implements OnInit{
                     }
                 );
         }
-        // const user = new User(this.myForm.value.email, this.myForm.value.password);
-        // this.authService.signin(user)
-        //     .subscribe(
-        //         data => {
-        //             // localStorage.setItem('token', data.token);
-        //             // localStorage.setItem('userId', data.userId);
-        //             this.router.navigateByUrl('/');
-        //         },
-        //         error => console.error(error)
-        //     );
-        // this.myForm.reset();
-        // this.router.navigateByUrl('home');
 
     ngOnInit(){
         this.loginForm = new FormGroup({

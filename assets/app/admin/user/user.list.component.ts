@@ -7,7 +7,6 @@ import { ModalService } from "../../_services/modal.service";
 @Component({
     selector: 'app-user-list',
     templateUrl: './user.list.template.html'
-    // styleUrls: ['./home.style.scss']
 })
 export class UserListComponent {
     users: User[];
@@ -24,7 +23,6 @@ export class UserListComponent {
                     this.users = users;
                     this.users.forEach((user, index) => {
                         this.deleteUserModalIds.push("deleteUserModalId" + index);
-                        console.log(this.deleteUserModalIds[index]);
                     });
                 }
             );

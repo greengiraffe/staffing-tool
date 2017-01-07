@@ -8,7 +8,6 @@ import { SkillsComponent } from "./skill/skills.component";
 const adminRoutes: Routes = [
     {
         path: 'admin',
-        // component: AdminComponent,
         children: [
             {
                 path: '',
