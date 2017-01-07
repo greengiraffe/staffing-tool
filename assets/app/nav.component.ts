@@ -14,6 +14,8 @@ import { Router } from "@angular/router";
 
 export class NavComponent {
     user: User;
+    private isAdminUser = false;
+    private isActiveDropdown = false;
 
     constructor(private auth: AuthService,
                 private userService: UserService,
@@ -24,8 +26,20 @@ export class NavComponent {
 
         this.userService.getUserById(currentUserId)
             .subscribe(
-                (user: User) => this.user = user,
+                (user: User) => {
+                    this.user = user,
+                    this.isAdminUser = user.role === "admin";
+                },
                 error => console.log(error)
         );
+    }
+
+    toggleDropdown(event) {
+        event.preventDefault();
+        this.isActiveDropdown = !this.isActiveDropdown;
+    }
+
+    closeDropdown() {
+        this.isActiveDropdown = false;
     }
 }

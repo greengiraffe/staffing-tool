@@ -1,11 +1,11 @@
 @import "../styles/variables";
 
-.nav-item.right {
+.right {
   float: right;
 }
 
 .navbar-nav .nav-item + .nav-item {
-  margin-left: 1.5rem;
+  margin-left: 2rem;
 }
 
 .navbar-brand {
@@ -15,5 +15,6 @@
 .nav-item {
   .fa {
     margin-right: 4px;
+    margin-top: -1px; // visually center the icon
   }
 }
