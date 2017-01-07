@@ -99,7 +99,6 @@ export class ProjectCreateComponent implements OnInit {
     }
 
     editProjectTask(index: number) {
-        // taskComponent.setSelectedSkills(taskComponent.task.requiredSkills);
         this.modalService.open(this.editTaskModalIds[index]);
     }
 

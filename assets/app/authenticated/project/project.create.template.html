@@ -103,7 +103,7 @@
 
         <h3>Tasks:</h3>
         <div class="project-tasks">
-          <div class="card-block" *ngFor="let projectTask of projectTasks; let i = index" (click)="modalService.open(editTaskModalIds[i])">
+          <div class="card-block" *ngFor="let projectTask of projectTasks; let i = index" (click)="editProjectTask(i)">
             <h5 class="card-title internal">{{ projectTask.title }}<span
               (click)="removeProjectTask(projectTask)"
               class="remove-project-task fa fa-remove"
