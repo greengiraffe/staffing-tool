@@ -11,8 +11,9 @@ const transformProjectTaskSkills = function (projectTasks) {
             title: task.title,
             description: task.description,
             requiredSkills: task.requiredSkills.map(skill => skill._id),
-            taskMember: task.taskMember
+            assignedUsers: task.assignedUsers
         };
+
         transformedProjectTasks.push(projectTask);
     });
 
@@ -63,7 +64,7 @@ module.exports = {
             .find()
             .populate('creator', '_id firstName lastName')
             .populate('projectTasks.requiredSkills')
-            .populate('projectTasks.taskMember', '-password -email -__v -role')
+            .populate('projectTasks.assignedUsers', '-password -email -__v -role')
             .exec();
     },
 
@@ -72,7 +73,7 @@ module.exports = {
             .findById(id)
             .populate('creator', '_id firstName lastName')
             .populate('projectTasks.requiredSkills')
-            .populate('projectTasks.taskMember', '-password -email -__v -role')
+            .populate('projectTasks.assignedUsers', '-password -email -__v -role')
             .exec();
     },
 

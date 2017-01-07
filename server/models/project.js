@@ -5,7 +5,7 @@ let projectTask = new Schema({
     title: {type: String, required: true},
     description: {type: String, required: true},
     requiredSkills: [{type: Schema.Types.ObjectId, ref: 'Skill'}],
-    taskMember: [{type: Schema.Types.ObjectId, ref: 'User'}]
+    assignedUsers: [{type: Schema.Types.ObjectId, ref: 'User'}]
 });
 
 let projectSchema = new Schema({
