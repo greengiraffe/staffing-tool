@@ -19,6 +19,8 @@ import { UserProfileEditComponent } from "./userProfile/user-profile-edit.compon
 import { UserSkillListComponent } from "./userProfile/user-skill-list.component";
 import { TaskCreateComponent } from "./task/task.create.component";
 import { FilterPipe } from "../_pipes/filter.pipe";
+import { OrderByPipe } from "../_pipes/orderBy.pipe";
+
 import { ModalComponent } from "../modal/modal.component";
 
 
@@ -47,6 +49,7 @@ import { ModalComponent } from "../modal/modal.component";
         TaskCreateComponent,
         TaskCreateComponent,
         FilterPipe,
+        OrderByPipe
     ]
 })
 export class UserModule {}

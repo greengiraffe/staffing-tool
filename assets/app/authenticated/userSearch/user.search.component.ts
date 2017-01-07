@@ -39,7 +39,7 @@ export class UserSearchComponent implements OnInit {
                     this.sortUsers();
                 },
                 error => console.log(error)
-            )
+            );
 
         this.userSearchService.userReceived$.subscribe(
             receivedUser => this.hideUser(receivedUser));

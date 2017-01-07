@@ -14,7 +14,6 @@ import { SharedModule } from "./shared.module";
 
 import { NavComponent } from "./nav.component";
 import { LoginComponent } from "./login/login.component";
-import { ModalComponent } from "./modal/modal.component";
 import { OnboardingModule } from "./onboarding/onboarding.module";
 import { UserModule } from "./authenticated/user.module";
 import { AdminModule } from "./admin/admin.module";

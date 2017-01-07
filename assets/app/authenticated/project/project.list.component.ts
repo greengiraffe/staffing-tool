@@ -7,7 +7,8 @@ import { ModalService } from "../../_services/modal.service";
 @Component({
     selector: 'app-project-list',
     templateUrl: './project.list.template.html',
-    providers: [ ProjectService ]
+    providers: [ ProjectService ],
+    styles: [`th{cursor: pointer;}`]
 })
 
 export class ProjectListComponent implements OnInit {
@@ -15,6 +16,7 @@ export class ProjectListComponent implements OnInit {
     projects: Project[];
     userRole: string;
     userId: string;
+    sortType: string = 'end';
 
     constructor(private projectService: ProjectService,
                 private router: Router,
@@ -54,4 +56,5 @@ export class ProjectListComponent implements OnInit {
                 result => console.log(result)
             );
     }
+
 }

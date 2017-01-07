@@ -4,22 +4,42 @@
   <thead class="thead-inverse">
     <tr>
       <th>#</th>
-      <th>Title</th>
-      <th>Type</th>
-      <th>Client</th>
-      <th>Priority</th>
-      <th>Period</th>
+      <th (click)="sortType = 'title'">
+        Title
+        <i class="fa fa-caret-down" *ngIf="sortType == 'title'"></i>
+      </th>
+      <th (click)="sortType = 'type'">
+        Type
+        <i class="fa fa-caret-down" *ngIf="sortType == 'type'"></i>
+      </th>
+      <th (click)="sortType = 'client'">
+        Client
+        <i class="fa fa-caret-down" *ngIf="sortType == 'client'"></i>
+      </th>
+      <th (click)="sortType = 'ispriority'">
+        Priority
+        <i class="fa fa-caret-down" *ngIf="sortType == 'ispriority'"></i>
+      </th>
+      <th (click)="sortType = 'start'">
+        Start
+        <i class="fa fa-caret-down" *ngIf="sortType == 'start'"></i>
+      </th>
+      <th (click)="sortType = 'end'">
+        End
+        <i class="fa fa-caret-down" *ngIf="sortType == 'end'"></i>
+      </th>
       <th></th> <!-- Button column -->
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let project of projects; let i = index">
+    <tr *ngFor="let project of projects | orderBy: sortType; let i = index">
       <th scope="row">{{ i +1 }}</th>
       <td>{{ project?.title }}</td>
       <td>{{ project?.type }}</td>
       <td>{{ project?.client }}</td>
       <td>{{ convertPriority(project?.isPriority) }}</td>
-      <td>{{ project?.start | date:"dd/MM/yy" }} - {{ project?.end | date:"dd/MM/yy"}}</td>
+      <td>{{ project?.start | date:"dd/MM/yy" }}</td>
+      <td>{{ project?.end | date:"dd/MM/yy"}}</td>
       <td class="text-xs-right">
         <button class="btn btn-sm btn-outline-primary" (click)="showProject(project)">Show</button>
         <button class="btn btn-sm btn-outline-danger" (click)="modalService.open(deleteProjectModalIds[i])"
