@@ -22,6 +22,12 @@
         <ul class="task-skill-list">
           <li class="skill" *ngFor="let skill of projectTask.requiredSkills">{{ skill.name }}</li>
         </ul>
+        <h6 class="card-title internal card-text">Assigned Users</h6>
+        <ul class="task-skill-list">
+          <li class="skill" *ngFor="let user of projectTask.assignedUsers">{{ user.firstName }} {{ user.lastName }}
+          <img class="{{user._id}}" alt="Profile picture">
+          </li>
+        </ul>
       </div>
     </div>
   </section>

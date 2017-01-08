@@ -110,10 +110,10 @@ export class UserService {
             .catch((error: Response) => Observable.throw(error.json()));
     }
 
-    getUserImage(userId): Observable<{}> {
-      return this.http.get('http://localhost:3000/user/img/' + userId, {responseType: ResponseContentType.Blob
-      })
-        .map((response: Response) => this.createImageUrl(response.blob()))
+    getUserImage(userId, size?: string): Observable<{}> {
+        let routeParams = size ? userId + "/" + size : userId;
+        return this.http.get('http://localhost:3000/user/img/' + routeParams, {responseType: ResponseContentType.Blob })
+        .map((response: Response) => (response.status === 200) ? this.createImageUrl(response.blob()) : null)
         .catch((error: Response) => Observable.throw(error.json()));
     }
 
