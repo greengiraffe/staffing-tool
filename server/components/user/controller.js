@@ -261,11 +261,20 @@ router.post('/user/img/:id', multipartMiddleware, function(req, res, next) {
             if (IMAGE_TYPES.indexOf(type) == -1) {
                 return res.send(415, 'Supported image formats: jpeg, jpg, jpe, png.');
             }
-            let newPath = imgStorePath + req.params.id + '.png';
+            var smallImgPath = imgStorePath + req.params.id + 'small.png';
+
+            sharp(req.files.image.path)
+                .resize(50,50)
+                .toFile(smallImgPath, function(err, info) {
+                    if (err) console.log(err);
+                    else console.log(info);
+                });
+
+            var largeImgPath = imgStorePath + req.params.id + '.png';
 
             sharp(req.files.image.path)
                 .resize(600,600)
-                .toFile(newPath, function(err, info) {
+                .toFile(largeImgPath, function(err, info) {
                     if (err) console.log(err);
                     res.redirect(req.params.id);
                 });
@@ -276,10 +285,11 @@ router.post('/user/img/:id', multipartMiddleware, function(req, res, next) {
 /**
  * Get the profile image of a specific user
  */
-router.get('/user/img/:id', function (req, res){
+router.get('/user/img/:id/:size?', function (req, res){
+    let size = req.params.size === "small"  ? req.params.size : "" ;
     User.getUserByID(req.params.id)
         .then(function (result) {
-            file = imgStorePath +  result._id + '.png';
+            file = imgStorePath +  result._id + size + '.png';
             let img = fs.readFileSync(file);
             res.writeHead(200, {'Content-Type': 'image/png' });
             res.end(img, 'binary');
