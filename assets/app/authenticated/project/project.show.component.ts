@@ -21,6 +21,7 @@ export class ProjectShowComponent implements OnInit {
     userRole: string;
     project: Project;
     isAuthorized: boolean = false;
+    idsOfLoadedPictures = new Array<string>();
 
     constructor(
         private projectService: ProjectService,
@@ -55,20 +56,22 @@ export class ProjectShowComponent implements OnInit {
                             }
                         }
                     }
-
                 });
     }
 
     loadUserAvatars() {
         this.project.projectTasks.forEach(task => {
             task.assignedUsers.forEach(user => {
-                this.userService.getUserImage(user._id, "small")
-                    .subscribe(data => {
-                        this.renderImages(data, user._id);
-                    }, 
-                    error => {
-                        this.renderImages('/img/usersmall.png', user._id);
-                    });
+                if(this.idsOfLoadedPictures.indexOf(user._id) < 0) {
+                    this.userService.getUserImage(user._id, "small")
+                        .subscribe(data => {
+                            this.renderImages(data, user._id);
+                        },
+                        error => {
+                            this.renderImages('/img/usersmall.png', user._id);
+                        });
+                    this.idsOfLoadedPictures.push(user._id)
+                }
             });
         });
     }
