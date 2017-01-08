@@ -3,19 +3,19 @@
      Staffing Tool
   </a>
   <ul class="nav navbar-nav" *ngIf="this.router.url != '/auth/login'">
-    <li class="nav-item"><a class="nav-link" routerLink="/usr/profile" routerLinkActive="['active']"><i class="fa fa-asterisk" aria-hidden="true"></i>
+    <li class="nav-item"><a class="nav-link" routerLink="/usr/profile" routerLinkActive="active"><i class="fa fa-asterisk" aria-hidden="true"></i>
       {{user?.firstName}}</a></li>
-    <li class="nav-item"><a class="nav-link" routerLink="/usr/project/list" routerLinkActive="['active']"><i class="fa fa-list-ul" aria-hidden="true"></i>
+    <li class="nav-item"><a class="nav-link" routerLink="/usr/project/list" routerLinkActive="active"><i class="fa fa-list-ul" aria-hidden="true"></i>
       Projects</a></li>
-    <li class="nav-item"><a class="nav-link" routerLink="/usr/project/create" routerLinkActive="['active']"><i class="fa fa-plus" aria-hidden="true"></i>
+    <li class="nav-item"><a class="nav-link" routerLink="/usr/project/create" routerLinkActive="active"><i class="fa fa-plus" aria-hidden="true"></i>
       New Project</a></li>
     <li class="nav-item right"><a class="nav-link" routerLink="/auth/login" (click)="auth.logout()">Logout</a></li>
     <li *ngIf="isAdminUser" class="nav-item dropdown">
-      <a class="nav-link dropdown-toggle" (click)="toggleDropdown($event)" routerLink="/admin" routerLinkActive="['active']"><i class="fa fa-book" aria-hidden="true"></i>Admin</a>
+      <a class="nav-link dropdown-toggle" (click)="toggleDropdown($event)" [class.active]="this.router.url.startsWith('/admin')"><i class="fa fa-book" aria-hidden="true"></i>Admin</a>
       <div [style.display]="isActiveDropdown ? 'block' : 'none'" class="dropdown-menu">
-        <a class="dropdown-item" (click)="closeDropdown()" routerLink="/admin/user/create" routerLinkActive="['active']">Create User</a>
-        <a class="dropdown-item" (click)="closeDropdown()" routerLink="/admin/user/list" routerLinkActive="['active']">Show Users</a>
-        <a class="dropdown-item" (click)="closeDropdown()" routerLink="/admin/skill" routerLinkActive="['active']">Edit Skills</a>
+        <a class="dropdown-item" (click)="closeDropdown()" routerLink="/admin/user/create" routerLinkActive="active">Create User</a>
+        <a class="dropdown-item" (click)="closeDropdown()" routerLink="/admin/user/list" routerLinkActive="active">Show Users</a>
+        <a class="dropdown-item" (click)="closeDropdown()" routerLink="/admin/skill" routerLinkActive="active">Edit Skills</a>
       </div>
     </li>
   </ul>
