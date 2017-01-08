@@ -39,7 +39,7 @@ export class TaskCreateComponent implements OnInit, OnDestroy {
         this.userSearchServiceSubscription = this.userSearchService.userAdded$
             .subscribe(user => {
                 this.addAssignedUser(user);
-            })
+            });
 
         this.taskForm = this.fb.group({
             title: [this.task.title, Validators.required],

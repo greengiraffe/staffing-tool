@@ -196,9 +196,9 @@ router.put('/user', function(req, res, next) {
  * Update a user's password
  */
 router.put('/user/password', function(req, res, next) {
-  let oldPassword = req.body.oldPassword
-  let newPassword = req.body.newPassword
-  let id = req.body.id
+  let oldPassword = req.body.oldPassword;
+  let newPassword = req.body.newPassword;
+  let id = req.body.id;
   if(authHelper.passwordIsValid(newPassword)) {
       User.getUserByID(id)
         .then(function(user) {
@@ -252,16 +252,16 @@ router.delete('/user/:id', function(req, res, next) {
  */
 router.post('/user/img/:id', multipartMiddleware, function(req, res, next) {
     fs.readFile(req.files.image.path, function (err, data) {
-        var imageName = path.extname(req.files.image.name);
+        let imageName = path.extname(req.files.image.name);
         if(!imageName){
             res.redirect("/");
             res.end();
         } else {
-            var type = mime.lookup(req.files.image.path);
+            let type = mime.lookup(req.files.image.path);
             if (IMAGE_TYPES.indexOf(type) == -1) {
                 return res.send(415, 'Supported image formats: jpeg, jpg, jpe, png.');
             }
-            var newPath = imgStorePath + req.params.id + '.png';
+            let newPath = imgStorePath + req.params.id + '.png';
 
             sharp(req.files.image.path)
                 .resize(600,600)
@@ -280,7 +280,7 @@ router.get('/user/img/:id', function (req, res){
     User.getUserByID(req.params.id)
         .then(function (result) {
             file = imgStorePath +  result._id + '.png';
-            var img = fs.readFileSync(file);
+            let img = fs.readFileSync(file);
             res.writeHead(200, {'Content-Type': 'image/png' });
             res.end(img, 'binary');
         })

@@ -10,6 +10,7 @@ const transformProjectTaskSkills = function (projectTasks) {
         let projectTask = {
             title: task.title,
             description: task.description,
+            status: task.status,
             requiredSkills: task.requiredSkills.map(skill => skill._id),
             assignedUsers: task.assignedUsers
         };
@@ -83,8 +84,11 @@ module.exports = {
             Project.findById(id, function (err, project) {
                 if (err) return handleError(err);
 
-                project.projectTasks = new Project.Task({title: projectTask.title, description: projectTask.description,
-                  taskSkills: projectTask.taskSkill
+                project.projectTasks = new Project.Task({
+                    title: projectTask.title,
+                    description: projectTask.description,
+                    status: projectTask.status,
+                    taskSkills: projectTask.taskSkill
                 });
 
                 project.save(function (err, result) {
@@ -105,6 +109,24 @@ module.exports = {
 
             });
         });
+    },
+
+    /**
+     * Update Task Status
+     * @param id of task
+     * @param status can be 'upcoming', 'rejected', 'progress', 'done'
+     * @returns {Promise|Promise<T>}
+     */
+    updateTaskStatus: function(id, status) {
+        return new Promise(function (resolve, reject) {
+            Project.findByIdAndUpdate(id, {status: status}, function(err, result) {
+                if(err) {
+                    reject(err);
+                } else {
+                    resolve(result);
+                }
+            })
+        })
     },
 
     updateProject: function(updateData) {

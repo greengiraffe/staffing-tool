@@ -1,4 +1,3 @@
-<p class="align-right"><span class="red">*</span> Required Fields</p>
 <form [formGroup]="taskForm">
   <div class="form-group">
     <div class="flex-container">
@@ -29,6 +28,7 @@
      [class.error]="!taskForm.get('description').valid && taskForm.get('description').dirty"
      formControlName="description">
     </textarea>
+    <span>Task Status: </span><span class="tag tag-default">upcoming</span>
   </div>
 
   <p>Required Skills</p>

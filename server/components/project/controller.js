@@ -58,6 +58,22 @@ router.post('/project/task/:id', function(req, res, next) {
 });
 
 /**
+ * Change Status of Task
+ */
+router.put('/project/task/:id', function (req, res, next) {
+    Project.updateTaskStatus(id, req.params.status)
+        .then(function (result) {
+            res.status(result.statusCode).json(result);
+        })
+        .catch(function (err) {
+            res.status(err.statusCode).json({
+                message: "Error while updating task status",
+                obj: err
+            });
+        });
+});
+
+/**
  * Update a project
  */
 router.put('/project', function(req, res, next) {
