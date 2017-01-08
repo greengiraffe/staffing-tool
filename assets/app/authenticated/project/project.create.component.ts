@@ -123,6 +123,11 @@ export class ProjectCreateComponent implements OnInit {
         this.modalService.open(this.addTaskModalId);
     }
 
+    closeModal(modalId, event) {
+        event.stopPropagation();
+        this.modalService.close(modalId);
+    }
+
     onSubmit(form: FormGroup) {
         // Create
         let creator = localStorage.getItem('userId');

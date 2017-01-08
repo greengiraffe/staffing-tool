@@ -26,7 +26,8 @@ export class ModalComponent implements OnInit {
         this.modalService.registerModal(this);
     }
 
-    private close(checkBlocking = false) {
+    private close(event, checkBlocking = false) {
+        event.stopPropagation();
         this.modalService.close(this.modalId, checkBlocking);
     }
 
