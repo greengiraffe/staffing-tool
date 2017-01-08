@@ -18,3 +18,18 @@
     margin-top: -1px; // visually center the icon
   }
 }
+
+.dropdown-toggle {
+  cursor: pointer;
+}
+
+.dropdown-active {
+  .dropdown-menu {
+    display: block;
+  }
+
+  .dropdown-toggle:after {
+    border-bottom: .3em solid;
+    border-top: 0;
+  }
+}
