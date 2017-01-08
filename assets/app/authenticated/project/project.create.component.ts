@@ -90,7 +90,9 @@ export class ProjectCreateComponent implements OnInit {
         );
 
         this.projectTasks.push(task);
-        const taskIndex = this.projectTasks.indexOf(task);
+        var taskIndex;
+        var lastModalId: string = this.editTaskModalIds[this.editTaskModalIds.length-1];
+        lastModalId ? taskIndex = +lastModalId.slice(16) + 1 : taskIndex = 0
         this.editTaskModalIds.push("editTaskModalIds" + taskIndex);
         this.modalService.close(this.addTaskModalId);
         taskComponent.resetForm();
