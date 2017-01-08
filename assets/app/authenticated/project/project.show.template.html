@@ -10,7 +10,8 @@
       <li><b>Expense Budget:</b> {{ project?.expBudget }} €</li>
       <li><b>Description:</b> {{project?.description}}</li>
     </ul>
-    <button class="edit-project-btn btn btn-secondary" routerLink="../../edit/{{project?._id}}">Edit Project</button>
+    <button class="edit-project-btn btn btn-secondary" routerLink="../../edit/{{project?._id}}"
+     *ngIf="isAuthorized">Edit Project</button>
   </header>
 
   <section class="task-section">

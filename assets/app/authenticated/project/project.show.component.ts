@@ -17,8 +17,10 @@ import 'rxjs/add/operator/switchMap';
 })
 
 export class ProjectShowComponent implements OnInit {
-
+    userId: string;
+    userRole: string;
     project: Project;
+    isAuthorized: boolean = false;
 
     constructor(
         private projectService: ProjectService,
@@ -30,12 +32,30 @@ export class ProjectShowComponent implements OnInit {
     ) {}
 
     ngOnInit() {
+        this.userId = localStorage.getItem('userId');
+        this.userRole = localStorage.getItem('userRole');
         this.route.params
             .switchMap((params: Params) =>
                 this.projectService.getProjectById(params['id']))
                 .subscribe((project: Project) => {
                     this.project = project;
                     this.loadUserAvatars();
+
+                    //Check if user is authorized to edit this project
+                    //TODO: test this
+                    if(this.userRole === 'admin' || this.userRole === 'user_creator' || this.project.creator._id === this.userId) {
+                        this.isAuthorized = true;
+                    } else {
+                        for(let task of this.project.projectTasks) {
+                            for(let user of task.assignedUsers) {
+                                if(user._id === this.userId) {
+                                    this.isAuthorized = true;
+                                    return;
+                                }
+                            }
+                        }
+                    }
+
                 });
     }
 
