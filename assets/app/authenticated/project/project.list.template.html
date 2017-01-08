@@ -6,27 +6,33 @@
       <th>#</th>
       <th (click)="sortType = 'title'">
         Title
-        <i class="fa fa-caret-down" *ngIf="sortType == 'title'"></i>
+        <i class="fa fa-sort" [hidden]="sortType == 'title'"></i>
+        <i class="fa fa-caret-down" [hidden]="sortType !== 'title'"></i>
       </th>
       <th (click)="sortType = 'type'">
         Type
-        <i class="fa fa-caret-down" *ngIf="sortType == 'type'"></i>
+        <i class="fa fa-sort" [hidden]="sortType == 'type'"></i>
+        <i class="fa fa-caret-down" [hidden]="sortType !== 'type'"></i>
       </th>
       <th (click)="sortType = 'client'">
         Client
-        <i class="fa fa-caret-down" *ngIf="sortType == 'client'"></i>
+        <i class="fa fa-sort" [hidden]="sortType == 'client'"></i>
+        <i class="fa fa-caret-down" [hidden]="sortType !== 'client'"></i>
       </th>
       <th (click)="sortType = 'ispriority'">
         Priority
-        <i class="fa fa-caret-down" *ngIf="sortType == 'ispriority'"></i>
+        <i class="fa fa-sort" [hidden]="sortType == 'ispriority'"></i>
+        <i class="fa fa-caret-down" [hidden]="sortType !== 'ispriority'"></i>
       </th>
       <th (click)="sortType = 'start'">
         Start
-        <i class="fa fa-caret-down" *ngIf="sortType == 'start'"></i>
+        <i class="fa fa-sort" [hidden]="sortType == 'start'"></i>
+        <i class="fa fa-caret-down" [hidden]="sortType !== 'start'"></i>
       </th>
       <th (click)="sortType = 'end'">
         End
-        <i class="fa fa-caret-down" *ngIf="sortType == 'end'"></i>
+        <i class="fa fa-sort" [hidden]="sortType == 'end'"></i>
+        <i class="fa fa-caret-down" [hidden]="sortType !== 'end'"></i>
       </th>
       <th></th> <!-- Button column -->
     </tr>
