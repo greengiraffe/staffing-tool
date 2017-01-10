@@ -26,6 +26,17 @@ export class ModalComponent implements OnInit {
         this.modalService.registerModal(this);
     }
 
+    hideBodyScroll() {
+        if(this.isOpen) {
+            document.body.className += " modal-open";
+        }
+    }
+
+    addBodyScroll() {
+        if(!this.isOpen) {
+            document.body.className = document.body.className.replace(/modal-open\b/, "");
+        }
+    }
     private close(event, checkBlocking = false) {
         event.stopPropagation();
         this.modalService.close(this.modalId, checkBlocking);

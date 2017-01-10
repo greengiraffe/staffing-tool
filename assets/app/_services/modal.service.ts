@@ -25,6 +25,7 @@ export class ModalService {
 
         if (modal) {
             modal.isOpen = true;
+            modal.hideBodyScroll();
         }
     }
 
@@ -36,6 +37,7 @@ export class ModalService {
                 return;
             }
             modal.isOpen = false;
+            modal.addBodyScroll();
         }
     }
 
