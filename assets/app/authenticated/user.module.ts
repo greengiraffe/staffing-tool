@@ -22,6 +22,7 @@ import { FilterPipe } from "../_pipes/filter.pipe";
 import { OrderByPipe } from "../_pipes/orderBy.pipe";
 
 import { ModalComponent } from "../modal/modal.component";
+import { CardComponent } from "../card/card.component";
 
 
 @NgModule({
@@ -35,6 +36,7 @@ import { ModalComponent } from "../modal/modal.component";
         FlashMessagesModule
     ],
     declarations: [
+        CardComponent,
         UserComponent,
         HomeComponent,
         ChangePasswordComponent,
