@@ -147,6 +147,42 @@ module.exports = {
         });
     },
 
+    updateProjectTask: function(id, projectTask) {
+        projectTask = transformProjectTaskSkills(projectTask);
+
+        return new Promise(function (resolve, reject) {
+            if (err) return handleError(err);
+            Project.findById(id, function(err, project) {
+               if(err) {
+                   reject({
+                       message: "Database error",
+                       statusCode: 500,
+                       obj: err
+                   });
+               } else if (!project) {
+                  reject({
+                      message: "No project document for " + id,
+                      statusCode: 404,
+                  });
+               } else {
+                  Project.Task.findByIdAndUpdate(projectTask._id, { $set: projectTask}, function(err, project) {
+                      if (err) {
+                          reject({
+                              message: "Database error",
+                              statusCode: 500,
+                              obj: err
+                            });
+                      } else {
+                          resolve({
+                              message: "Task updated successfully"
+                          });
+                      }
+                  });
+              }
+            });
+        });
+    },
+
     /**
      * Update Task Status
      * @param id of task

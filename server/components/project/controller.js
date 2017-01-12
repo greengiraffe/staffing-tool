@@ -70,6 +70,18 @@ router.delete('/project/task/:id', function(req, res, next) {
         });
 });
 
+/**
+ * Update a Task
+ */
+router.delete('/project/task/:id', function(req, res, next) {
+    Project.updateProjectTask(req.params.id, req.body)
+        .then(function(result){
+           res.status(result.statusCode).json(result);
+        })
+        .catch(function(err){
+            res.status(err.statusCode).json(err);
+        });
+});
 
 /**
  * Change Status of Task
