@@ -112,7 +112,7 @@ module.exports = {
     },
 
     removeProjectTask: function(id, projectTask) {
-        return new Proimise(function (resolve, reject) {
+        return new Proimse(function (resolve, reject) {
             if (err) return handleError(err);
             Project.findById(id, function(err, project) {
                 if(err) {
