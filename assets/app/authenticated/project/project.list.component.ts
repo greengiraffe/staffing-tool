@@ -7,15 +7,11 @@ import { ModalService } from "../../_services/modal.service";
 @Component({
     selector: 'app-project-list',
     templateUrl: './project.list.template.html',
-    providers: [ ProjectService ],
-    styles: [`th{cursor: pointer;}`]
+    providers: [ ProjectService ]
 })
 
 export class ProjectListComponent implements OnInit {
-    deleteProjectModalIds = new Array<string>();
     projects: Project[];
-    userRole: string;
-    userId: string;
     sortType: string = 'end';
 
     constructor(private projectService: ProjectService,
@@ -24,33 +20,10 @@ export class ProjectListComponent implements OnInit {
 
     ngOnInit() {
         this.projectService.getProjects()
-            .subscribe(
-                (projects: Project[]) => {
-                    this.projects = projects;
-                    this.projects.forEach((project, index) => {
-                        this.deleteProjectModalIds.push("deleteProjectModalId" + index);
-                    });
-                }
-            );
-
-        this.userRole = localStorage.getItem('role');
-        this.userId = localStorage.getItem('userId');
+            .subscribe((projects: Project[]) => this.projects = projects);
     }
 
-    convertPriority(priority: boolean) {
-        if(priority) {
-            return "high";
-        } else {
-            return "medium";
-        }
-    }
-
-    showProject(project: Project) {
-        this.router.navigate(['/usr/project/show', project._id]);
-    }
-
-    deleteProject(project: Project, index: number) {
-        this.deleteProjectModalIds.splice(index,1);
+    deleteProject(project: Project) {
         this.projectService.deleteProject(project)
             .subscribe(
                 result => console.log(result)

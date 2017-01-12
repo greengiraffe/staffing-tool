@@ -1,28 +1,7 @@
 <h2>All Projects</h2>
 
-<app-card
-  [title]="project.title"
-  [desc]="project.description"
+<app-project-card
+  [project]="project"
+  (onDelete)="deleteProject(project)"
   *ngFor="let project of projects | orderBy: sortType; let i = index">
-    <h2 card-title>{{ project?.title }}</h2>
-    <p>{{ project?.type }}</p>
-    <p>{{ project?.client }}</p>
-    <p>{{ convertPriority(project?.isPriority) }}</p>
-    <p>{{ project?.start | date:"dd/MM/yy" }}</p>
-    <p>{{ project?.end | date:"dd/MM/yy"}}</p>
-    <p>{{ project.description }}</p>
-    <p class="text-xs-right">
-      <button class="btn btn-sm btn-outline-primary" (click)="showProject(project)">Show</button>
-      <button class="btn btn-sm btn-outline-danger" (click)="modalService.open(deleteProjectModalIds[i])"
-      *ngIf="userRole === 'admin' || userRole === 'user_creator' || project.creator._id === userId">
-        Delete
-      </button>
-    </p>
-    <app-modal [modal-id]="deleteProjectModalIds[i]" modal-title="Delete Project {{ project?.title }}">
-      <span modal-body>Do you want to delete this project "{{ project?.title }}"?</span>
-      <div modal-footer class="text-xs-right">
-        <button type="button" class="btn btn-secondary" (click)="modalService.close(deleteProjectModalIds[i])">Cancel</button>
-        <button type="button" class="btn btn-danger" (click)="deleteProject(project,i)">Delete</button>
-      </div>
-    </app-modal>
-</app-card>
+</app-project-card>
