@@ -13,7 +13,7 @@ import { UserSearchService } from '../../_services/user.search.service';
       placeholder="Search for a User"
       type="text" (click)="openUserList()">
       <div *ngIf="showUserList" class="user-list" [ngSwitch]="clickableUser">
-        <div class="user" *ngFor="let user of visibleUsers | filter : 'lastName' : searchText" (click)="selectUser(user)">{{ user.firstName }} {{ user.lastName }} {{ user.match }}%</div>
+        <div class="user" *ngFor="let user of visibleUsers | filter : 'lastName' : searchText" (click)="selectUser(user)">{{ user.firstName }} {{ user.lastName }} {{ user.match | percent}}</div>
       </div>
 
     <p *ngIf="users?.length === 0">There are no more available users.</p>
