@@ -8,8 +8,8 @@ import { ProjectTask } from "../../_models/project-task.model";
 @Component({
     selector: 'app-project-list',
     templateUrl: './project.list.template.html',
-    styles: [ `.tabpane { display: none;} .active {display: block;}`],
-    providers: [ ProjectService ]
+    providers: [ ProjectService ],
+    styleUrls: ['./project.list.style.scss']
 })
 
 export class ProjectListComponent implements OnInit {

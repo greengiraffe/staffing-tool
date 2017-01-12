@@ -1,27 +1,31 @@
-<ul class="nav nav-tabs" role="tablist">
-  <li class="nav-item">
-    <a class="nav-link active" role="tab" (click)="showTab($event)" routerLink="/usr/project/list/projects"  data-target="projects">Projects</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" role="tab" (click)="showTab($event)" routerLink="/usr/project/list/tasks"  data-target="tasks">Tasks</a>
-  </li>
-</ul>
+<div class="list-project-container">
 
-<div id="projects" class="tabpane active">
-  <app-project-card
-    [project]="project"
-    (onDelete)="deleteProject(project)"
-    *ngFor="let project of projects | orderBy: sortType; let i = index">
-  </app-project-card>
-</div>
+  <h2>All Projects</h2>
+  <ul class="nav nav-tabs" role="tablist">
+    <li class="nav-item">
+      <a class="nav-link active" role="tab" (click)="showTab($event)" routerLink="/usr/project/list/projects"  data-target="projects">Projects</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" role="tab" (click)="showTab($event)" routerLink="/usr/project/list/tasks"  data-target="tasks">Tasks</a>
+    </li>
+  </ul>
 
-<div class="tabpane" id="tasks">
-  <template ngFor let-project [ngForOf]="projects">
-    <app-task-card
+  <div id="projects" class="tabpane active">
+    <app-project-card
       [project]="project"
-      [task]="projectTask"
-      (onDelete)="deleteProjectTask(projectTask)"
-      *ngFor="let projectTask of project.projectTasks">
-    </app-task-card>
-  </template>
+      (onDelete)="deleteProject(project)"
+      *ngFor="let project of projects | orderBy: sortType; let i = index">
+    </app-project-card>
+  </div>
+
+  <div class="tabpane" id="tasks">
+    <template ngFor let-project [ngForOf]="projects">
+      <app-task-card
+        [project]="project"
+        [task]="projectTask"
+        (onDelete)="deleteProjectTask(projectTask)"
+        *ngFor="let projectTask of project.projectTasks">
+      </app-task-card>
+    </template>
+  </div>
 </div>

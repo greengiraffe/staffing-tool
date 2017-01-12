@@ -13,7 +13,7 @@ const userRoutes: Routes = [
     {
         path: 'usr',
         children: [
-            { path: '', redirectTo: 'home', component: HomeComponent},
+            { path: '', component: HomeComponent},
             { path: 'home', component: HomeComponent},
             { path: 'profile', component: UserProfileComponent },
             { path: 'profile/edit', component: UserProfileEditComponent },

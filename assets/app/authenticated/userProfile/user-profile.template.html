@@ -1,18 +1,14 @@
 <div class="user-profile-page">
-  <header class="row">
-    <div class="profile-header col-xs-12">
-      <h1>{{user?.firstName}} {{user?.lastName}} <span *ngIf="user?.role == 'user_creator'">(HR)</span><span *ngIf="user?.role == 'freelancer'">(Freelancer)</span></h1>
-      <button class="profile-edit-btn btn btn-secondary" routerLink="edit">Edit Profile</button>
-    </div>
-  </header>
 
-  <div class="profile-container row">
 
-    <div class="picture-container col-md-4">
-      <img class="profile-picture" src="/img/user.png" alt="Profile picture">
+  <div class="profile-container">
+
+    <div class="picture-container">
+      <img src="/img/user.png" alt="Profile picture">
+      <span>{{user?.firstName}} {{user?.lastName}}</span>
     </div>
 
-    <dl class="profile-info col-md-4">
+    <dl class="profile-info">
       <dt>Email</dt>
       <dd>{{user?.email}}</dd>
 
@@ -26,25 +22,58 @@
       <template [ngIf]="!user?.phone">
         <dd>n/a</dd>
       </template>
+
     </dl>
-
+    <button type="button" class="btn btn-outline-secondary btn-sm edit-profile-btn" routerLink="edit">
+      Edit <i class="fa fa-2x fa-pencil-square"></i>
+    </button>
   </div>
 
-  <app-user-skill-list class="skill-list"></app-user-skill-list>
+  <div class="user-profile-content">
 
-  <!--<h4 class="tasks-header">Current Tasks</h4>-->
-   <!--&lt;!&ndash; TODO Task List&ndash;&gt;-->
-  <span *ngIf="user?.role != 'freelancer'">
-  <h4 class="projects-header">Created Projects</h4>
-  <div class="project-type confirmed">confirmed</div>
-  <div class="project-type tentative">tentative</div>
-  <div class="project-type internal">internal</div>
-  <div class="project-container">
-    <div class="card-block"  *ngFor="let project of projects; let i = index" routerLink="../project/show/{{project?._id}}" >
-      <h5 class="card-title {{ project?.type }}">{{ project?.title }}</h5>
-      <div class="card-text" >{{ project?.client }}</div>
-      <div class="card-text">{{ project?.start | date:"dd/MM/yy" }} - {{ project?.end | date:"dd/MM/yy"}}</div>
+    <div class="bar" [ngClass]="{'expanded': showTask}">
+      <div class="bar-head" (click)="toggleTask()">
+        Current Tasks
+        <i class="fa fa-chevron-right" [ngClass]="{'down': showTask}"></i>
+      </div>
+      <div class="bar-content" [@expand]="getState(showTask)">
+        <div class="task-bar" *ngFor="let task of tasks">
+          <div class="task-lefty">
+            <span class="task-title">{{task.title}}</span><br />
+            <span class="task-client">{{task.client}}</span>
+          </div>
+          <span class="task-description">{{task.description}}</span>
+        </div>
+      </div>
     </div>
+    <div class="bar" [ngClass]="{'expanded': showProject}" >
+      <div class="bar-head" (click)="toggleProject()" >
+        Created Projects
+        <i class="fa fa-chevron-right" [ngClass]="{'down': showProject}"></i>
+      </div>
+      <div class="bar-content project" [@expand]="getState(showProject)">
+        <div class="project-type confirmed"><img src="/img/pikto/2_Confirmed.svg"><br />confirmed</div>
+        <div class="project-type tentative"><img src="/img/pikto/3_Tentative.svg"><br />tentative</div>
+        <div class="project-type internal"><img src="/img/pikto/4_Internal.svg"><br />internal</div>
+        <!--<div class="project-container">-->
+          <!--<div class="card-block"  *ngFor="let project of projects; let i = index" routerLink="../project/show/{{project?._id}}" >-->
+            <!--<h5 class="card-title {{ project?.type }}">{{ project?.title }}</h5>-->
+            <!--<div class="card-text" >{{ project?.client }}</div>-->
+            <!--<div class="card-text">{{ project?.start | date:"dd/MM/yy" }} - {{ project?.end | date:"dd/MM/yy"}}</div>-->
+          <!--</div>-->
+        <!--</div>-->
+      </div>
+    </div>
+    <div class="bar" [ngClass]="{'expanded': showSkill}" >
+      <div class="bar-head" (click)="toggleSkill()" >
+        Skills
+        <i class="fa fa-chevron-right" [ngClass]="{'down': showSkill}"></i>
+      </div>
+      <div class="bar-content" [@expand]="getState(showSkill)">
+        <app-user-skill-list class="skill-list"></app-user-skill-list>
+      </div>
+    </div>
+
   </div>
-</span>
+
 </div>

@@ -7,7 +7,6 @@ const setupPassport = require('./server/services/passport');
 
 let express = require('express');
 let path = require('path');
-let favicon = require('serve-favicon');
 let logger = require('morgan');
 let cookieParser = require('cookie-parser');
 let bodyParser = require('body-parser');
@@ -29,7 +28,6 @@ let app = express();
 app.set('views', path.join(__dirname, 'server/views'));
 app.set('view engine', 'hbs');
 
-app.use(favicon(path.join(__dirname, 'public/img', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
