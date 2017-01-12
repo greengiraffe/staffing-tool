@@ -12,7 +12,7 @@ import { AppComponent } from "./app.component";
 import { AppRoutingModule } from "./app.routing";
 import { SharedModule } from "./shared.module";
 
-import { NavComponent } from "./nav.component";
+import { NavComponent } from "./nav/nav.component";
 import { LoginComponent } from "./login/login.component";
 import { OnboardingModule } from "./onboarding/onboarding.module";
 import { UserModule } from "./authenticated/user.module";
