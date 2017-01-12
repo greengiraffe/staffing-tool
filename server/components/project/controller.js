@@ -58,6 +58,20 @@ router.post('/project/task/:id', function(req, res, next) {
 });
 
 /**
+ * Remove Task from Project
+ */
+router.delete('/project/task/:id', function(req, res, next) {
+    Project.removeProjectTask(req.params.id, req.body)
+        .then(function(result){
+           res.status(result.statusCode).json(result);
+        })
+        .catch(function(err){
+            res.status(err.statusCode).json(err);
+        });
+});
+
+
+/**
  * Change Status of Task
  */
 router.put('/project/task/:id', function (req, res, next) {

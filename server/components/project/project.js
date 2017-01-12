@@ -111,6 +111,42 @@ module.exports = {
         });
     },
 
+    removeProjectTask: function(id, projectTask) {
+        return new Proimise(function (resolve, reject) {
+            if (err) return handleError(err);
+            Project.findById(id, function(err, project) {
+                if(err) {
+                    reject({
+                        message: "Project could not be found",
+                        statusCode: 500,
+                        obj: err
+                    });
+                } else if (!project) {
+                      reject({
+                          message : "No project document for " + id,
+                          statusCode: 404
+                      });
+                } else {
+                    project.Task.remove(function(err, result) {
+                        if (err) {
+                            reject({
+                                message : "Database error",
+                                statusCode: 500,
+                                obj: err
+                            });
+                        } else {
+                            resolve({
+                                message : "Project deleted successfully",
+                                statusCode: 200,
+                                obj: result
+                            });
+                        }
+                    });
+                }
+            });
+        });
+    },
+
     /**
      * Update Task Status
      * @param id of task
