@@ -13,25 +13,27 @@ import { Router } from "@angular/router";
 })
 
 export class NavComponent {
-    user: User;
     private isAdminUser = false;
     private isActiveDropdown = false;
 
-    constructor(private auth: AuthService,
+    user: User;
+
+    constructor(private authService: AuthService,
                 private userService: UserService,
                 private router: Router) {}
 
     ngOnInit() {
-        let currentUserId = localStorage.getItem("userId");
+        const currentUser = this.authService.currentUser();
 
-        this.userService.getUserById(currentUserId)
-            .subscribe(
-                (user: User) => {
-                    this.user = user,
-                    this.isAdminUser = user.role === "admin";
-                },
-                error => console.log(error)
-        );
+        if (currentUser) {
+            this.isAdminUser = currentUser.role === "admin";
+
+            this.userService.getUserById(currentUser._id)
+                .subscribe(
+                    (user: User) => this.user = user,
+                    error => console.log(error)
+            );
+        }
     }
 
     toggleDropdown(event) {
@@ -41,5 +43,9 @@ export class NavComponent {
 
     closeDropdown() {
         this.isActiveDropdown = false;
+    }
+
+    logout() {
+        this.authService.logout();
     }
 }

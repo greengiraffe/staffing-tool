@@ -4,6 +4,7 @@ import { User } from "../../_models/user.model";
 import { UserService } from "../../_services/user.service";
 import { SkillService } from "../../_services/skill.service";
 import { SkillSearchService } from "../../_services/skill-search.service";
+import { AuthService } from "../../_services/auth.service";
 
 
 @Component({
@@ -15,43 +16,49 @@ import { SkillSearchService } from "../../_services/skill-search.service";
 
 export class UserProfileEditComponent {
 
-    user;
+    user: User;
     email;
     location;
     phone;
-    currentProfilePicture;
+    pictureElement;
     imgToUpload: File;
 
     constructor(private userService: UserService,
+                private authService: AuthService,
 				private skillSearchService: SkillSearchService,
 				private renderer: Renderer,
 				private router: Router) {}
 
     ngOnInit() {
-        this.userService.getUserById(localStorage.getItem("userId"))
-            .subscribe(
-                (user: any)  => {
-                    this.user = new User(
-                                    user.email, 
-                                    user.password, 
-                                    user.role, 
-                                    user.location, 
-                                    user.firstName, 
-                                    user.lastName,
-                                    user.phone,
-                                    user.userSkills,
-                                    user._id
-                                    )},
-                error => console.log(error)
-            );
-        this.currentProfilePicture = document.getElementsByClassName('profile-picture')[0];
-        this.userService.getUserImage(localStorage.getItem("userId"))
-            .subscribe(
-                data =>  this.renderer.setElementProperty(this.currentProfilePicture, 'src', data),
-                error => console.log(error)
-            );
+        const currentUser = this.authService.currentUser();
+        this.pictureElement = document.getElementsByClassName('profile-picture')[0];
 
+        if (currentUser) {
+            this.userService.getUserById(currentUser._id)
+                .subscribe(
+                    (user: any)  => {
+                        this.user = new User(
+                            user.email,
+                            user.password,
+                            user.role,
+                            user.location,
+                            user.firstName,
+                            user.lastName,
+                            user.phone,
+                            user.userSkills,
+                            user._id
+                        )},
+                    error => console.log(error)
+                );
+
+            this.userService.getUserImage(currentUser._id)
+                .subscribe(
+                    data =>  this.renderer.setElementProperty(this.pictureElement, 'src', data),
+                    error => console.log(error)
+                );
+        }
     }
+
     /**
      * Updates the current user
      */
@@ -73,7 +80,7 @@ export class UserProfileEditComponent {
     upload() {
         this.userService.uploadUserImage(this.user._id, this.imgToUpload)
             .subscribe(
-                data =>  this.renderer.setElementProperty(this.currentProfilePicture, 'src', data),
+                data =>  this.renderer.setElementProperty(this.pictureElement, 'src', data),
                 error => console.log(error)
             );
     }

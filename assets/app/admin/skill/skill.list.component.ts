@@ -4,6 +4,7 @@ import { FlashMessagesService } from "angular2-flash-messages";
 import { Skill } from "../../_models/skill.model";
 import { SkillService } from "../../_services/skill.service";
 import { ModalService } from "../../_services/modal.service";
+import { AuthService } from "../../_services/auth.service";
 
 
 @Component({
@@ -11,15 +12,19 @@ import { ModalService } from "../../_services/modal.service";
     templateUrl: './skill.list.template.html',
 })
 export class SkillListComponent implements OnInit {
+    private deleteSkillModalIds = new Array<string>();
+    private currentUserCanRemove = false;
+
     skills: Skill[];
-    deleteSkillModalIds = new Array<string>();
-    userRole: string;
 
     constructor(private skillService: SkillService,
+                private authService: AuthService,
                 private _flash: FlashMessagesService,
                 private modalService: ModalService) {}
 
     ngOnInit() {
+        const currentUser = this.authService.currentUser();
+
         this.skillService.getSkills()
             .subscribe(
                 (skills: Skill[]) => {
@@ -29,7 +34,10 @@ export class SkillListComponent implements OnInit {
                     });
                 }
             );
-        this.userRole = localStorage.getItem('role');
+
+        if (currentUser) {
+            this.currentUserCanRemove = currentUser.role === 'admin' || currentUser.role === 'user_creator';
+        }
     }
 
     deleteSkill(skill: Skill, index: number) {

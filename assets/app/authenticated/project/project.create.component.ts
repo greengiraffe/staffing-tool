@@ -7,6 +7,7 @@ import { ProjectTask } from "../../_models/project-task.model";
 import { ProjectService } from "../../_services/project.service";
 import { ModalService } from "../../_services/modal.service";
 import { TaskCreateComponent } from "../task/task.create.component";
+import { AuthService } from "../../_services/auth.service";
 
 
 @Component({
@@ -16,7 +17,8 @@ import { TaskCreateComponent } from "../task/task.create.component";
     styleUrls: ['project.create.style.scss']
 })
 export class ProjectCreateComponent implements OnInit {
-    constructor(private ProjectService: ProjectService,
+    constructor(private projectService: ProjectService,
+                private authService: AuthService,
                 private _flash: FlashMessagesService,
                 private _fb: FormBuilder,
                 private modalService: ModalService,
@@ -50,7 +52,7 @@ export class ProjectCreateComponent implements OnInit {
     prepareEdit() {
         this.route.params
             .switchMap((params: Params) =>
-                this.ProjectService.getProjectById(params['id']))
+                this.projectService.getProjectById(params['id']))
                 .subscribe((project: Project) => {
                     this.project = project;
                     this.isEditing = true;
@@ -132,10 +134,7 @@ export class ProjectCreateComponent implements OnInit {
 
     onSubmit(form: FormGroup) {
         // Create
-        let creator = localStorage.getItem('userId');
-        if(this.isEditing) {
-            creator = this.project.creator._id
-        }
+        const creator = this.isEditing ? this.project.creator._id : this.authService.currentUser()._id;
 
         const project = new Project(
             creator,
@@ -152,7 +151,7 @@ export class ProjectCreateComponent implements OnInit {
         );
 
         if(!this.isEditing) {
-            this.ProjectService.createProject(project)
+            this.projectService.createProject(project)
             .subscribe(
                 data => {
                     this._flash.show("Project successfully added", { cssClass: 'alert-success', timeout: 5000 });
@@ -166,7 +165,7 @@ export class ProjectCreateComponent implements OnInit {
             );
         } else {
             project._id = this.project._id;
-            this.ProjectService.updateProject(project)
+            this.projectService.updateProject(project)
                 .subscribe(
                     data => {
                         this.router.navigateByUrl('usr/project/show/' + this.project._id);

@@ -22,7 +22,7 @@ import { FilterPipe } from "../_pipes/filter.pipe";
 import { OrderByPipe } from "../_pipes/orderBy.pipe";
 
 import { ModalComponent } from "../modal/modal.component";
-import { CardComponent } from "../card/card.component";
+import { CardComponent } from "./project/card/project.card.component";
 
 
 @NgModule({

@@ -12,7 +12,7 @@
       <td>{{ skill.name }}</td>
       <td class="text-xs-right">
         <button class="btn btn-sm btn-outline-danger" (click)="modalService.open(deleteSkillModalIds[i])"
-        *ngIf="userRole === 'admin' || userRole === 'user_creator'">
+        *ngIf="currentUserCanRemove">
           Delete
         </button>
       </td>

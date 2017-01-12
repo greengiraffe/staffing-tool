@@ -9,8 +9,6 @@ import {Router} from "@angular/router";
 
 @Injectable()
 export class AuthService {
-    // logged in user:
-    private user: User;
 
     constructor(private http: Http, private router: Router) {}
 
@@ -32,9 +30,7 @@ export class AuthService {
                     res.user._id
                 );
                 localStorage.setItem('token', res.token);
-                localStorage.setItem('displayUser', res.user.firstName + ' ' + res.user.lastName);
-                localStorage.setItem('userId', res.user._id);
-                localStorage.setItem('role', res.user.role);
+                localStorage.setItem('user', JSON.stringify(user));
             })
             .catch((error: Response) => Observable.throw(error.json()));
     }
@@ -48,7 +44,7 @@ export class AuthService {
         return tokenNotExpired();
     }
 
-    getLoggedUser() {
-        return this.user;
+    currentUser(): User {
+        return JSON.parse(localStorage.getItem('user'));
     }
 }

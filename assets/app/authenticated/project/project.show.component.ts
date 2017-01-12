@@ -8,6 +8,8 @@ import { Project } from "../../_models/project.model";
 import { Skill } from "../../_models/skill.model";
 
 import 'rxjs/add/operator/switchMap';
+import { AuthService } from "../../_services/auth.service";
+import { User } from "../../_models/user.model";
 
 @Component({
     selector: 'app-project-show',
@@ -17,46 +19,34 @@ import 'rxjs/add/operator/switchMap';
 })
 
 export class ProjectShowComponent implements OnInit {
-    userId: string;
-    userRole: string;
+    private currentUserCanEdit = false;
+
     project: Project;
-    isAuthorized: boolean = false;
     idsOfLoadedPictures = new Array<string>();
 
     constructor(
         private projectService: ProjectService,
         private skillService: SkillService,
         private userService: UserService,
+        private authService: AuthService,
         private route: ActivatedRoute,
         private router: Router,
         private renderer: Renderer
     ) {}
 
     ngOnInit() {
-        this.userId = localStorage.getItem('userId');
-        this.userRole = localStorage.getItem('userRole');
-        this.route.params
-            .switchMap((params: Params) =>
-                this.projectService.getProjectById(params['id']))
+        const currentUser = this.authService.currentUser();
+
+        if (currentUser) {
+            this.route.params
+                .switchMap((params: Params) =>
+                    this.projectService.getProjectById(params['id']))
                 .subscribe((project: Project) => {
                     this.project = project;
+                    this.currentUserCanEdit = this.checkIfUserCanEdit(currentUser);
                     this.loadUserAvatars();
-
-                    //Check if user is authorized to edit this project
-                    //TODO: test this
-                    if(this.userRole === 'admin' || this.userRole === 'user_creator' || this.project.creator._id === this.userId) {
-                        this.isAuthorized = true;
-                    } else {
-                        for(let task of this.project.projectTasks) {
-                            for(let user of task.assignedUsers) {
-                                if(user._id === this.userId) {
-                                    this.isAuthorized = true;
-                                    return;
-                                }
-                            }
-                        }
-                    }
                 });
+        }
     }
 
     loadUserAvatars() {
@@ -81,5 +71,22 @@ export class ProjectShowComponent implements OnInit {
         for (var i = 0; i < images.length; ++i) {
             this.renderer.setElementProperty(images[i], 'src', url)
         }
+    }
+
+    private checkIfUserCanEdit(user: User) {
+        function isAssignedUser(user) {
+            for(let task of this.project.projectTasks) {
+                for(let assignedUser of task.assignedUsers) {
+                    if(assignedUser._id === user._id) {
+                        return true;
+                    }
+                }
+            }
+        }
+
+        return user.role === 'admin' ||
+            user.role === 'user_creator' ||
+            this.project.creator._id === user._id ||
+            isAssignedUser(user);
     }
 }

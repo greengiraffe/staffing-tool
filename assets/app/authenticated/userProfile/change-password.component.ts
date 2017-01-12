@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../_services/user.service';
 import { FormGroup, FormControl, Validators, FormBuilder } from "@angular/forms";
+import { AuthService } from "../../_services/auth.service";
 
 @Component({
   selector: 'app-change-password',
@@ -13,6 +14,7 @@ export class ChangePasswordComponent implements OnInit{
     formsVisible = false;
 
     constructor(private userService: UserService,
+                private authService: AuthService,
                 private _fb: FormBuilder,) {}
 
     ngOnInit(){
@@ -48,7 +50,7 @@ export class ChangePasswordComponent implements OnInit{
 
     onSubmit(form: FormGroup) {
         this.userService.updateUserPassword(
-            localStorage.getItem("userId"),
+            this.authService.currentUser()._id,
             form['oldPw'],
             form['newPw']['password'])
             .subscribe(

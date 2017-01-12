@@ -7,6 +7,7 @@ import { UserService } from "../../_services/user.service";
 import { SkillService } from "../../_services/skill.service";
 import { UserSkill } from "../../_models/user-skill.model";
 import { SkillSearchService } from "../../_services/skill-search.service";
+import { AuthService } from "../../_services/auth.service";
 
 
 @Component({
@@ -26,22 +27,24 @@ export class UserSkillListComponent implements OnInit, OnDestroy {
     skillSearchServiceSubscription;
 
     constructor(private userService: UserService,
+                private authService: AuthService,
                 private skillService: SkillService,
                 private skillSearchService: SkillSearchService) {}
 
     ngOnInit() {
-        this.userService.getUserById(localStorage.getItem("userId"))
-            .subscribe(res => {
-                this.user = res as User;
-                this.fillArrays();
-        });
+        const currentUser = this.authService.currentUser();
 
-        // Add a new skill when it's selected in the skill-search
-        this.skillSearchServiceSubscription = this.skillSearchService.userSkillAdded$
-            .subscribe(userSkill => {
-                this.addSkill(userSkill);
+        if (currentUser) {
+            this.userService.getUserById(currentUser._id)
+                .subscribe(res => {
+                    this.user = res as User;
+                    this.fillArrays();
             });
 
+            // Add a new skill when it's selected in the skill-search
+            this.skillSearchServiceSubscription = this.skillSearchService.userSkillAdded$
+                .subscribe(userSkill => this.addSkill(userSkill));
+        }
     }
 
     /**
