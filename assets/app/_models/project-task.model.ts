@@ -6,6 +6,7 @@ export class ProjectTask {
     constructor(public title: string,
                 public description: string,
                 public requiredSkills: Skill[],
-                public assignedUsers?: User[]
+                public assignedUsers?: User[],
+                public interestedUsers?: User[]
               ) { }
 }
