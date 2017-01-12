@@ -26,20 +26,23 @@ export class ModalComponent implements OnInit {
         this.modalService.registerModal(this);
     }
 
-    hideBodyScroll() {
-        if(this.isOpen) {
-            document.body.className += " modal-open";
+    close(checkBlocking = false) {
+        if (checkBlocking && this.isBlocking) {
+            return;
         }
+        this.isOpen = false;
+		document.body.className = document.body.className.replace(/modal-open\b/, "");
     }
 
-    addBodyScroll() {
-        if(!this.isOpen) {
-            document.body.className = document.body.className.replace(/modal-open\b/, "");
-        }
+    open() {
+        this.isOpen = true;
+		document.body.className += " modal-open";
     }
-    private close(event, checkBlocking = false) {
+
+
+    private onCloseIconClick(event, checkBlocking = false) {
         event.stopPropagation();
-        this.modalService.close(this.modalId, checkBlocking);
+        this.close(checkBlocking);
     }
 
     private keyup(event: KeyboardEvent) {

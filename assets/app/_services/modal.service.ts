@@ -24,8 +24,7 @@ export class ModalService {
         const modal = this.findModal(modalId);
 
         if (modal) {
-            modal.isOpen = true;
-            modal.hideBodyScroll();
+            modal.open();
         }
     }
 
@@ -33,11 +32,7 @@ export class ModalService {
         const modal = this.findModal(modalId);
 
         if (modal) {
-            if (checkBlocking && modal.isBlocking) {
-                return;
-            }
-            modal.isOpen = false;
-            modal.addBodyScroll();
+            modal.close(checkBlocking);
         }
     }
 
