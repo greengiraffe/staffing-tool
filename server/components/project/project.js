@@ -111,39 +111,32 @@ module.exports = {
         });
     },
 
-    removeProjectTask: function(id, projectTask) {
-        return new Proimse(function (resolve, reject) {
-            if (err) return handleError(err);
-            Project.findById(id, function(err, project) {
-                if(err) {
-                    reject({
-                        message: "Project could not be found",
-                        statusCode: 500,
-                        obj: err
-                    });
-                } else if (!project) {
+    removeProjectTask: function(projectId, projectTask) {
+        return new Promise(function (resolve, reject) {
+            Project.update(
+              { '_id' : projectId },
+              { $pull: { 'projectTasks': { _id: projectTask._id } } },
+              { safe : true },
+              function callback(err, obj) {
+                  if(err) {
                       reject({
-                          message : "No project document for " + id,
+                          message: "Database error",
+                          statusCode: 500,
+                          obj: err
+                      });
+                  } else if(obj.nModified == 0) {
+                      reject({
+                          message: "No matching documents",
                           statusCode: 404
                       });
-                } else {
-                    project.Task.remove(function(err, result) {
-                        if (err) {
-                            reject({
-                                message : "Database error",
-                                statusCode: 500,
-                                obj: err
-                            });
-                        } else {
-                            resolve({
-                                message : "Project deleted successfully",
-                                statusCode: 200,
-                                obj: result
-                            });
-                        }
-                    });
-                }
-            });
+                  } else {
+                      resolve({
+                          message: "Task removed successfully",
+                          statusCode: 200,
+                          obj: obj
+                      });
+                  }
+              } )
         });
     },
 
