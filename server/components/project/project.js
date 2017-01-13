@@ -147,39 +147,32 @@ module.exports = {
         });
     },
 
-    updateProjectTask: function(id, projectTask) {
-        projectTask = transformProjectTaskSkills(projectTask);
-
+    updateProjectTask: function(projectId, projectTask) {
         return new Promise(function (resolve, reject) {
-            if (err) return handleError(err);
-            Project.findById(id, function(err, project) {
-               if(err) {
-                   reject({
-                       message: "Database error",
-                       statusCode: 500,
-                       obj: err
-                   });
-               } else if (!project) {
-                  reject({
-                      message: "No project document for " + id,
-                      statusCode: 404,
-                  });
-               } else {
-                  Project.Task.findByIdAndUpdate(projectTask._id, { $set: projectTask}, function(err, project) {
-                      if (err) {
-                          reject({
-                              message: "Database error",
-                              statusCode: 500,
-                              obj: err
-                            });
-                      } else {
-                          resolve({
-                              message: "Task updated successfully"
-                          });
-                      }
-                  });
-              }
-            });
+            Project.update(
+              { 'projectTasks._id' : projectTask._id },
+              { $set: { 'projectTasks.$': projectTask } },
+              { safe : true },
+              function callback(err, obj) {
+                  if(err) {
+                      reject({
+                          message: "Database error",
+                          statusCode: 500,
+                          obj: err
+                      });
+                  } else if(obj.nModified == 0) {
+                      reject({
+                          message: "No matching documents",
+                          statusCode: 404
+                      });
+                  } else {
+                      resolve({
+                          message: "Task updated successfully",
+                          statusCode: 200,
+                          obj: obj
+                      });
+                  }
+              } )
         });
     },
 
