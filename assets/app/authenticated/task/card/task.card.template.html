@@ -1,0 +1,18 @@
+<div class="card">
+  <div class="actions">
+    <button *ngIf="currentUserCanDelete" class="btn remove" type="button" (click)="modalService.open(deleteTaskModalId)"><i class="fa fa trash"></i></button>
+    <button *ngIf="currentUserCanEdit" class="btn edit" routerLink="/usr/project/edit/{{task?._id}}"><i class="fa fa-pencil"></i></button>
+  </div>
+
+  <h6 class="kicker"> {{ project.title}} {{ project.start | date:"dd.MM.yyyy" }} – {{ project.end | date:"dd.MM.yyyy" }} {{ project.client }}</h6>
+  <h3 class="title" (click)="show.Task()">{{ task.title }}</h3>
+  <p class="description">{{ task.description }}</p>
+
+  <app-modal [modal-id]="deleteTaskModalId" modal-title="Delete Task {{ task?.title }}">
+    <span modal-body>Are you sure that you want to delete this task?</span>
+    <div modal-footer class="text-xs-right">
+      <button type="button" class="btn btn-secondary" (click)="modalService.close(deleteTaskModalId)">Cancel</button>
+      <button type="button" class="btn btn danger" (click)="delete(task)">Delete</button>
+    </div>
+  </app-modal>
+</div>
