@@ -6,7 +6,8 @@ let projectTask = new Schema({
     description: {type: String, required: true},
     status: {type: String, enum: ['upcoming', 'progress', 'done', 'rejected'], default: 'upcoming', required: true},
     requiredSkills: [{type: Schema.Types.ObjectId, ref: 'Skill'}],
-    assignedUsers: [{type: Schema.Types.ObjectId, ref: 'User'}]
+    assignedUsers: [{type: Schema.Types.ObjectId, ref: 'User'}],
+    interestedUsers: [{type: Schema.Types.ObjectId, ref: 'User'}]
 });
 
 let projectSchema = new Schema({

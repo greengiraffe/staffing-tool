@@ -12,7 +12,8 @@ const transformProjectTaskSkills = function (projectTasks) {
             description: task.description,
             status: task.status,
             requiredSkills: task.requiredSkills.map(skill => skill._id),
-            assignedUsers: task.assignedUsers
+            assignedUsers: task.assignedUsers,
+            interestedUsers: task.interestedUsers
         };
 
         transformedProjectTasks.push(projectTask);
@@ -66,6 +67,7 @@ module.exports = {
             .populate('creator', '_id firstName lastName')
             .populate('projectTasks.requiredSkills')
             .populate('projectTasks.assignedUsers', '-password -email -__v -role')
+            .populate('projectTasks.interestedUsers', '-password -email -__v -role')
             .exec();
     },
 
@@ -75,6 +77,7 @@ module.exports = {
             .populate('creator', '_id firstName lastName')
             .populate('projectTasks.requiredSkills')
             .populate('projectTasks.assignedUsers', '-password -email -__v -role')
+            .populate('projectTasks.interestedUsers', '-password -email -__v -role')
             .exec();
     },
 
