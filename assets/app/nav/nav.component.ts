@@ -14,6 +14,7 @@ import { Router } from "@angular/router";
 
 export class NavComponent {
     private isAdminUser = false;
+    private isInternUser = false;
     private isActiveDropdown = false;
 
     user: User;
@@ -27,6 +28,7 @@ export class NavComponent {
 
         if (currentUser) {
             this.isAdminUser = currentUser.role === "admin";
+            this.isInternUser = currentUser.role != "freelancer";
 
             this.userService.getUserById(currentUser._id)
                 .subscribe(

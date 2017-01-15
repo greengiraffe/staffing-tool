@@ -1,7 +1,7 @@
 <div class="user-profile-page">
   <header class="row">
     <div class="profile-header col-xs-12">
-      <h1>{{user?.firstName}} {{user?.lastName}} <span *ngIf="user?.role == 'user_creator'">(HR)</span></h1>
+      <h1>{{user?.firstName}} {{user?.lastName}} <span *ngIf="user?.role == 'user_creator'">(HR)</span><span *ngIf="user?.role == 'freelancer'">(Freelancer)</span></h1>
       <button class="profile-edit-btn btn btn-secondary" routerLink="edit">Edit Profile</button>
     </div>
   </header>
@@ -34,7 +34,7 @@
 
   <!--<h4 class="tasks-header">Current Tasks</h4>-->
    <!--&lt;!&ndash; TODO Task List&ndash;&gt;-->
-
+  <span *ngIf="user?.role != 'freelancer'">
   <h4 class="projects-header">Created Projects</h4>
   <div class="project-type confirmed">confirmed</div>
   <div class="project-type tentative">tentative</div>
@@ -44,7 +44,7 @@
       <h5 class="card-title {{ project?.type }}">{{ project?.title }}</h5>
       <div class="card-text" >{{ project?.client }}</div>
       <div class="card-text">{{ project?.start | date:"dd/MM/yy" }} - {{ project?.end | date:"dd/MM/yy"}}</div>
-
     </div>
   </div>
+</span>
 </div>
