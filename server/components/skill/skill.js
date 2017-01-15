@@ -31,9 +31,9 @@ module.exports = {
                 } else if(!skill) {
                     reject({
                         message : "No skill document for " + id,
-                        statusCode: 404
+                        statusCode: 400
                     });
-                } else {    
+                } else {
                     skill.remove(function(err, result) {
                         if(err) {
                             reject({
@@ -48,34 +48,11 @@ module.exports = {
                                 obj: result
                             });
                         }
-                    });        
-                }
-                
-            });            
-        });
-        /*return new Promise (function(resolve, reject) {
-            Skill.remove({_id : id}, function(err, result) {
-                if(err) {
-                    reject({
-                        message : "Database error",
-                        statusCode: 500,
-                        obj: err
                     });
-                } else {
-                    if(result.result.n == 0) {
-                        reject({
-                            message : "No skill document for " + id,
-                            statusCode: 404,
-                        });
-                    } else {
-                        resolve({
-                            message : "Skill deleted successfully",
-                            statusCode: 200,
-                        });
-                    }
                 }
+
             });
-        });*/
+        });
 
     },
 
@@ -95,7 +72,7 @@ module.exports = {
                 } else if(!skill) {
                     reject({
                         message : "No skill document for " + id,
-                        statusCode: 404
+                        statusCode: 400
                     });
                 } else {
                     resolve(skill);
@@ -121,9 +98,9 @@ module.exports = {
                 } else if(!skill) {
                     reject({
                         message : "No skill document for " + id,
-                        statusCode: 404
+                        statusCode: 400
                     });
-                } else {    
+                } else {
                     skill.name = new_name;
                     skill.__v++;
                     skill.save(function(err, result) {
@@ -140,10 +117,10 @@ module.exports = {
                                 obj: result
                             });
                         }
-                    });        
+                    });
                 }
-                
-            });            
+            });
         })
     }
+
 };
