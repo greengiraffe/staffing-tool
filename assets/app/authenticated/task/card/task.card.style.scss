@@ -94,7 +94,30 @@
   font-weight: 400;
   background-color: $grey-medium;
 
+  + .tag {
+    margin-left: 8px;
+  }
+
   &.priority {
     background-color: orangered;
+  }
+}
+
+.required-skills,
+.assigned-users {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.assigned-users-title {
+  margin-top: 24px;
+}
+
+.user {
+  margin: 0;
+
+  &.current {
+    color: $ixds-green;
   }
 }

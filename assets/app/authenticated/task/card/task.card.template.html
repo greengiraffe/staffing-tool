@@ -16,6 +16,15 @@
   </h6>
   <h3 class="title" (click)="showProject()">{{ task.title }}</h3>
   <p class="description">{{ task.description }}</p>
+  <ul class="required-skills">
+    <li *ngFor="let skill of task.requiredSkills" class="skill tag">{{ skill.name }}</li>
+  </ul>
+  <div *ngIf="task.assignedUsers.length > 0">
+    <h6 class="assigned-users-title">Assigned People:</h6>
+    <ul class="assigned-users">
+      <li *ngFor="let user of task.assignedUsers" [class.current]="user._id === currentUser._id" class="user">{{ user.firstName }} {{ user.lastName }}</li>
+    </ul>
+  </div>
 
   <app-modal [modal-id]="deleteTaskModalId" modal-title="Delete Task {{ task?.title }}">
     <span modal-body>Are you sure that you want to delete this task?</span>

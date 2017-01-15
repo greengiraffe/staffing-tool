@@ -20,22 +20,26 @@ export class TaskCardComponent {
 
     private currentUserCanDelete = false;
     private currentUserCanEdit = false;
-    private currentUserIsInterested: boolean = false;
+    private currentUserIsInterested = false;
+    private currentUserIsAssigned = false;
     private deleteTaskModalId = "deleteTaskModal" + (0 | Math.random() * 6.04e7).toString(36);
-    private user;
+    private currentUser;
 
 
     constructor(private modalService: ModalService, private authService: AuthService, private projectService: ProjectService, private router: Router) {
     }
 
     ngOnInit() {
-        this.user = this.authService.currentUser();
+        this.currentUser = this.authService.currentUser();
 
-        if (this.user) {
-            this.currentUserCanDelete = this.user.role === "admin" || this.project.creator._id === this.user._id;
-            this.currentUserCanEdit = this.user.role === "admin" || this.project.creator._id === this.user._id;
-            this.currentUserIsInterested = !!this.task.interestedUsers.find(user => user._id === this.user._id);
+        if (this.currentUser) {
+            this.currentUserCanDelete = this.currentUser.role === "admin" || this.project.creator._id === this.currentUser._id;
+            this.currentUserCanEdit = this.currentUser.role === "admin" || this.project.creator._id === this.currentUser._id;
+            this.currentUserIsInterested = !!this.task.interestedUsers.find(user => user._id === this.currentUser._id);
+            this.currentUserIsAssigned = !!this.task.assignedUsers.find(user => user._id === this.currentUser._id);
         }
+
+        console.log(this.currentUser.fullName)
     }
 
     showProject() {
@@ -50,9 +54,9 @@ export class TaskCardComponent {
         this.currentUserIsInterested = !this.currentUserIsInterested;
 
         if (this.currentUserIsInterested) {
-            this.task.interestedUsers.push(this.user);
+            this.task.interestedUsers.push(this.currentUser);
         } else {
-            let userIndex = this.task.interestedUsers.indexOf(this.user);
+            let userIndex = this.task.interestedUsers.indexOf(this.currentUser);
             this.task.interestedUsers.splice(userIndex, 1)
         }
 
