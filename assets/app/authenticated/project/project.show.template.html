@@ -11,7 +11,7 @@
       <li><b>Description:</b> {{project?.description}}</li>
     </ul>
     <button class="edit-project-btn btn btn-secondary" routerLink="../../edit/{{project?._id}}"
-     *ngIf="isAuthorized">Edit Project</button>
+     *ngIf="currentUserCanEdit">Edit Project</button>
   </header>
 
   <section class="task-section">
