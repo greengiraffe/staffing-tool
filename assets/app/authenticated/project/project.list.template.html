@@ -1,7 +1,19 @@
-<h2>All Projects</h2>
+<ul class="nav nav-tabs" role="tablist">
+  <li class="nav-item">
+    <a class="nav-link active" role="tab" (click)="toggleTabs($event, 0)" data-target="projects">Projects</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" role="tab" (click)="toggleTabs($event, 1)" data-target="tasks">Tasks</a>
+  </li>
+</ul>
 
-<app-project-card
-  [project]="project"
-  (onDelete)="deleteProject(project)"
-  *ngFor="let project of projects | orderBy: sortType; let i = index">
-</app-project-card>
+<div  id="projects">
+  <app-project-card
+    [project]="project"
+    (onDelete)="deleteProject(project)"
+    *ngFor="let project of projects | orderBy: sortType; let i = index">
+  </app-project-card>
+</div>
+<div
+  id="tasks">/* TASKLIST GOES HERE */
+</div>

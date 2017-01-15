@@ -30,4 +30,17 @@ export class ProjectListComponent implements OnInit {
             );
     }
 
+    toggleTabs(event, index) {
+        let li = event.target;
+        let activeLi = document.querySelectorAll('a[role="tab"]');
+        for (var i = 0; i < activeLi.length; ++i) {
+            activeLi[i].classList.remove("active");
+            let divToHide = document.getElementById(activeLi[i].getAttribute('data-target'));
+            divToHide.style.display = "none";
+        }
+        li.classList.add("active");
+        let divToShow = document.getElementById(li.getAttribute('data-target'));
+        divToShow.style.display = "block";
+    }
+
 }
