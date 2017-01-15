@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { User } from '../../_models/user.model';
 import { Skill } from "../../_models/skill.model";
 import { UserService } from '../../_services/user.service';
@@ -25,6 +25,7 @@ import { UserSearchService } from '../../_services/user.search.service';
 })
 
 export class UserSearchComponent implements OnInit {
+    @Input() requiredSkills;
     users: User[];
     visibleUsers: any[] = [];
     hiddenUsers: any[] = [];
@@ -115,6 +116,7 @@ export class UserSearchComponent implements OnInit {
     }
 
     openUserList(){
+        this.calculateMatch(this.requiredSkills);
         this.sortUsers();
         this.showUserList = true;
     }
