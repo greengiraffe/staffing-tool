@@ -20,9 +20,9 @@ export class TaskCardComponent {
 
     private currentUserCanDelete = false;
     private currentUserCanEdit = false;
+    private currentUserIsInterested: boolean = false;
     private deleteTaskModalId = "deleteTaskModal" + (0 | Math.random() * 6.04e7).toString(36);
     private user;
-    private isInterested: boolean = false;
 
 
     constructor(private modalService: ModalService, private authService: AuthService, private projectService: ProjectService, private router: Router) {
@@ -32,15 +32,9 @@ export class TaskCardComponent {
         this.user = this.authService.currentUser();
 
         if (this.user) {
-            this.currentUserCanDelete = this.user.role == "admin" || this.project.creator._id == this.user._id;
-            this.currentUserCanEdit = this.user.role == "admin" || this.project.creator._id == this.user._id;
-        }
-
-        for (var i = 0; i < this.task.interestedUsers.length; ++i) {
-            if(this.task.interestedUsers[i]._id === this.user._id) {
-                this.isInterested = true;
-                return;
-            }
+            this.currentUserCanDelete = this.user.role === "admin" || this.project.creator._id === this.user._id;
+            this.currentUserCanEdit = this.user.role === "admin" || this.project.creator._id === this.user._id;
+            this.currentUserIsInterested = !!this.task.interestedUsers.find(user => user._id === this.user._id);
         }
     }
 
@@ -52,17 +46,17 @@ export class TaskCardComponent {
         // TODO show prefilled task.create modal
     }
 
-    addInterestedUser(event) {
-        let star = event.target;
-        if (star.classList.contains("fa-star-o")) {
-            star.classList.remove("fa-star-o");
-            star.classList.add("fa-star");
+    toggleInterest() {
+        this.currentUserIsInterested = !this.currentUserIsInterested;
+
+        if (this.currentUserIsInterested) {
             this.task.interestedUsers.push(this.user);
         } else {
-            star.classList.remove("fa-star");
-            star.classList.add("fa-star-o");
-            this.task.interestedUsers.splice(this.user);
+            let userIndex = this.task.interestedUsers.indexOf(this.user);
+            this.task.interestedUsers.splice(userIndex, 1)
         }
+
+        // TODO use updateTask backend route (needs to be added to the projectService first)
         this.projectService.updateProject(this.project)
             .subscribe(data => console.log(data));
     }

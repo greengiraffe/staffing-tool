@@ -34,6 +34,14 @@
     &.edit:hover {
       color: $grey-dark;
     }
+    
+    &.like:hover {
+      color: $ixds-yellow;
+    }
+
+    &.like.starred {
+      color: $ixds-yellow;
+    }
   }
 }
 
