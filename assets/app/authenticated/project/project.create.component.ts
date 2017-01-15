@@ -127,8 +127,9 @@ export class ProjectCreateComponent implements OnInit {
         this.modalService.open(this.addTaskModalId);
     }
 
-    closeModal(modalId, event) {
+    closeModal(modalId, taskComponent, event) {
         event.stopPropagation();
+        taskComponent.resetForm();
         this.modalService.close(modalId);
     }
 

@@ -127,7 +127,7 @@
         <app-modal [modal-id]="addTaskModalId" modal-title="Add a new Task">
           <app-task-create #taskComponent modal-body></app-task-create>
           <div modal-footer class="text-xs-right">
-            <button type="button" class="btn btn-secondary" (click)="closeModal(addTaskModalId, $event)">Cancel</button>
+            <button type="button" class="btn btn-secondary" (click)="closeModal(addTaskModalId, taskComponent, $event)">Cancel</button>
             <button type="button" class="btn btn-primary" [disabled]="!taskComponent.taskForm.valid" (click)="addProjectTask(taskComponent)">
               Add Task
             </button>
