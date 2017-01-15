@@ -31,7 +31,7 @@ export class ModalComponent implements OnInit {
             return;
         }
         this.isOpen = false;
-		document.body.className = document.body.className.replace(/modal-open\b/, "");
+		document.body.className = document.body.className.replace("modal-open", "");
     }
 
     open() {
