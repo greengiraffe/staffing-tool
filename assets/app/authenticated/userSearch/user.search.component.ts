@@ -13,8 +13,16 @@ import { UserSearchService } from '../../_services/user.search.service';
       placeholder="Search for a User"
       type="text" (click)="openUserList()">
       <div *ngIf="showUserList" class="user-list" [ngSwitch]="clickableUser">
+        <div class="user" *ngFor="let interested of interestedUsers | filter : 'lastName' : searchText"
+         (click)="selectUser(user)">
+         <div class="user-info">
+            {{ interested.firstName }} {{ interested.lastName }}
+            <span class="tag tag-default">interested</span>
+         </div>
+         <div class="user-match" *ngIf="interested.match || interested.match === 0">{{ interested.match | percent}}</div>
+        </div>
         <div class="user" *ngFor="let user of visibleUsers | filter : 'lastName' : searchText" (click)="selectUser(user)">
-            <div class="user-name">{{ user.firstName }} {{ user.lastName }}</div>
+            <div class="user-info">{{ user.firstName }} {{ user.lastName }}</div>
             <div class="user-match" *ngIf="user.match || user.match === 0">{{ user.match | percent}}</div>
         </div>
       </div>
@@ -26,6 +34,7 @@ import { UserSearchService } from '../../_services/user.search.service';
 
 export class UserSearchComponent implements OnInit {
     @Input() requiredSkills;
+    @Input() interestedUsers;
     users: User[];
     visibleUsers: any[] = [];
     hiddenUsers: any[] = [];
@@ -90,27 +99,40 @@ export class UserSearchComponent implements OnInit {
         this.visibleUsers.sort((a, b) => {
             return b.match - a.match;
         })
+
+        if(this.interestedUsers) {
+            this.interestedUsers.sort((a,b) => {
+                return b.match - a.match;
+            })
+        }
     }
 
     calculateMatch(requiredSkills: Skill[]){
-        for(let user of this.visibleUsers){
-            user.match = 0;
-            for(let userSkill of user.userSkills){
-                for(let reqSkill of requiredSkills){
-                    if(userSkill.skill._id === reqSkill._id){
-                        switch(userSkill.rating){
-                            case 0: user.match += 0.25;
-                                    break;
-                            case 1: user.match += 0.7;
-                                    break;
-                            case 2: user.match += 1;
-                                    break;
-                            default: user.match += 0;
+        function doCalculation(users) {
+            for(let user of users)  {
+                user.match = 0;
+                for(let userSkill of user.userSkills) {
+                    for(let reqSkill of requiredSkills) {
+                        if(userSkill.skill._id === reqSkill._id) {
+                            switch(userSkill.rating){
+                                case 0: user.match += 0.25;
+                                        break;
+                                case 1: user.match += 0.7;
+                                        break;
+                                case 2: user.match += 1;
+                                        break;
+                                default: user.match += 0;
+                            }
                         }
                     }
                 }
+                user.match = (user.match / requiredSkills.length);
             }
-            user.match = (user.match / requiredSkills.length);
+        }
+        doCalculation(this.visibleUsers);
+
+        if(this.interestedUsers) {
+            doCalculation(this.interestedUsers);
         }
         this.sortUsers();
     }
