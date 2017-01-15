@@ -13,7 +13,10 @@ import { UserSearchService } from '../../_services/user.search.service';
       placeholder="Search for a User"
       type="text" (click)="openUserList()">
       <div *ngIf="showUserList" class="user-list" [ngSwitch]="clickableUser">
-        <div class="user" *ngFor="let user of visibleUsers | filter : 'lastName' : searchText" (click)="selectUser(user)">{{ user.firstName }} {{ user.lastName }} {{ user.match | percent}}</div>
+        <div class="user" *ngFor="let user of visibleUsers | filter : 'lastName' : searchText" (click)="selectUser(user)">
+            <div class="user-name">{{ user.firstName }} {{ user.lastName }}</div>
+            <div class="user-match" *ngIf="user.match || user.match === 0">{{ user.match | percent}}</div>
+        </div>
       </div>
 
     <p *ngIf="users?.length === 0">There are no more available users.</p>
@@ -84,9 +87,7 @@ export class UserSearchComponent implements OnInit {
 
     sortUsers() {
         this.visibleUsers.sort((a, b) => {
-            if (a.match > b.match) return -1;
-            else if (a.match < b.match) return 1;
-            else return 0;
+            return b.match - a.match;
         })
     }
 
@@ -108,8 +109,9 @@ export class UserSearchComponent implements OnInit {
                     }
                 }
             }
-            user.match = user.match / requiredSkills.length * 100;
+            user.match = (user.match / requiredSkills.length);
         }
+        this.sortUsers();
     }
 
     openUserList(){
