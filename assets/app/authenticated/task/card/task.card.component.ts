@@ -11,10 +11,10 @@ import { Project } from '../../../_models/project.model';
     styleUrls: ['task.card.style.scss']
 })
 
-export class CardComponent {
+export class TaskCardComponent {
 
-    @Input ("project") project: Project;
-    @Input("ProjectTask") projectTask: ProjectTask;
+    @Input("project") project: Project;
+    @Input("task") task: ProjectTask;
     @Output("onDelete") onDelete = new EventEmitter();
 
     private currentUserCanDelete = false;
@@ -34,12 +34,19 @@ export class CardComponent {
         }
     }
 
-    showTask() {
-        this.router.navigate(['/usr/task/show', this.projectTask]);
+    showProject() {
+        this.router.navigate(['/usr/project/show', this.project._id]);
+    }
+
+    editTask() {
+        // TODO show prefilled task.create modal
     }
 
     deleteTask() {
-        this.onDelete.emit(this.projectTask);
+        this.onDelete.emit({
+            task: this.task,
+            project: this.project
+        });
         this.modalService.close(this.deleteTaskModalId)
     }
 }

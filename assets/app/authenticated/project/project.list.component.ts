@@ -3,6 +3,7 @@ import { ProjectService } from "../../_services/project.service";
 import { Router } from "@angular/router";
 import { Project } from "../../_models/project.model";
 import { ModalService } from "../../_services/modal.service";
+import { ProjectTask } from "../../_models/project-task.model";
 
 @Component({
     selector: 'app-project-list',
@@ -12,6 +13,7 @@ import { ModalService } from "../../_services/modal.service";
 
 export class ProjectListComponent implements OnInit {
     projects: Project[];
+    tasks: ProjectTask[];
     sortType: string = 'end';
 
     constructor(private projectService: ProjectService,
@@ -30,10 +32,16 @@ export class ProjectListComponent implements OnInit {
             );
     }
 
+    deleteProjectTask(taskAndProject) {
+        let task = taskAndProject.task;
+        let project = taskAndProject.project;
+        // TODO delete
+    }
+
     toggleTabs(event, index) {
         let li = event.target;
         let activeLi = document.querySelectorAll('a[role="tab"]');
-        for (var i = 0; i < activeLi.length; ++i) {
+        for (let i = 0; i < activeLi.length; ++i) {
             activeLi[i].classList.remove("active");
             let divToHide = document.getElementById(activeLi[i].getAttribute('data-target'));
             divToHide.style.display = "none";
@@ -41,6 +49,15 @@ export class ProjectListComponent implements OnInit {
         li.classList.add("active");
         let divToShow = document.getElementById(li.getAttribute('data-target'));
         divToShow.style.display = "block";
+    }
+
+    /**
+     * Let Angular track the projects to avoid rebuilding the whole
+     * DOM when a project has been updated or deleted.
+     * Ref: https://angular.io/docs/ts/latest/guide/template-syntax.html#!#ngFor)
+     */
+    trackByProjects(index: number, project: Project) {
+        return project._id;
     }
 
 }

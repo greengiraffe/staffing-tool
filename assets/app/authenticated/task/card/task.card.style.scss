@@ -42,6 +42,17 @@
   line-height: 24px;
   font-weight: 400;
   margin: 0;
+  display: inline-block;
+}
+
+.kicker-item + .kicker-item {
+  margin-left: 7px;
+  &:before {
+    content: "| ";
+    display: inline-block;
+    margin-right: 8px;
+    color: $grey-light;
+  }
 }
 
 .title {

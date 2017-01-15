@@ -11,7 +11,7 @@ import { User } from "../../../_models/user.model";
     styleUrls: ['project.card.style.scss']
 })
 
-export class CardComponent {
+export class ProjectCardComponent {
 
     @Input("project") project: Project;
     @Output("onDelete") onDelete = new EventEmitter();

@@ -21,8 +21,8 @@ import { TaskCreateComponent } from "./task/task.create.component";
 import { FilterPipe } from "../_pipes/filter.pipe";
 import { OrderByPipe } from "../_pipes/orderBy.pipe";
 
-import { ModalComponent } from "../modal/modal.component";
-import { CardComponent } from "./project/card/project.card.component";
+import { ProjectCardComponent } from "./project/card/project.card.component";
+import { TaskCardComponent } from "./task/card/task.card.component";
 
 
 @NgModule({
@@ -36,7 +36,8 @@ import { CardComponent } from "./project/card/project.card.component";
         FlashMessagesModule
     ],
     declarations: [
-        CardComponent,
+        ProjectCardComponent,
+        TaskCardComponent,
         UserComponent,
         HomeComponent,
         ChangePasswordComponent,
