@@ -23,6 +23,7 @@ export class TaskCardComponent {
     private currentUserIsInterested = false;
     private currentUserIsAssigned = false;
     private deleteTaskModalId = "deleteTaskModal" + (0 | Math.random() * 6.04e7).toString(36);
+    private editTaskModalId = "deleteTaskModal" + (0 | Math.random() * 6.04e7).toString(36);
     private currentUser;
 
 
@@ -38,16 +39,10 @@ export class TaskCardComponent {
             this.currentUserIsInterested = !!this.task.interestedUsers.find(user => user._id === this.currentUser._id);
             this.currentUserIsAssigned = !!this.task.assignedUsers.find(user => user._id === this.currentUser._id);
         }
-
-        console.log(this.currentUser.fullName)
     }
 
     showProject() {
         this.router.navigate(['/usr/project/show', this.project._id]);
-    }
-
-    editTask() {
-        // TODO show prefilled task.create modal
     }
 
     toggleInterest() {
@@ -71,5 +66,14 @@ export class TaskCardComponent {
             project: this.project
         });
         this.modalService.close(this.deleteTaskModalId)
+    }
+
+    updateTask() {
+        // TODO use updateTask backend route (needs to be added to the projectService first)
+    }
+
+    closeModal(modalId, event) {
+        event.stopPropagation();
+        this.modalService.close(modalId);
     }
 }
