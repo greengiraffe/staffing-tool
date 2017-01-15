@@ -5,7 +5,7 @@
   <ul class="nav navbar-nav" *ngIf="this.router.url != '/auth/login'">
     <li class="nav-item"><a class="nav-link" (click)="closeDropdown()" routerLink="/usr/profile" routerLinkActive="active"><i class="fa fa-asterisk" aria-hidden="true"></i>
       {{user?.firstName}}</a></li>
-    <li class="nav-item"><a class="nav-link" (click)="closeDropdown()" routerLink="/usr/project/list" routerLinkActive="active"><i class="fa fa-list-ul" aria-hidden="true"></i>
+    <li class="nav-item"><a class="nav-link" (click)="closeDropdown()" routerLink="/usr/project/list/" routerLinkActive="active"><i class="fa fa-list-ul" aria-hidden="true"></i>
       Projects</a></li>
     <li class="nav-item"><a class="nav-link" (click)="closeDropdown()" routerLink="/usr/project/create" routerLinkActive="active"><i class="fa fa-plus" aria-hidden="true"></i>
       New Project</a></li>
