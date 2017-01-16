@@ -14,7 +14,6 @@ import { SharedModule } from "./shared.module";
 
 import { NavComponent } from "./nav/nav.component";
 import { LoginComponent } from "./login/login.component";
-import { OnboardingModule } from "./onboarding/onboarding.module";
 import { UserModule } from "./authenticated/user.module";
 import { AdminModule } from "./admin/admin.module";
 
@@ -29,7 +28,6 @@ import { ModalService } from "./_services/modal.service";
         FlashMessagesModule,
         AdminModule,
         UserModule,
-        OnboardingModule,
         AppRoutingModule,
         SharedModule
     ],
