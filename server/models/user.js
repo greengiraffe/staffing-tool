@@ -15,7 +15,7 @@ let schema = new Schema({
     password: {type: String, required: true},
     phone: {type: String},
     location: {type: String, default: 'Berlin HQ'},
-    role: {type: String, enum: ['admin', 'user', 'user_creator'], required: true, default: 'user'},
+    role: {type: String, enum: ['admin', 'user', 'user_creator', 'freelancer'], required: true, default: 'user'},
     userSkills: [userSkill],
     register: {type: Boolean, default: true}
 });
