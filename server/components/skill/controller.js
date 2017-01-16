@@ -13,11 +13,11 @@ router.post('/skill', function(req, res, next) {
             res.status(200).json(result);
         })
         .catch(function(err) {
-            res.status(err.statusCode).json(err);
+            res.status(500).json(err);
         });
     } else {
         res.status(400).json({
-            message: 'Was not able to create Skill',
+            message: 'Was not able to create Skill'
         });
     }
 });
@@ -31,11 +31,7 @@ router.get('/skill/list', function(req, res, next) {
             res.status(200).json(result);
         })
         .catch(function(err) {
-            res.status(500).json({
-                    message: 'Server error while retrieving Skills',
-                    obj: err
-                }
-            );
+            res.status(500).json(err);
         });
 });
 
@@ -48,10 +44,7 @@ router.get('/skill/name/:name', function(req, res, next) {
             res.status(200).json(result);
         })
         .catch(function(err) {
-            res.status(500).json({
-                message: 'Server error while getting skill. Try later.',
-                obj: err
-            });
+            res.status(500).json(err);
         });
 });
 
