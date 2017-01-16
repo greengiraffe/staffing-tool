@@ -87,18 +87,19 @@ export class ProjectShowComponent implements OnInit {
 
     private checkIfUserCanEdit(user: User) {
         function isAssignedUser(user) {
-            for(let task of this.project.projectTasks) {
-                for(let assignedUser of task.assignedUsers) {
-                    if(assignedUser._id === user._id) {
-                        return true;
-                    }
-                }
-            }
+            // FIXME
+            // for(let task of this.project.projectTasks) {
+            //     for(let assignedUser of task.assignedUsers) {
+            //         if(assignedUser._id === user._id) {
+            //             return true;
+            //         }
+            //     }
+            // }
         }
 
         return user.role === 'admin' ||
             user.role === 'user_creator' ||
-            this.project.creator._id === user._id ||
-            isAssignedUser(user);
+            this.project.creator._id === user._id;
+            // || isAssignedUser(user);
     }
 }
