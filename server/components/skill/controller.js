@@ -3,6 +3,14 @@ let router = express.Router();
 let Skill = require('./skill');
 let mongoose = require('mongoose');
 
+function isInvalidID(id) {
+    if(!mongoose.Types.ObjectId.isValid(id)) {
+        res.status(400).json({message: "Invalid ID"});
+        return false;
+    }
+    return true;
+}
+
 /**
  * Create a skill
  */
@@ -40,7 +48,7 @@ router.get('/skill/list', function(req, res, next) {
  */
 router.get('/skill/:id', function(req, res, next) {
     let id = req.params.id;
-    if(mongoose.Types.ObjectId.isValid(id)) {
+    if (isValidID(id)) {
         Skill.getSkillByID(id)
             .then(function(result) {
                 res.status(200).json(result);
@@ -48,12 +56,7 @@ router.get('/skill/:id', function(req, res, next) {
             .catch(function(err) {
                 res.status(err.statusCode).json(err);
             });
-    } else {
-        res.status(400).json({
-            message: "Invalid ID"
-        });
     }
-
 });
 
 /**
@@ -62,7 +65,7 @@ router.get('/skill/:id', function(req, res, next) {
 router.put('/skill', function(req, res, next) {
     let id = req.body.id;
     let name = req.body.name;
-    if(mongoose.Types.ObjectId.isValid(id) && name ) {
+    if(isValidID(id) && name ) {
         Skill.updateSkill(id, name)
             .then(function(result) {
                 res.status(200).json(result);
@@ -70,10 +73,6 @@ router.put('/skill', function(req, res, next) {
             .catch(function(err) {
                 res.status(err.statusCode).json(err);
             });
-    } else {
-        res.status(400).json({
-            message: "Invalid ID or data"
-        });
     }
 });
 
@@ -82,7 +81,7 @@ router.put('/skill', function(req, res, next) {
  */
 router.delete('/skill/:id', function(req, res, next) {
     let id = req.params.id;
-    if(mongoose.Types.ObjectId.isValid(id)) {
+    if(isValidID(id) {
         Skill.removeSkill(id)
         .then(function(result) {
             res.status(200).json(result);
@@ -90,12 +89,7 @@ router.delete('/skill/:id', function(req, res, next) {
         .catch(function(err) {
             res.status(err.statusCode).json(err);
         });
-    } else {
-        res.status(400).json({
-            message: "Invalid ID"
-        });
     }
-
 });
 
 module.exports = router;
