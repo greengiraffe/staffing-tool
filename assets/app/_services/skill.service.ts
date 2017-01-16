@@ -55,7 +55,7 @@ export class SkillService {
     }
 
     getSkillById(skillId: string): Observable<{}> {
-        return this.http.get('http://localhost:3000/api/skill/id/' + skillId)
+        return this.http.get('http://localhost:3000/api/skill/' + skillId)
             .map((response: Response) => {
                 const res = response.json();
                 return res;

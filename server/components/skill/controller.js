@@ -36,22 +36,9 @@ router.get('/skill/list', function(req, res, next) {
 });
 
 /**
- * Get a specific skill object by its name
- */
-router.get('/skill/name/:name', function(req, res, next) {
-    Skill.getSkillByName(req.params.name)
-        .then(function(result) {
-            res.status(200).json(result);
-        })
-        .catch(function(err) {
-            res.status(500).json(err);
-        });
-});
-
-/**
  * Get a specific skill object by its ID
  */
-router.get('/skill/id/:id', function(req, res, next) {
+router.get('/skill/:id', function(req, res, next) {
     let id = req.params.id;
     if(mongoose.Types.ObjectId.isValid(id)) {
         Skill.getSkillByID(id)
