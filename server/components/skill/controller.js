@@ -46,10 +46,7 @@ router.get('/skill/:id', function(req, res, next) {
                 res.status(200).json(result);
             })
             .catch(function(err) {
-                res.status(err.statusCode).json({
-                    message: 'Error while getting Skill. Check form input',
-                    obj: err
-                });
+                res.status(err.statusCode).json(err);
             });
     } else {
         res.status(400).json({
@@ -68,7 +65,7 @@ router.put('/skill', function(req, res, next) {
     if(mongoose.Types.ObjectId.isValid(id) && name ) {
         Skill.updateSkill(id, name)
             .then(function(result) {
-                res.status(result.statusCode).json(result);
+                res.status(200).json(result);
             })
             .catch(function(err) {
                 res.status(err.statusCode).json(err);
@@ -88,7 +85,7 @@ router.delete('/skill/:id', function(req, res, next) {
     if(mongoose.Types.ObjectId.isValid(id)) {
         Skill.removeSkill(id)
         .then(function(result) {
-            res.status(result.statusCode).json(result);
+            res.status(200).json(result);
         })
         .catch(function(err) {
             res.status(err.statusCode).json(err);
