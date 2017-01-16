@@ -15,7 +15,7 @@ export class SkillService {
         const body = JSON.stringify(skill);
         const headers = new Headers({'Content-Type': 'application/json'});
 
-        return this.http.post('http://localhost:3000/skill', body, { headers: headers })
+        return this.http.post('http://localhost:3000/api/skill', body, { headers: headers })
             .map((response: Response) => {
                 const result = response.json();
                 const skill = new Skill(
@@ -32,13 +32,13 @@ export class SkillService {
         const token = localStorage.getItem('token')
             ? '?token=' + localStorage.getItem('token')
             : '';
-        return this.http.delete('http://localhost:3000/skill/' + skill._id)
+        return this.http.delete('http://localhost:3000/api/skill/' + skill._id)
             .map((response: Response) => response.json())
             .catch((error: Response) => Observable.throw(error.json()));
     }
 
     getSkills(): Observable<{}> {
-        return this.http.get('http://localhost:3000/skill/list')
+        return this.http.get('http://localhost:3000/api/skill/list')
             .map((response: Response) => {
                 const res = response.json();
                 let transformedSkills: Skill[] = [];
@@ -55,7 +55,7 @@ export class SkillService {
     }
 
     getSkillById(skillId: string): Observable<{}> {
-        return this.http.get('http://localhost:3000/skill/id/' + skillId)
+        return this.http.get('http://localhost:3000/api/skill/id/' + skillId)
             .map((response: Response) => {
                 const res = response.json();
                 return res;
