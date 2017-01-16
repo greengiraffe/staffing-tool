@@ -1,8 +1,8 @@
-<nav class="navbar navbar-fixed-top navbar-dark bg-inverse">
+<nav class="navbar navbar-fixed-top navbar-dark bg-inverse" *ngIf="this.router.url != '/auth/login'">
   <a routerLink="/home" class="navbar-brand">
      Staffing Tool
   </a>
-  <ul class="nav navbar-nav" *ngIf="this.router.url != '/auth/login'">
+  <ul class="nav navbar-nav">
     <li class="nav-item"><a class="nav-link" (click)="closeDropdown()" routerLink="/usr/profile" routerLinkActive="active"><i class="fa fa-asterisk" aria-hidden="true"></i>
       {{user?.firstName}}</a></li>
     <li *ngIf="isInternUser" class="nav-item"><a class="nav-link" (click)="closeDropdown()" routerLink="/usr/project/list/projects" [class.active]="this.router.url.startsWith('/usr/project/list')"><i class="fa fa-list-ul" aria-hidden="true"></i>

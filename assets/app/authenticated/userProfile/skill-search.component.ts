@@ -18,14 +18,14 @@ import { UserSkill } from "../../_models/user-skill.model";
         {{ skill.name }}
         <span *ngIf="showSkillButtons" class="skill-buttons">
             <span class="skill-icon skill-btn professional"
-				(click)="selectUserSkill(skill, 2)"
-				title="Add skill to professional skills"></span>
+                (click)="selectUserSkill(skill, 2)"
+                title="Add skill to professional skills"></span>
             <span class="skill-icon skill-btn basic"
-				(click)="selectUserSkill(skill, 1)"
-				title="Add skill to basic skills"></span>
+                (click)="selectUserSkill(skill, 1)"
+                title="Add skill to basic skills"></span>
             <span class="skill-icon skill-btn interest"
-				(click)="selectUserSkill(skill, 0)"
-				title="Add skill to interests"></span>
+                (click)="selectUserSkill(skill, 0)"
+                title="Add skill to interests"></span>
         </span>
       </li>
     </ul>
