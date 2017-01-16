@@ -4,7 +4,7 @@
 /.vscode
 /assets/app/**/*.js
 /public/js/
-/server/uploads/**/*.{png,jpg,jpeg,svg}
+/server/uploads/
 *.DS_Store
 npm-debug.log
 *.iml
