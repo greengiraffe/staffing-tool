@@ -4,6 +4,7 @@ h2 {
   font-size: 1.6rem;
   margin-bottom: 15px;
   margin-left: 2px;
+  color: #fff;
 }
 
 th {
@@ -11,14 +12,21 @@ th {
 }
 
 .list-project-container {
-  background: rgba(#fff, 1);
   margin-top: 20px;
   margin-bottom: 100px;
+}
+
+.list-project {
   padding: 15px;
+  background: rgba(#fff, 1);
   border-radius: 2px;
   @extend .md-shadow-1;
 }
 
+.nav-link {
+  color: #55595c;
+  background: #ddd;
+}
 
 .tabpane {
   display: none;
