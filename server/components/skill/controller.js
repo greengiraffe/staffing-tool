@@ -81,7 +81,7 @@ router.put('/skill', function(req, res, next) {
  */
 router.delete('/skill/:id', function(req, res, next) {
     let id = req.params.id;
-    if(isValidID(id) {
+    if(isValidID(id)) {
         Skill.removeSkill(id)
         .then(function(result) {
             res.status(200).json(result);
