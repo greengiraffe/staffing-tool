@@ -15,7 +15,7 @@ export class AuthService {
     login(user: User) {
         const body = JSON.stringify(user);
         const headers = new Headers({'Content-Type': 'application/json'});
-        return this.http.post('http://localhost:3000/login', body, {headers: headers})
+        return this.http.post('http://localhost:3000/api/login', body, {headers: headers})
             .map((response: Response) => {
                 let res = response.json();
                 user = new User(

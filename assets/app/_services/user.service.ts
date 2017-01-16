@@ -16,13 +16,13 @@ export class UserService {
     createUser(user: User) {
         const body = JSON.stringify(user);
         const headers = new Headers({'Content-Type': 'application/json'});
-        return this.http.post('http://localhost:3000/user', body, {headers: headers})
+        return this.http.post('http://localhost:3000/api/user', body, {headers: headers})
             .map((response: Response) => response.json())
             .catch((error: Response) => Observable.throw(error.json()));
     }
 
     getUsers(): Observable<{}> {
-        return this.http.get('http://localhost:3000/user/list')
+        return this.http.get('http://localhost:3000/api/user/list')
             .map((response: Response) => {
                 const res = response.json();
                 let newUsers: User[] = [];
@@ -46,13 +46,13 @@ export class UserService {
     }
 
     getUserById(userId): Observable<{}> {
-      return this.http.get('http://localhost:3000/user/id/' + userId)
+      return this.http.get('http://localhost:3000/api/user/id/' + userId)
         .map((response: Response) => response.json())
         .catch((error: Response) => Observable.throw(error.json()));
     }
 
     getProjectsCreatedByUser(userId): Observable<{}> {
-        return this.http.get('http://localhost:3000/user/projects/' + userId)
+        return this.http.get('http://localhost:3000/api/user/projects/' + userId)
             .map((response: Response) => {
                 const res = response.json();
                 let ownedProjects: Project[] = [];
@@ -86,7 +86,7 @@ export class UserService {
             newPassword
         };
         const headers = new Headers({'Content-Type': 'application/json'});
-        return this.http.put('http://localhost:3000/user/password', body, { headers })
+        return this.http.put('http://localhost:3000/api/user/password', body, { headers })
             .map((response: Response) => response.json())
             .catch((error: Response) => Observable.throw(error.json()));
     }
@@ -105,14 +105,14 @@ export class UserService {
 
         const body = JSON.stringify(user);
         const headers = new Headers({'Content-Type': 'application/json'});
-        return this.http.put('http://localhost:3000/user', body, { headers })
+        return this.http.put('http://localhost:3000/api/user', body, { headers })
             .map((response: Response) => response.json())
             .catch((error: Response) => Observable.throw(error.json()));
     }
 
     getUserImage(userId, size?: string): Observable<{}> {
         let routeParams = size ? userId + "/" + size : userId;
-        return this.http.get('http://localhost:3000/user/img/' + routeParams, {responseType: ResponseContentType.Blob })
+        return this.http.get('http://localhost:3000/api/user/img/' + routeParams, {responseType: ResponseContentType.Blob })
         .map((response: Response) => (response.status === 200) ? this.createImageUrl(response.blob()) : null)
         .catch((error: Response) => Observable.throw(error.json()));
     }
@@ -120,7 +120,7 @@ export class UserService {
     uploadUserImage(userId, image: File): Observable<{}> {
         var formData  =  new FormData();
         formData.append('image', image);
-        return this.http.post('http://localhost:3000/user/img/' + userId, formData, {responseType: ResponseContentType.Blob})
+        return this.http.post('http://localhost:3000/api/user/img/' + userId, formData, {responseType: ResponseContentType.Blob})
             .map((response: Response) => this.createImageUrl(response.blob()))
             .catch((error: Response) => Observable.throw(error))
     }
@@ -128,7 +128,7 @@ export class UserService {
     deleteUser(user: User) {
         this.users.splice(this.users.indexOf(user), 1);
         const body = JSON.stringify(user);
-        return this.http.delete('http://localhost:3000/user/' + user._id)
+        return this.http.delete('http://localhost:3000/api/user/' + user._id)
             .map((response: Response) => response.json())
             .catch((error: Response) => Observable.throw(error.json()));
     }

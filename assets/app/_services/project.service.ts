@@ -15,7 +15,7 @@ export class ProjectService {
         const body = JSON.stringify(project);
         const headers = new Headers({'Content-Type': 'application/json'});
 
-        return this.http.post('http://localhost:3000/project', body, {headers: headers})
+        return this.http.post('http://localhost:3000/api/project', body, {headers: headers})
             .map((response: Response) => response.json())
             .catch((error: Response) => Observable.throw(error.json()));
     }
@@ -24,13 +24,13 @@ export class ProjectService {
         const body = JSON.stringify(project);
         const headers = new Headers({'Content-Type': 'application/json'});
 
-        return this.http.put('http://localhost:3000/project', body, {headers: headers})
+        return this.http.put('http://localhost:3000/api/project', body, {headers: headers})
             .map((response: Response) => response.json())
             .catch((error: Response) => Observable.throw(error.json()));
     }
 
     getProjects(): Observable<{}> {
-        return this.http.get('http://localhost:3000/project/list')
+        return this.http.get('http://localhost:3000/api/project/list')
             .map((response: Response) => {
                 const res = response.json();
                 let newProjects: Project[] = [];
@@ -58,7 +58,7 @@ export class ProjectService {
     }
 
     getProjectById(projectId): Observable<{}> {
-      return this.http.get('http://localhost:3000/project/' + projectId)
+      return this.http.get('http://localhost:3000/api/project/' + projectId)
         .map((response: Response) => {
             const res = response.json();
             return new Project(
@@ -83,7 +83,7 @@ export class ProjectService {
     deleteProject(project: Project) {
         this.projects.splice(this.projects.indexOf(project), 1);
         const body = JSON.stringify(project);
-        return this.http.delete('http://localhost:3000/project/' + project._id)
+        return this.http.delete('http://localhost:3000/api/project/' + project._id)
             .map((response: Response) => response.json())
             .catch((error: Response) => Observable.throw(error.json()));
     }
