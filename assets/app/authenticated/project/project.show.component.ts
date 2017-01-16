@@ -63,6 +63,18 @@ export class ProjectShowComponent implements OnInit {
                     this.idsOfLoadedPictures.push(user._id)
                 }
             });
+            task.interestedUsers.forEach(user => {
+                if(this.idsOfLoadedPictures.indexOf(user._id) < 0) {
+                    this.userService.getUserImage(user._id, "small")
+                        .subscribe(data => {
+                            this.renderImages(data, user._id);
+                        },
+                        error => {
+                            this.renderImages('/img/usersmall.png', user._id);
+                        });
+                    this.idsOfLoadedPictures.push(user._id)
+                }
+            });
         });
     }
 
