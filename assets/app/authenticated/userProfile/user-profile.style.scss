@@ -70,8 +70,11 @@
 }
 
 .user-profile-content {
+  padding: 16px 0 0 16px;
+  flex: 1;
+
   .bar {
-    width: 975px;
+    width: 100%;
     padding: 12px;
     border-radius: 2px;
     color: rgba(#fff, 0.9);
@@ -84,7 +87,7 @@
       box-shadow: 5px 0 15px rgba(0,0,0,0.16), 5px 0 15px rgba(0,0,0,0.23);
     }
 
-    + bar {
+    + .bar {
       margin-top: 12px;
     }
 
