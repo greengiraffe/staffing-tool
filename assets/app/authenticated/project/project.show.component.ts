@@ -5,6 +5,7 @@ import { SkillService } from '../../_services/skill.service';
 import { UserService } from '../../_services/user.service';
 
 import { Project } from "../../_models/project.model";
+import { ProjectTask } from "../../_models/project-task.model";
 import { Skill } from "../../_models/skill.model";
 
 import 'rxjs/add/operator/switchMap';
@@ -22,6 +23,8 @@ export class ProjectShowComponent implements OnInit {
     private currentUserCanEdit = false;
 
     project: Project;
+    currentUserIsCreator = false;
+    urlsOfLoadedPictures: Object = new Object();
     idsOfLoadedPictures = new Array<string>();
 
     constructor(
@@ -43,63 +46,65 @@ export class ProjectShowComponent implements OnInit {
                     this.projectService.getProjectById(params['id']))
                 .subscribe((project: Project) => {
                     this.project = project;
+                    this.currentUserIsCreator = project.creator._id === currentUser._id;
                     this.currentUserCanEdit = this.checkIfUserCanEdit(currentUser);
-                    this.loadUserAvatars();
+                    this.project.projectTasks.forEach(
+                        task => {
+                            this.loadUserAvatars(task.assignedUsers)
+                            this.loadUserAvatars(task.interestedUsers)
+                        })
                 });
         }
     }
 
-    loadUserAvatars() {
+    loadUserAvatars(users: Array<User>) {
         this.project.projectTasks.forEach(task => {
-            task.assignedUsers.forEach(user => {
-                if(this.idsOfLoadedPictures.indexOf(user._id) < 0) {
+            users.forEach(user => {
+                if(!this.urlsOfLoadedPictures[user._id]) {
                     this.userService.getUserImage(user._id, "small")
                         .subscribe(data => {
-                            this.renderImages(data, user._id);
+                            this.urlsOfLoadedPictures[user._id] = data;
+                            this.renderImages(user._id)
                         },
                         error => {
-                            this.renderImages('/img/usersmall.png', user._id);
+                            this.urlsOfLoadedPictures[user._id] = '/img/usersmall.png';
+                            this.renderImages(user._id)
                         });
-                    this.idsOfLoadedPictures.push(user._id)
-                }
-            });
-            task.interestedUsers.forEach(user => {
-                if(this.idsOfLoadedPictures.indexOf(user._id) < 0) {
-                    this.userService.getUserImage(user._id, "small")
-                        .subscribe(data => {
-                            this.renderImages(data, user._id);
-                        },
-                        error => {
-                            this.renderImages('/img/usersmall.png', user._id);
-                        });
-                    this.idsOfLoadedPictures.push(user._id)
                 }
             });
         });
     }
 
-    renderImages(url: any, userId: string) {
+    renderImages(userId: string) {
         var images = document.getElementsByClassName(userId);
         for (var i = 0; i < images.length; ++i) {
-            this.renderer.setElementProperty(images[i], 'src', url)
+            this.renderer.setElementProperty(images[i], 'src', this.urlsOfLoadedPictures[userId])
         }
     }
 
+    assignUser(task: ProjectTask, user: User) {
+        task.assignedUsers.push(user);
+        let userIndex = task.interestedUsers.indexOf(user);
+        task.interestedUsers.splice(userIndex, 1);
+        this.projectService.updateProject(this.project)
+            .subscribe(data => this.renderImages(user._id));
+    }
+
     private checkIfUserCanEdit(user: User) {
-        function isAssignedUser(user) {
-            // FIXME
-            // for(let task of this.project.projectTasks) {
-            //     for(let assignedUser of task.assignedUsers) {
-            //         if(assignedUser._id === user._id) {
-            //             return true;
-            //         }
-            //     }
-            // }
+
+        let isAssignedUser = user => {
+            for(let task of this.project.projectTasks) {
+                for(let assignedUser of task.assignedUsers) {
+                    if(assignedUser._id === user._id) {
+                        return true;
+                    }
+                }
+            }
         }
 
         return user.role === 'admin' ||
             user.role === 'user_creator' ||
-            this.project.creator._id === user._id;
-            // || isAssignedUser(user);
+            this.currentUserIsCreator ||
+            isAssignedUser(user);
     }
 }
