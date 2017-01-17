@@ -110,7 +110,8 @@ export class ProjectCreateComponent implements OnInit {
             taskComponent.taskForm.controls["title"]["_value"],
             taskComponent.taskForm.controls["description"]["value"],
             taskComponent.task.requiredSkills,
-            taskComponent.task.assignedUsers
+            taskComponent.task.assignedUsers,
+            taskComponent.task.interestedUsers
         );
         this.projectTasks[index] = editedTask;
         this.modalService.close(this.editTaskModalIds[index]);
