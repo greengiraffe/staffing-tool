@@ -31,9 +31,9 @@ export class UserProfileComponent implements OnInit {
     tasks: any[] = [
         {title: 'Paper Prototyping', description: 'lasdflk lskefldf lskeflksff lwkeflksdf', client: 'Bosch'},
         {title: 'Create Information Architecture', description: 'lsakjf lksdfl klskdf sldkf', client: 'Siemens'}];
-    showTask: boolean;
-    showSkill: boolean;
-    showProject: boolean;
+    showTask = true;
+    showSkill = false;
+    showProject = false;
 
     constructor(private userService: UserService,
                 private authService: AuthService,

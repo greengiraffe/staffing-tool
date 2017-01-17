@@ -5,15 +5,15 @@
 
     <div class="picture-container">
       <img src="/img/user.png" class="profile-picture" alt="Profile picture">
-      <span>{{user?.firstName}} {{user?.lastName}}</span>
+      <span class="user-name">{{user?.firstName}} {{user?.lastName}}</span>
     </div>
 
     <dl class="profile-info">
       <dt>Email</dt>
-      <dd>{{user?.email}}</dd>
+      <dd class="email"><a href="mailto:{{ user?.email }}">{{user?.email}}</a></dd>
 
       <dt>Location</dt>
-      <dd>{{user?.location}}</dd>
+      <dd class="location">{{user?.location}}</dd>
 
       <dt>Phone</dt>
       <template [ngIf]="user?.phone">
@@ -22,8 +22,8 @@
       <template [ngIf]="!user?.phone">
         <dd>n/a</dd>
       </template>
-
     </dl>
+
     <button type="button" class="btn btn-outline-secondary btn-sm edit-profile-btn" routerLink="edit">
       Edit <i class="fa fa-2x fa-pencil-square"></i>
     </button>
@@ -33,7 +33,7 @@
 
     <div class="bar" [ngClass]="{'expanded': showTask}">
       <div class="bar-head" (click)="toggleTask()">
-        Current Tasks
+        Tasks
         <i class="fa fa-chevron-right" [ngClass]="{'down': showTask}"></i>
       </div>
       <div class="bar-content" [@expand]="getState(showTask)">

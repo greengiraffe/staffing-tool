@@ -22,7 +22,8 @@
       @extend .md-shadow-1;
     }
 
-    span {
+    .user-name {
+      word-wrap: break-word;
       position: absolute;
       bottom: 0;
       width: 100%;
@@ -43,6 +44,18 @@
     dd {
       font-weight: bold;
       margin-bottom: 1rem;
+      word-wrap: break-word;
+    }
+
+    .email {
+      word-wrap: initial;
+      overflow: hidden;
+      text-overflow: ellipsis;
+
+      a {
+        color: $white;
+        text-decoration: underline;
+      }
     }
   }
 
@@ -59,7 +72,6 @@
 .user-profile-content {
   .bar {
     width: 975px;
-    margin: 13px 0 13px 25px;
     padding: 12px;
     border-radius: 2px;
     color: rgba(#fff, 0.9);
@@ -70,6 +82,10 @@
 
     &:hover {
       box-shadow: 5px 0 15px rgba(0,0,0,0.16), 5px 0 15px rgba(0,0,0,0.23);
+    }
+
+    + bar {
+      margin-top: 12px;
     }
 
     &-head {
@@ -137,15 +153,6 @@
   }
 
 }
-
-
-
-
-
-
-
-
-
 
 .image-upload-label {
   position: absolute;
