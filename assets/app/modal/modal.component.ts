@@ -31,12 +31,12 @@ export class ModalComponent implements OnInit {
             return;
         }
         this.isOpen = false;
-		document.body.className = document.body.className.replace("modal-open", "");
+		document.body.classList.remove("modal-open");
     }
 
     open() {
         this.isOpen = true;
-		document.body.className += " modal-open";
+		document.body.classList.add("modal-open");
     }
 
 
