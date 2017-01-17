@@ -1,26 +1,24 @@
 <div class="container">
-  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="form-signin">
-    <flash-messages></flash-messages>
-    <h2 class="form-signin-heading">Please sign in</h2>
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+
+    <h2>Please sign in</h2>
 
     <label for="email" class="sr-only">Mail</label>
     <input
         type="email"
         id="email"
-        class="form-control"
         formControlName="email"
         placeholder="Email address" required autofocus>
     <label for="password" class="sr-only">Password</label>
+
     <input
         type="password"
         id="password"
-        class="form-control"
         formControlName="password"
         placeholder="Password" required>
 
-    <button
-        class="btn btn-lg btn-primary btn-block"
-        type="submit">Login</button>
+    <flash-messages></flash-messages>
+
+    <button type="submit" class="btn btn-lg btn-primary btn-block">Login</button>
   </form>
 </div>
-<!--[disabled]="!myForm.valid"-->
