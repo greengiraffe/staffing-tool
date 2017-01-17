@@ -20,19 +20,18 @@
       <div class="card-block" *ngFor="let projectTask of project?.projectTasks">
         <h5 class="card-title internal">{{ projectTask.title }}</h5>
         <div class="card-text">{{ projectTask.description }}</div>
-        <ul class="task-skill-list">
-          <li class="skill" *ngFor="let skill of projectTask.requiredSkills">{{ skill.name }}</li>
+        <ul class="task-list">
+          <li class="tag skill" *ngFor="let skill of projectTask.requiredSkills">{{ skill.name }}</li>
         </ul>
         <h6 class="card-title internal card-text">Assigned Users</h6>
-        <ul class="task-skill-list">
-          <li class="skill" *ngFor="let user of projectTask.assignedUsers">{{ user.firstName }} {{ user.lastName }}
-          <img class="{{user._id}}" alt="Profile picture">
+        <ul class="task-list">
+          <li class="tag user" *ngFor="let user of projectTask.assignedUsers"><img class="avatar {{user._id}}" alt="Profile picture">{{ user.firstName }} {{ user.lastName }}
           </li>
         </ul>
         <h6 class="card-title internal card-text">Interested Users</h6>
-        <ul class="task-skill-list">
-          <li class="skill" *ngFor="let user of projectTask.interestedUsers">{{ user.firstName }} {{ user.lastName }}
-          <img class="{{user._id}}" alt="Profile picture">
+        <ul class="task-list">
+          <li class="tag user interested-user" *ngFor="let user of projectTask.interestedUsers"><img class="avatar {{user._id}}" alt="Profile picture">{{ user.firstName }} {{ user.lastName }}
+          <button *ngIf="currentUserIsCreator" type="button" (click)="assignUser(projectTask, user)" class="btn btn-assign"><i class="fa fa-plus-circle" aria-hidden="true"></i></button>
           </li>
         </ul>
       </div>

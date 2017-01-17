@@ -23,6 +23,18 @@ header {
   }
 }
 
+.btn {
+    &-assign {
+    position: absolute;
+    right: 16px;
+    top: 16px;
+    padding: 0;
+    background: none;
+    font-size: 20px;
+    color: $grey-medium;
+  }
+}
+
 .project-title {
   font-weight: 700;
   display: inline-block;
@@ -64,13 +76,13 @@ header {
 
 }
 
-.task-skill-list {
+.task-list {
   list-style: none;
   padding: 0 16px;
   margin-top: 0.5rem;
 }
 
-.skill {
+.tag {
   list-style: none;
   padding: 4px 12px;
   background-color: $white;
@@ -78,4 +90,22 @@ header {
   margin: 4px 4px;
   border-radius: 4px;
   border: 1px solid #a2a2a2;
+  font-size: inherit;
+  font-weight: inherit;
+  color: inherit;
+  line-height: inherit;
+  text-align: inherit;
+}
+
+.user {
+  width: 250px;
+}
+
+.interested-user {
+  position: relative;
+  padding-right: 40px;
+}
+
+.avatar {
+  margin-right: 16px;
 }
