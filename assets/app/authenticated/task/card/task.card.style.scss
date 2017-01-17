@@ -42,6 +42,9 @@
     &.like.starred {
       color: $ixds-yellow;
     }
+    &.like.assigned {
+      color: $ixds-green;
+    }
   }
 }
 

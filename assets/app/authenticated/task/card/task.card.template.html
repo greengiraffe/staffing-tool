@@ -2,10 +2,13 @@
   <div class="actions">
     <button *ngIf="currentUserCanDelete" class="btn remove" type="button" (click)="modalService.open(deleteTaskModalId)"><i class="fa fa-trash"></i></button>
     <button *ngIf="currentUserCanEdit" class="btn edit" (click)="modalService.open(editTaskModalId)"><i class="fa fa-pencil"></i></button>
-    <button class="btn like" [class.starred]="currentUserIsInterested">
+    <button *ngIf="!currentUserIsAssigned" class="btn like" [class.starred]="currentUserIsInterested" >
       <i (click)="toggleInterest()"
-         [ngClass]="{'fa-star-o': !currentUserIsInterested, 'fa-star': currentUserIsInterested }"
+         [ngClass]="{'fa-star-o': !currentUserIsInterested, 'fa-star': currentUserIsInterested}"
          class="fa"></i>
+    </button>
+    <button *ngIf="currentUserIsAssigned" class="btn like assigned">
+      <i  class="fa fa-check-circle"></i>
     </button>
   </div>
 
