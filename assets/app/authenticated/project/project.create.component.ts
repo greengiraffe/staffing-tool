@@ -98,7 +98,6 @@ export class ProjectCreateComponent implements OnInit {
         this.editTaskModalIds.push("editTaskModalIds" + taskIndex);
         this.modalService.close(this.addTaskModalId);
         taskComponent.resetForm();
-        this._flash.show("Task successfully added", { cssClass: 'alert-success', timeout: 5000 });
     }
 
     editProjectTask(index: number) {
@@ -156,7 +155,7 @@ export class ProjectCreateComponent implements OnInit {
             this.projectService.createProject(project)
             .subscribe(
                 data => {
-                    this._flash.show("Project successfully added", { cssClass: 'alert-success', timeout: 5000 });
+                    this._flash.show("Project successfully added.", { cssClass: 'alert-success', timeout: 500000 });
                     this.projectForm.reset({
                         type: "tentative",
                         isPriority: "false",
