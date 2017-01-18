@@ -1,9 +1,10 @@
 @import "../../styles/variables";
 
 .navbar {
+  @include md-shadow-xs;
+
   position: relative;
   border-radius: 2px;
-  @extend .md-shadow-1;
 }
 
 .right {

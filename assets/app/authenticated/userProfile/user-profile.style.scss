@@ -17,9 +17,10 @@
     position: relative;
 
     img {
+      @include md-shadow-xs;
+
       width: 100%;
       height: auto;
-      @extend .md-shadow-1;
     }
 
     .user-name {

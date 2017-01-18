@@ -1,11 +1,45 @@
 @import "../../../styles/variables";
 
-.show-project-page {
-  margin-bottom: 5rem;
+.page-wrapper {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
 }
 
-header {
+.content-wrapper {
+  margin-top: 36px;
+}
+
+.section-title {
+  font-size: 28px;
+  line-height: 36px;
+  font-weight: 200;
+  letter-spacing: 0.015em;
+  color: $white;
+  margin-top: 36px;
+}
+
+section {
+  margin-top: 24px;
+}
+
+.project-section {
+  @include md-shadow-xs;
+
   position: relative;
+  background: $white;
+  padding: 24px;
+}
+
+.client {
+  font-weight: 300;
+  margin-bottom: 4px;
+}
+
+.project-title {
+  font-weight: 700;
+  display: inline-block;
+  letter-spacing: 0.01em;
 }
 
 .badge {
@@ -23,6 +57,18 @@ header {
   }
 }
 
+.meta-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.edit-project-btn {
+  position: absolute;
+  right: 24px;
+  top: 24px;
+}
+
 .btn {
     &-assign {
     position: absolute;
@@ -35,45 +81,12 @@ header {
   }
 }
 
-.project-title {
-  font-weight: 700;
-  display: inline-block;
-  letter-spacing: 0.01em;
-}
-
-.client {
-  font-weight: 300;
-}
-
-.meta-list {
-  padding: 0;
-  list-style: none;
-}
-
-.edit-project-btn {
-  position: absolute;
-  right: 0;
-  top: 0;
-}
-
 .task-section {
-  margin-top: 2rem;
+
 }
 
 .project-task-list {
-  margin-top: 1rem;
-}
-
-.card-block {
-
-}
-
-.card-title {
-
-}
-
-.card-text {
-
+  margin-top: 24px;
 }
 
 .task-list {
@@ -98,7 +111,8 @@ header {
 }
 
 .user {
-  width: 250px;
+  width: 100%;
+  max-width: 250px;
 }
 
 .interested-user {
@@ -107,5 +121,6 @@ header {
 }
 
 .avatar {
+  border-radius: 50%;
   margin-right: 16px;
 }

@@ -42,7 +42,7 @@ export class TaskCardComponent {
     }
 
     showProject() {
-        this.router.navigate(['/usr/project/show', this.project._id]);
+        this.router.navigate(['/usr/project/show', this.project._id], { fragment: "tasks" });
     }
 
     toggleInterest() {

@@ -1,40 +1,44 @@
-<div class="show-project-page">
-  <header>
-    <h4 class="client">{{ project?.client }}</h4>
-    <h1 class="project-title">{{project?.title}}</h1>
-    <div class="badge">{{ project?.type }}</div>
-    <ul class="meta-list">
-      <li><b>Period:</b> {{ project?.start | date:"dd/MM/yyyy" }} - {{ project?.end | date:"dd/MM/yyyy"}}</li>
-      <li><b>Created by:</b> {{ project?.creator.firstName }} {{ project?.creator.lastName }}</li>
-      <li><b>Budget:</b> {{ project?.budget }} €</li>
-      <li><b>Expense Budget:</b> {{ project?.expBudget }} €</li>
-      <li><b>Description:</b> {{project?.description}}</li>
-    </ul>
-    <button class="edit-project-btn btn btn-secondary" routerLink="../../edit/{{project?._id}}"
-     *ngIf="currentUserCanEdit">Edit Project</button>
-  </header>
+<div class="page-wrapper">
+  <main class="content-wrapper">
 
-  <section class="task-section">
-    <h3 class="task-title">Tasks</h3>
-    <div class="project-task-list">
-      <div class="card-block" *ngFor="let projectTask of project?.projectTasks">
-        <h5 class="card-title internal">{{ projectTask.title }}</h5>
-        <div class="card-text">{{ projectTask.description }}</div>
-        <ul class="task-list">
-          <li class="tag skill" *ngFor="let skill of projectTask.requiredSkills">{{ skill.name }}</li>
-        </ul>
-        <h6 class="card-title internal card-text">Assigned Users</h6>
-        <ul class="task-list">
-          <li class="tag user" *ngFor="let user of projectTask.assignedUsers"><img class="avatar {{user._id}}" alt="Profile picture">{{ user.firstName }} {{ user.lastName }}
-          </li>
-        </ul>
-        <h6 class="card-title internal card-text">Interested Users</h6>
-        <ul class="task-list">
-          <li class="tag user interested-user" *ngFor="let user of projectTask.interestedUsers"><img class="avatar {{user._id}}" alt="Profile picture">{{ user.firstName }} {{ user.lastName }}
-          <button *ngIf="currentUserIsCreator" type="button" (click)="assignUser(projectTask, user)" class="btn btn-assign"><i class="fa fa-plus-circle" aria-hidden="true"></i></button>
-          </li>
-        </ul>
+    <h3 class="section-title">Project</h3>
+    <section class="project-section">
+      <h4 class="client">{{ project?.client }}</h4>
+      <h1 class="project-title">{{project?.title}}</h1>
+      <div class="badge">{{ project?.type }}</div>
+      <ul class="meta-list">
+        <li><b>Period:</b> {{ project?.start | date:"dd/MM/yyyy" }} - {{ project?.end | date:"dd/MM/yyyy"}}</li>
+        <li><b>Created by:</b> {{ project?.creator.firstName }} {{ project?.creator.lastName }}</li>
+        <li><b>Budget:</b> {{ project?.budget }} €</li>
+        <li><b>Expense Budget:</b> {{ project?.expBudget }} €</li>
+        <li><b>Description:</b> {{project?.description}}</li>
+      </ul>
+      <button class="edit-project-btn btn btn-secondary" routerLink="../../edit/{{ project?._id }}"
+       *ngIf="currentUserCanEdit">Edit Project</button>
+    </section>
+
+    <h3 id="tasks" class="section-title">Tasks</h3>
+    <section class="task-section">
+      <div class="project-task-list">
+        <div class="card-block" *ngFor="let projectTask of project?.projectTasks">
+          <h5 class="card-title internal">{{ projectTask.title }}</h5>
+          <div class="card-text">{{ projectTask.description }}</div>
+          <ul class="task-list">
+            <li class="tag skill" *ngFor="let skill of projectTask.requiredSkills">{{ skill.name }}</li>
+          </ul>
+          <h6 class="card-title internal card-text">Assigned Users</h6>
+          <ul class="task-list">
+            <li class="tag user" *ngFor="let user of projectTask.assignedUsers"><img class="avatar {{user._id}}" alt="Profile picture">{{ user.firstName }} {{ user.lastName }}
+            </li>
+          </ul>
+          <h6 class="card-title internal card-text">Interested Users</h6>
+          <ul class="task-list">
+            <li class="tag user interested-user" *ngFor="let user of projectTask.interestedUsers"><img class="avatar {{user._id}}" alt="Profile picture">{{ user.firstName }} {{ user.lastName }}
+            <button *ngIf="currentUserIsCreator" type="button" (click)="assignUser(projectTask, user)" class="btn btn-assign"><i class="fa fa-plus-circle" aria-hidden="true"></i></button>
+            </li>
+          </ul>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
+  </main>
 </div>
