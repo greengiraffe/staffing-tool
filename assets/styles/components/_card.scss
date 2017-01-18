@@ -1,26 +1,33 @@
 .card-block {
-  border: 1px solid #a2a2a2;
-  background-color: #f7f7f7;
-  border-radius: 12px;
+  @include md-shadow-xs;
+
+  background-color: $white;
   display: inline-block;
   transition: all .2s;
-  max-width: 400px;
-  padding: 0;
+  padding: 24px 0;
   vertical-align: top;
 
   + .card-block {
-    margin-left: 1rem;
+    margin-left: 16px;
   }
 }
 
 .card-title {
-  border-top-right-radius: 12px;
-  border-top-left-radius: 12px;
-  padding: 9px 18px;
-  margin-bottom: 0;
+  padding: 0 24px 17px;
+  margin: 0;
   border-bottom: 1px solid #ccc;
+  font-size: 20px;
+  line-height: 24px;
 }
 
 .card-text {
-  padding: 18px 18px 9px;
+  padding: 24px 24px 0;
+}
+
+.card-subtitle {
+  padding: 24px 24px 7px;
+  margin: 12px 0 0;
+  border-bottom: 1px solid #ccc;
+  font-size: 16px;
+  line-height: 24px;
 }

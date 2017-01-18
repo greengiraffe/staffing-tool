@@ -1,8 +1,10 @@
+@import '../../styles/variables';
+
 form {
   max-width: 380px;
   padding: 32px;
   margin: 0 auto;
-  background: rgba(#fff, 0.8);
+  background: rgba($white, 0.8);
 
   .alert p {
     margin-bottom: 0;
