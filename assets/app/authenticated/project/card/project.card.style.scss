@@ -5,13 +5,12 @@
   box-shadow: 0 3px 6px rgba(0,0,0,0.2);
   padding: 24px;
   position: relative;
+  border-radius: 0;
 
   + .card {
     margin-top: 24px;
   }
 }
-
-
 
 .actions {
   position: absolute;

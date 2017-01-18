@@ -16,6 +16,7 @@ export class ProjectListComponent implements OnInit {
     projects: Project[];
     tasks: ProjectTask[];
     sortType: string = 'end';
+    activeTab = "projects";
 
     constructor(private projectService: ProjectService,
                 private router: Router,
@@ -26,8 +27,9 @@ export class ProjectListComponent implements OnInit {
         this.projectService.getProjects()
             .subscribe((projects: Project[]) => this.projects = projects);
         this.route.params
-            .subscribe(params => params['type'] ? this.toggleTabs(params['type']) : this.toggleTabs('projects'))
-
+            .subscribe(params => {
+                this.activeTab = params['type']
+            })
     }
 
     deleteProject(project: Project) {
@@ -43,18 +45,8 @@ export class ProjectListComponent implements OnInit {
         // TODO delete
     }
 
-    toggleTabs(type) {
-        let selectorString = '[data-target="' + type + '"]';
-        let li = document.querySelector(selectorString)
-        let activeLi = document.querySelectorAll('a[role="tab"]');
-        for (let i = 0; i < activeLi.length; ++i) {
-            activeLi[i].classList.remove("active");
-            let divToHide = document.getElementById(activeLi[i].getAttribute('data-target'));
-            divToHide.classList.remove("active");
-        }
-        li.classList.add("active");
-        let divToShow = document.getElementById(li.getAttribute('data-target'));
-        divToShow.classList.add("active");
+    toggleTabs() {
+        this.activeTab = this.activeTab === "projects" ? "task" : "projects";
     }
 
     /**
@@ -68,8 +60,8 @@ export class ProjectListComponent implements OnInit {
 
     showTab(event) {
         event.preventDefault();
-        let li = event.target;
-        let destinationURL = li.getAttribute("routerLink");
+        let a = event.target;
+        let destinationURL = a.getAttribute("routerLink");
         this.router.navigate([destinationURL]);
     }
 

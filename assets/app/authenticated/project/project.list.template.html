@@ -1,17 +1,17 @@
-<div class="list-project-container">
+<div class="wrapper">
 
-  <h2>All Projects</h2>
-    <ul class="nav nav-tabs" role="tablist">
-      <li class="nav-item">
-        <a class="nav-link active" role="tab" (click)="showTab($event)" routerLink="/usr/project/list/projects"  data-target="projects">Projects</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" role="tab" (click)="showTab($event)" routerLink="/usr/project/list/tasks"  data-target="tasks">Tasks</a>
-      </li>
-    </ul>
-  <div class="list-project">
+  <ul class="tablist" role="tablist">
+    <li class="tab" [ngClass]="{ active: activeTab === 'projects' }">
+      <a class="tab-link" role="tab" (click)="showTab($event)" routerLink="/usr/project/list/projects" data-target="projects">Projects</a>
+    </li>
+    <li class="tab" [ngClass]="{ active: activeTab === 'tasks' }">
+      <a class="tab-link" role="tab" (click)="showTab($event)" routerLink="/usr/project/list/tasks" data-target="tasks">Tasks</a>
+    </li>
+  </ul>
 
-    <div id="projects" class="tabpane active">
+  <div class="content">
+
+    <div id="projects" class="tabpane" [ngClass]="{ active: activeTab === 'projects' }">
       <app-project-card
         [project]="project"
         (onDelete)="deleteProject(project)"
@@ -19,7 +19,7 @@
       </app-project-card>
     </div>
 
-    <div class="tabpane" id="tasks">
+    <div class="tabpane" id="tasks" [ngClass]="{ active: activeTab === 'tasks' }">
       <template ngFor let-project [ngForOf]="projects">
         <app-task-card
           [project]="project"
@@ -29,5 +29,7 @@
         </app-task-card>
       </template>
     </div>
+
   </div>
+
 </div>

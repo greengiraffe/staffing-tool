@@ -1,36 +1,65 @@
 @import './../../../styles/_variables';
 
-h2 {
-  font-size: 1.6rem;
-  margin-bottom: 15px;
-  margin-left: 2px;
-  color: #fff;
+.wrapper {
+
 }
 
-th {
-  cursor: pointer;
+.tablist {
+  list-style: none;
+  padding: 0;
+  margin: 36px 0 0 0;
+  text-align: center;
 }
 
-.list-project-container {
-  margin-top: 20px;
-  margin-bottom: 100px;
+.tab {
+  display: inline-block;
+  font-size: 28px;
+  line-height: 36px;
+  font-weight: 200;
+  letter-spacing: 0.015em;
+
+  + .tab {
+    margin-left: 15px;
+
+    &:before {
+      content: '•';
+      display: inline-block;
+      margin-right: 12px;
+      color: rgba($white, 0.8);
+    }
+  }
+  
+  &.active .tab-link {
+    opacity: 1;
+    cursor: default;
+    text-decoration: none;
+
+    &:hover {
+      border-bottom: 0;
+    }
+  }
 }
 
-.list-project {
-  padding: 15px;
-  background: rgba(#fff, 1);
-  border-radius: 2px;
-  @extend .md-shadow-1;
+.tab-link {
+  color: $white;
+  opacity: 0.7;
+
+  &:hover {
+    text-decoration: none;
+    border-bottom: 2px solid;
+  }
 }
 
-.nav-link {
-  color: #55595c;
-  background: #ddd;
+.content {
+  width: 100%;
+  max-width: 900px;
+  margin: 24px auto 0;
 }
 
 .tabpane {
   display: none;
-}
-.active {
-  display: block;
+
+  &.active {
+    display: block;
+  }
 }
