@@ -1,0 +1,14 @@
+@import "../../../styles/variables";
+
+form {
+  @include md-shadow-xs;
+
+  padding: 24px;
+  margin-top: 24px;
+  background: $white;
+}
+
+flash-messages {
+  display: block;
+  margin-top: 24px;
+}

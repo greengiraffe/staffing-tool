@@ -1,0 +1,10 @@
+@import "../../../styles/variables";
+
+.table-row{
+  @include md-shadow-xs;
+  background: $white;
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+  background-color: $grey-light;
+}

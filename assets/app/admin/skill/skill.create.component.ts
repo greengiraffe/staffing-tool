@@ -9,6 +9,7 @@ import { SkillService } from "../../_services/skill.service";
 @Component({
     selector: 'app-skill-create',
     templateUrl: './skill.create.template.html',
+    styleUrls: ['skill.create.style.scss']
 })
 export class SkillCreateComponent implements OnInit {
     skillForm: FormGroup;

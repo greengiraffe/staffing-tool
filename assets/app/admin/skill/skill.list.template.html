@@ -7,7 +7,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let skill of skills; let i = index">
+    <tr class="table-row" *ngFor="let skill of skills; let i = index">
       <th scope="row">{{ i+1 }}</th>
       <td>{{ skill.name }}</td>
       <td class="text-xs-right">

@@ -10,6 +10,7 @@ import { AuthService } from "../../_services/auth.service";
 @Component({
     selector: 'app-skill-list',
     templateUrl: './skill.list.template.html',
+    styleUrls: ['skill.list.style.scss']
 })
 export class SkillListComponent implements OnInit {
     private deleteSkillModalIds = new Array<string>();
