@@ -12,7 +12,7 @@ import { AuthService } from "../../_services/auth.service";
 export class UserListComponent {
     private deleteUserModalIds = new Array<string>();
     private currentUserCanRemove = false;
-
+    private currentUser: User;
     users: User[];
 
     constructor(private userService: UserService,
@@ -20,7 +20,7 @@ export class UserListComponent {
                 private modalService: ModalService) {}
 
     ngOnInit() {
-        const currentUser = this.authService.currentUser();
+        this.currentUser = this.authService.currentUser();
 
         this.userService.getUsers()
             .subscribe(
@@ -32,8 +32,8 @@ export class UserListComponent {
                 }
             );
 
-        if (currentUser) {
-            this.currentUserCanRemove = currentUser.role === 'admin' || currentUser.role === 'user_creator';
+        if (this.currentUser) {
+            this.currentUserCanRemove = this.currentUser.role === 'admin' || this.currentUser.role === 'user_creator';
         }
     }
 

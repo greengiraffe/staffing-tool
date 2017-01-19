@@ -21,7 +21,7 @@
       <td class="text-xs-right">
         <button class="btn btn-sm btn-outline-primary" (click)="editUser(user)">Edit</button>
         <button class="btn btn-sm btn-outline-danger" (click)="modalService.open(deleteUserModalIds[i])"
-        *ngIf="currentUserCanRemove">
+        *ngIf="currentUserCanRemove && user._id != currentUser._id">
           Delete
         </button>
       </td>
