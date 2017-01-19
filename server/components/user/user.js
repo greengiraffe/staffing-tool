@@ -25,17 +25,9 @@ module.exports = {
         return new Promise(function(resolve, reject) {
             user.save(function(err, result) {
                 if(err) {
-                    reject({
-                        message : "Database error",
-                        statusCode: 500,
-                        obj: err
-                    });
+                    reject(err);
                 } else {
-                    resolve({
-                        message : "User created successfully",
-                        statusCode: 201,
-                        obj: result
-                    });
+                    resolve(result);
                 }
             });
 
@@ -47,21 +39,15 @@ module.exports = {
         return new Promise(function(resolve, reject) {
             User.findByIdAndUpdate(updateData._id, { $set: updateData}, function(err, user) {
                 if(err) {
-                    reject({
-                        message: "Database error",
-                        statusCode: 500,
-                        obj: err
-                    });
+                    reject({statusCode: 500, obj: err});
                 } else if(!user) {
                     reject({
                         message: "No user document for " + updateData._id,
-                        statusCode: 404
+                        statusCode: 400
                     })
                 }
                 else {
-                    resolve({
-                        message: "User updated successfully"
-                    });
+                    resolve({message: "User updated successfully"});
                 }
             });
         });
@@ -71,38 +57,26 @@ module.exports = {
         return new Promise(function(resolve, reject) {
             User.findByIdAndUpdate(id, {$set: {password: updatedPassword}}, function(err, user){
                 if(err) {
-                    reject({
-                        message: "Database error",
-                        statusCode: 500,
-                        obj: err
-                    });
+                    reject(err);
                 } else {
-                    resolve({
-                        message: "Password updated successfully"
-                    });
+                    resolve({message: "Password updated successfully"});
                 }
             });
         });
     },
+
     deleteUser: function(id) {
         return new Promise (function(resolve, reject) {
             User.remove({_id : id}, function(err, result) {
                 if(err) {
-                    reject({
-                        message: "Database error",
-                        statusCode: 500,
-                        obj: err
-                    });
+                    reject({statusCode: 500, obj: err});
                 } else if(result.result.n == 0) {
                     reject({
                         message: "No user document for " + id,
-                        statusCode: 404
+                        statusCode: 400
                     });
                 } else {
-                    resolve({
-                        message: "User deleted successfully",
-                        statusCode: 200
-                    });
+                    resolve(result);
                 }
             });
         });
@@ -136,28 +110,21 @@ module.exports = {
         return new Promise(function(resolve, reject) {
             Skill.findById(skillId, function(skillErr, skill) {
                 if(skillErr) {
-                    reject({
-                        message : "Database error",
-                        statusCode: 500,
-                        obj: skillErr
-                    });
+                    reject({statusCode: 500, obj: skillErr});
                 } else if(!skill) {
                    reject({
                         message : "No skill document for " + skillId,
-                        statusCode: 404
+                        statusCode: 400
                     });
                 } else {
+
                     User.findById(userId, function(err, user) {
                         if(err) {
-                            reject({
-                                message : "Database error",
-                                statusCode: 500,
-                                obj: err
-                            });
+                            reject({statusCode: 500, obj: err});
                         } else if (!user) {
                             reject({
                                 message : "No user document for " + userId,
-                                statusCode: 404
+                                statusCode: 400
                             });
                         } else if(-1 !== user.userSkills.findIndex((skill) => skill.skill == skillId)) {
                             reject({
@@ -166,23 +133,18 @@ module.exports = {
                             });
                         } else {
                             user.userSkills.push({skill: skillId, rating: rating});
+
                             user.save(function(err) {
                                 if(err) {
-                                    reject({
-                                        message : "Database error",
-                                        statusCode: 500,
-                                        obj: err
-                                    });
+                                    reject({statusCode: 500, obj: err});
                                 } else {
-                                    resolve({
-                                        message : "Skill " + skill.name + " added successfully",
-                                        statusCode: 201,
-                                        obj: user
-                                    });
+                                    resolve(user);
                                 }
                             });
+
                         }
                     });
+
                 }
             })
         });
@@ -196,22 +158,14 @@ module.exports = {
                     { safe : true },
                     function callback(err, obj) {
                         if(err) {
-                            reject({
-                                message: "Database error",
-                                statusCode: 500,
-                                obj: err
-                            });
+                            reject({statusCode: 500, obj: err});
                         } else if(obj.nModified == 0) {
                             reject({
                                 message: "No matching documents",
-                                statusCode: 404
+                                statusCode: 400
                             });
                         } else {
-                            resolve({
-                                message: "Skill removed successfully",
-                                statusCode: 200,
-                                obj: obj
-                            });
+                            resolve(obj);
                         }
                     }
                 );
