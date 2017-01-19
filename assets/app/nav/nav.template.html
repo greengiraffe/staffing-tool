@@ -9,8 +9,6 @@
     </a></li>
     <li *ngIf="isInternUser" class="nav-item"><a class="nav-link" (click)="closeDropdown()" routerLink="/usr/project/list/projects" [class.active]="this.router.url.startsWith('/usr/project/list')"><i class="fa fa-list-ul" aria-hidden="true"></i>
       Projects</a></li>
-    <li *ngIf="isInternUser" class="nav-item"><a class="nav-link" (click)="closeDropdown()" routerLink="/usr/project/create" routerLinkActive="active"><i class="fa fa-plus" aria-hidden="true"></i>
-      New Project</a></li>
     <li class="nav-item right"><a class="nav-link" (click)="closeDropdown()" routerLink="/auth/login" (click)="logout()">Logout</a></li>
     <li *ngIf="isAdminUser" class="nav-item dropdown" [class.dropdown-active]="isActiveDropdown">
       <a class="nav-link dropdown-toggle" (click)="toggleDropdown($event)" [class.active]="this.router.url.startsWith('/admin')"><i class="fa fa-book" aria-hidden="true"></i>Admin</a>
