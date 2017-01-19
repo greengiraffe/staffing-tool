@@ -87,13 +87,16 @@ router.get('/user/list', function(req, res, next) {
  * Get specific user by id
  */
 router.get('/user/id/:id', function(req, res, next) {
-    User.getUserByID(req.params.id)
-        .then(function (result) {
-            res.status(200).json(result);
-        })
-        .catch(function (err) {
-            res.status(400).json(err);
-        })
+    let id = req.params.id;
+    if(isValidID(id)) {
+        User.getUserByID(id)
+            .then(function (result) {
+                res.status(200).json(result);
+            })
+            .catch(function (err) {
+                res.status(400).json(err);
+            })
+    }
 });
 
 /**
@@ -165,7 +168,7 @@ router.delete('/user/skill', function(req, res, next) {
     let skillId = req.body.skillId;
     let rating = req.body.rating
     if(isValidID(userId) && isValidID(skillId)) {
-        User.removeSkill(userId,skillId ,rating)
+        User.removeSkill(userId, skillId ,rating)
             .then(function(result) {
                 res.status(200).json(result);
             })
@@ -192,57 +195,60 @@ router.put('/user', function(req, res, next) {
  * Update a user's password
  */
 router.put('/user/password', function(req, res, next) {
-  let oldPassword = req.body.oldPassword;
-  let newPassword = req.body.newPassword;
-  let id = req.body.id;
-  if(authHelper.passwordIsValid(newPassword)) {
-      User.getUserByID(id)
-        .then(function(user) {
-            if(!user) {
-                res.status(404).json({
-                    message: "No user document for " + id,
-                    statusCode: 404
-                });
-            } else if(authHelper.comparePassword(oldPassword, user.password)){
-                newPassword = authHelper.generateSecureHash(newPassword);
+    let oldPassword = req.body.oldPassword;
+    let newPassword = req.body.newPassword;
+    let id = req.body.id;
+    if(authHelper.passwordIsValid(newPassword)) {
+        User.getUserByID(id)
+          .then(function(user) {
+              if(!user) {
+                  res.status(404).json({
+                      message: "No user document for " + id,
+                      statusCode: 404
+                  });
+              } else if(authHelper.comparePassword(oldPassword, user.password)){
+                  newPassword = authHelper.generateSecureHash(newPassword);
 
-                User.changePassword(id, newPassword)
-                    .then(function(result) {
-                        res.status(200).json(result);
-                    })
-                    .catch(function(err) {
-                        res.status(err.statusCode).json(err);
-                    });
+                  User.changePassword(id, newPassword)
+                      .then(function(result) {
+                          res.status(200).json(result);
+                      })
+                      .catch(function(err) {
+                          res.status(err.statusCode).json(err);
+                      });
 
-            } else {
-                res.status(400).json({
-                    message : "Wrong password"
-                });
-            }
-        })
-        .catch(function(err){
-          res.status(500).json(err)
-        });
-    } else {
-        res.status(400).json({
-                        message : "Bad password",
-                        statusCode: 400,
-                        value: req.body.password
-        })
-    }
+              } else {
+                  res.status(400).json({
+                      message : "Wrong password"
+                  });
+              }
+          })
+          .catch(function(err){
+            res.status(500).json(err)
+          });
+      } else {
+          res.status(400).json({
+                          message : "Bad password",
+                          statusCode: 400,
+                          value: req.body.password
+          })
+      }
 });
 
 /**
  * Delete a user by id
  */
 router.delete('/user/:id', function(req, res, next) {
-    User.deleteUser(req.params.id)
-        .then(function(result) {
-            res.status(200).json(result)
-        })
-        .catch(function(err) {
-            res.status(err.statusCode).json(err)
-        })
+    let id = req.params.id;
+    if(isValidID(id)) {
+        User.deleteUser(id)
+            .then(function(result) {
+                res.status(200).json(result)
+            })
+            .catch(function(err) {
+                res.status(err.statusCode).json(err)
+            })
+    }
 });
 
 /**
@@ -285,29 +291,35 @@ router.post('/user/img/:id', multipartMiddleware, function(req, res, next) {
  */
 router.get('/user/img/:id/:size?', function (req, res){
     let size = req.params.size === "small"  ? req.params.size : "" ;
-    User.getUserByID(req.params.id)
-        .then(function (result) {
-            file = imgStorePath +  result._id + size + '.png';
-            let img = fs.readFileSync(file);
-            res.writeHead(200, {'Content-Type': 'image/png' });
-            res.end(img, 'binary');
-        })
-        .catch(function (err) {
-            res.status(400).json(err);
-        })
+    let id = req.params.id;
+    if(isValidID(id)) {
+        User.getUserByID(id)
+            .then(function (result) {
+                file = imgStorePath +  result._id + size + '.png';
+                let img = fs.readFileSync(file);
+                res.writeHead(200, {'Content-Type': 'image/png' });
+                res.end(img, 'binary');
+            })
+            .catch(function (err) {
+                res.status(400).json(err);
+            })
+    }
 });
 
 /**
  * Get all projects owned by a user
  */
 router.get('/user/projects/:id', function(req, res, next) {
-    User.getOwnedProjects(req.params.id)
-        .then(function(result) {
-            res.status(200).json(result);
-        })
-        .catch(function(err) {
-            res.status(400).json(err);
-        });
+    let id = req.params.id;
+    if(isValidID(id)) {
+        User.getOwnedProjects(id)
+            .then(function(result) {
+                res.status(200).json(result);
+            })
+            .catch(function(err) {
+                res.status(400).json(err);
+            });
+    }
 });
 
 module.exports = router;
