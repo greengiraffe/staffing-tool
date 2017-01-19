@@ -13,7 +13,7 @@ import { UserSearchService } from '../../_services/user.search.service';
       placeholder="Search for a User"
       type="text" (click)="openUserList()">
       <div *ngIf="showUserList" class="user-list" [ngSwitch]="clickableUser">
-        <div class="user" *ngFor="let interested of interestedUsers | filter : 'lastName' : searchText"
+        <div class="user" *ngFor="let interested of interestedUsers | filterNames : 'firstName' : 'lastName' : searchText"
          (click)="selectUser(user)">
          <div class="user-info">
             {{ interested.firstName }} {{ interested.lastName }}
@@ -21,7 +21,7 @@ import { UserSearchService } from '../../_services/user.search.service';
          </div>
          <div class="user-match" *ngIf="interested.match || interested.match === 0">{{ interested.match | percent}}</div>
         </div>
-        <div class="user" *ngFor="let user of visibleUsers | filter : 'lastName' : searchText" (click)="selectUser(user)">
+        <div class="user" *ngFor="let user of visibleUsers | filterNames : 'firstName' : 'lastName' : searchText" (click)="selectUser(user)">
             <div class="user-info">{{ user.firstName }} {{ user.lastName }}</div>
             <div class="user-match" *ngIf="user.match || user.match === 0">{{ user.match | percent}}</div>
         </div>
