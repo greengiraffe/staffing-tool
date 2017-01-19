@@ -3,7 +3,7 @@ let router = express.Router();
 let Skill = require('./skill');
 let mongoose = require('mongoose');
 
-function isInvalidID(id) {
+function isValidID(id) {
     if(!mongoose.Types.ObjectId.isValid(id)) {
         res.status(400).json({message: "Invalid ID"});
         return false;
