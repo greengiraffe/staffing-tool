@@ -1,0 +1,29 @@
+@import "../../../styles/variables";
+
+.page-wrapper {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.content-wrapper {
+  margin-top: 36px;
+}
+
+h1 {
+  font-size: 28px;
+  line-height: 36px;
+  font-weight: 200;
+  letter-spacing: 0.015em;
+  color: $white;
+  margin-top: 36px;
+}
+
+.table-row{
+  @include md-shadow-xs;
+  background: $white;
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+  background-color: $grey-light;
+}

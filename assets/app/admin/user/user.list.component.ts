@@ -7,7 +7,8 @@ import { AuthService } from "../../_services/auth.service";
 
 @Component({
     selector: 'app-user-list',
-    templateUrl: './user.list.template.html'
+    templateUrl: './user.list.template.html',
+    styleUrls: ['user.list.style.scss']
 })
 export class UserListComponent {
     private deleteUserModalIds = new Array<string>();
