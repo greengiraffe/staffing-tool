@@ -16,6 +16,14 @@ let IMAGE_TYPES = ['image/jpeg', 'image/png'];
 let imgStorePath = config.img_path;
 let sharp = require('sharp');
 
+function isValidID(id) {
+    if(!mongoose.Types.ObjectId.isValid(id)) {
+        res.status(400).json({message: "Invalid ID"});
+        return false;
+    }
+    return true;
+}
+
 /**
  * Handle user login
  */
@@ -138,18 +146,14 @@ router.put('/user/skill', function(req, res, next) {
     let userId = req.body.userId;
     let skillId = req.body.skillId;
     let rating = req.body.rating
-    if(mongoose.Types.ObjectId.isValid(userId) && mongoose.Types.ObjectId.isValid(skillId) ) {
-        User.addSkill(userId,skillId ,rating)
+    if(isValidID(userId) && isValidID(skillId)) {
+        User.addSkill(userId, skillId ,rating)
             .then(function(result) {
                 res.status(200).json(result);
             })
             .catch(function(err) {
                 res.status(err.statusCode).json(err);
             });
-    } else {
-        res.status(400).json({
-            message: "Invalid ID"
-        });
     }
 });
 
@@ -160,7 +164,7 @@ router.delete('/user/skill', function(req, res, next) {
     let userId = req.body.userId;
     let skillId = req.body.skillId;
     let rating = req.body.rating
-    if(mongoose.Types.ObjectId.isValid(userId) && mongoose.Types.ObjectId.isValid(skillId) ) {
+    if(isValidID(userId) && isValidID(skillId)) {
         User.removeSkill(userId,skillId ,rating)
             .then(function(result) {
                 res.status(200).json(result);
@@ -168,10 +172,6 @@ router.delete('/user/skill', function(req, res, next) {
             .catch(function(err) {
                 res.status(err.statusCode).json(err);
             });
-    } else {
-        res.status(400).json({
-            message: "Invalid ID"
-        });
     }
 });
 
