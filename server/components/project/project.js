@@ -43,19 +43,9 @@ module.exports = {
         return new Promise(function (resolve, reject) {
             newProject.save(function(err, result) {
                 if(err) {
-                    console.log(err);
-                    reject({
-                        message: "Database error",
-                        statusCode: 500,
-                        obj: err
-                    });
+                    reject(err);
                 } else {
-                    console.log(result);
-                    resolve({
-                        message: "Project successfully created",
-                        statusCode: 201,
-                        obj: result
-                    });
+                    resolve(result);
                 }
             })
         })
@@ -96,17 +86,9 @@ module.exports = {
 
                 project.save(function (err, result) {
                     if(err) {
-                        reject({
-                            message: "Database error",
-                            statusCode: 500,
-                            obj: err
-                        });
+                        reject(err);
                     } else {
-                        resolve({
-                            message: "Project successfully created",
-                            statusCode: 201,
-                            obj: result
-                        });
+                        resolve(result);
                     }
                 });
 
@@ -120,24 +102,16 @@ module.exports = {
               { '_id' : projectId },
               { $pull: { 'projectTasks': { _id: projectTask._id } } },
               { safe : true },
-              function callback(err, obj) {
+              function callback(err, result) {
                   if(err) {
-                      reject({
-                          message: "Database error",
-                          statusCode: 500,
-                          obj: err
-                      });
-                  } else if(obj.nModified == 0) {
+                      reject({statusCode: 500, result: err});
+                  } else if(result.nModified == 0) {
                       reject({
                           message: "No matching documents",
-                          statusCode: 404
+                          statusCode: 400
                       });
                   } else {
-                      resolve({
-                          message: "Task removed successfully",
-                          statusCode: 200,
-                          obj: obj
-                      });
+                      resolve(result);
                   }
               } )
         });
@@ -149,24 +123,16 @@ module.exports = {
               { 'projectTasks._id' : projectTask._id },
               { $set: { 'projectTasks.$': projectTask } },
               { safe : true },
-              function callback(err, obj) {
+              function callback(err, result) {
                   if(err) {
-                      reject({
-                          message: "Database error",
-                          statusCode: 500,
-                          obj: err
-                      });
-                  } else if(obj.nModified == 0) {
+                      reject({statusCode: 500, result: err});
+                  } else if(result.nModified == 0) {
                       reject({
                           message: "No matching documents",
-                          statusCode: 404
+                          statusCode: 400
                       });
                   } else {
-                      resolve({
-                          message: "Task updated successfully",
-                          statusCode: 200,
-                          obj: obj
-                      });
+                      resolve(result);
                   }
               } )
         });
@@ -196,21 +162,15 @@ module.exports = {
         return new Promise(function(resolve, reject) {
             Project.findByIdAndUpdate(updateData._id, { $set: updateData}, function(err, project) {
                 if(err) {
-                    reject({
-                        message: "Database error",
-                        statusCode: 500,
-                        obj: err
-                    });
+                    reject({statusCode: 500, obj: err});
                 } else if(!project) {
                     reject({
                         message: "No project document for " + updateData._id,
-                        statusCode: 404
+                        statusCode: 400
                     })
                 }
                 else {
-                    resolve({
-                        message: "Project updated successfully"
-                    });
+                    resolve(result);
                 }
             });
         });
@@ -220,34 +180,23 @@ module.exports = {
         return new Promise(function(resolve, reject) {
             Project.findById(id, function(err, project) {
                 if(err) {
-                    reject({
-                        message : "Database error",
-                        statusCode: 500,
-                        obj: err
-                    });
+                    reject({statusCode: 500, obj: err});
                 } else if(!project) {
                     reject({
                         message : "No project document for " + id,
-                        statusCode: 404
+                        statusCode: 400
                     });
                 } else {
+
                     project.remove(function(err, result) {
                         if(err) {
-                            reject({
-                                message : "Database error",
-                                statusCode: 500,
-                                obj: err
-                            });
+                            reject({statusCode: 500, obj: err});
                         } else {
-                            resolve({
-                                message : "Project deleted successfully",
-                                statusCode: 200,
-                                obj: result
-                            });
+                            resolve(result);
                         }
                     });
-                }
 
+                }
             });
         });
     }
