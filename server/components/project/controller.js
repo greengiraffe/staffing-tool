@@ -11,10 +11,10 @@ let mongoose = require('mongoose');
 router.post('/project', function(req, res, next){
     Project.createProject(req.body)
         .then(function(result){
-           res.status(result.statusCode).json(result);
+           res.status(201).json(result);
         })
         .catch(function(err){
-            res.status(err.statusCode).json(err);
+            res.status(500).json(err);
         });
 });
 
@@ -50,10 +50,10 @@ router.get('/project/:id', function(req, res, next) {
 router.post('/project/task/:id', function(req, res, next) {
     Project.createProjectTask(req.params.id, req.body)
         .then(function(result){
-           res.status(result.statusCode).json(result);
+           res.status(201).json(result);
         })
         .catch(function(err){
-            res.status(err.statusCode).json(err);
+            res.status(500).json(err);
         });
 });
 
@@ -63,7 +63,7 @@ router.post('/project/task/:id', function(req, res, next) {
 router.delete('/project/task/:id', function(req, res, next) {
     Project.removeProjectTask(req.params.id, req.body)
         .then(function(result){
-           res.status(result.statusCode).json(result);
+           res.status(200).json(result);
         })
         .catch(function(err){
             res.status(err.statusCode).json(err);
@@ -76,7 +76,7 @@ router.delete('/project/task/:id', function(req, res, next) {
 router.put('/project/task/:id', function(req, res, next) {
     Project.updateProjectTask(req.params.id, req.body)
         .then(function(result){
-           res.status(result.statusCode).json(result);
+           res.status(200).json(result);
         })
         .catch(function(err){
             res.status(err.statusCode).json(err);
@@ -104,7 +104,7 @@ router.delete('/project/:id', function(req, res, next) {
     if(mongoose.Types.ObjectId.isValid(id)) {
         Project.removeProject(id)
         .then(function(result) {
-            res.status(result.statusCode).json(result);
+            res.status(200).json(result);
         })
         .catch(function(err) {
             res.status(err.statusCode).json(err);
