@@ -1,8 +1,6 @@
-<div class="col-lg-6">
-  <h2>Add a person</h2>
-  <h5><span class="red">*</span> Required Fields</h5>
-  <br/>
-
+<div class="page-wrapper">
+<div class="content-wrapper">
+  <h1>Add a Person</h1>
   <form (ngSubmit)="onSubmit(createUserForm.value)" [formGroup]="createUserForm">
     <div class="form-group">
       <div class="flex-container">
@@ -98,4 +96,5 @@
       <button type="submit" class="btn btn-primary" [disabled]="!createUserForm.valid">Add Person</button>
     </div>
   </form>
+</div>
 </div>
