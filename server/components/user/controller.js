@@ -19,9 +19,7 @@ let sharp = require('sharp');
 /**
  * Handle user login
  */
-
 router.post('/login', function(req, res, next) {
-    console.log(req.body.email, req.body.password);
     User.getUserByMail(req.body.email)
         .then(function(user) {
             if (!user) {
@@ -93,7 +91,6 @@ router.get('/user/id/:id', function(req, res, next) {
 /**
  * Get specific user by mail
  */
-
 router.get('/user/mail/:email', function (req, res, next){
     User.getUserByMail(req.params.email)
     .then(function(result){
@@ -120,10 +117,10 @@ router.post('/user', function(req, res, next) {
         req.body.phone
     )
         .then(function(result) {
-            res.status(result.statusCode).json(result);
+            res.status(201).json(result);
         })
         .catch(function(err) {
-            res.status(err.statusCode).json(err);
+            res.status(500).json(err);
         });
     } else {
         res.status(400).json({
@@ -133,7 +130,6 @@ router.post('/user', function(req, res, next) {
         })
     }
 });
-
 
 /**
  * Add a specific skill with rating to a specific user
@@ -145,7 +141,7 @@ router.put('/user/skill', function(req, res, next) {
     if(mongoose.Types.ObjectId.isValid(userId) && mongoose.Types.ObjectId.isValid(skillId) ) {
         User.addSkill(userId,skillId ,rating)
             .then(function(result) {
-                res.status(result.statusCode).json(result);
+                res.status(200).json(result);
             })
             .catch(function(err) {
                 res.status(err.statusCode).json(err);
@@ -167,7 +163,7 @@ router.delete('/user/skill', function(req, res, next) {
     if(mongoose.Types.ObjectId.isValid(userId) && mongoose.Types.ObjectId.isValid(skillId) ) {
         User.removeSkill(userId,skillId ,rating)
             .then(function(result) {
-                res.status(result.statusCode).json(result);
+                res.status(200).json(result);
             })
             .catch(function(err) {
                 res.status(err.statusCode).json(err);
@@ -209,6 +205,7 @@ router.put('/user/password', function(req, res, next) {
                 });
             } else if(authHelper.comparePassword(oldPassword, user.password)){
                 newPassword = authHelper.generateSecureHash(newPassword);
+
                 User.changePassword(id, newPassword)
                     .then(function(result) {
                         res.status(200).json(result);
@@ -216,6 +213,7 @@ router.put('/user/password', function(req, res, next) {
                     .catch(function(err) {
                         res.status(err.statusCode).json(err);
                     });
+
             } else {
                 res.status(400).json({
                     message : "Wrong password"
@@ -240,7 +238,7 @@ router.put('/user/password', function(req, res, next) {
 router.delete('/user/:id', function(req, res, next) {
     User.deleteUser(req.params.id)
         .then(function(result) {
-            res.status(result.statusCode).json(result)
+            res.status(200).json(result)
         })
         .catch(function(err) {
             res.status(err.statusCode).json(err)
@@ -299,9 +297,8 @@ router.get('/user/img/:id/:size?', function (req, res){
         })
 });
 
-
 /**
- * Get all projects owned by a user 
+ * Get all projects owned by a user
  */
 router.get('/user/projects/:id', function(req, res, next) {
     User.getOwnedProjects(req.params.id)
@@ -312,6 +309,5 @@ router.get('/user/projects/:id', function(req, res, next) {
             res.status(400).json(err);
         });
 });
-
 
 module.exports = router;
