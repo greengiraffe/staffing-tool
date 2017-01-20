@@ -30,7 +30,11 @@ export class UserProfileComponent implements OnInit {
     projects: Project[];
     tasks: any[] = [
         {title: 'Paper Prototyping', description: 'lasdflk lskefldf lskeflksff lwkeflksdf', client: 'Bosch'},
-        {title: 'Create Information Architecture', description: 'lsakjf lksdfl klskdf sldkf', client: 'Siemens'}];
+        {title: 'Paper Prototyping', description: 'lasdflk lskefldf lskeflksff lwkeflksdf', client: 'Bosch'},
+        {title: 'Create Information Architecture', description: 'lsakjf lksdfl klskdf sldkf', client: 'Siemens'},
+        {title: 'Paper Prototyping', description: 'lasdflk lskefldf lskeflksff lwkeflksdf', client: 'Bosch'},
+        {title: 'Paper Prototyping', description: 'lasdflk lskefldf lskeflksff lwkeflksdf', client: 'Bosch'},
+        ];
     showTask = true;
     showSkill = false;
     showProject = false;
@@ -52,7 +56,7 @@ export class UserProfileComponent implements OnInit {
             this.userService.getUserImage(currentUser._id)
                 .subscribe(
                     data => {
-                        let profilePicture = document.getElementsByClassName('profile-picture')[0];
+                        let profilePicture = document.getElementById('profile-picture');
                         this.renderer.setElementProperty(profilePicture, 'src', data);
                     },
                     error => console.log(error)
@@ -66,24 +70,13 @@ export class UserProfileComponent implements OnInit {
         }
     }
 
-    getState(b: boolean) {
-        if (b) return 'active';
-        else return 'inactive';
-    }
-
     toggleSkill() {
         this.showSkill = !this.showSkill;
-        // this.showProject = false;
-        // this.showTask = false;
     }
     toggleProject() {
-        // this.showSkill = false;
         this.showProject = !this.showProject;
-        // this.showTask = false;
     }
     toggleTask() {
-        // this.showSkill = false;
-        // this.showProject = false;
         this.showTask = !this.showTask;
     }
 }

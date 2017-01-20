@@ -1,11 +1,11 @@
-<div class="user-profile-page">
+<div class="page-wrapper">
 
 
-  <div class="profile-container">
+  <div class="sidebar">
 
     <div class="picture-container">
-      <img src="/img/user.png" class="profile-picture" alt="Profile picture">
-      <span class="user-name">{{user?.firstName}} {{user?.lastName}}</span>
+      <img src="/img/user.png" id="profile-picture" alt="Profile picture">
+      <span class="username">{{user?.firstName}} {{user?.lastName}}</span>
     </div>
 
     <dl class="profile-info">
@@ -16,12 +16,7 @@
       <dd class="location">{{user?.location}}</dd>
 
       <dt>Phone</dt>
-      <template [ngIf]="user?.phone">
-        <dd>{{user?.phone}}</dd>
-      </template>
-      <template [ngIf]="!user?.phone">
-        <dd>n/a</dd>
-      </template>
+      <dd class="phone">{{ user?.phone ? user?.phone : 'n/a' }}</dd>
     </dl>
 
     <button type="button" class="btn btn-outline-secondary btn-sm edit-profile-btn" routerLink="edit">
@@ -29,14 +24,14 @@
     </button>
   </div>
 
-  <div class="user-profile-content">
+  <main class="content">
 
-    <div class="bar" [ngClass]="{'expanded': showTask}">
+    <div class="bar" [class.expanded]="showTask">
       <div class="bar-head" (click)="toggleTask()">
         Tasks
-        <i class="fa fa-chevron-right" [ngClass]="{'down': showTask}"></i>
+        <i class="fa fa-chevron-right"></i>
       </div>
-      <div class="bar-content" [@expand]="getState(showTask)">
+      <div class="bar-content">
         <div class="task-bar" *ngFor="let task of tasks">
           <div class="task-lefty">
             <span class="task-title">{{task.title}}</span><br />
@@ -46,12 +41,12 @@
         </div>
       </div>
     </div>
-    <div class="bar" [ngClass]="{'expanded': showProject}" >
+    <div class="bar" [class.expanded]="showProject">
       <div class="bar-head" (click)="toggleProject()" >
         Created Projects
-        <i class="fa fa-chevron-right" [ngClass]="{'down': showProject}"></i>
+        <i class="fa fa-chevron-right"></i>
       </div>
-      <div class="bar-content project" [@expand]="getState(showProject)">
+      <div class="bar-content project" >
         <div class="project-type confirmed"><img src="/img/pikto/2_Confirmed.svg"><br />confirmed</div>
         <div class="project-type tentative"><img src="/img/pikto/3_Tentative.svg"><br />tentative</div>
         <div class="project-type internal"><img src="/img/pikto/4_Internal.svg"><br />internal</div>
@@ -64,16 +59,16 @@
         <!--</div>-->
       </div>
     </div>
-    <div class="bar" [ngClass]="{'expanded': showSkill}" >
+    <div class="bar" [class.expanded]="showSkill">
       <div class="bar-head" (click)="toggleSkill()" >
         Skills
-        <i class="fa fa-chevron-right" [ngClass]="{'down': showSkill}"></i>
+        <i class="fa fa-chevron-right"></i>
       </div>
-      <div class="bar-content" [@expand]="getState(showSkill)">
+      <div class="bar-content">
         <app-user-skill-list class="skill-list"></app-user-skill-list>
       </div>
     </div>
 
-  </div>
+  </main>
 
 </div>
