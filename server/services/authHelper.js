@@ -1,5 +1,6 @@
 let bcrypt = require('bcryptjs');
 let crypto = require('crypto');
+let passport = require('passport');
 let passwordRegex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,})");
 
 function generateSecureHash (string) {
@@ -31,10 +32,25 @@ function passwordIsValid (string) {
     return string && string.search(passwordRegex) !== -1;
 }
 
+function checkAuthenticationMiddleware (req, res, next) {
+    passport.authenticate('bearer', function(err, user, info) {
+        if (err) {
+            return res.status(401).json(err);
+        }
+        if (user) {
+            req.user = user;
+            return next();
+        } else {
+            return res.status(401).json({});
+        }
+    })(req, res, next);
+}
+
 module.exports = {
     generateSecureHash,
     generateToken,
     comparePassword,
     ensureAuthenticated,
-    passwordIsValid
+    passwordIsValid,
+    checkAuthenticationMiddleware
 };

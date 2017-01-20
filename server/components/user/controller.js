@@ -49,8 +49,7 @@ router.post('/login', function(req, res, next) {
             let token = jwt.sign({user: user}, config.jwt.secret, {expiresIn: config.jwt.expire});
             return res.status(200).json({
                 message: 'Successfully logged in',
-                token: token,
-                user: user
+                token: token
             });
             next();
         })
@@ -69,6 +68,11 @@ router.get('/logout', function(req, res) {
     req.logout();
     res.redirect('/');
 });
+
+/**
+ * Guard routes
+ */
+//router.use(authHelper.checkAuthenticationMiddleware)
 
 /**
  * Get a list of all users
