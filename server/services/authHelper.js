@@ -1,6 +1,7 @@
 let bcrypt = require('bcryptjs');
 let crypto = require('crypto');
 let passport = require('passport');
+let BlacklistedToken = require('../models/blacklistedToken')
 let passwordRegex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,})");
 
 function generateSecureHash (string) {
@@ -19,31 +20,29 @@ function comparePassword (userPassword, databasePassword) {
     return bcrypt.compareSync(userPassword, databasePassword);
 }
 
-function ensureAuthenticated (req, res, next) {
-    if (req.isAuthenticated()) {
-        next();
-    } else {
-        req.flash('info', 'Bitte logge dich ein, um die gewünschte Seite zu sehen');
-        res.redirect('/login');
-    }
-}
-
 function passwordIsValid (string) {
     return string && string.search(passwordRegex) !== -1;
 }
 
-function checkAuthenticationMiddleware (req, res, next) {
-    passport.authenticate('bearer', function(err, user, info) {
-        if (err) {
-            return res.status(401).json(err);
-        }
-        if (user) {
-            req.user = user;
-            return next();
-        } else {
-            return res.status(401).json({});
-        }
-    })(req, res, next);
+function ensureAuthenticated (req, res, next) {
+    var t = req.headers.authorization.split(' ')[1];
+    BlacklistedToken.count({token : t})
+    .then(function(result){
+        passport.authenticate('bearer', function(err, user, info) {
+            if (err) {
+                return res.status(401).json(err);
+            }
+            if (user && !(result > 0)) {
+                req.user = user;
+                return next();
+            } else {
+                return res.status(401).json({});
+            }
+        })(req, res, next);
+    })
+    .catch(function(err){
+        return res.status(500).json(err);
+    });
 }
 
 module.exports = {
@@ -52,5 +51,4 @@ module.exports = {
     comparePassword,
     ensureAuthenticated,
     passwordIsValid,
-    checkAuthenticationMiddleware
 };
