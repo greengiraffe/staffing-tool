@@ -1,7 +1,7 @@
-// Get Users Model
 let User = require('../../models/user');
 let Project = require('../../models/project');
 let Skill = require('../../models/skill');
+let BlacklistedToken = require('../../models/blacklistedToken')
 let authHelper = require('../../services/authHelper');
 
 module.exports = {
@@ -153,23 +153,36 @@ module.exports = {
     removeSkill: function(userId, skillId) {
         return new Promise(function(resolve, reject) {
             User.update(
-                    { '_id' : userId },
-                    {   $pull : { "userSkills" : { skill: skillId }}},
-                    { safe : true },
-                    function callback(err, obj) {
-                        if(err) {
-                            reject({statusCode: 500, obj: err});
-                        } else if(obj.nModified == 0) {
-                            reject({
-                                message: "No matching documents",
-                                statusCode: 400
-                            });
-                        } else {
-                            resolve(obj);
-                        }
+                { '_id' : userId },
+                {   $pull : { "userSkills" : { skill: skillId }}},
+                { safe : true },
+                function callback(err, obj) {
+                    if(err) {
+                        reject({statusCode: 500, obj: err});
+                    } else if(obj.nModified == 0) {
+                        reject({
+                            message: "No matching documents",
+                            statusCode: 400
+                        });
+                    } else {
+                        resolve(obj);
                     }
-                );
+                }
+            );
         })
+    },
+
+    addTokenToBlacklist: function(token) {
+        let blacklistedToken = new BlacklistedToken({token: token})
+        return new Promise(function(resolve, reject) {
+            blacklistedToken.save(function(err, result) {
+                if(err) {
+                    reject();
+                } else {
+                  resolve();
+                }
+            });
+        });
     }
 
 };
