@@ -61,8 +61,8 @@ router.post('/login', function(req, res) {
  *  Handle Logout
  */
 router.get('/logout', function(req, res) {
-    var token = req.headers.authorization.split(' ')[1];
-    User.addTokenToBlacklist(token)
+    let token = req.headers.authorization.split(' ')[1];
+    User.addTokenToBlacklist(token);
     res.redirect('/');
 });
 

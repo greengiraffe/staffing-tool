@@ -10,18 +10,44 @@
 
     <dl class="profile-info">
       <dt>Email</dt>
-      <dd class="email"><a href="mailto:{{ user?.email }}">{{user?.email}}</a></dd>
+      <dd class="email">
+        <div class="info" [hidden]="editMail">
+          <a href="mailto:{{ user?.email }}">
+          {{user?.email}}</a>
+          <i class="fa fa-pencil" (click)="editMail = true"></i>
+        </div>
+        <div class="edit" [hidden]="!editMail">
+          <input id="input-mail" type="text" [value]="user?.email" (input)="newMail = $event.target.value" required="">
+          <i class="fa fa-floppy-o" (click)="save($event)"></i>
+        </div>
+      </dd>
 
       <dt>Location</dt>
-      <dd class="location">{{user?.location}}</dd>
+      <dd class="location">
+        <div class="info" [hidden]="editLoc">
+          {{user?.location}}
+          <i class="fa fa-pencil" (click)="editLoc = true"></i>
+        </div>
+        <div class="edit" [hidden]="!editLoc">
+          <input id="input-loc" type="text" [value]="user?.location" (input)="newLoc = $event.target.value" required="">
+          <i class="fa fa-floppy-o" (click)="save($event)"></i>
+        </div>
+      </dd>
 
       <dt>Phone</dt>
-      <dd class="phone">{{ user?.phone ? user?.phone : 'n/a' }}</dd>
+      <dd class="phone">
+        <div class="info" [hidden]="editPhone">
+          {{ user?.phone ? user?.phone : 'n/a' }}
+          <i class="fa fa-pencil" (click)="editPhone = true"></i>
+        </div>
+        <div class="edit" [hidden]="!editPhone">
+          <input id="input-phone" type="text" [value]="user?.phone ? user?.phone : 'n/a' "
+                 (input)="newPhone = $event.target.value" required="">
+          <i class="fa fa-floppy-o" (click)="save($event)"></i>
+        </div>
+      </dd>
     </dl>
 
-    <button type="button" class="btn btn-outline-secondary btn-sm edit-profile-btn" routerLink="edit">
-      Edit <i class="fa fa-2x fa-pencil-square"></i>
-    </button>
   </div>
 
   <main class="content">

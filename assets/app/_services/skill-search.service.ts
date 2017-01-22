@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs/Subject';
 import { Skill } from "../_models/skill.model";
-import {UserSkill} from "../_models/user-skill.model";
+import { UserSkill } from "../_models/user-skill.model";
 
 @Injectable()
 export class SkillSearchService {

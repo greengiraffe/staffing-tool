@@ -21,7 +21,7 @@ import { AuthService } from "../../_services/auth.service";
                 maxHeight: '0',
                 display: 'none'
             })),
-            transition('inactive <=> active', animate('400ms linear'))
+            transition('inactive <=> active', animate('400ms ease-in-out'))
         ])
     ]
 })
@@ -33,6 +33,12 @@ export class UserProfileComponent implements OnInit {
     showTask = true;
     showSkill = false;
     showProject = false;
+    editMail = false;
+    editLoc = false;
+    editPhone = false;
+    newMail: string;
+    newLoc: string;
+    newPhone: string;
 
     constructor(private userService: UserService,
                 private authService: AuthService,
@@ -61,13 +67,34 @@ export class UserProfileComponent implements OnInit {
                 .subscribe(
                         (projects: Project[]) =>  this.projects = projects,
                         error => console.log(error)
-                    )
+                    );
             this.userService.getAssignedTasksOfUser(currentUser._id)
                 .subscribe(
                     (tasks: ProjectTask[]) => this.tasks = tasks,
                     error => console.log(error)
                     )
         }
+
+        if (this.tasks.length == 0) this.showTask = false;
+    }
+
+    save(event) {
+        let target = event.target || event.srcElement || event.currentTarget;
+        let id = target.previousElementSibling.id;
+        if (id == 'input-mail') {
+            this.user.email = this.newMail;
+        }
+        else if (id == 'input-loc') {
+            this.user.location = this.newLoc;
+        }
+        else if (id == 'input-phone') {
+            this.user.phone = this.newPhone;
+        }
+
+        this.userService.updateUser(this.user);
+        this.editMail = false;
+        this.editPhone = false;
+        this.editLoc = false;
     }
 
     toggleSkill() {

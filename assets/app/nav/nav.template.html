@@ -7,11 +7,18 @@
       <i class="fa fa-asterisk" aria-hidden="true"></i>
     Dashboard
     </a></li>
-    <li *ngIf="isInternUser" class="nav-item"><a class="nav-link" (click)="closeDropdown()" routerLink="/usr/project/list/projects" [class.active]="this.router.url.startsWith('/usr/project/list')"><i class="fa fa-list-ul" aria-hidden="true"></i>
-      Projects</a></li>
-    <li class="nav-item right"><a class="nav-link" (click)="closeDropdown()" routerLink="/auth/login" (click)="logout()">Logout</a></li>
+    <li *ngIf="isInternUser" class="nav-item"><a class="nav-link" (click)="closeDropdown()"
+                                                 routerLink="/usr/project/list/projects"
+                                                 [class.active]="this.router.url.startsWith('/usr/project/list')">
+      <i class="fa fa-list-ul" aria-hidden="true"></i>
+      Projects</a>
+    </li>
+    <li class="nav-item right"><a class="nav-link" (click)="closeDropdown()" routerLink="/auth/login"
+                                  (click)="logout()">Logout</a></li>
     <li *ngIf="isAdminUser" class="nav-item dropdown" [class.dropdown-active]="isActiveDropdown">
-      <a class="nav-link dropdown-toggle" (click)="toggleDropdown($event)" [class.active]="this.router.url.startsWith('/admin')"><i class="fa fa-book" aria-hidden="true"></i>Admin</a>
+      <a class="nav-link dropdown-toggle" (click)="toggleDropdown($event)"
+         [class.active]="this.router.url.startsWith('/admin')">
+        <i class="fa fa-book" aria-hidden="true"></i>Admin</a>
       <div class="dropdown-menu">
         <a class="dropdown-item" (click)="closeDropdown()" routerLink="/admin/user/create" routerLinkActive="active">Create User</a>
         <a class="dropdown-item" (click)="closeDropdown()" routerLink="/admin/user/list" routerLinkActive="active">Show Users</a>

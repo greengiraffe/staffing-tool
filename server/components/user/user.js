@@ -1,7 +1,7 @@
 let User = require('../../models/user');
 let Project = require('../../models/project');
 let Skill = require('../../models/skill');
-let BlacklistedToken = require('../../models/blacklistedToken')
+let BlacklistedToken = require('../../models/blacklistedToken');
 let authHelper = require('../../services/authHelper');
 let jwt = require('jsonwebtoken');
 

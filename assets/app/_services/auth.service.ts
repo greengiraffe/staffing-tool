@@ -4,8 +4,8 @@ import 'rxjs/Rx';
 import { Observable } from "rxjs";
 
 import { User } from "../_models/user.model";
-import {tokenNotExpired} from "angular2-jwt";
-import {Router} from "@angular/router";
+import { tokenNotExpired } from "angular2-jwt";
+import { Router } from "@angular/router";
 
 @Injectable()
 export class AuthService {

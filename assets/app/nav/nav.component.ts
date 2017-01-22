@@ -28,7 +28,7 @@ export class NavComponent {
 
         if (currentUser) {
             this.isAdminUser = currentUser.role === "admin";
-            this.isInternUser = currentUser.role != "freelancer";
+            this.isInternUser = currentUser.role !== "freelancer";
 
             this.userService.getUserById(currentUser._id)
                 .subscribe(
