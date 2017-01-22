@@ -2,14 +2,7 @@ let express = require('express');
 let router = express.Router();
 let Skill = require('./skill');
 let mongoose = require('mongoose');
-
-function isValidID(id) {
-    if(!mongoose.Types.ObjectId.isValid(id)) {
-        res.status(400).json({message: "Invalid ID"});
-        return false;
-    }
-    return true;
-}
+let util = require('../../services/util');
 
 /**
  * Create a skill
@@ -48,7 +41,7 @@ router.get('/skill/list', function(req, res, next) {
  */
 router.get('/skill/:id', function(req, res, next) {
     let id = req.params.id;
-    if (isValidID(id)) {
+    if (util.isValidId(id, res)) {
         Skill.getSkillByID(id)
             .then(function(result) {
                 res.status(200).json(result);
@@ -65,7 +58,7 @@ router.get('/skill/:id', function(req, res, next) {
 router.put('/skill', function(req, res, next) {
     let id = req.body.id;
     let name = req.body.name;
-    if(isValidID(id) && name ) {
+    if(util.isValidId(id, res) && name ) {
         Skill.updateSkill(id, name)
             .then(function(result) {
                 res.status(200).json(result);
@@ -81,7 +74,7 @@ router.put('/skill', function(req, res, next) {
  */
 router.delete('/skill/:id', function(req, res, next) {
     let id = req.params.id;
-    if(isValidID(id)) {
+    if(util.isValidId(id, res)) {
         Skill.removeSkill(id)
         .then(function(result) {
             res.status(200).json(result);

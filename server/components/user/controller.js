@@ -5,6 +5,7 @@ let path  = require('path');
 let jwt = require('jsonwebtoken');
 let mongoose = require('mongoose');
 let authHelper = require('../../services/authHelper');
+let util = require('../../services/util');
 let config = require('../../../config/config');
 let multipart = require('connect-multiparty');
 let mime = require('mime');
@@ -15,14 +16,6 @@ let User = require('./user');
 let IMAGE_TYPES = ['image/jpeg', 'image/png'];
 let imgStorePath = config.img_path;
 let sharp = require('sharp');
-
-function isValidID(id) {
-    if(!mongoose.Types.ObjectId.isValid(id)) {
-        res.status(400).json({message: "Invalid ID"});
-        return false;
-    }
-    return true;
-}
 
 /**
  * Handle user login
@@ -91,7 +84,7 @@ router.get('/user/list', function(req, res, next) {
  */
 router.get('/user/id/:id', function(req, res, next) {
     let id = req.params.id;
-    if(isValidID(id)) {
+    if(util.isValidId(id, res)) {
         User.getUserByID(id)
             .then(function (result) {
                 res.status(200).json(result);
@@ -152,7 +145,7 @@ router.put('/user/skill', function(req, res, next) {
     let userId = req.body.userId;
     let skillId = req.body.skillId;
     let rating = req.body.rating
-    if(isValidID(userId) && isValidID(skillId)) {
+    if(util.isValidId(userId, res) && util.isValidId(skillId, res)) {
         User.addSkill(userId, skillId ,rating)
             .then(function(result) {
                 res.status(200).json(result);
@@ -170,7 +163,7 @@ router.delete('/user/skill', function(req, res, next) {
     let userId = req.body.userId;
     let skillId = req.body.skillId;
     let rating = req.body.rating
-    if(isValidID(userId) && isValidID(skillId)) {
+    if(util.isValidId(userId, res) && util.isValidId(skillId, res)) {
         User.removeSkill(userId, skillId ,rating)
             .then(function(result) {
                 res.status(200).json(result);
@@ -243,7 +236,7 @@ router.put('/user/password', function(req, res, next) {
  */
 router.delete('/user/:id', function(req, res, next) {
     let id = req.params.id;
-    if(isValidID(id)) {
+    if(util.isValidId(id, res)) {
         User.deleteUser(id)
             .then(function(result) {
                 res.status(200).json(result)
@@ -295,7 +288,7 @@ router.post('/user/img/:id', multipartMiddleware, function(req, res, next) {
 router.get('/user/img/:id/:size?', function (req, res){
     let size = req.params.size === "small"  ? req.params.size : "" ;
     let id = req.params.id;
-    if(isValidID(id)) {
+    if(util.isValidId(id, res)) {
         User.getUserByID(id)
             .then(function (result) {
                 file = imgStorePath +  result._id + size + '.png';
@@ -314,7 +307,7 @@ router.get('/user/img/:id/:size?', function (req, res){
  */
 router.get('/user/projects/:id', function(req, res, next) {
     let id = req.params.id;
-    if(isValidID(id)) {
+    if(util.isValidId(id, res)) {
         User.getOwnedProjects(id)
             .then(function(result) {
                 res.status(200).json(result);
@@ -328,7 +321,6 @@ router.get('/user/projects/:id', function(req, res, next) {
 /**
  * Get all tasks assigned to a user
  */
-
 router.get('/user/tasks/:id', function(req, res, next) {
     let id = req.params.id;
     User.listProjectsTasks(id)
