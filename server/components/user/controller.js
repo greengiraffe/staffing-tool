@@ -27,7 +27,7 @@ function isValidID(id) {
 /**
  * Handle user login
  */
-router.post('/login', function(req, res, next) {
+router.post('/login', function(req, res) {
     User.getUserByMail(req.body.email)
         .then(function(user) {
             if (!user) {
@@ -35,14 +35,12 @@ router.post('/login', function(req, res, next) {
                     title: 'Login failed',
                     error: {message: 'Invalid login credentials'}
                 });
-                next();
             }
             if (!authHelper.comparePassword(req.body.password, user.password)) {
                 return res.status(401).json({
                     title: 'Login failed',
                     error: {message: 'Invalid login credentials'}
                 });
-                next();
             }
             delete user.password;
 
@@ -52,7 +50,6 @@ router.post('/login', function(req, res, next) {
                 token: token,
                 user: user
             });
-            next();
         })
         .catch(function(err) {
             return res.status(500).json({
