@@ -13,8 +13,8 @@ import { UserSkill } from "../../_models/user-skill.model";
       class="skill-search form-control"
       placeholder="Search for a Skill"
       type="text">
-    <ul class="skill-list" [ngSwitch]="clickableSkill">
-      <li class="skill" *ngFor="let skill of visibleSkills | filter : 'name' : searchText" (click)="selectSkill(skill)">
+    <ul class="g-tag-list skill-list" [ngSwitch]="clickableSkill">
+      <li class="g-tag skill" *ngFor="let skill of visibleSkills | filter : 'name' : searchText" (click)="selectSkill(skill)">
         {{ skill.name }}
         <span *ngIf="showSkillButtons" class="skill-buttons">
             <span class="skill-icon skill-btn professional"

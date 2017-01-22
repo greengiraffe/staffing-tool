@@ -19,11 +19,13 @@ h1 {
   margin-top: 36px;
 }
 
-.table-row{
-  @include md-shadow-xs;
-  background: $white;
-}
+.actions .btn {
+  background: none;
+  color: $white;
+  padding: 0 12px;
+  font-size: 20px;
 
-.table-striped tbody tr:nth-of-type(odd) {
-  background-color: $grey-light;
+  &.delete:hover {
+    color: red;
+  }
 }

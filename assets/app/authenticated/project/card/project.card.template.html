@@ -9,9 +9,9 @@
   <h6 class="subtitle">{{ project.start | date:"dd.MM.yyyy" }} – {{ project.end | date:"dd.MM.yyyy" }}</h6>
   <p class="description">{{ project.description }}</p>
 
-  <div class="tags">
-    <div *ngIf="project.isPriority" class="tag priority">high priority</div>
-    <div class="tag type">{{ project.type }}</div>
+  <div class="g-tag-list">
+    <div *ngIf="project.isPriority" class="g-tag priority">high priority</div>
+    <div class="g-tag type">{{ project.type }}</div>
   </div>
 
   <app-modal [modal-id]="deleteProjectModalId" modal-title="Delete Project {{ project?.title }}">

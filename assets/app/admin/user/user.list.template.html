@@ -2,8 +2,8 @@
 <div class="content-wrapper">
 <h1>Registered Users</h1>
 
-<table class="table table-striped">
-  <thead class="thead-inverse">
+<table class="table g-table">
+  <thead>
     <tr>
       <th>#</th>
       <th>Email</th>
@@ -20,11 +20,10 @@
       <td>{{ user.firstName }}</td>
       <td>{{ user.lastName }}</td>
       <td>{{ user.role }}</td>
-      <td class="text-xs-right">
-        <button class="btn btn-sm btn-outline-primary" (click)="editUser(user)">Edit</button>
-        <button class="btn btn-sm btn-outline-danger" (click)="modalService.open(deleteUserModalIds[i])"
+      <td class="text-xs-right actions">
+        <button class="btn delete" (click)="modalService.open(deleteUserModalIds[i])"
         *ngIf="currentUserCanRemove && user._id != currentUser._id">
-          Delete
+          <i class="fa fa-trash"></i>
         </button>
       </td>
       <app-modal [modal-id]="deleteUserModalIds[i]" modal-title="Delete User {{ user.firstName }} {{user.lastName }}">

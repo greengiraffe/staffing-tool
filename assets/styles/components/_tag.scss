@@ -1,0 +1,21 @@
+.g-tag-list {
+  padding: 0;
+  margin: -4px -4px 0;
+}
+
+.g-tag {
+  padding: 4px 8px;
+  margin: 4px;
+  border-radius: 0;
+  display: inline-block;
+  border: 1px solid $teal;
+  color: $teal;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 16px;
+
+  .fa-remove {
+    margin-left: 4px;
+    cursor: pointer;
+  }
+}

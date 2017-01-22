@@ -19,8 +19,8 @@
   </h6>
   <h3 class="title" (click)="showProject()">{{ task.title }}</h3>
   <p class="description">{{ task.description }}</p>
-  <ul class="required-skills">
-    <li *ngFor="let skill of task.requiredSkills" class="skill tag">{{ skill.name }}</li>
+  <ul class="g-tag-list">
+    <li *ngFor="let skill of task.requiredSkills" class="g-tag skill">{{ skill.name }}</li>
   </ul>
   <div *ngIf="task.assignedUsers.length > 0">
     <h6 class="assigned-users-title">Assigned People:</h6>

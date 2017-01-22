@@ -13,12 +13,13 @@ import { AuthService } from "../../_services/auth.service";
 @Component({
     selector: 'app-user-skill-list',
     templateUrl: 'user-skill-list.template.html',
-    styleUrls: ['skill-search.style.scss']
+    styleUrls: ['user-skill-list.style.scss']
 })
 
 export class UserSkillListComponent implements OnInit, OnDestroy {
 
     @Input() showRemove = false;
+    @Input() showSkillTypeIcons = true;
 
     user: User;
     professionalSkills:Array<Skill> = new Array<Skill>();

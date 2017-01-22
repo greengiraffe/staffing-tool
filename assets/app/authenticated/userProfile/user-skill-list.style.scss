@@ -1,35 +1,11 @@
 @import "../../../styles/variables";
 
-.skill-search {
-  margin-bottom: 12px;
-  width: 100%;
-}
-
-.skill-list {
-  height: 140px;
-  overflow-y: auto;
-}
-
-.skill-buttons {
-  margin-left: 4px;
-}
-
 .skill-icon {
   display: inline-block;
   width: 14px;
   height: 14px;
   border-radius: 50%;
   background-color: currentColor;
-}
-
-.skill-btn {
-  cursor: pointer;
-  margin-left: 2px;
-  border: 1px solid #333;
-
-  &:hover {
-    border-color: currentColor;
-  }
 }
 
 .skill-icon.professional {
@@ -42,4 +18,17 @@
 
 .skill-icon.interest {
   color: $grey-medium;
+}
+
+.skill-list {
+  margin-top: 12px;
+}
+
+.skill-type-heading {
+  font-size: 20px;
+  line-height: 24px;
+
+  .skill-icon {
+    margin-right: 8px;
+  }
 }

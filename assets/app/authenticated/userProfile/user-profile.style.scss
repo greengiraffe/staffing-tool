@@ -33,7 +33,7 @@
     width: 100%;
     color: white;
     background: rgba($black, 0.3);
-    font-size: 18px;
+    font-size: 20px;
     line-height: 24px;
     padding: 12px;
   }
@@ -43,7 +43,7 @@
   padding: 12px;
 
   dt {
-    font-weight: 300;
+    font-weight: 600;
   }
 
   dd {
@@ -140,10 +140,9 @@
 }
 
 .bar-head {
-  font-weight: 300;
-  letter-spacing: 0.01em;
-  font-size: 18px;
+  font-size: 20px;
   line-height: 36px;
+  font-weight: 600;
   padding: 12px;
   cursor: pointer;
 
@@ -172,12 +171,12 @@
 
   }
   &-client {
-    font-weight: 100;
-    font-size: 0.8em;
+    font-size: 14px;
+    line-height: 24px;
   }
   &-description {
-    font-weight: 100;
-    font-size: 0.8em;
+    font-size: 14px;
+    line-height: 24px;
   }
 }
 
@@ -201,18 +200,12 @@
       margin-right: 0;
     }
   }
-
 }
 
 .image-upload-label {
   position: absolute;
   bottom: 0;
   right: 1.5rem;
-}
-
-.skill-list {
-  display: block;
-  margin-top: 2rem;
 }
 
 .skill-section {
@@ -228,4 +221,3 @@
 .projects-header {
   margin-top: 1rem;
 }
-

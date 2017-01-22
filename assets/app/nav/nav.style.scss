@@ -5,6 +5,7 @@
 
   position: relative;
   padding: 12px 16px;
+  font-size: 18px;
 }
 
 .right {
@@ -36,7 +37,8 @@
   }
 
   .fa {
-    margin-right: 4px;
+    font-size: 16px;
+    margin-right: 6px;
     margin-top: -1px; // visually center the icon
   }
 }

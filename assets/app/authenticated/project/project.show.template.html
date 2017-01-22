@@ -5,7 +5,7 @@
     <section class="project-section">
       <h4 class="client">{{ project?.client }}</h4>
       <h1 class="project-title">{{project?.title}}</h1>
-      <div class="badge">{{ project?.type }}</div>
+      <div class="g-tag type">{{ project?.type }}</div>
       <ul class="meta-list">
         <li><b>Period:</b> {{ project?.start | date:"dd/MM/yyyy" }} - {{ project?.end | date:"dd/MM/yyyy"}}</li>
         <li><b>Created by:</b> {{ project?.creator.firstName }} {{ project?.creator.lastName }}</li>
@@ -24,7 +24,7 @@
           <h2 class="card-title internal">{{ projectTask.title }}</h2>
           <div class="card-text">{{ projectTask.description }}</div>
           <ul class="skill-list">
-            <li class="skill" *ngFor="let skill of projectTask.requiredSkills">{{ skill.name }}</li>
+            <li class="g-tag skill" *ngFor="let skill of projectTask.requiredSkills">{{ skill.name }}</li>
           </ul>
           <h3 class="card-subtitle">Assigned Users</h3>
           <ul class="user-list">

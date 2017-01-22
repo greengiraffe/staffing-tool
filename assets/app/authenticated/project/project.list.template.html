@@ -7,8 +7,7 @@
     <li class="tab" [ngClass]="{ active: activeTab === 'tasks' }">
       <a class="tab-link" role="tab" (click)="showTab($event)" routerLink="/usr/project/list/tasks" data-target="tasks">Tasks</a>
     </li>
-    <button type="button" class="btn btn-secondary-add-project" routerLink="/usr/project/create"><i class="fa fa-plus" aria-hidden="true"></i>
-      Add Project</button>
+    <button type="button" class="btn btn-add-project" routerLink="/usr/project/create">New Project</button>
   </ul>
 
   <div class="content">

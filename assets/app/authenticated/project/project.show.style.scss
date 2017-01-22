@@ -42,19 +42,9 @@ section {
   letter-spacing: 0.01em;
 }
 
-.badge {
-  background-color: $grey-dark;
-  display: inline-block;
-  padding: 2px 8px;
-  border-radius: 6px;
-  font-size: 14px;
-  color: white;
-  margin: 0 0 0.5rem 1rem;
+.type {
   vertical-align: super;
-
-  .fa {
-    margin-right: 4px;
-  }
+  margin: 0 0 0 12px;
 }
 
 .meta-list {
@@ -81,10 +71,6 @@ section {
   }
 }
 
-.task-section {
-
-}
-
 .task-list {
   margin-top: 24px;
   display: flex;
@@ -106,18 +92,6 @@ section {
 
 .skill-list {
   margin: 16px -3px 0;
-}
-
-.skill {
-  padding: 4px 8px;
-  margin: 3px;
-  border-radius: 0;
-  display: inline-block;
-  border: 1px solid $teal;
-  color: $teal;
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 16px;
 }
 
 .user-list {
