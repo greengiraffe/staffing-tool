@@ -82,7 +82,7 @@ router.get('/user/list', function(req, res, next) {
 /**
  * Get specific user by id
  */
-router.get('/user/id/:id', function(req, res, next) {
+router.get('/user/:id', function(req, res, next) {
     let id = req.params.id;
     if(util.isValidId(id, res)) {
         User.getUserByID(id)

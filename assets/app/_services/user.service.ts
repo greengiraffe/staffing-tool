@@ -48,7 +48,7 @@ export class UserService {
     }
 
     getUserById(userId): Observable<{}> {
-      return this.http.get('http://localhost:3000/api/user/id/' + userId)
+      return this.http.get('http://localhost:3000/api/user/' + userId)
         .map((response: Response) => response.json())
         .catch((error: Response) => Observable.throw(error.json()));
     }
@@ -101,7 +101,7 @@ export class UserService {
             })
             .catch((error: Response) => Observable.throw(error.json()));
     }
-    
+
     updateUserPassword(id: string, oldPassword: string, newPassword: string): Observable<{}> {
         const body = {
             id,
