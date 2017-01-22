@@ -34,7 +34,7 @@
           <h3 class="card-subtitle">Interested Users</h3>
           <ul class="user-list">
             <li class="user interested" *ngFor="let user of projectTask.interestedUsers"><img class="avatar {{user._id}}" alt="Profile picture">{{ user.firstName }} {{ user.lastName }}
-            <button *ngIf="currentUserIsCreator" type="button" (click)="assignUser(projectTask, user)" class="btn btn-assign"><i class="fa fa-plus-circle" aria-hidden="true"></i></button>
+            <button title="Assign User" *ngIf="currentUserIsCreator" type="button" (click)="assignUser(projectTask, user)" class="btn btn-assign"><i class="fa fa-plus-circle" aria-hidden="true"></i></button>
             </li>
           </ul>
         </div>
