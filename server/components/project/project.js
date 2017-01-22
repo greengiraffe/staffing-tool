@@ -170,7 +170,7 @@ module.exports = {
                     })
                 }
                 else {
-                    resolve(result);
+                    resolve(project);
                 }
             });
         });
