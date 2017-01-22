@@ -34,12 +34,10 @@ export class UserProfileComponent implements OnInit {
     showTask = true;
     showSkill = false;
     showProject = false;
-    editMail = false;
-    editLoc = false;
     editPhone = false;
-    newMail: string;
-    newLoc: string;
     newPhone: string;
+    pictureElement;
+    imgToUpload: File;
 
     constructor(private userService: UserService,
                 private authService: AuthService,
@@ -48,6 +46,7 @@ export class UserProfileComponent implements OnInit {
 
     ngOnInit() {
         const currentUser = this.authService.currentUser();
+        this.pictureElement = document.getElementById('profile-picture');
 
         if (currentUser) {
             this.userService.getUserById(currentUser._id)
@@ -74,7 +73,13 @@ export class UserProfileComponent implements OnInit {
                 .subscribe(
                     (tasks: ProjectTask[]) => this.tasks = tasks,
                     error => console.log(error)
-                    )
+                    );
+
+            this.userService.getUserImage(currentUser._id)
+                .subscribe(
+                    data =>  this.renderer.setElementProperty(this.pictureElement, 'src', data),
+                    error => console.log(error)
+                );
         }
 
         if (this.tasks.length == 0) this.showTask = false;
@@ -83,13 +88,7 @@ export class UserProfileComponent implements OnInit {
     save(event) {
         let target = event.target || event.srcElement || event.currentTarget;
         let id = target.previousElementSibling.id;
-        if (id == 'input-mail') {
-            this.user.email = this.newMail;
-        }
-        else if (id == 'input-loc') {
-            this.user.location = this.newLoc;
-        }
-        else if (id == 'input-phone') {
+        if (id == 'input-phone') {
             this.user.phone = this.newPhone;
         }
 
@@ -97,9 +96,8 @@ export class UserProfileComponent implements OnInit {
             data => this._flash.show('Successfully saved!', { cssClass: 'alert-success', timeout: 5000000 }),
             error => this._flash.show(error.error.message, { cssClass: 'alert-danger', timeout: 5000 })
         );
-        this.editMail = false;
+
         this.editPhone = false;
-        this.editLoc = false;
     }
 
     toggleSkill() {
@@ -110,5 +108,23 @@ export class UserProfileComponent implements OnInit {
     }
     toggleTask() {
         this.showTask = !this.showTask;
+    }
+    /**
+     * Uploads the chosen image as profile picture
+     */
+    upload() {
+        this.userService.uploadUserImage(this.user._id, this.imgToUpload)
+            .subscribe(
+                data =>  this.renderer.setElementProperty(this.pictureElement, 'src', data),
+                error => console.log(error)
+            );
+    }
+
+    /**
+     * Update the chosen image
+     */
+    fileChanged(inputFile: any){
+        this.imgToUpload = inputFile.target.files[0];
+        this.upload();
     }
 }

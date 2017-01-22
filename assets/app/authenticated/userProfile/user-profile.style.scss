@@ -2,7 +2,7 @@
 
 .page-wrapper {
   display: flex;
-  margin-top: 24px;
+  margin-top: 20px;
 }
 
 .sidebar {
@@ -37,6 +37,21 @@
     line-height: 24px;
     padding: 12px;
   }
+
+  .image-upload-label {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background: rgba(#000, 0.7);
+    padding: 1px 8px;
+    border-radius: 4px;
+    cursor: pointer;
+
+    &:hover {
+      background: rgba(#fff, 0.7);
+      color: #000000;
+    }
+  }
 }
 
 .profile-info {
@@ -51,15 +66,17 @@
     word-wrap: break-word;
     margin-bottom: 16px;
 
-    i.fa-pencil { display: none; }
+    i.fa-pencil {
+      display: none;
+      cursor: pointer;
+    }
     &:hover i.fa-pencil {
       display: inline-block;
     }
   }
 
   .fa-floppy-o {
-    position: relative;
-    top: 5px;
+    cursor: pointer;
   }
 
   input {
@@ -233,12 +250,6 @@
   }
 }
 
-.image-upload-label {
-  position: absolute;
-  bottom: 0;
-  right: 1.5rem;
-}
-
 .skill-section {
   display: block;
   margin-top: 2rem;
@@ -246,9 +257,4 @@
   .skill-list {
     margin-top: 1rem;
   }
-}
-
-.tasks-header,
-.projects-header {
-  margin-top: 1rem;
 }

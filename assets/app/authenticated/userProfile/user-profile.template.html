@@ -5,34 +5,19 @@
 
     <div class="picture-container">
       <img src="/img/user.png" id="profile-picture" alt="Profile picture">
+      <label class="image-upload-label" for="img-upload-input"><i class="fa fa-pencil"></i></label>
+      <input class="image-upload-input" id="img-upload-input" type="file" (change)="fileChanged($event)" style="display: none;">
       <span class="username">{{user?.firstName}} {{user?.lastName}}</span>
     </div>
 
     <dl class="profile-info">
       <dt>Email</dt>
       <dd class="email">
-        <div class="info" [hidden]="editMail">
-          <a href="mailto:{{ user?.email }}">
-          {{user?.email}}</a>
-          <i class="fa fa-pencil" (click)="editMail = true"></i>
-        </div>
-        <div class="edit" [hidden]="!editMail">
-          <input id="input-mail" type="text" [value]="user?.email" (input)="newMail = $event.target.value" required="">
-          <i class="fa fa-floppy-o" (click)="save($event)"></i>
-        </div>
+          <a href="mailto:{{ user?.email }}">{{user?.email}}</a>
       </dd>
 
       <dt>Location</dt>
-      <dd class="location">
-        <div class="info" [hidden]="editLoc">
-          {{user?.location}}
-          <i class="fa fa-pencil" (click)="editLoc = true"></i>
-        </div>
-        <div class="edit" [hidden]="!editLoc">
-          <input id="input-loc" type="text" [value]="user?.location" (input)="newLoc = $event.target.value" required="">
-          <i class="fa fa-floppy-o" (click)="save($event)"></i>
-        </div>
-      </dd>
+      <dd class="location">{{user?.location}}</dd>
 
       <dt>Phone</dt>
       <dd class="phone">
