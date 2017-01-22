@@ -5,11 +5,13 @@ import { Observable } from "rxjs";
 
 import { User } from "../_models/user.model";
 import { Project } from "../_models/project.model";
+import { ProjectTask } from "../_models/project-task.model";
 
 @Injectable()
 export class UserService {
     private users: User[] = [];
     private ownedProjects: Project[] = [];
+    private assignedTasks: ProjectTask[] = [];
 
     constructor(private http: Http) {}
 
@@ -75,6 +77,27 @@ export class UserService {
                 }
                 this.ownedProjects = ownedProjects;
                 return ownedProjects;
+            })
+            .catch((error: Response) => Observable.throw(error.json()));
+    }
+
+    getAssignedTasksOfUser(userId): Observable<{}> {
+        return this.http.get('http://localhost:3000/api/user/tasks/' + userId)
+            .map((response: Response) => {
+                const res = response.json();
+                let assignedTasks: ProjectTask[] = [];
+                for (let projectTask of res) {
+                    assignedTasks.push(new ProjectTask(
+                        projectTask.title,
+                        projectTask.description,
+                        projectTask.requiredSkills,
+                        projectTask.assignedUsers,
+                        null
+                        )
+                    );
+                }
+                this.assignedTasks = assignedTasks;
+                return assignedTasks;
             })
             .catch((error: Response) => Observable.throw(error.json()));
     }

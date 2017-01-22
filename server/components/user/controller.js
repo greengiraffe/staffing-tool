@@ -325,4 +325,27 @@ router.get('/user/projects/:id', function(req, res, next) {
     }
 });
 
+/**
+ * Get all tasks assigned to a user
+ */
+
+router.get('/user/tasks/:id', function(req, res, next) {
+    let id = req.params.id;
+    User.listProjectsTasks(id)
+        .then(function(result) {
+            let assigendTasks = [];
+            result.forEach(project =>
+                project.projectTasks.forEach(task =>
+                    task.assignedUsers.forEach((user) => {
+                        if(String(user._id) ===  id)
+                            assigendTasks.push(task);
+                    })
+                ))
+            res.status(200).json(assigendTasks);
+        })
+        .catch(function(err) {
+            res.status(400).json(err);
+        });
+});
+
 module.exports = router;

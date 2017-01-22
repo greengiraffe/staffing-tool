@@ -104,6 +104,14 @@ module.exports = {
         return Project.find({creator: userId}).exec();
     },
 
+    listProjectsTasks(userId) {
+        return Project
+            .find({}, {projectTasks: 1})
+            .populate('projectTasks.requiredSkills')
+            .populate('projectTasks.assignedUsers', '-password -email -__v -role')
+            .exec();
+    },
+
     //Todo: Review...push on sub document
     addSkill: function(userId, skillId, rating) {
 

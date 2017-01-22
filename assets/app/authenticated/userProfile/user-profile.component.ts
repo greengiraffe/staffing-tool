@@ -1,6 +1,7 @@
 import { Component, OnInit, Renderer, trigger, state, style, transition, animate } from '@angular/core';
 import { User } from "../../_models/user.model";
 import { Project } from "../../_models/project.model";
+import { ProjectTask } from "../../_models/project-task.model";
 import { UserService } from "../../_services/user.service";
 import { SkillService } from "../../_services/skill.service";
 import { SkillSearchService } from "../../_services/skill-search.service";
@@ -28,13 +29,7 @@ import { AuthService } from "../../_services/auth.service";
 export class UserProfileComponent implements OnInit {
     user: User;
     projects: Project[];
-    tasks: any[] = [
-        {title: 'Paper Prototyping', description: 'lasdflk lskefldf lskeflksff lwkeflksdf', client: 'Bosch'},
-        {title: 'Paper Prototyping', description: 'lasdflk lskefldf lskeflksff lwkeflksdf', client: 'Bosch'},
-        {title: 'Create Information Architecture', description: 'lsakjf lksdfl klskdf sldkf', client: 'Siemens'},
-        {title: 'Paper Prototyping', description: 'lasdflk lskefldf lskeflksff lwkeflksdf', client: 'Bosch'},
-        {title: 'Paper Prototyping', description: 'lasdflk lskefldf lskeflksff lwkeflksdf', client: 'Bosch'},
-        ];
+    tasks: ProjectTask[] = [];
     showTask = true;
     showSkill = false;
     showProject = false;
@@ -66,6 +61,11 @@ export class UserProfileComponent implements OnInit {
                 .subscribe(
                         (projects: Project[]) =>  this.projects = projects,
                         error => console.log(error)
+                    )
+            this.userService.getAssignedTasksOfUser(currentUser._id)
+                .subscribe(
+                    (tasks: ProjectTask[]) => this.tasks = tasks,
+                    error => console.log(error)
                     )
         }
     }
