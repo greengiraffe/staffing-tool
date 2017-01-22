@@ -13,13 +13,14 @@ html {
 }
 
 body {
+  position: relative;
   font-size: 16px;
   line-height: 24px;
   font-family: $font-stack;
   font-weight: 400;
   height: 100%;
   min-height: 100vh;
-  padding: 24px;
+  padding-bottom: 116px; // 80px footer height + 36px margin
   background: linear-gradient(20deg, $aqua 0%,#00727f 63%,$teal 100%);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

@@ -19,6 +19,7 @@ import { UserModule } from "./authenticated/user.module";
 import { AdminModule } from "./admin/admin.module";
 
 import { ModalService } from "./_services/modal.service";
+import { FooterComponent } from "./footer/footer.component";
 
 @NgModule({
     imports: [
@@ -35,7 +36,8 @@ import { ModalService } from "./_services/modal.service";
     declarations: [
         AppComponent,
         LoginComponent,
-        NavComponent
+        NavComponent,
+        FooterComponent
     ],
     providers: [
         UserService,
