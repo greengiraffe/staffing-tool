@@ -10,10 +10,10 @@
     <tr class="table-row" *ngFor="let skill of skills; let i = index">
       <th scope="row">{{ i+1 }}</th>
       <td>{{ skill.name }}</td>
-      <td class="text-xs-right">
-        <button class="btn btn-sm btn-outline-danger" (click)="modalService.open(deleteSkillModalIds[i])"
+      <td class="text-xs-right actions">
+        <button class="btn delete" (click)="modalService.open(deleteSkillModalIds[i])"
         *ngIf="currentUserCanRemove">
-          Delete
+          <i class="fa fa-trash"></i>
         </button>
       </td>
       <app-modal [modal-id]="deleteSkillModalIds[i]" modal-title="Delete Skill {{ skill.name }}">

@@ -1,1 +1,13 @@
 @import "../../../styles/variables";
+
+.actions .btn {
+  background: none;
+  color: $white;
+  padding: 0 12px;
+  font-size: 20px;
+
+  &.delete:hover {
+    color: red;
+  }
+}
+

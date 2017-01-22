@@ -1,11 +1,41 @@
 @import "../../../styles/variables";
 
 form {
-  @include md-shadow-xs;
-
-  padding: 24px;
   margin-top: 24px;
-  background: $white;
+}
+
+input {
+  background: $teal;
+  color: $white;
+  border-color: $white;
+  
+  &:focus {
+    color: $white;
+    background: $teal;
+    border-color: $aqua-light;
+  }
+
+  &::-webkit-input-placeholder,
+  &::-moz-placeholder,
+  &:-ms-input-placeholder {
+    color: white;
+  }
+}
+
+.btn {
+  border-color: $white;
+  background: $aqua-light;
+  color: $black;
+
+  &:focus, &:hover, &:active {
+    background-color: $aqua;
+    color: $black;
+    border-color: $aqua;
+  }
+
+  &:focus {
+    outline: 0;
+  }
 }
 
 flash-messages {
