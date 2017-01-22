@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../_services/auth.service';
-import { User } from "../_models/user.model";
-import { UserService } from "../_services/user.service";
 import { Router } from "@angular/router";
+import { AuthService } from '../_services/auth.service';
+import { NavBarService } from "../_services/navbar.service";
+import { UserService } from "../_services/user.service";
+import { User } from "../_models/user.model";
 
 
 @Component({
@@ -17,25 +18,20 @@ export class NavComponent {
     private isInternUser = false;
     private isActiveDropdown = false;
 
-    user: User;
-
     constructor(private authService: AuthService,
                 private userService: UserService,
-                private router: Router) {}
+                private router: Router,
+                private navbarService: NavBarService
+                ) {}
 
     ngOnInit() {
-        const currentUser = this.authService.currentUser();
-
-        if (currentUser) {
-            this.isAdminUser = currentUser.role === "admin";
-            this.isInternUser = currentUser.role !== "freelancer";
-
-            this.userService.getUserById(currentUser._id)
-                .subscribe(
-                    (user: User) => this.user = user,
-                    error => console.log(error)
-            );
-        }
+        this.navbarService.getUserRole$.subscribe((user) => {
+            if (user) {
+                console.log(user.role);
+                this.isAdminUser = user.role === "admin";
+                this.isInternUser = user.role != "freelancer";
+            }
+        });
     }
 
     toggleDropdown(event) {

@@ -7,6 +7,7 @@ import { FlashMessagesModule } from "angular2-flash-messages";
 
 import { AuthService } from "./_services/auth.service";
 import { UserService } from "./_services/user.service";
+import { NavBarService } from "./_services/navbar.service";
 
 import { AppComponent } from "./app.component";
 import { AppRoutingModule } from "./app.routing";
@@ -40,6 +41,7 @@ import { ModalService } from "./_services/modal.service";
         UserService,
         AuthService,
         ModalService,
+        NavBarService,
     provideAuth({
         headerName: 'Authorization',
         headerPrefix: 'Bearer',

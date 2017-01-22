@@ -4,25 +4,29 @@ import { Router } from "@angular/router";
 
 import { User } from "../_models/user.model";
 import { AuthService } from "../_services/auth.service";
+import { NavBarService } from "../_services/navbar.service";
 import { FlashMessagesService } from "angular2-flash-messages";
 
 @Component({
     selector: 'app-login',
     templateUrl: './login.template.html',
-    styleUrls: ['./login.style.scss']
+    styleUrls: ['./login.style.scss'],
 })
 export class LoginComponent implements OnInit{
     loginForm: FormGroup;
 
     constructor(private authService: AuthService,
                 private router: Router,
-                private _flash: FlashMessagesService) {}
+                private _flash: FlashMessagesService,
+                private navbarService: NavBarService
+                ) {}
 
     onSubmit() {
         let user = new User(this.loginForm.value.email, this.loginForm.value.password);
             this.authService.login(user)
                 .subscribe(
                     data => {
+                        this.navbarService.showNavBar(data);
                         this.router.navigateByUrl('/usr/profile');
                         this.loginForm.reset();
                     },

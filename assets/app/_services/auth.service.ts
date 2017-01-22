@@ -31,6 +31,7 @@ export class AuthService {
                 );
                 localStorage.setItem('token', res.token);
                 localStorage.setItem('user', JSON.stringify(user));
+                return user;
             })
             .catch((error: Response) => Observable.throw(error.json()));
     }
