@@ -53,6 +53,11 @@ router.post('/login', function(req, res) {
 });
 
 /**
+ * Guard routes
+ */
+//router.use(authHelper.ensureAuthenticated)
+
+/**
  *  Handle Logout
  */
 router.get('/logout', function(req, res) {
@@ -60,11 +65,6 @@ router.get('/logout', function(req, res) {
     User.addTokenToBlacklist(token)
     res.redirect('/');
 });
-
-/**
- * Guard routes
- */
-//router.use(authHelper.ensureAuthenticated)
 
 /**
  * Get a list of all users
