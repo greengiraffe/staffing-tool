@@ -115,6 +115,7 @@ export class UserService {
     }
 
     updateUser(user: User): Observable<{}> {
+        console.log('test/save');
         const newUserSkills = [];
         user.userSkills.forEach(oldUserSkill => {
             let userSkill = {

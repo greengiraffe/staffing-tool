@@ -6,6 +6,7 @@ import { UserService } from "../../_services/user.service";
 import { SkillService } from "../../_services/skill.service";
 import { SkillSearchService } from "../../_services/skill-search.service";
 import { AuthService } from "../../_services/auth.service";
+import { FlashMessagesService } from "angular2-flash-messages";
 
 @Component ({
     selector: 'app-user-profile',
@@ -42,7 +43,8 @@ export class UserProfileComponent implements OnInit {
 
     constructor(private userService: UserService,
                 private authService: AuthService,
-                private renderer: Renderer) {}
+                private renderer: Renderer,
+                private _flash: FlashMessagesService) {}
 
     ngOnInit() {
         const currentUser = this.authService.currentUser();
@@ -91,7 +93,10 @@ export class UserProfileComponent implements OnInit {
             this.user.phone = this.newPhone;
         }
 
-        this.userService.updateUser(this.user);
+        this.userService.updateUser(this.user).subscribe(
+            data => this._flash.show('Successfully saved!', { cssClass: 'alert-success', timeout: 5000000 }),
+            error => this._flash.show(error.error.message, { cssClass: 'alert-danger', timeout: 5000 })
+        );
         this.editMail = false;
         this.editPhone = false;
         this.editLoc = false;
