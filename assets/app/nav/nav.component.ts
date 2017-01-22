@@ -29,15 +29,14 @@ export class NavComponent {
         if(currentUser) {
             this.isAdminUser = currentUser.role === "admin";
             this.isInternUser = currentUser.role != "freelancer";
-        } else {
-            this.navbarService.getUserRole$.subscribe((user) => {
-                if (user) {
-                    console.log(user.role);
-                    this.isAdminUser = user.role === "admin";
-                    this.isInternUser = user.role != "freelancer";
-                }
-            });
         }
+        this.navbarService.getUserRole$.subscribe((user) => {
+            if (user) {
+                console.log(user.role);
+                this.isAdminUser = user.role === "admin";
+                this.isInternUser = user.role != "freelancer";
+            }
+        });
     }
 
     toggleDropdown(event) {
