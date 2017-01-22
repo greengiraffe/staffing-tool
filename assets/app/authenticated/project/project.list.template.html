@@ -2,12 +2,12 @@
 
   <ul class="tablist" role="tablist">
     <li class="tab" [ngClass]="{ active: activeTab === 'projects' }">
-      <a class="tab-link" role="tab" (click)="showTab($event)" routerLink="/usr/project/list/projects" data-target="projects">Projects</a>
+      <a class="tab-link" role="tab" (click)="showTab($event)" routerLink="/user/project/list/projects" data-target="projects">Projects</a>
     </li>
     <li class="tab" [ngClass]="{ active: activeTab === 'tasks' }">
-      <a class="tab-link" role="tab" (click)="showTab($event)" routerLink="/usr/project/list/tasks" data-target="tasks">Tasks</a>
+      <a class="tab-link" role="tab" (click)="showTab($event)" routerLink="/user/project/list/tasks" data-target="tasks">Tasks</a>
     </li>
-    <button type="button" class="btn btn-add-project" routerLink="/usr/project/create">New Project</button>
+    <button type="button" class="btn btn-add-project" routerLink="/user/project/create">New Project</button>
   </ul>
 
   <div class="content">

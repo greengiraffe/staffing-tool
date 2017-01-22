@@ -33,6 +33,8 @@
       </dd>
     </dl>
 
+    <div id="change-pwd" (click)="openModal()">Change Password</div>
+
   </div>
 
   <main class="content">
@@ -81,5 +83,9 @@
     </div>
 
   </main>
-
 </div>
+
+<app-modal [modal-id]="change-pwd-modal" modal-title="Change Password">
+  Test lkadflkasjdf
+  <app-change-password></app-change-password>
+</app-modal>

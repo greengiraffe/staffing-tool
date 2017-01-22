@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit{
                 .subscribe(
                     data => {
                         this.navbarService.showNavBar(data);
-                        this.router.navigateByUrl('/usr/profile');
+                        this.router.navigateByUrl('/user/profile');
                         this.loginForm.reset();
                     },
                     error => {

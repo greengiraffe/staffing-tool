@@ -7,6 +7,7 @@ import { SkillService } from "../../_services/skill.service";
 import { SkillSearchService } from "../../_services/skill-search.service";
 import { AuthService } from "../../_services/auth.service";
 import { FlashMessagesService } from "angular2-flash-messages";
+import { ModalService } from "../../_services/modal.service";
 
 @Component ({
     selector: 'app-user-profile',
@@ -42,6 +43,7 @@ export class UserProfileComponent implements OnInit {
     constructor(private userService: UserService,
                 private authService: AuthService,
                 private renderer: Renderer,
+                private modalService: ModalService,
                 private _flash: FlashMessagesService) {}
 
     ngOnInit() {
@@ -126,5 +128,13 @@ export class UserProfileComponent implements OnInit {
     fileChanged(inputFile: any){
         this.imgToUpload = inputFile.target.files[0];
         this.upload();
+    }
+
+    /**
+     * Change Password Modal
+     */
+    openModal() {
+        this.modalService.open('change-pwd-modal');
+        console.log('open modal')
     }
 }

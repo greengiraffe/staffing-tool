@@ -33,7 +33,7 @@ export class ProjectCardComponent {
     }
 
     showProject() {
-        this.router.navigate(['/usr/project/show', this.project._id]);
+        this.router.navigate(['/user/project/show', this.project._id]);
     }
 
     deleteProject() {

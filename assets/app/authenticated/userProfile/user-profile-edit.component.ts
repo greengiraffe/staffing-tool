@@ -68,7 +68,7 @@ export class UserProfileEditComponent {
         this.userService.updateUser(this.user)
             .subscribe(
                 data => {
-                    this.router.navigate(['/usr/profile/']);
+                    this.router.navigate(['/user/profile/']);
                 },
                 error => console.log(error)
             );

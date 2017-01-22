@@ -46,6 +46,7 @@
     padding: 1px 8px;
     border-radius: 4px;
     cursor: pointer;
+    transition: all 0.3s;
 
     &:hover {
       background: rgba(#fff, 0.7);
@@ -56,6 +57,7 @@
 
 .profile-info {
   padding: 12px;
+  margin: 0;
 
   dt {
     font-weight: 600;
@@ -116,12 +118,16 @@
   }
 }
 
-.edit-profile-btn {
-  color: $white;
-  float: right;
-  margin: 5px;
-  i {
-    font-size: 1.2em;
+#change-pwd {
+  background: rgba(#000, 0.3);
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 2px;
+  text-align: center;
+  transition: all 0.3s;
+
+  &:hover {
+    background: rgba(#000, 0.4);
   }
 }
 

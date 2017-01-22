@@ -169,7 +169,7 @@ export class ProjectCreateComponent implements OnInit {
             this.projectService.updateProject(project)
                 .subscribe(
                     data => {
-                        this.router.navigateByUrl('usr/project/show/' + this.project._id);
+                        this.router.navigateByUrl('user/project/show/' + this.project._id);
                     },
                     error => {this._flash.show(error.error.message, { cssClass: 'alert-danger', timeout: 5000 });}
             );
