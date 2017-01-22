@@ -5,6 +5,7 @@ let uniqueValidator = require('mongoose-unique-validator');
 
 let schema = new Schema({
     token: {type: String, default: true},
+    expireAt: { type: Date, expires: 0 }
 });
 
 schema.plugin(uniqueValidator);

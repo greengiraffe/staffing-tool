@@ -3,6 +3,7 @@ let Project = require('../../models/project');
 let Skill = require('../../models/skill');
 let BlacklistedToken = require('../../models/blacklistedToken')
 let authHelper = require('../../services/authHelper');
+let jwt = require('jsonwebtoken');
 
 module.exports = {
 
@@ -181,7 +182,14 @@ module.exports = {
     },
 
     addTokenToBlacklist: function(token) {
-        let blacklistedToken = new BlacklistedToken({token: token})
+        let decoded = jwt.decode(token, {complete: true});
+        let expDate = new Date(decoded.payload.exp * 1000);
+
+        let blacklistedToken = new BlacklistedToken({
+            token: token,
+            expireAt: expDate
+        })
+
         return new Promise(function(resolve, reject) {
             blacklistedToken.save(function(err, result) {
                 if(err) {
