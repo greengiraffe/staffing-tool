@@ -36,7 +36,10 @@ module.exports = {
     },
 
     updateUser: function(updateData) {
-        //TODO Protect Password and Email from being updated
+        //Prevent Password and Email from being updated
+        delete updateData.password;
+        delete updateData.email;
+
         return new Promise(function(resolve, reject) {
             User.findByIdAndUpdate(updateData._id, { $set: updateData}, function(err, user) {
                 if(err) {
