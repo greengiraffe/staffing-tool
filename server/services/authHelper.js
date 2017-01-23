@@ -25,6 +25,9 @@ function passwordIsValid (string) {
 }
 
 function ensureAuthenticated (req, res, next) {
+    if (!req.headers.authorization)
+        return res.status(401).json({});
+
     var t = req.headers.authorization.split(' ')[1];
     BlacklistedToken.count({token : t})
     .then(function(result){
