@@ -9,7 +9,7 @@
 .tablist {
   list-style: none;
   padding: 0;
-  margin: 55px 0 0 0;
+  margin: 36px 0 0 0;
 }
 
 .tab {
@@ -22,22 +22,17 @@
   + .tab {
     margin-left: 15px;
 
-    // &:before {
-    //   content: '•';
-    //   display: inline-block;
-    //   margin-right: 12px;
-    //   color: rgba($white, 0.8);
-    // }
+    &:before {
+      content: '•';
+      display: inline-block;
+      margin-right: 12px;
+      color: rgba($white, 0.8);
+    }
   }
-
+  
   &.active .tab-link {
     opacity: 1;
     cursor: default;
-    font-weight: 800;
-    border: 1px solid white;
-    border-bottom: 0;
-    border-radius: 5px 5px 0px 0px;
-    padding: 17px;
     text-decoration: none;
 
     &:hover {
@@ -57,7 +52,7 @@
 }
 
 .content {
-  margin-top: 16px;
+  margin-top: 24px;
 }
 
 .tabpane {
