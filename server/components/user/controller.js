@@ -324,15 +324,23 @@ router.get('/user/tasks/:id', function(req, res, next) {
     let id = req.params.id;
     User.listProjectsTasks(id)
         .then(function(result) {
-            let assigendTasks = [];
-            result.forEach(project =>
-                project.projectTasks.forEach(task =>
+            let assignedTasks = [];
+            result.forEach(project => {
+                project.projectTasks.forEach(task => {
                     task.assignedUsers.forEach((user) => {
                         if(String(user._id) ===  id)
-                            assigendTasks.push(task);
+                            assignedTasks.push({
+                                task: task,
+                                project: {
+                                    _id: project._id,
+                                    title: project.title,
+                                    client: project.client
+                                }
+                            });
                     })
-                ))
-            res.status(200).json(assigendTasks);
+                })
+            });
+            res.status(200).json(assignedTasks);
         })
         .catch(function(err) {
             res.status(400).json(err);

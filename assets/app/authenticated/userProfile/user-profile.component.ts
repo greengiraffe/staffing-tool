@@ -31,7 +31,7 @@ import { ModalService } from "../../_services/modal.service";
 export class UserProfileComponent implements OnInit {
     user: User;
     projects: Project[];
-    tasks: ProjectTask[] = [];
+    assignedTasks: any[]; // backend returns [{ task: {}, project: { _id: string, client: string, title: string }}]
     showTask = true;
     showSkill = false;
     showProject = false;
@@ -73,7 +73,7 @@ export class UserProfileComponent implements OnInit {
                     );
             this.userService.getAssignedTasksOfUser(currentUser._id)
                 .subscribe(
-                    (tasks: ProjectTask[]) => this.tasks = tasks,
+                    (res: any[]) => this.assignedTasks = res,
                     error => console.log(error)
                     );
 
@@ -84,7 +84,7 @@ export class UserProfileComponent implements OnInit {
                 );
         }
 
-        if (this.tasks.length == 0) this.showTask = false;
+        // if (this.assignedTasks.length == 0) this.showTask = false;
     }
 
     save(event) {

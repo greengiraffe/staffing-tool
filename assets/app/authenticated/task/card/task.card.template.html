@@ -7,9 +7,9 @@
          [ngClass]="{'fa-star-o': !currentUserIsInterested, 'fa-star': currentUserIsInterested}"
          class="fa"></i>
     </button>
-    <button *ngIf="currentUserIsAssigned" class="btn like assigned">
-      <i  class="fa fa-check-circle"></i>
-    </button>
+    <div *ngIf="currentUserIsAssigned" class="assigned" title="You are assigned!">
+      <i class="fa fa-check-circle"></i>
+    </div>
   </div>
 
   <h6 class="kicker">
@@ -19,15 +19,17 @@
   </h6>
   <h3 class="title" (click)="showProject()">{{ task.title }}</h3>
   <p class="description">{{ task.description }}</p>
-  <ul class="g-tag-list">
+  <ul class="g-tag-list skill-list">
     <li *ngFor="let skill of task.requiredSkills" class="g-tag skill">{{ skill.name }}</li>
   </ul>
-  <div *ngIf="task.assignedUsers.length > 0">
+  <template [ngIf]="task.assignedUsers.length > 0">
     <h6 class="assigned-users-title">Assigned People:</h6>
     <ul class="assigned-users">
-      <li *ngFor="let user of task.assignedUsers" [class.current]="user._id === currentUser._id" class="user">{{ user.firstName }} {{ user.lastName }}</li>
+      <li *ngFor="let user of task.assignedUsers"
+          [class.current]="user._id === currentUser._id"
+          class="user">{{ user.firstName }} {{ user.lastName }}</li>
     </ul>
-  </div>
+  </template>
 
   <app-modal [modal-id]="deleteTaskModalId" modal-title="Delete Task {{ task?.title }}">
     <span modal-body>Are you sure that you want to delete this task?</span>

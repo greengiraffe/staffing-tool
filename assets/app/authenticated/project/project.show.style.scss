@@ -72,13 +72,12 @@ section {
 }
 
 .task-list {
-  margin-top: 24px;
   display: flex;
   flex-wrap: wrap;
   margin: -8px;
 }
 
-.card-block {
+.task-card {
   flex: 1 1 100%;
   margin: 8px;
   max-width: 442px;

@@ -20,18 +20,18 @@
     <h3 id="tasks" class="section-title">Tasks</h3>
     <section class="task-section">
       <div class="task-list">
-        <div class="card-block" *ngFor="let projectTask of project?.projectTasks">
-          <h2 class="card-title internal">{{ projectTask.title }}</h2>
-          <div class="card-text">{{ projectTask.description }}</div>
+        <div class="g-card task-card" *ngFor="let projectTask of project?.projectTasks">
+          <h2 class="g-card-title">{{ projectTask.title }}</h2>
+          <div class="g-card-text">{{ projectTask.description }}</div>
           <ul class="skill-list">
             <li class="g-tag skill" *ngFor="let skill of projectTask.requiredSkills">{{ skill.name }}</li>
           </ul>
-          <h3 class="card-subtitle">Assigned Users</h3>
+          <h3 class="g-card-subtitle">Assigned Users</h3>
           <ul class="user-list">
             <li class="user" *ngFor="let user of projectTask.assignedUsers"><img class="avatar {{user._id}}" alt="Profile picture">{{ user.firstName }} {{ user.lastName }}
             </li>
           </ul>
-          <h3 class="card-subtitle">Interested Users</h3>
+          <h3 class="g-card-subtitle">Interested Users</h3>
           <ul class="user-list">
             <li class="user interested" *ngFor="let user of projectTask.interestedUsers"><img class="avatar {{user._id}}" alt="Profile picture">{{ user.firstName }} {{ user.lastName }}
             <button title="Assign User" *ngIf="currentUserIsCreator" type="button" (click)="assignUser(projectTask, user)" class="btn btn-assign"><i class="fa fa-plus-circle" aria-hidden="true"></i></button>

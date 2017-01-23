@@ -83,22 +83,7 @@ export class UserService {
 
     getAssignedTasksOfUser(userId): Observable<{}> {
         return this.http.get('http://localhost:3000/api/user/tasks/' + userId)
-            .map((response: Response) => {
-                const res = response.json();
-                let assignedTasks: ProjectTask[] = [];
-                for (let projectTask of res) {
-                    assignedTasks.push(new ProjectTask(
-                        projectTask.title,
-                        projectTask.description,
-                        projectTask.requiredSkills,
-                        projectTask.assignedUsers,
-                        null
-                        )
-                    );
-                }
-                this.assignedTasks = assignedTasks;
-                return assignedTasks;
-            })
+            .map((response: Response) => response.json())
             .catch((error: Response) => Observable.throw(error.json()));
     }
 

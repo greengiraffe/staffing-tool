@@ -45,17 +45,20 @@
         <i class="fa fa-chevron-right"></i>
       </div>
       <div class="bar-content">
-        <div class="task-bar" *ngFor="let task of tasks">
-          <div class="task-lefty">
-            <span class="task-title">{{task.title}}</span><br />
-            <span class="task-client">{{task.client}}</span>
+        <div class="task-list">
+          <div class="g-card task-card" *ngFor="let assignedTask of assignedTasks">
+            <h5 class="g-card-title task-title">
+              <a routerLink="/user/project/show/{{ assignedTask?.project._id }}">{{ assignedTask?.task.title }}</a>
+            </h5>
+            <!--<p class="task-client">{{ assignedTask?.project.client }}</p>-->
+            <p class="g-card-text task-description">{{ assignedTask?.task.description }}</p>
           </div>
-          <span class="task-description">{{task.description}}</span>
-        </div>
-        <div class="empty-task-bar" *ngIf="tasks.length === 0">
-          you don't have any assigned tasks
+          <div class="empty-task-bar" *ngIf="assignedTasks?.length === 0">
+            you don't have any assigned tasks
+          </div>
         </div>
       </div>
+
     </div>
     <div class="bar" [class.expanded]="showProject">
       <div class="bar-head" (click)="toggleProject()" >
@@ -67,10 +70,10 @@
         <div class="project-type tentative"><img src="/img/pikto/3_Tentative.svg"><br />tentative</div>
         <div class="project-type internal"><img src="/img/pikto/4_Internal.svg"><br />internal</div>
         <!--<div class="project-container">-->
-          <!--<div class="card-block"  *ngFor="let project of projects; let i = index" routerLink="../project/show/{{project?._id}}" >-->
-            <!--<h5 class="card-title {{ project?.type }}">{{ project?.title }}</h5>-->
-            <!--<div class="card-text" >{{ project?.client }}</div>-->
-            <!--<div class="card-text">{{ project?.start | date:"dd/MM/yy" }} - {{ project?.end | date:"dd/MM/yy"}}</div>-->
+          <!--<div class="g-card"  *ngFor="let project of projects; let i = index" routerLink="../project/show/{{project?._id}}" >-->
+            <!--<h5 class="g-card-title {{ project?.type }}">{{ project?.title }}</h5>-->
+            <!--<div class="g-card-text" >{{ project?.client }}</div>-->
+            <!--<div class="g-card-text">{{ project?.start | date:"dd/MM/yy" }} - {{ project?.end | date:"dd/MM/yy"}}</div>-->
           <!--</div>-->
         <!--</div>-->
       </div>
