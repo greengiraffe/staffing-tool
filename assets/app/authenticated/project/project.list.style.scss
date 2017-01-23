@@ -89,6 +89,19 @@
   border-radius: 50%;
 }
 
+.filter-container {
+  color: $white;
+  display: flex;
+  justify-content: center;
+}
+
+.filter {
+  padding: 10px;
+  & label {
+    padding: 0 10px;
+  }
+}
+
 @keyframes rotate {
   0%    { transform: rotate(0deg); }
   100%  { transform: rotate(360deg); }

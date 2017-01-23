@@ -10,6 +10,10 @@
   + .card {
     margin-top: 24px;
   }
+  &.past {
+    background-color: gray;
+    display: none;
+  }
 }
 
 .actions {

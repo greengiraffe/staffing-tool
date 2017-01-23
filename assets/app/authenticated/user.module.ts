@@ -20,6 +20,7 @@ import { TaskCreateComponent } from "./task/task.create.component";
 import { FilterPipe } from "../_pipes/filter.pipe";
 import { OrderByPipe } from "../_pipes/orderBy.pipe";
 import { FilterNamesPipe } from "../_pipes/filterNames.pipe";
+import { PastProjectsPipe } from "../_pipes/pastProjects.pipe";
 
 import { ProjectCardComponent } from "./project/card/project.card.component";
 import { TaskCardComponent } from "./task/card/task.card.component";
@@ -52,7 +53,8 @@ import { TaskCardComponent } from "./task/card/task.card.component";
         TaskCreateComponent,
         FilterPipe,
         OrderByPipe,
-        FilterNamesPipe
+        FilterNamesPipe,
+        PastProjectsPipe
     ]
 })
 export class UserModule {}

@@ -9,7 +9,17 @@
     </li>
     <button type="button" class="btn btn-add-project" routerLink="/user/project/create">New Project</button>
   </ul>
-
+  <div class="filter-container">
+    <div class="filter">
+      <input id="pastProjects" type="checkbox" (change)="togglePastProjects()"><label for="pastProjects"> Show past projects</label>
+    </div>
+    <div class="filter">
+      <input id="dummy1" type="checkbox"><label for="dummy1">Dummy Filter</label>
+    </div>
+    <div class="filter">
+      <input id="dummy2" type="checkbox"><label for="dummy2">Dummy Filter</label>
+    </div>
+  </div>
   <div class="content">
     <div class="ducspinner" *ngIf="projects === undefined"></div>
 

@@ -17,6 +17,7 @@ export class ProjectListComponent implements OnInit {
     tasks: ProjectTask[];
     sortType: string = 'end';
     activeTab = "projects";
+    showPastProjects: boolean = false;
 
     constructor(private projectService: ProjectService,
                 private router: Router,
@@ -65,4 +66,12 @@ export class ProjectListComponent implements OnInit {
         this.router.navigate([destinationURL]);
     }
 
+    togglePastProjects() {
+        this.showPastProjects = !this.showPastProjects;
+        let pastProjects = <NodeListOf<HTMLElement>>document.querySelectorAll('.past');
+        for (var i = 0; i < pastProjects.length; ++i) {
+            pastProjects[i].style.display = this.showPastProjects ? "block" : "none";
+            console.log(pastProjects[i])
+        }
+    }
 }

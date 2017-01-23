@@ -58,6 +58,7 @@ module.exports = {
             .populate('projectTasks.requiredSkills')
             .populate('projectTasks.assignedUsers', '-password -email -__v -role')
             .populate('projectTasks.interestedUsers', '-password -email -__v -role')
+            .sort('end')
             .exec();
     },
 

@@ -52,7 +52,6 @@ export class ProjectService {
                     newProjects.push(newProject);
                 }
                 this.projects = newProjects;
-                this.sortProjectsBy();
                 return this.projects;
             })
             .catch((error: Response) =>  Observable.throw(error.json()));
@@ -87,21 +86,5 @@ export class ProjectService {
         return this.http.delete('http://localhost:3000/api/project/' + project._id)
             .map((response: Response) => response.json())
             .catch((error: Response) => Observable.throw(error.json()));
-    }
-
-    sortProjectsBy() {
-        let today = new Date();
-        let day = today.getDate();
-
-        this.projects = this.projects.filter((project) =>  new Date(project.end) >= today);
-        this.projects.sort((a,b) => {
-            if(b.end > a.end) {
-                return -1
-            } else if(b.end < a.end) {
-                return 1
-            } else {
-                return 0;
-            }
-        })
     }
 }
