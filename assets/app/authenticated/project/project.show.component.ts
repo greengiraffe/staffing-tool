@@ -91,6 +91,13 @@ export class ProjectShowComponent implements OnInit {
             .subscribe(data => this.renderImages(user._id));
     }
 
+    unassignUser(task: ProjectTask, user: User) {
+        let userIndex = task.assignedUsers.indexOf(user);
+        task.assignedUsers.splice(userIndex, 1);
+        this.projectService.updateProject(this.project)
+            .subscribe();
+    }
+
     private checkIfUserCanEdit(user: User) {
 
         let isAssignedUser = user => {
