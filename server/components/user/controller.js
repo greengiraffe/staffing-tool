@@ -101,10 +101,10 @@ router.get('/user/:id', function(req, res, next) {
 router.get('/user/mail/:email', function (req, res, next){
     User.getUserByMail(req.params.email)
     .then(function(result){
-      res.status(200).json(result)
+        res.status(200).json(result)
     })
     .catch(function(error){
-      res.status(500).json(err);
+        res.status(500).json(err);
     })
 });
 
@@ -112,7 +112,6 @@ router.get('/user/mail/:email', function (req, res, next){
  * Create a user
  */
 router.post('/user', function(req, res, next) {
-
     if(authHelper.passwordIsValid(req.body.password)) {
         User.createUser(
         req.body.firstName,

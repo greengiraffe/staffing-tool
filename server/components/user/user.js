@@ -85,7 +85,7 @@ module.exports = {
 
     listUsers: function() {
         return User
-            .find({},{password:0})
+            .find({})
             .populate('userSkills.skill')
             .exec();
     },

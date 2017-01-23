@@ -20,6 +20,16 @@ let schema = new Schema({
     register: {type: Boolean, default: true}
 });
 
+/**
+ * Override the mongoose toJSON method to exclude password
+ */
+schema.set('toJSON', {
+    transform: function(doc, ret, options) {
+        delete ret.password;
+        return ret;
+    }
+});
+
 schema.plugin(uniqueValidator);
 
 module.exports = mongoose.model('User', schema);
