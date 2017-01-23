@@ -88,7 +88,7 @@ export class UserProfileComponent implements OnInit {
     }
 
     save(event) {
-        let target = event.target || event.srcElement || event.currentTarget;
+        let target = event.target;
         let id = target.previousElementSibling.id;
         if (id == 'input-phone') {
             this.user.phone = this.newPhone;
