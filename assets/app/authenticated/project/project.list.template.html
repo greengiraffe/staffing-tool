@@ -17,7 +17,7 @@
       <app-project-card
         [project]="project"
         (onDelete)="deleteProject(project)"
-        *ngFor="let project of projects | orderBy: sortType; let i = index">
+        *ngFor="let project of projects">
       </app-project-card>
     </div>
 
