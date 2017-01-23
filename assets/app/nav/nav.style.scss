@@ -2,7 +2,7 @@
 
 .navbar {
   @include md-shadow-xs;
-
+  margin-top: 32px;
   position: relative;
   padding: 12px 16px;
   font-size: 18px;
