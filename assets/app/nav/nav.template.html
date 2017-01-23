@@ -20,9 +20,9 @@
          [class.active]="this.router.url.startsWith('/admin')">
         <i class="fa fa-book" aria-hidden="true"></i>Admin</a>
       <div class="dropdown-menu">
-        <a class="dropdown-item" (click)="closeDropdown()" routerLink="/admin/user/create" routerLinkActive="active">Create User</a>
-        <a class="dropdown-item" (click)="closeDropdown()" routerLink="/admin/user/list" routerLinkActive="active">Show Users</a>
-        <a class="dropdown-item" (click)="closeDropdown()" routerLink="/admin/skill" routerLinkActive="active">Edit Skills</a>
+        <!--<a class="dropdown-item" (click)="closeDropdown()" routerLink="/admin/user/create" routerLinkActive="active">Create User</a>-->
+        <a class="dropdown-item" (click)="closeDropdown()" routerLink="/admin/user/list" routerLinkActive="active">Users</a>
+        <a class="dropdown-item" (click)="closeDropdown()" routerLink="/admin/skill" routerLinkActive="active">Skills</a>
       </div>
     </li>
   </ul>
