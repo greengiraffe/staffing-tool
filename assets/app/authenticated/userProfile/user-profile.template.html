@@ -52,6 +52,9 @@
           </div>
           <span class="task-description">{{task.description}}</span>
         </div>
+        <div class="empty-task-bar" *ngIf="tasks.length === 0">
+          you don't have any assigned tasks
+        </div>
       </div>
     </div>
     <div class="bar" [class.expanded]="showProject">
