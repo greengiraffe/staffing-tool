@@ -21,11 +21,12 @@ let schema = new Schema({
 });
 
 /**
- * Override the mongoose toJSON method to exclude password
+ * Override the mongoose toJSON method to exclude password and version fields
  */
 schema.set('toJSON', {
     transform: function(doc, ret, options) {
         delete ret.password;
+        delete ret.__v;
         return ret;
     }
 });
