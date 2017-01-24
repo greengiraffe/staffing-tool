@@ -6,6 +6,7 @@ import { BrowserModule } from "@angular/platform-browser";
 
 import { SharedModule } from "../shared.module";
 import { UserComponent } from "./user.component";
+import { UserCardComponent } from "./userList/userCard/user.card.component";
 import { UserRoutingModule } from "./user.routes";
 import { UserListComponent } from "./userList/user.list.component";
 import { ProjectCreateComponent } from "./project/project.create.component";
@@ -41,6 +42,7 @@ import { TaskCardComponent } from "./task/card/task.card.component";
         ProjectCardComponent,
         TaskCardComponent,
         UserComponent,
+        UserCardComponent,
         ChangePasswordComponent,
         SkillSearchComponent,
         UserSearchComponent,

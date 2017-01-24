@@ -37,11 +37,8 @@
         </tr>
       </tbody>
     </table> -->
-    <div class="card">
-      <h6 class="kicker">{{ project.client }}</h6>
-      <h3 class="title" (click)="showProject()">{{ project.title }}</h3>
-      <h6 class="subtitle">{{ project.start | date:"dd.MM.yyyy" }} – {{ project.end | date:"dd.MM.yyyy" }}</h6>
-      <p class="description">{{ project.description }}</p>
+    <div class="users">
+      <app-user-card *ngFor="let user of users" [user]="user"></app-user-card>
     </div>
 
   </div>

@@ -2,13 +2,16 @@ import { Component } from "@angular/core";
 
 import { User } from "../../_models/user.model";
 import { UserService } from "../../_services/user.service";
+import { SkillService } from "../../_services/skill.service";
+import { SkillSearchService } from "../../_services/skill-search.service";
 import { ModalService } from "../../_services/modal.service";
 import { AuthService } from "../../_services/auth.service";
 
 @Component({
     selector: 'app-user-list',
     templateUrl: './user.list.template.html',
-    styleUrls: ['user.list.style.scss']
+    styleUrls: ['user.list.style.scss'],
+    providers: [SkillService, SkillSearchService]
 })
 export class UserListComponent {
     private deleteUserModalIds = new Array<string>();

@@ -12,7 +12,7 @@ import { User } from "../../../_models/user.model";
 
 export class UserCardComponent {
 
-    @Input("user") user: User;
+    @Input() user: User;
     @Output("onDelete") onDelete = new EventEmitter();
 
     private currentUserCanDelete = false;
