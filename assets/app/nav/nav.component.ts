@@ -39,15 +39,6 @@ export class NavComponent {
         });
     }
 
-    toggleDropdown(event) {
-        event.preventDefault();
-        this.isActiveDropdown = !this.isActiveDropdown;
-    }
-
-    closeDropdown() {
-        this.isActiveDropdown = false;
-    }
-
     logout() {
         this.authService.logout();
     }
