@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, Input } from '@angular/core';
+import { Component, OnInit, OnChanges, OnDestroy, Input } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 
 import { User } from "../../_models/user.model";
@@ -16,7 +16,7 @@ import { AuthService } from "../../_services/auth.service";
     styleUrls: ['user-skill-list.style.scss']
 })
 
-export class UserSkillListComponent implements OnInit, OnDestroy {
+export class UserSkillListComponent implements OnInit, OnChanges, OnDestroy {
 
     @Input() showRemove = false;
     @Input() showSkillTypeIcons = true;
@@ -38,7 +38,15 @@ export class UserSkillListComponent implements OnInit, OnDestroy {
         this.skillSearchServiceSubscription = this.skillSearchService.userSkillAdded$
             .subscribe(userSkill => this.addSkill(userSkill));
 
-        this.fillArrays();
+        if(this.user) {
+            this.fillArrays();
+        }
+    }
+
+    ngOnChanges(changes: any) {
+        if(this.user) {
+            this.fillArrays();
+        }
     }
 
     /**
