@@ -1,6 +1,7 @@
 .g-card {
-  @include md-shadow-xs;
+  //@include md-shadow-xs;
 
+  border: 1px solid $grey-light;
   display: inline-block;
   background-color: $white;
   padding: 24px 0;

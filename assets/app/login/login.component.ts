@@ -10,7 +10,7 @@ import { FlashMessagesService } from "angular2-flash-messages";
 @Component({
     selector: 'app-login',
     templateUrl: './login.template.html',
-    styleUrls: ['./login.style.scss'],
+    styleUrls: ['./login.style.scss']
 })
 export class LoginComponent implements OnInit{
     loginForm: FormGroup;

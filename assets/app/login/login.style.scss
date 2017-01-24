@@ -1,35 +1,39 @@
 @import '../../styles/variables';
 
-form {
+// Login styles
+#login-form {
   max-width: 380px;
   padding: 32px;
-  margin: 0 auto;
-  background: rgba($white, 0.8);
+  margin: 24px auto;
+  background: $white;
+  border: 1px solid $grey-light;
 
   .alert p {
     margin-bottom: 0;
   }
-}
 
-h2 {
-  margin-bottom: 24px;
-}
-
-input {
-  width: 100%;
-  padding: 12px;
-  font-size: 16px;
-
-  &:focus {
-    position: relative;
-    z-index: 1;
+  h2 {
+    margin-bottom: 24px;
   }
 
-  &[type="email"] {
-    margin-bottom: -1px;
-  }
+  input {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
 
-  &[type="password"] {
-    margin-bottom: 16px;
+    &:focus {
+      position: relative;
+      z-index: 1;
+    }
+
+    &[type="email"] {
+      margin-bottom: -1px;
+    }
+
+    &[type="password"] {
+      margin-bottom: 16px;
+    }
   }
 }
+
+

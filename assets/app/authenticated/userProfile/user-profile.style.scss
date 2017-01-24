@@ -2,7 +2,7 @@
 
 .page-wrapper {
   display: flex;
-  margin-top: 20px;
+  margin-top: 24px;
 }
 
 .sidebar {
@@ -10,8 +10,7 @@
 
   width: 250px;
   height: 100%;
-  color: $white;
-  background: rgba($white, 0.2);
+  background: $white;
 }
 
 .picture-container {
@@ -38,20 +37,19 @@
     padding: 12px;
   }
 
-  .image-upload-label {
-    position: absolute;
-    top: 5px;
-    right: 5px;
-    background: rgba(#000, 0.7);
-    padding: 1px 8px;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: all 0.3s;
+  &:hover .image-upload-label {
+    display: block;
+  }
 
-    &:hover {
-      background: rgba(#fff, 0.7);
-      color: #000000;
-    }
+  .image-upload-label {
+    display: none;
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    cursor: pointer;
+    padding: 2px 8px;
+    color: $white;
+    background: rgba($black, 0.3);
   }
 }
 
@@ -67,39 +65,18 @@
     font-weight: 500;
     word-wrap: break-word;
     margin-bottom: 16px;
-
-    i.fa-pencil {
-      display: none;
-      cursor: pointer;
-    }
-    &:hover i.fa-pencil {
-      display: inline-block;
-    }
   }
 
-  .fa-floppy-o {
-    cursor: pointer;
+  .fa {
+    line-height: inherit;
   }
 
-  input {
-    $color: #fff;
-    //margin: 40px 25px;
-    width: 200px;
-    display: inline-block;
-    border: none;
-    padding: 3px 0;
-    border-bottom: solid 1px $color;
-    transition: all 0.3s cubic-bezier(.64,.09,.08,1);
-    background: linear-gradient(to bottom, rgba(#fff,0) 96%, $color 4%);
-    background-position: -200px 0;
-    background-size: 200px 100%;
-    background-repeat: no-repeat;
-    color: $color;
-    &:focus {
-      box-shadow: none;
-      outline: none;
-      background-position: 0 0;
-    }
+  .fa-pencil {
+    display: none;
+  }
+
+  &:hover .fa-pencil {
+    display: block;
   }
 
   .email {
@@ -108,7 +85,6 @@
     text-overflow: ellipsis;
 
     a {
-      color: $white;
       border-bottom: 1px solid rgba($white, 0.8);
 
       &:hover {
@@ -118,16 +94,48 @@
   }
 }
 
-#change-pwd {
-  background: rgba(#000, 0.3);
-  padding: 10px;
-  cursor: pointer;
-  border-radius: 2px;
+.info {
+  display: flex;
+
+  .fa-pencil {
+    padding: 0 4px;
+    margin-left: auto;
+    cursor: pointer;
+  }
+}
+
+.edit-info {
+  display: flex;
+
+  input {
+    width: 200px;
+    flex: 1;
+    border: none;
+    padding: 0;
+    margin-bottom: -1px;
+    border-bottom: solid 1px $grey-light;
+
+    &:focus {
+      box-shadow: none;
+      outline: none;
+    }
+  }
+
+  .fa-floppy-o {
+    padding: 0 8px;
+    cursor: pointer;
+  }
+}
+
+.btn-change-password {
+  background: $white;
+  padding: 12px;
   text-align: center;
-  transition: all 0.3s;
+  border-top: 1px solid $grey-light;
+  width: 100%;
 
   &:hover {
-    background: rgba(#000, 0.4);
+    background: $grey-light;
   }
 }
 
@@ -141,8 +149,7 @@
   @include md-transition;
 
   position: relative;
-  color: rgba($white, 0.9);
-  background: rgba($white, 0.2);
+  background: $white;
 
   &:hover {
     @include md-shadow-s;
@@ -156,7 +163,7 @@
     .bar-content {
       max-height: 300px;
       padding: 18px;
-      border-top: rgba($white, 0.2) solid 1px;
+      border-top: 1px solid $grey-light;
       overflow-y: auto;
     }
 
@@ -205,6 +212,7 @@
     top: 0;
     right: 0;
     padding: 12px;
+    margin-right: 8px;
     line-height: inherit;
   }
 }
@@ -229,28 +237,6 @@
 
 .task-description {
   padding: 12px
-}
-
-.project {
-  display: flex;
-
-  &-type {
-    display: inline-block;
-    flex-grow: 2;
-    text-align: center;
-    background: rgba($white, 0.2);
-    margin: 10px;
-    img {
-      width: 50px;
-      margin: 10px;
-    }
-    &:first-of-type {
-      margin-left: 0;
-    }
-    &:last-of-type {
-      margin-right: 0;
-    }
-  }
 }
 
 .skill-section {

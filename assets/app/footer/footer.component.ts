@@ -3,7 +3,10 @@ import { Component } from '@angular/core';
 @Component({
     selector: 'app-footer',
     templateUrl: `
-      <div class="wrapper">Footer</div>
+      <div class="wrapper">
+        <p>Made with ❤ at HTW Berlin and IXDS</p>
+        <a>Github Link</a>
+      </div>
     `,
     styleUrls: ['footer.style.scss']
 })

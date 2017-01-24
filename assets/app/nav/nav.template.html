@@ -1,35 +1,35 @@
-<nav class="navbar navbar-fixed-top navbar-dark bg-inverse" *ngIf="this.router.url != '/auth/login'">
-  <span class="navbar-brand">
-    Staffing Tool
-  </span>
-  <ul class="nav navbar-nav">
-    <li class="nav-item"><a class="nav-link" routerLink="/user/profile" routerLinkActive="active">
-      <i class="fa fa-user" aria-hidden="true"></i>
-    Dashboard
-    </a></li>
-    <li *ngIf="isInternUser" class="nav-item">
-      <a class="nav-link" routerLink="/user/project/list/projects"
-      [class.active]="this.router.url.startsWith('/user/project/list')">
-        <i class="fa fa-list-ul" aria-hidden="true"></i>
-        Projects
-      </a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" routerLink="/user/list" routerLinkActive="active">
-        <i class="fa fa-users"></i>
-        People
-      </a>
-    </li>
-    <li class="nav-item" *ngIf="isAdminUser">
-      <a class="nav-link" routerLink="/admin/skillList" routerLinkActive="active">
-        <i class="fa fa-rocket"></i>
-        Skills
-      </a>
-    </li>
-    <li class="nav-item right">
-      <a class="nav-link" routerLink="/auth/login" (click)="logout()">
-        Logout
-      </a>
-    </li>
-  </ul>
-</nav>
+<div class="nav-wrapper">
+  <nav class="navbar navbar-fixed-top navbar-dark" *ngIf="this.router.url != '/auth/login'">
+    <span class="navbar-brand">Staffing Tool</span>
+    <ul class="nav navbar-nav">
+      <li class="nav-item"><a class="nav-link" routerLink="/user/profile" routerLinkActive="active">
+        <i class="fa fa-user" aria-hidden="true"></i>
+      Dashboard
+      </a></li>
+      <li *ngIf="isInternUser" class="nav-item">
+        <a class="nav-link" routerLink="/user/project/list/projects"
+        [class.active]="this.router.url.startsWith('/user/project/list')">
+          <i class="fa fa-list-ul" aria-hidden="true"></i>
+          Projects
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/user/list" routerLinkActive="active">
+          <i class="fa fa-users"></i>
+          People
+        </a>
+      </li>
+      <li class="nav-item" *ngIf="isAdminUser">
+        <a class="nav-link" routerLink="/admin/skill" routerLinkActive="active">
+          <i class="fa fa-rocket"></i>
+          Skills
+        </a>
+      </li>
+      <li class="nav-item right">
+        <a class="nav-link" routerLink="/auth/login" (click)="logout()">
+          Logout
+        </a>
+      </li>
+    </ul>
+  </nav>
+</div>

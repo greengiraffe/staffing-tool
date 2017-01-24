@@ -1,24 +1,22 @@
-<div class="container">
-  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+<form id="login-form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
 
-    <h2>Please sign in</h2>
+  <h2>Please sign in</h2>
 
-    <label for="email" class="sr-only">Mail</label>
-    <input
-        type="email"
-        id="email"
-        formControlName="email"
-        placeholder="Email address" required autofocus>
-    <label for="password" class="sr-only">Password</label>
+  <label for="email" class="sr-only">Mail</label>
+  <input
+      type="email"
+      id="email"
+      formControlName="email"
+      placeholder="Email address" required autofocus>
+  <label for="password" class="sr-only">Password</label>
 
-    <input
-        type="password"
-        id="password"
-        formControlName="password"
-        placeholder="Password" required>
+  <input
+      type="password"
+      id="password"
+      formControlName="password"
+      placeholder="Password" required>
 
-    <flash-messages></flash-messages>
+  <flash-messages></flash-messages>
 
-    <button type="submit" class="btn btn-lg btn-primary btn-block">Login</button>
-  </form>
-</div>
+  <button type="submit" class="btn btn-lg btn-primary btn-block">Login</button>
+</form>

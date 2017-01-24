@@ -6,6 +6,7 @@
 
 html {
   box-sizing: border-box;
+  height: 100%;
 }
 
 *, *:before, *:after {
@@ -13,27 +14,38 @@ html {
 }
 
 body {
-  position: relative;
+  height: 100%;
   font-size: 16px;
   line-height: 24px;
   font-family: $font-stack;
   font-weight: 400;
-  height: 100%;
-  min-height: 100vh;
-  padding-top: 24px;
-  padding-bottom: 116px; // 80px footer height + 36px margin
-  background: linear-gradient(20deg, $aqua 0%,#00727f 63%,$teal 100%);
+  color: $blackish;
+  background: $grey-extralight;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-my-app {
-  display: block;
-  height: 100%;
-}
-
 #page-container {
   width: 100%;
-  max-width: 1200px;
+  max-width: 1248px; // plus 2x24px = 48px horizontal padding
+  padding: 0 24px;
   margin: 0 auto;
+  background: $grey-extralight;
+  box-shadow: 0 0 48px rgba($black, 0.2);
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+
+  &.is-login-page {
+    box-shadow: none;
+  }
+}
+
+#content-container {
+  flex: 1;
+}
+
+.btn {
+  border-radius: 0;
+
 }

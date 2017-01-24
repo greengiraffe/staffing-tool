@@ -14,18 +14,6 @@ import { ModalService } from "../../_services/modal.service";
     templateUrl: 'user-profile.template.html',
     styleUrls: ['user-profile.style.scss'],
     providers: [UserService, SkillService, SkillSearchService],
-    animations: [
-        trigger('expand', [
-            state('active', style({
-                maxHeight: '300px'
-            })),
-            state('inactive', style({
-                maxHeight: '0',
-                display: 'none'
-            })),
-            transition('inactive <=> active', animate('400ms ease-in-out'))
-        ])
-    ]
 })
 
 export class UserProfileComponent implements OnInit {
@@ -35,7 +23,7 @@ export class UserProfileComponent implements OnInit {
     showTask = true;
     showSkill = false;
     showProject = false;
-    editPhone = false;
+    editingPhone = false;
     newPhone: string;
     pictureElement;
     imgToUpload: File;
@@ -87,23 +75,21 @@ export class UserProfileComponent implements OnInit {
                     error => console.log(error)
                 );
         }
-
-        // if (this.assignedTasks.length == 0) this.showTask = false;
     }
 
-    save(event) {
-        let target = event.target;
-        let id = target.previousElementSibling.id;
-        if (id == 'input-phone') {
-            this.user.phone = this.newPhone;
-        }
+    saveNewPhone() {
+        let lastPhone = this.user.phone;
+        this.user.phone = this.newPhone;
 
         this.userService.updateUser(this.user).subscribe(
-            data => this._flash.show('Successfully saved!', { cssClass: 'alert-success', timeout: 5000000 }),
-            error => this._flash.show(error.error.message, { cssClass: 'alert-danger', timeout: 5000 })
+            data => this._flash.show('Successfully saved!', { cssClass: 'alert-success', timeout: 2000 }),
+            error => {
+                this.user.phone = lastPhone;
+                this._flash.show(error.error.message, { cssClass: 'alert-danger', timeout: 2000 })
+            }
         );
 
-        this.editPhone = false;
+        this.editingPhone = false;
     }
 
     toggleSkill() {

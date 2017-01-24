@@ -21,19 +21,18 @@
 
       <dt>Phone</dt>
       <dd class="phone">
-        <div class="info" [hidden]="editPhone">
+        <div class="info" [hidden]="editingPhone">
           {{ user?.phone ? user?.phone : 'n/a' }}
-          <i class="fa fa-pencil" (click)="editPhone = true"></i>
+          <i class="fa fa-pencil" (click)="editingPhone = true"></i>
         </div>
-        <div class="edit" [hidden]="!editPhone">
-          <input id="input-phone" type="text" [value]="user?.phone ? user?.phone : 'n/a' "
-                 (input)="newPhone = $event.target.value" required="">
-          <i class="fa fa-floppy-o" (click)="save($event)"></i>
+        <div class="edit-info" [hidden]="!editingPhone">
+          <input type="text" [(ngModel)]="newPhone" [value]="user?.phone ? user?.phone : 'n/a'">
+          <i class="fa fa-floppy-o" (click)="saveNewPhone()"></i>
         </div>
       </dd>
     </dl>
 
-    <div id="change-pwd" (click)="openModal()">Change Password</div>
+    <button type="button" class="btn btn-change-password" (click)="openModal()">Change Password</button>
 
   </div>
 
@@ -65,10 +64,7 @@
         Created Projects
         <i class="fa fa-chevron-right"></i>
       </div>
-      <div class="bar-content project" >
-        <div class="project-type confirmed"><img src="/img/pikto/2_Confirmed.svg"><br />confirmed</div>
-        <div class="project-type tentative"><img src="/img/pikto/3_Tentative.svg"><br />tentative</div>
-        <div class="project-type internal"><img src="/img/pikto/4_Internal.svg"><br />internal</div>
+      <div class="bar-content" >
         <!--<div class="project-container">-->
           <!--<div class="g-card"  *ngFor="let project of projects; let i = index" routerLink="../project/show/{{project?._id}}" >-->
             <!--<h5 class="g-card-title {{ project?.type }}">{{ project?.title }}</h5>-->
