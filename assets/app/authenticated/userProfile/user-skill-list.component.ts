@@ -20,8 +20,8 @@ export class UserSkillListComponent implements OnInit, OnDestroy {
 
     @Input() showRemove = false;
     @Input() showSkillTypeIcons = true;
+    @Input() user: User;
 
-    user: User;
     professionalSkills:Array<Skill> = new Array<Skill>();
     basicSkills:Array<Skill> = new Array<Skill>();
     interestSkills:Array<Skill> = new Array<Skill>();
@@ -33,19 +33,12 @@ export class UserSkillListComponent implements OnInit, OnDestroy {
                 private skillSearchService: SkillSearchService) {}
 
     ngOnInit() {
-        const currentUser = this.authService.currentUser();
 
-        if (currentUser) {
-            this.userService.getUserById(currentUser._id)
-                .subscribe(res => {
-                    this.user = res as User;
-                    this.fillArrays();
-            });
+        // Add a new skill when it's selected in the skill-search
+        this.skillSearchServiceSubscription = this.skillSearchService.userSkillAdded$
+            .subscribe(userSkill => this.addSkill(userSkill));
 
-            // Add a new skill when it's selected in the skill-search
-            this.skillSearchServiceSubscription = this.skillSearchService.userSkillAdded$
-                .subscribe(userSkill => this.addSkill(userSkill));
-        }
+        this.fillArrays();
     }
 
     /**
