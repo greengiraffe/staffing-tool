@@ -36,6 +36,11 @@ export class ModalService {
         }
     }
 
+    //to prevent memory leak
+    clearAllModals(): void {
+        this.modals = [];
+    }
+
     private findModal(modalId: string): ModalComponent {
         return this.modals.find(item => {
            return item.modalId === modalId

@@ -48,6 +48,9 @@ export class UserProfileComponent implements OnInit {
                 private _flash: FlashMessagesService) {}
 
     ngOnInit() {
+        //clear all modals to prevent memory leak
+        this.modalService.clearAllModals();
+
         const currentUser = this.authService.currentUser();
         this.pictureElement = document.getElementById('profile-picture');
 
