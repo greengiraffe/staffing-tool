@@ -7,9 +7,7 @@ import { SharedModule } from "../shared.module";
 
 import { AdminComponent } from "./admin.component";
 import { AdminRoutingModule } from "./admin.routes";
-import { SkillCreateComponent } from "./skill/skill.create.component";
-import { SkillListComponent } from "./skill/skill.list.component";
-import { SkillsComponent } from "./skill/skills.component";
+import { SkillListComponent } from "./skillList/skill.list.component";
 import { UserCreateComponent } from "./userCreate/user.create.component";
 import { ModalComponent } from "../modal/modal.component";
 
@@ -27,9 +25,7 @@ import { ModalComponent } from "../modal/modal.component";
     ],
     declarations: [
         AdminComponent,
-        SkillCreateComponent,
         SkillListComponent,
-        SkillsComponent,
         UserCreateComponent
     ]
 })

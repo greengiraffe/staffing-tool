@@ -2,7 +2,7 @@ import { Routes, RouterModule } from "@angular/router";
 import { NgModule } from "@angular/core";
 
 import { UserCreateComponent } from "./userCreate/user.create.component";
-import { SkillsComponent } from "./skill/skills.component";
+import { SkillListComponent } from "./skillList/skill.list.component";
 
 const adminRoutes: Routes = [
     {
@@ -12,7 +12,7 @@ const adminRoutes: Routes = [
                 path: '',
                 children: [
                     { path: 'user/create', component: UserCreateComponent },
-                    { path: 'skill', component: SkillsComponent }
+                    { path: 'skillList', component: SkillListComponent }
                 ]
             }
         ]

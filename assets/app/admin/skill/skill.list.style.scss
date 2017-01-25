@@ -11,3 +11,70 @@
   }
 }
 
+.page-wrapper {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.content-wrapper {
+  margin-top: 36px;
+}
+
+h1 {
+  font-size: 28px;
+  line-height: 36px;
+  font-weight: 200;
+  letter-spacing: 0.015em;
+  color: $white;
+  margin-top: 36px;
+}
+
+.skill-list {
+  display: block;
+  margin-top: 24px;
+}
+
+.skill-create {
+  display: block;
+  margin-top: 24px;
+}
+
+input {
+  background: $teal;
+  color: $white;
+  border-color: $white;
+
+  &:focus {
+    color: $white;
+    background: $teal;
+    border-color: $aqua-light;
+  }
+
+  &::-webkit-input-placeholder,
+  &::-moz-placeholder,
+  &:-ms-input-placeholder {
+    color: white;
+  }
+}
+
+.btn {
+  border-color: $white;
+  background: $aqua-light;
+  color: $black;
+
+  &:focus, &:hover, &:active {
+    background-color: $aqua;
+    color: $black;
+    border-color: $aqua;
+  }
+
+  &:focus {
+    outline: 0;
+  }
+}
+
+flash-messages {
+  display: block;
+  margin-top: 24px;
+}
