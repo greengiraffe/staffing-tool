@@ -6,8 +6,7 @@
 }
 
 .sidebar {
-  @include md-shadow-xs;
-
+  border: 1px solid $grey-light;
   width: 250px;
   height: 100%;
   background: $white;
@@ -18,10 +17,8 @@
   background: $white;
 
   img {
-    @include md-shadow-xs;
-
-    width: 100%;
-    height: auto;
+    width: 248px;
+    height: 248px;
   }
 
   span {
@@ -83,14 +80,6 @@
     word-wrap: initial;
     overflow: hidden;
     text-overflow: ellipsis;
-
-    a {
-      border-bottom: 1px solid rgba($white, 0.8);
-
-      &:hover {
-        text-decoration: none;
-      }
-    }
   }
 }
 
@@ -128,15 +117,8 @@
 }
 
 .btn-change-password {
-  background: $white;
-  padding: 12px;
-  text-align: center;
+  border: none;
   border-top: 1px solid $grey-light;
-  width: 100%;
-
-  &:hover {
-    background: $grey-light;
-  }
 }
 
 .content {
@@ -145,15 +127,9 @@
 }
 
 .bar {
-  @include md-shadow-xs;
-  @include md-transition;
-
+  border: 1px solid $grey-light;
   position: relative;
   background: $white;
-
-  &:hover {
-    @include md-shadow-s;
-  }
 
   + .bar {
     margin-top: 12px;
@@ -174,9 +150,8 @@
 }
 
 .bar-content {
-  @include md-transition;
+  @include md-transition(max-height, padding-top, padding-bottom);
 
-  transition-property: max-height, padding-top, padding-bottom;
   will-change: max-height, padding-top, padding-bottom;
   padding: 0 18px;
   height: 100%;
@@ -204,9 +179,13 @@
   font-weight: 600;
   padding: 12px 18px;
   cursor: pointer;
+  
+  &:hover {
+    color: $primary-dark;
+  }
 
   .fa-chevron-right {
-    @include md-transition;
+    @include md-transition(transform);
 
     position: absolute;
     top: 0;

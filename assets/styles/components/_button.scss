@@ -1,5 +1,141 @@
 // Bootstrap overrides
 
-.btn {
-  border-radius: 4px;
+button,
+.btn,
+.btn-secondary {
+  font-family: $font-stack;
+  font-size: 16px;
+  font-weight: 400;
+  color: $blackish;
+  background: $white;
+  border-radius: 0;
+  box-shadow: 2px 2px 0 $grey-dark;
+  border: 1px solid $grey-dark;
+  padding: 8px 12px;
+
+  + .btn {
+    margin-left: 8px;
+  }
+
+  &:hover {
+    color: $blackish;
+    background: $grey-extralight;
+    border: 1px solid $grey-dark;
+  }
+
+  &:active,
+  &:active:hover,
+  &:active:focus {
+    color: $blackish;
+    background: $grey-extralight;
+    box-shadow: 1px 1px 0 $grey-dark;
+  }
+
+  &:focus {
+    color: $white;
+    background: $grey-dark;
+  }
+
+  &:disabled:hover {
+    background: $white;
+    border-color: $grey-dark;
+  }
+}
+
+.btn-primary {
+  color: $blackish;
+  background: $primary;
+  
+  &:hover {
+    color: $blackish;
+    background: $primary-dark;
+  }
+
+  &:active,
+  &:active:hover,
+  &:active:focus {
+    color: $blackish;
+    background: $primary-dark;
+  }
+
+  &:focus {
+    color: $white;
+    background: $primary-darker;
+  }
+
+  &:disabled:hover {
+    background: $primary;
+    border-color: $grey-dark;
+  }
+}
+
+.btn-danger {
+  color: $white;
+  background: $danger;
+
+  &:hover {
+    color: $white;
+    background: $danger-dark;
+  }
+
+  &:active,
+  &:active:hover,
+  &:active:focus {
+    color: $white;
+    background: $danger-dark;
+  }
+
+  &:focus {
+    color: $white;
+    background: $danger-darker;
+  }
+
+  &:disabled:hover {
+    background: $danger;
+    border-color: $grey-dark;
+  }
+}
+
+// Button with no box-shadow
+.btn-plain {
+  box-shadow: none;
+
+  &:hover,
+  &:active,
+  &:active:hover,
+  &:active:focus {
+    box-shadow: none;
+  }
+}
+
+// Button containing an icon
+.btn-icon {
+  color: $grey-medium;
+  padding: 0;
+  border: none;
+  box-shadow: none;
+  background: none;
+
+  &:hover,
+  &:focus,
+  &:active,
+  &:active:hover,
+  &:active:focus {
+    color: $grey-dark;
+    background: none;
+    border: none;
+    box-shadow: none;
+  }
+
+  &.btn-danger {
+    &:hover,
+    &:focus {
+      color: $danger;
+      background: none;
+    }
+
+    &:active {
+      color: $danger-dark;
+    }
+  }
 }

@@ -1,8 +1,8 @@
 <div class="card">
   <div class="actions">
-    <button *ngIf="currentUserCanDelete" class="btn remove" type="button" (click)="modalService.open(deleteTaskModalId)"><i class="fa fa-trash"></i></button>
-    <button *ngIf="currentUserCanEdit" class="btn edit" (click)="modalService.open(editTaskModalId)"><i class="fa fa-pencil"></i></button>
-    <button *ngIf="!currentUserIsAssigned" class="btn like" [class.starred]="currentUserIsInterested" >
+    <button *ngIf="currentUserCanDelete" class="btn btn-icon btn-danger" type="button" (click)="modalService.open(deleteTaskModalId)"><i class="fa fa-trash"></i></button>
+    <button *ngIf="currentUserCanEdit" class="btn btn-icon" (click)="modalService.open(editTaskModalId)"><i class="fa fa-pencil"></i></button>
+    <button *ngIf="!currentUserIsAssigned" class="btn btn-icon like" [class.starred]="currentUserIsInterested" >
       <i (click)="toggleInterest()"
          [ngClass]="{'fa-star-o': !currentUserIsInterested, 'fa-star': currentUserIsInterested}"
          class="fa"></i>
@@ -34,7 +34,7 @@
   <app-modal [modal-id]="deleteTaskModalId" modal-title="Delete Task {{ task?.title }}">
     <span modal-body>Are you sure that you want to delete this task?</span>
     <div modal-footer class="text-xs-right">
-      <button type="button" class="btn btn-secondary" (click)="closeModal(deleteTaskModalId, $event)">Cancel</button>
+      <button type="button" class="btn" (click)="closeModal(deleteTaskModalId, $event)">Cancel</button>
       <button type="button" class="btn btn danger" (click)="delete()">Delete</button>
     </div>
   </app-modal>
@@ -42,7 +42,7 @@
   <app-modal [modal-id]="editTaskModalId" modal-title="Edit {{ task.title }}">
     <app-task-create #taskComponent [task]="task" modal-body></app-task-create>
     <div modal-footer class="text-xs-right">
-      <button type="button" class="btn btn-secondary" (click)="closeModal(editTaskModalId, $event)">Cancel</button>
+      <button type="button" class="btn" (click)="closeModal(editTaskModalId, $event)">Cancel</button>
       <button type="button" class="btn btn-primary" [disabled]="!taskComponent.taskForm.valid" (click)="updateTask(taskComponent)">
         Save Changes
       </button>

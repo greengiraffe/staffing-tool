@@ -4,11 +4,7 @@ import { ModalService } from "../_services/modal.service";
 @Component({
     selector: 'app-modal',
     templateUrl: 'modal.template.html',
-    styles: [`
-      .modal {
-        display: block;
-      }
-    `],
+    styleUrls: ['modal.style.scss'],
     host: {
         '(document:keyup)': 'keyup($event)'
     }

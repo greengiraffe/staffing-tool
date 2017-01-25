@@ -16,38 +16,35 @@
   display: inline-block;
   font-size: 28px;
   line-height: 36px;
-  font-weight: 200;
+  font-weight: 400;
   letter-spacing: 0.015em;
 
   + .tab {
     margin-left: 15px;
 
     &:before {
-      content: '•';
+      color: $grey-light;
+      content: '|';
       display: inline-block;
       margin-right: 12px;
-      color: rgba($white, 0.8);
     }
   }
   
   &.active .tab-link {
-    opacity: 1;
+    color: $blackish;
+    border-bottom: 1px solid $blackish;
     cursor: default;
     text-decoration: none;
-
-    &:hover {
-      border-bottom: 0;
-    }
   }
 }
 
 .tab-link {
-  color: $white;
-  opacity: 0.7;
-
-  &:hover {
+  color: $grey-medium;
+  
+  &:hover,
+  &:focus {
     text-decoration: none;
-    border-bottom: 2px solid;
+    border-bottom: 1px solid currentColor;
   }
 }
 
@@ -67,15 +64,7 @@
   float: right;
   font-size: 16px;
   line-height: 16px;
-  color: $white;
-  border: solid 1px $white;
   padding: 8px 16px;
-  background: none;
-
-  &:focus, &:hover, &:active {
-    border-width: 2px;
-    padding: 7px 15px;
-  }
 }
 
 //spinner
@@ -90,7 +79,6 @@
 }
 
 .filter-container {
-  color: $white;
   display: flex;
   justify-content: center;
 }

@@ -1,11 +1,10 @@
 @import "../../../../styles/variables";
 
 .card {
-  border: 1px solid rgba(0,0,0,0.1);
-  border-radius: 0;
-  box-shadow: 0 3px 6px rgba(0,0,0,0.2);
   position: relative;
   padding: 24px 0;
+  border: 1px solid $grey-light;
+  border-radius: 0;
 
   + .card {
     margin-top: 24px;
@@ -19,36 +18,25 @@
   right: 24px;
 
   .btn {
-    padding: 0;
-    background: none;
     font-size: 20px;
-    color: $grey-medium;
 
     + .btn {
       margin-left: 8px;
     }
 
-    &.remove:hover {
-      color: red;
-    }
-
-    &.edit:hover {
-      color: $grey-dark;
-    }
-
     &.like:hover {
-      color: $ixds-yellow;
+      color: $primary;
     }
 
     &.like.starred {
-      color: $ixds-yellow;
+      color: $primary;
     }
   }
 }
 
 .assigned {
   font-size: 20px;
-  color: $aqua;
+  color: $primary;
 }
 
 .kicker {
@@ -78,7 +66,7 @@
 
   &:hover {
     cursor: pointer;
-    color: $aqua;
+    color: $primary;
   }
 }
 
@@ -124,6 +112,6 @@
   }
 
   &.current {
-    color: $ixds-green;
+    font-weight: 600;
   }
 }

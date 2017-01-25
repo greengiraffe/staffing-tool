@@ -1,11 +1,5 @@
 // Colors
 
-$ixds-yellow: #ffcc1f;
-$ixds-orange: #eb5b33;
-$ixds-purple: #6a5ba4;
-$ixds-blue: #0fa4df;
-$ixds-green: #3ab2a1;
-
 $black: #000;
 $blackish: #333;
 $grey-dark: #575757;
@@ -14,16 +8,20 @@ $grey-light: #ccc;
 $grey-extralight: #eee;
 $white: #fff;
 
-$aqua-light: #73E3EE;
-$aqua: #00cde0;
-$aqua-dark: #005E66;
-$teal: $aqua-dark;
+$primary: #41D1AC;
+$primary-light: #63D9BB;
+$primary-lighter: #97E5D1;
+$primary-dark: #17C79A;
+$primary-darker: #0F7F63;
 
-$orange-light: #EC9E67;
-$orange: #E57A2E;
-$orange-dark: #B84D00;
+$danger: #e44848;
+$danger-light: #E86969;
+$danger-dark: #BB3B3B;
+$danger-darker: #922E2E;
 
-$pink: #E5178D;
+$skill-professional: #F2CA46;
+$skill-basic: #58C2EF;
+$skill-interest: $grey-medium;
 
 // Shadows
 
@@ -47,10 +45,14 @@ $pink: #E5178D;
   box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
 }
 
-@mixin md-transition {
+// Transitions & Animations
+
+@mixin md-transition($properties...) {
   transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+  transition-property: $properties;
+  will-change: $properties;
 }
 
-// Fonts
+// Fonts & Font Stacks
 
 $font-stack: "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif

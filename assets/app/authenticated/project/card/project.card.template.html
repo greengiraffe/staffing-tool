@@ -1,7 +1,7 @@
 <div class="card {{ project.end | pastProjects }}">
   <div class="actions">
-    <button *ngIf="currentUserCanDelete" class="btn remove" type="button" (click)="modalService.open(deleteProjectModalId)"><i class="fa fa-trash"></i></button>
-    <button *ngIf="currentUserCanEdit" class="btn edit" routerLink="/user/project/edit/{{project?._id}}"><i class="fa fa-pencil"></i></button>
+    <button *ngIf="currentUserCanDelete" class="btn btn-icon btn-danger" type="button" (click)="modalService.open(deleteProjectModalId)"><i class="fa fa-trash"></i></button>
+    <button *ngIf="currentUserCanEdit" class="btn btn-icon" routerLink="/user/project/edit/{{project?._id}}"><i class="fa fa-pencil"></i></button>
   </div>
 
   <h6 class="kicker">{{ project.client }}</h6>
@@ -17,7 +17,7 @@
   <app-modal [modal-id]="deleteProjectModalId" modal-title="Delete Project {{ project?.title }}">
     <span modal-body>Are you sure that you want to delete this project?</span>
     <div modal-footer class="text-xs-right">
-      <button type="button" class="btn btn-secondary" (click)="modalService.close(deleteProjectModalId)">Cancel</button>
+      <button type="button" class="btn" (click)="modalService.close(deleteProjectModalId)">Cancel</button>
       <button type="button" class="btn btn-danger" (click)="deleteProject()">Delete</button>
     </div>
   </app-modal>
