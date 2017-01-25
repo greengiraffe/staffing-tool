@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { FlashMessagesService } from "angular2-flash-messages";
+import { Router } from "@angular/router";
 
 import { User } from "../../_models/user.model";
 import { UserService } from "../../_services/user.service";
@@ -16,7 +17,8 @@ export class UserCreateComponent implements OnInit {
 
     constructor(private userService: UserService,
                 private _fb: FormBuilder,
-                private _flash: FlashMessagesService) {}
+                private _flash: FlashMessagesService,
+                private router: Router) {}
 
     ngOnInit() {
         this.createUserForm = this._fb.group({
@@ -84,6 +86,12 @@ export class UserCreateComponent implements OnInit {
                 data => {this._flash.show("User successfully added", { cssClass: 'alert-success', timeout: 5000 });},
                 error => {this._flash.show(error.error.message, { cssClass: 'alert-danger', timeout: 5000 });}
             );
-        this.createUserForm.reset();
+        setTimeout(() => {
+            this.router.navigateByUrl('/user/list');
+        }, 2000)
+    }
+
+    goBack() {
+        this.router.navigateByUrl('/user/list');
     }
 }

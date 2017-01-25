@@ -92,7 +92,7 @@
     </div>
     <div class="text-xs-right">
       <flash-messages></flash-messages>
-      <button type="button" class="btn btn-secondary">Cancel</button>
+      <button type="button" class="btn btn-secondary" (click)="goBack()">Cancel</button>
       <button type="submit" class="btn btn-primary" [disabled]="!createUserForm.valid">Add Person</button>
     </div>
   </form>
