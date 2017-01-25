@@ -11,7 +11,6 @@ import { AuthService } from "../../_services/auth.service";
 
 export class ChangePasswordComponent implements OnInit{
     changeForm: FormGroup;
-    formsVisible = false;
 
     constructor(private userService: UserService,
                 private authService: AuthService,

@@ -39,6 +39,7 @@ export class UserProfileComponent implements OnInit {
     newPhone: string;
     pictureElement;
     imgToUpload: File;
+    changePwdModal = "change-pwd-modal";
 
     constructor(private userService: UserService,
                 private authService: AuthService,
@@ -134,7 +135,7 @@ export class UserProfileComponent implements OnInit {
      * Change Password Modal
      */
     openModal() {
-        this.modalService.open('change-pwd-modal');
+        this.modalService.open(this.changePwdModal);
         console.log('open modal')
     }
 }
