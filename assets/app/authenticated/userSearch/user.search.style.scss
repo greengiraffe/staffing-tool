@@ -1,3 +1,5 @@
+@import "../../../styles/variables";
+
 .user-list {
   position: relative;
   top: -2px;
@@ -15,7 +17,7 @@
   display: flex;
 
   &:hover {
-    background-color: #ccc;
+    background-color: $grey-light;
     cursor: pointer;
   }
 

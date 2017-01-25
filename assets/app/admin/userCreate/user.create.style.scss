@@ -28,11 +28,11 @@ form {
 }
 
 .error {
-  border-color: red;
+  border-color: $danger;
 }
 
 .red {
-  color: red;
+  color: $danger;
   font-size: 0.8em;
 }
 

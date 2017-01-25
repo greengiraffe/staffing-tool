@@ -17,7 +17,7 @@
     <span class="kicker-item project-duration">{{ project.start | date:"dd.MM.yyyy" }} – {{ project.end | date:"dd.MM.yyyy" }}</span>
     <span class="kicker-item project-client">{{ project.client }}</span>
   </h6>
-  <h3 class="title" (click)="showProject()">{{ task.title }}</h3>
+  <h3 class="title"><a routerLink="/user/project/show/{{ project._id }}">{{ task.title }}</a></h3>
   <p class="description">{{ task.description }}</p>
   <ul class="g-tag-list skill-list">
     <li *ngFor="let skill of task.requiredSkills" class="g-tag skill">{{ skill.name }}</li>

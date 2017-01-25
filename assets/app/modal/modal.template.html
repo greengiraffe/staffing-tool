@@ -2,8 +2,8 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div *ngIf="modalTitle" class="modal-header">
-        <button *ngIf="!isBlocking" type="button" class="close" aria-label="Close" (click)="onCloseIconClick($event)">
-          <span aria-hidden="true">&times;</span>
+        <button *ngIf="!isBlocking" type="button" class="btn btn-icon btn-close" aria-label="Close" (click)="onCloseIconClick($event)">
+          <i class="fa fa-times" aria-hidden="true"></i>
         </button>
         <h4 class="modal-title">{{ modalTitle }}</h4>
       </div>

@@ -25,7 +25,7 @@
 .skill-btn {
   cursor: pointer;
   margin-left: 2px;
-  border: 1px solid #333;
+  border: 1px solid $grey-light;
 
   &:hover {
     border-color: currentColor;

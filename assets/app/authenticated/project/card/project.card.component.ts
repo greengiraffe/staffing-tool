@@ -32,10 +32,6 @@ export class ProjectCardComponent {
         }
     }
 
-    showProject() {
-        this.router.navigate(['/user/project/show', this.project._id]);
-    }
-
     deleteProject() {
         this.onDelete.emit(this.project);
         this.modalService.close(this.deleteProjectModalId)

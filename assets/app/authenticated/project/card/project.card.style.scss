@@ -5,7 +5,6 @@
   padding: 24px;
   border: 1px solid $grey-light;
   border-radius: 0;
-  margin-bottom: 24px;
   background: $white;
 
   &.past {
@@ -36,15 +35,11 @@
 }
 
 .title {
+  display: inline-block;
   font-size: 30px;
   font-weight: 700;
   line-height: 36px;
-  margin: 0;
-
-  &:hover {
-    cursor: pointer;
-    color: $primary;
-  }
+  margin-bottom: 12px;
 }
 
 .subtitle {
@@ -62,8 +57,8 @@
 
 .g-tag {
   &.priority {
-    background-color: orangered;
-    border-color: orangered;
-    color: white;
+    background-color: $danger;
+    border-color: $danger;
+    color: $white;
   }
 }

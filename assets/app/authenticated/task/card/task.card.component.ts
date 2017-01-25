@@ -41,10 +41,6 @@ export class TaskCardComponent {
         }
     }
 
-    showProject() {
-        this.router.navigate(['/user/project/show', this.project._id], { fragment: "tasks" });
-    }
-
     toggleInterest() {
         this.currentUserIsInterested = !this.currentUserIsInterested;
 

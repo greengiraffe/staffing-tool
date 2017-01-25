@@ -18,9 +18,8 @@ h1 {
   display: inline;
   font-size: 28px;
   line-height: 36px;
-  font-weight: 200;
+  font-weight: 400;
   letter-spacing: 0.015em;
-  color: $white;
   margin-top: 36px;
 }
 
@@ -46,6 +45,6 @@ h1 {
   font-size: 20px;
 
   &.delete:hover {
-    color: red;
+    color: $danger;
   }
 }
