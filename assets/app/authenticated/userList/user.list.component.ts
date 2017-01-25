@@ -4,7 +4,6 @@ import { User } from "../../_models/user.model";
 import { UserService } from "../../_services/user.service";
 import { SkillService } from "../../_services/skill.service";
 import { SkillSearchService } from "../../_services/skill-search.service";
-import { ModalService } from "../../_services/modal.service";
 import { AuthService } from "../../_services/auth.service";
 
 @Component({
@@ -14,14 +13,12 @@ import { AuthService } from "../../_services/auth.service";
     providers: [SkillService, SkillSearchService]
 })
 export class UserListComponent {
-    private deleteUserModalIds = new Array<string>();
     private currentUserCanRemove = false;
     private currentUser: User;
     users: User[];
 
     constructor(private userService: UserService,
-                private authService: AuthService,
-                private modalService: ModalService) {}
+                private authService: AuthService) {}
 
     ngOnInit() {
         this.currentUser = this.authService.currentUser();
@@ -30,9 +27,6 @@ export class UserListComponent {
             .subscribe(
                 (users: User[]) => {
                     this.users = users;
-                    this.users.forEach((user, index) => {
-                        this.deleteUserModalIds.push("deleteUserModalId" + index);
-                    });
                 }
             );
 
@@ -46,7 +40,6 @@ export class UserListComponent {
     }
 
     deleteUser(user: User, index: number) {
-        this.deleteUserModalIds.splice(index,1);
         this.userService.deleteUser(user)
             .subscribe(
                 result => console.log(result)
