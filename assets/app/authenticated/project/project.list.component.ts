@@ -2,7 +2,6 @@ import { Component, OnInit } from "@angular/core";
 import { ProjectService } from "../../_services/project.service";
 import { Router, ActivatedRoute } from "@angular/router";
 import { Project } from "../../_models/project.model";
-import { ModalService } from "../../_services/modal.service";
 import { ProjectTask } from "../../_models/project-task.model";
 
 @Component({
@@ -21,8 +20,7 @@ export class ProjectListComponent implements OnInit {
 
     constructor(private projectService: ProjectService,
                 private router: Router,
-                private route: ActivatedRoute,
-                private modalService: ModalService) {}
+                private route: ActivatedRoute) {}
 
     ngOnInit() {
         this.projectService.getProjects()

@@ -1,44 +1,11 @@
 <div class="page-wrapper">
   <div class="content-wrapper">
     <h1>Registered Users</h1>
-    <button type="button" class="btn btn-add-user" routerLink="/admin/user/create" *ngIf="currentUserCanRemove">New User</button>
-
-    <!-- <table class="table g-table">
-      <thead>
-        <tr>
-          <th>#</th>
-          <th>Email</th>
-          <th>First name</th>
-          <th>Last name</th>
-          <th>Role</th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr class="table-row" *ngFor="let user of users; let i = index">
-          <th scope="row">{{ i + 1 }}</th>
-          <td>{{ user.email }}</td>
-          <td>{{ user.firstName }}</td>
-          <td>{{ user.lastName }}</td>
-          <td>{{ user.role }}</td>
-          <td class="text-xs-right actions">
-            <button class="btn delete" (click)="modalService.open(deleteUserModalIds[i])"
-            *ngIf="currentUserCanRemove && user._id != currentUser._id">
-              <i class="fa fa-trash"></i>
-            </button>
-          </td>
-          <app-modal [modal-id]="deleteUserModalIds[i]" modal-title="Delete User {{ user.firstName }} {{user.lastName }}">
-            <span modal-body>Do you want to delete this user "{{ user.firstName }} {{ user.lastName }}"?</span>
-            <div modal-footer class="text-xs-right">
-              <button type="button" class="btn btn-secondary" (click)="modalService.close(deleteUserModalIds[i])">Cancel</button>
-              <button type="button" class="btn btn-danger" (click)="deleteUser(user,i)">Delete</button>
-            </div>
-          </app-modal>
-        </tr>
-      </tbody>
-    </table> -->
+    <button type="button" class="btn btn-add-user" routerLink="/admin/user/create" *ngIf="currentUserCanRemove">
+      New User
+    </button>
     <div class="users">
-      <app-user-card *ngFor="let user of users" [user]="user"></app-user-card>
+      <app-user-card *ngFor="let user of users" (onDelete)="deleteUser(user)" [user]="user"></app-user-card>
     </div>
 
   </div>
