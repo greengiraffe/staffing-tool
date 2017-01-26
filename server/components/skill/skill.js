@@ -3,7 +3,7 @@ let Skill = require('../../models/skill');
 module.exports = {
 
     createSkill: function(name) {
-        let skill = new Skill({name: name});
+        let skill = new Skill(JSON.stringify(name));
         return new Promise(function(resolve, reject) {
             skill.save(function(err, result) {
                 if(err) {
