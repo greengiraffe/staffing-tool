@@ -22,9 +22,9 @@ export class UserSkillListComponent implements OnInit, OnChanges, OnDestroy {
     @Input() showSkillTypeIcons = true;
     @Input() user: User;
 
-    professionalSkills:Array<Skill> = new Array<Skill>();
-    basicSkills:Array<Skill> = new Array<Skill>();
-    interestSkills:Array<Skill> = new Array<Skill>();
+    professionalSkills:Set<Skill> = new Set<Skill>();
+    basicSkills:Set<Skill> = new Set<Skill>();
+    interestSkills:Set<Skill> = new Set<Skill>();
     skillSearchServiceSubscription;
 
     constructor(private userService: UserService,
@@ -69,13 +69,13 @@ export class UserSkillListComponent implements OnInit, OnChanges, OnDestroy {
 
         switch (userSkill.rating) {
             case 0:
-                this.interestSkills.push(skill);
+                this.interestSkills.add(skill);
                 break;
             case 1:
-                this.basicSkills.push(skill);
+                this.basicSkills.add(skill);
                 break;
             case 2:
-                this.professionalSkills.push(skill);
+                this.professionalSkills.add(skill);
                 break;
         }
         this.skillSearchService.skillAdded(skill)
@@ -84,8 +84,8 @@ export class UserSkillListComponent implements OnInit, OnChanges, OnDestroy {
     /**
      * Remove a skill from a skill set and inform the service.
      */
-    removeSkill(skill: Skill, skillList: Array<Skill>) {
-        skillList.splice(skillList.indexOf(skill), 1);
+    removeSkill(skill: Skill, skillList: Set<Skill>) {
+        skillList.delete(skill);
         this.skillSearchService.removeSkill(skill);
     }
 
