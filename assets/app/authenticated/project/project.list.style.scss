@@ -1,9 +1,46 @@
 @import './../../../styles/_variables';
 
-.wrapper {
-  max-width: 900px;
+.page-wrapper {
   width: 100%;
+  max-width: 900px;
   margin: 0 auto;
+}
+
+.content-wrapper {
+  margin-top: 36px;
+}
+
+.settings {
+  border: 1px solid $grey-light;
+}
+
+.settings-title {
+  font-size: 20px;
+  line-height: 24px;
+  margin: 0;
+  padding: 16px 16px 0;
+}
+
+.filter-list {
+  margin: 12px 0 0 0;
+  padding: 0 16px 16px;
+  list-style: none;
+}
+
+.filter {
+  display: inline-block;
+
+  + .filter {
+    margin-left: 24px;
+  }
+
+  label {
+    margin: 0 0 0 8px;
+  }
+}
+
+.content {
+  margin-top: 36px;
 }
 
 .tablist {
@@ -48,10 +85,6 @@
   }
 }
 
-.content {
-  margin-top: 24px;
-}
-
 .tabpane {
   display: none;
 
@@ -76,18 +109,6 @@
   border: 6px solid $grey-medium;
   border-right-color: transparent;
   border-radius: 50%;
-}
-
-.filter-container {
-  display: flex;
-  justify-content: center;
-}
-
-.filter {
-  padding: 10px;
-  & label {
-    padding: 0 10px;
-  }
 }
 
 @keyframes rotate {

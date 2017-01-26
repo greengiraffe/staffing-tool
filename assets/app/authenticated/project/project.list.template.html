@@ -1,4 +1,4 @@
-<div class="wrapper">
+<div class="page-wrapper">
 
   <ul class="tablist" role="tablist">
     <li class="tab" [ngClass]="{ active: activeTab === 'projects' }">
@@ -9,39 +9,45 @@
     </li>
     <button type="button" class="btn btn-primary btn-add-project" routerLink="/user/project/create">New Project</button>
   </ul>
-  <div class="filter-container">
-    <div class="filter">
-      <input id="pastProjects" type="checkbox" (change)="togglePastProjects()"><label for="pastProjects"> Show past projects</label>
-    </div>
-    <div class="filter">
-      <input id="dummy1" type="checkbox"><label for="dummy1">Dummy Filter</label>
-    </div>
-    <div class="filter">
-      <input id="dummy2" type="checkbox"><label for="dummy2">Dummy Filter</label>
-    </div>
-  </div>
-  <div class="content">
-    <div class="ducspinner" *ngIf="projects === undefined"></div>
 
-    <div id="projects" class="tabpane" [ngClass]="{ active: activeTab === 'projects' }">
-      <app-project-card
-        [project]="project"
-        (onDelete)="deleteProject(project)"
-        *ngFor="let project of projects">
-      </app-project-card>
+  <div class="content-wrapper">
+
+    <div class="settings">
+      <h6 class="settings-title">Filter</h6>
+      <ul class="filter-list">
+        <li class="filter">
+          <input id="pastProjects" type="checkbox" (change)="togglePastProjects()"><label for="pastProjects"> Show past projects</label>
+        </li>
+        <li class="filter">
+          <input id="dummy1" type="checkbox"><label for="dummy1">Dummy Filter</label>
+        </li>
+        <li class="filter">
+          <input id="dummy2" type="checkbox"><label for="dummy2">Dummy Filter</label>
+        </li>
+      </ul>
     </div>
 
-    <div class="tabpane" id="tasks" [ngClass]="{ active: activeTab === 'tasks' }">
-      <template ngFor let-project [ngForOf]="projects">
-        <app-task-card
+    <main class="content">
+      <div class="ducspinner" *ngIf="projects === undefined"></div>
+      <div id="projects" class="tabpane" [ngClass]="{ active: activeTab === 'projects' }">
+        <app-project-card
           [project]="project"
-          [task]="projectTask"
-          (onDelete)="deleteProjectTask(projectTask)"
-          *ngFor="let projectTask of project.projectTasks">
-        </app-task-card>
-      </template>
-    </div>
+          (onDelete)="deleteProject(project)"
+          *ngFor="let project of projects">
+        </app-project-card>
+      </div>
+
+      <div class="tabpane" id="tasks" [ngClass]="{ active: activeTab === 'tasks' }">
+        <template ngFor let-project [ngForOf]="projects">
+          <app-task-card
+            [project]="project"
+            [task]="projectTask"
+            (onDelete)="deleteProjectTask(projectTask)"
+            *ngFor="let projectTask of project.projectTasks">
+          </app-task-card>
+        </template>
+      </div>
+    </main>
 
   </div>
-
 </div>

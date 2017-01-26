@@ -21,8 +21,8 @@ export class UserProfileComponent implements OnInit {
     projects: Project[];
     assignedTasks: any[]; // backend returns [{ task: {}, project: { _id: string, client: string, title: string }}]
     showTask = true;
-    showSkill = false;
-    showProject = false;
+    showSkill = true;
+    showProject = true;
     editingPhone = false;
     newPhone: string;
     pictureElement;
