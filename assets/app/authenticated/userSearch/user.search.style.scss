@@ -1,23 +1,27 @@
 @import "../../../styles/variables";
 
+.user-search {
+
+  &:focus {
+    position: relative;
+    z-index: 1;
+  }
+}
+
 .user-list {
   position: relative;
-  top: -2px;
-  border: 1px solid rgba(0,0,0,.15);
-  border-bottom-right-radius: .25rem;
-  border-bottom-left-radius: .25rem;
+  margin-top: -1px;
+  border: 1px solid $grey-light;
   max-height: 140px;
-  overflow-x: hidden;
-  overflow-y: scroll;
+  overflow: auto;
 }
 
 .user {
-  transition: background-color 0.2s;
-  padding: .5rem .75rem;
+  padding: 8px 12px;
   display: flex;
 
   &:hover {
-    background-color: $grey-light;
+    background-color: $primary-light;
     cursor: pointer;
   }
 

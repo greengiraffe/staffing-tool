@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit{
                         this.loginForm.reset();
                     },
                     error => {
-                        this._flash.show(error.error.message, { cssClass: 'alert-danger', timeout: 5000 });
+                        this._flash.show(error.error.message, { cssClass: 'alert-danger', timeout: 50000000 });
                     }
                 );
         }

@@ -119,6 +119,10 @@
 .btn-change-password {
   border: none;
   border-top: 1px solid $grey-light;
+
+  &:active {
+    border-color: $grey-light;
+  }
 }
 
 .content {

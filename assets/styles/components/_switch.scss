@@ -1,0 +1,31 @@
+.g-switch-title {
+  margin-bottom: 8px;
+}
+
+.g-switch-field {
+  @include clearfix;
+
+  input {
+    display: none;
+
+    &:checked + label {
+      background: $primary;
+    }
+  }
+
+  label {
+    float: left;
+    display: inline-block;
+    padding: 7px 15px;
+    border: 1px solid $grey-light;
+    margin-left: -1px; // overlap borders
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    &:first-child {
+      margin-left: 0;
+    }
+  }
+}

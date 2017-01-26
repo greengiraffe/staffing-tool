@@ -1,25 +1,30 @@
 @import '../../styles/variables';
 
 // Login styles
+:host {
+  flex: 1;
+  align-self: center;
+}
+
 #login-form {
   max-width: 380px;
   padding: 32px;
-  margin: 24px auto;
+  margin: 24px auto 96px;
   background: $white;
   border: 1px solid $grey-light;
 
-  .alert p {
-    margin-bottom: 0;
-  }
-
   h2 {
+    font-size: 28px;
+    line-height: 36px;
+    font-weight: 400;
+    letter-spacing: 0.015em;
     margin-bottom: 24px;
   }
 
   input {
     width: 100%;
-    padding: 12px;
-    font-size: 16px;
+    padding-top: 11px;
+    padding-bottom: 11px;
 
     &:focus {
       position: relative;
@@ -31,8 +36,13 @@
     }
 
     &[type="password"] {
-      margin-bottom: 16px;
+      margin-bottom: 24px;
     }
+  }
+
+  button {
+    padding-top: 11px;
+    padding-bottom: 11px;
   }
 }
 

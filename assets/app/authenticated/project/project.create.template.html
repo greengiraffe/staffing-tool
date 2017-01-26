@@ -33,12 +33,14 @@
 
       <div class="form-group">
         <label for="type-input">Type <span class="red">*</span></label>
-        <select required id="type-input" class="form-control"
-                formControlName="type">
-          <option value="confirmed">Confirmed</option>
-          <option value="internal">Internal</option>
-          <option value="tentative">Tentative</option>
-        </select>
+        <div class="g-select-wrapper">
+          <select required id="type-input" class="form-control"
+                  formControlName="type">
+            <option value="confirmed">Confirmed</option>
+            <option value="internal">Internal</option>
+            <option value="tentative">Tentative</option>
+          </select>
+        </div>
       </div>
 
       <div class="form-group">
@@ -76,12 +78,12 @@
       </div>
 
       <div class="form-group">
-        <div class="switch-field">
-          <div class="switch-title">Priority</div>
-          <input type="radio" id="switch_left" name="isPriority" value="false" formControlName="isPriority" />
-          <label for="switch_left">Normal</label>
-          <input type="radio" id="switch_right" name="isPriority" value="true" formControlName="isPriority" />
-          <label for="switch_right">High</label>
+        <div class="g-switch-title">Priority</div>
+        <div class="g-switch-field">
+          <input type="radio" id="switch-normal-priority" name="isPriority" value="false" formControlName="isPriority" />
+          <label for="switch-normal-priority">Normal</label>
+          <input type="radio" id="switch-high-priority" name="isPriority" value="true" formControlName="isPriority" />
+          <label for="switch-high-priority">High</label>
         </div>
       </div>
 

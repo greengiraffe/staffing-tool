@@ -3,7 +3,7 @@
 .nav-wrapper {
   @include md-shadow-xs;
 
-  background: #333;
+  background: $blackish;
   position: relative;
   margin: 0 -24px;
   color: $grey-extralight;

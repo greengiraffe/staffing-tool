@@ -5,13 +5,14 @@ button,
 .btn-secondary {
   font-family: $font-stack;
   font-size: 16px;
+  line-height: 24px;
   font-weight: 400;
   color: $blackish;
   background: $white;
   border-radius: 0;
   box-shadow: 2px 2px 0 $grey-dark;
   border: 1px solid $grey-dark;
-  padding: 8px 12px;
+  padding: 7px 11px;
 
   + .btn {
     margin-left: 8px;
@@ -21,19 +22,24 @@ button,
     color: $blackish;
     background: $grey-extralight;
     border: 1px solid $grey-dark;
+    border-color: $grey-dark;
   }
 
   &:active,
   &:active:hover,
   &:active:focus {
+    outline: 0;
     color: $blackish;
     background: $grey-extralight;
     box-shadow: 1px 1px 0 $grey-dark;
+    border-color: $grey-dark;
   }
 
   &:focus {
+    outline: 0;
     color: $white;
     background: $grey-dark;
+    border-color: $grey-dark;
   }
 
   &:disabled:hover {

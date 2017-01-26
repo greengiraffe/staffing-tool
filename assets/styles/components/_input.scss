@@ -1,0 +1,72 @@
+// Bootstrap overrides
+
+input,
+.form-control {
+  border-radius: 0;
+  padding: 7px 11px;
+  color: $blackish;
+  background: $white;
+  font-size: 16px;
+  line-height: 24px;
+  border: 1px solid $grey-light;
+  
+  &:focus {
+    color: $blackish;
+    background: $white;
+    border-color: $primary;
+  }
+
+  // Placeholder styles
+
+  &::-webkit-input-placeholder,
+  &::-moz-placeholder,
+  &:-moz-placeholder,
+  &:-ms-input-placeholder {
+    color: $grey-medium;
+    opacity: 1;
+  }
+}
+
+.form-control {
+  display: block;
+}
+
+label {
+  margin-bottom: 8px;
+}
+
+select.form-control:not([size]):not([multiple]) {
+  height: auto;
+}
+
+.g-select-wrapper {
+  position: relative;
+
+  select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+  }
+
+  &:hover::after {
+    display: block;
+  }
+
+  &::after {
+    content: "▼";
+    color: $blackish;
+    display: none;
+    position: absolute;
+    top: 0;
+    margin: 8px 0;
+    right: 11px;
+    z-index: 2;
+    pointer-events: none;
+  }
+}
+
+select {
+
+  position: relative;
+
+
+}

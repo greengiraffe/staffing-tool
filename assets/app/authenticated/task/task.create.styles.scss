@@ -1,5 +1,12 @@
 @import "../../../styles/variables";
 
+.section-title {
+  margin-top: 24px;
+  font-size: 20px;
+  line-height: 24px;
+  margin-bottom: 8px;
+}
+
 .remove-skill {
   margin-left: 4px;
   cursor: pointer;
@@ -31,8 +38,8 @@
   }
 }
 
-.required-skills-hint {
-  color: $grey-medium;
+.hint {
+  color: $grey-dark;
 }
 
 // Style skill-search tags
@@ -40,6 +47,6 @@
   cursor: pointer;
 
   &:hover {
-    box-shadow: inset 0 0 0 1px currentColor;
+    background-color: $primary-light;
   }
 }

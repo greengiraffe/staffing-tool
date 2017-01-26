@@ -1,13 +1,21 @@
 @import "../../../styles/variables";
+//
+//:host {
+//  display: block;
+//  border: 1px solid $grey-light;
+//}
 
 .skill-search {
-  margin-bottom: 12px;
   width: 100%;
+  position: relative;
 }
 
 .skill-list {
   height: 140px;
   overflow-y: auto;
+  margin: -1px 0 0 0;
+  border: 1px solid $grey-light;
+  padding: 12px 4px;
 }
 
 .skill-buttons {

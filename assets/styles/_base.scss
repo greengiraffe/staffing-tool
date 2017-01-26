@@ -38,6 +38,14 @@ body {
 
   &.is-login-page {
     box-shadow: none;
+
+    #content-container {
+      display: flex;
+    }
+    
+    app-footer {
+      display: none;
+    }
   }
 }
 

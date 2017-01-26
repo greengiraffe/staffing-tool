@@ -1,15 +1,27 @@
-
 .flash-messages {
-  font-size: 1.1em;
-  @include md-shadow-xs
+  font-size: 16px;
+  line-height: 24px;
 }
 
 .alert {
-  &-success {
-    background-color: rgb(187, 255, 144);
-    color: #206b21;
-  }
-  &-error {
+  background: $white;
+  color: $blackish;
+  border-radius: 0;
+  padding: 11px;
+  margin-bottom: 24px;
 
+  p:last-child {
+    margin-bottom: 0;
   }
+}
+
+.alert-danger,
+.alert-error {
+  color: $danger;
+  border-color: $danger;
+}
+
+.alert-success {
+  color: $success;
+  border-color: $success;
 }

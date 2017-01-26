@@ -28,10 +28,17 @@
      [class.error]="!taskForm.get('description').valid && taskForm.get('description').dirty"
      formControlName="description">
     </textarea>
-    <span>Task Status: </span><span class="tag tag-default">upcoming</span>
   </div>
 
-  <p>Required Skills</p>
+  <div class="form-group">
+    <div class="g-switch-title">Status</div>
+    <div class="g-switch-field">
+      <input type="radio" checked id="input-status-upcoming" class="tag tag-default">
+      <label for="input-status-upcoming">Upcoming</label>
+    </div>
+  </div>
+
+  <h3 class="section-title">Required Skills</h3>
   <ul class="required-skill-list">
     <li
       class="required-skill"
@@ -44,11 +51,11 @@
       </span>
     </li>
   </ul>
-  <p *ngIf="task.requiredSkills.length === 0" class="required-skills-hint">Add required skills by selecting some skills from the list below.</p>
+  <p *ngIf="task.requiredSkills.length === 0" class="hint">No required skills added. Select some skills from the list below.</p>
 
   <app-skill-search></app-skill-search>
 
-  <p>Assigned Users:</p>
+  <h3 class="section-title">Assigned Users</h3>
   <ul class="assigned-user-list">
     <li
       class="assigned-user"
@@ -61,7 +68,7 @@
       </span>
     </li>
   </ul>
-  <p *ngIf="task.assignedUsers.length === 0" class ="assigned-users-hint">Assign users by selecting them from the list below. </p>
+  <p *ngIf="task.assignedUsers.length === 0" class ="hint">No one is assigned yet. Assign people by selecting them from the list below.</p>
 
   <app-user-search [requiredSkills]="task.requiredSkills" [interestedUsers]="task.interestedUsers"></app-user-search>
 </form>
