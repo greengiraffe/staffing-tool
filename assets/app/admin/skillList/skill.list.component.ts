@@ -6,11 +6,11 @@ import { SkillService } from "../../_services/skill.service";
 import { ModalService } from "../../_services/modal.service";
 import { AuthService } from "../../_services/auth.service";
 
-
 @Component({
     selector: 'app-skill-list',
     templateUrl: './skill.list.template.html',
-    styleUrls: ['skill.list.style.scss']
+    styleUrls: ['skill.list.style.scss'],
+    providers: [SkillService]
 })
 export class SkillListComponent implements OnInit {
     private deleteSkillModalIds = new Array<string>();
@@ -43,8 +43,7 @@ export class SkillListComponent implements OnInit {
 
     addSkill(skillInput: string): void {
         // Create
-        const skill = new Skill(skillInput);
-        this.skillService.addSkill(skill)
+        this.skillService.addSkill(skillInput)
             .subscribe(
                 data => {
                     this._flash.show("Skill successfully added", { cssClass: 'alert-success', timeout: 10000 });},
