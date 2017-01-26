@@ -20,6 +20,7 @@
     <h3 id="tasks" class="section-title">Tasks</h3>
     <section class="task-section">
       <div class="task-list">
+        <p class="empty-hint" *ngIf="project?.projectTasks.length === 0">This project does not have any tasks yet.</p>
         <div class="g-card task-card" *ngFor="let projectTask of project?.projectTasks">
           <h2 class="g-card-title">{{ projectTask.title }}</h2>
           <div class="g-card-text">{{ projectTask.description }}</div>

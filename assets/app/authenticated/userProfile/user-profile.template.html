@@ -49,7 +49,6 @@
             <h5 class="g-card-title task-title">
               <a routerLink="/user/project/show/{{ assignedTask?.project._id }}">{{ assignedTask?.task.title }}</a>
             </h5>
-            <!--<p class="task-client">{{ assignedTask?.project.client }}</p>-->
             <p class="g-card-text task-description">{{ assignedTask?.task.description }}</p>
           </div>
           <p class="empty-hint" *ngIf="assignedTasks?.length === 0">You don't have any assigned tasks.</p>
@@ -63,6 +62,7 @@
       </div>
       <div class="bar-content" >
         <div class="project-list">
+          <p class="empty-hint" *ngIf="projects?.length === 0">You don't have any created projects.</p>
           <div class="g-card project-card"  *ngFor="let project of projects; let i = index" routerLink="../project/show/{{project?._id}}" >
             <h5 class="g-card-title project-title">{{ project?.title }}</h5>
             <div class="g-card-text project-text" >{{ project?.client }}</div>
@@ -71,6 +71,9 @@
         </div>
       </div>
     </div>
+
+
+
     <div class="bar" [class.expanded]="showSkill">
       <div class="bar-head" (click)="toggleSkill()" >
         Skills
