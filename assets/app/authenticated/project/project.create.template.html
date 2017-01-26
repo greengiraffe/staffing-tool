@@ -110,7 +110,7 @@
               (click)="removeProjectTask(projectTask)"
               class="remove-project-task fa fa-remove"
               aria-hidden="true"></span></h5>
-            <div class="g-card-text">{{ projectTask.description }}</div>
+            <div class="g-card-content"><p>{{ projectTask.description }}</p></div>
 
             <app-modal [modal-id]="editTaskModalIds[i]" modal-title="Edit {{ projectTask.title }}">
               <app-task-create #taskComponent [task]="projectTask" modal-body></app-task-create>
