@@ -14,6 +14,7 @@
   padding: 16px;
   font-size: 18px;
   line-height: 36px;
+  display: flex;
 }
 
 .right {
@@ -21,20 +22,30 @@
 }
 
 .navbar-nav {
-  padding-left: 170px;
+  flex: 1;
+  display: flex;
+  justify-content: center;
 }
+
+.navbar-brand {
+  padding: 0;
+  margin: 0;
+  width: 120px;
+}
+
+.logout {
+  flex: 0 0 auto;
+  width: 120px;
+  text-align: right;
+  margin-left: auto;
+}
+
 
 .navbar-nav .nav-item + .nav-item {
   margin-left: 36px;
 }
 
-.navbar-brand {
-  padding: 0;
 
-  i {
-    margin-right: 8px;
-  }
-}
 
 .nav-item {
   .fa {
@@ -57,3 +68,4 @@
     color: $primary;
   }
 }
+
