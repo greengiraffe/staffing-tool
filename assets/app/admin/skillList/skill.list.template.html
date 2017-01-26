@@ -6,9 +6,9 @@
   <div class="skill-create-container">
 
     <div class="input-group">
-      <input type="text" class="form-control" (click)="addSkill()" placeholder="Enter a skill">
+      <input #skillInput type="text" class="form-control" placeholder="Enter a skill">
       <span class="input-group-btn">
-        <button class="btn btn-primary" type="button">Add Skill</button>
+        <button class="btn btn-primary" (click)="addSkill(skillInput.value)" type="button">Add Skill</button>
       </span>
     </div>
   </div>

@@ -57,7 +57,7 @@ export class SkillListComponent implements OnInit {
             .subscribe(
               data => {
                   this._flash.show("Skill successfully deleted", { cssClass: 'alert-success', timeout: 5000 });
-                  this.deleteSkillModalIds.splice(index,1);
+                  this.modalService.close(this.deleteSkillModalIds.splice(index,1)[0])
               },
               error => {this._flash.show(error.error.message, { cssClass: 'alert-danger', timeout: 5000 });}
             );
