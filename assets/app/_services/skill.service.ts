@@ -11,11 +11,10 @@ export class SkillService {
 
     constructor(private http: Http) {}
 
-    addSkill(skill: Skill) {
-        const body = JSON.stringify(skill);
+    addSkill(skill: string) {
         const headers = new Headers({'Content-Type': 'application/json'});
 
-        return this.http.post('http://localhost:3000/api/skill', body, { headers: headers })
+        return this.http.post('http://localhost:3000/api/skill', { skill }, { headers: headers })
             .map((response: Response) => {
                 const result = response.json();
                 const skill = new Skill(

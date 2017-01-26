@@ -3,8 +3,8 @@
     <h1>Skills</h1>
     <flash-messages></flash-messages>
     <div class="flex-container">
-      <input type="text" placeholder="Name of the skill">
-      <button class="btn btn-primary" (click)="addSkill()">Add Skill</button>
+      <input type="text" placeholder="Name of the skill" #input>
+      <button class="btn btn-primary" (click)="addSkill(input.value)">Add Skill</button>
     </div>
     <table class="table g-table">
       <thead>

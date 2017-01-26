@@ -8,8 +8,9 @@ let util = require('../../services/util');
  * Create a skill
  */
 router.post('/skill', function(req, res, next) {
-    if(req.body) {
-        Skill.createSkill(req.body)
+    console.log(req.body.skill);
+    if(req.body.skill) {
+        Skill.createSkill(req.body.skill)
         .then(function(result) {
             res.status(200).json(result);
         })
