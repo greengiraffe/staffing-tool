@@ -62,13 +62,13 @@
         <i class="fa fa-chevron-right"></i>
       </div>
       <div class="bar-content" >
-        <!--<div class="project-container">-->
-          <!--<div class="g-card"  *ngFor="let project of projects; let i = index" routerLink="../project/show/{{project?._id}}" >-->
-            <!--<h5 class="g-card-title {{ project?.type }}">{{ project?.title }}</h5>-->
-            <!--<div class="g-card-text" >{{ project?.client }}</div>-->
-            <!--<div class="g-card-text">{{ project?.start | date:"dd/MM/yy" }} - {{ project?.end | date:"dd/MM/yy"}}</div>-->
-          <!--</div>-->
-        <!--</div>-->
+        <div class="project-list">
+          <div class="g-card project-card"  *ngFor="let project of projects; let i = index" routerLink="../project/show/{{project?._id}}" >
+            <h5 class="g-card-title project-title">{{ project?.title }}</h5>
+            <div class="g-card-text project-text" >{{ project?.client }}</div>
+            <div class="g-card-text project-text">{{ project?.start | date:"dd/MM/yy" }} - {{ project?.end | date:"dd/MM/yy"}}</div>
+          </div>
+        </div>
       </div>
     </div>
     <div class="bar" [class.expanded]="showSkill">
