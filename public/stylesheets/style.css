@@ -1,7 +1,13 @@
 #startup {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 200px;
-  font-size: 1.2em;
+  text-align: center;
+  margin: 45vh auto 0 auto;
+  vertical-align: middle;
+  font-size: 1.5em;
+  animation: pulse 1.5s infinite ease-in-out;
+}
+
+@keyframes pulse {
+  0% { opacity: 1 }
+  50% { opacity: 0.1}
+  100% { opacity: 1 }
 }
