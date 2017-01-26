@@ -1,12 +1,13 @@
 // Bootstrap overrides
 
 .g-table {
-  color: $white;
+  color: $blackish;
+  margin-bottom: 0;
 
   thead th {
     border: 0;
     font-weight: 400;
-    border-bottom: 1px solid $white;
+    border-bottom: 1px solid $grey-light;
   }
 
   td,
@@ -17,7 +18,7 @@
   }
 
   tbody tr:nth-of-type(odd) {
-    background: rgba($white, 0.1);
+    background: $grey-extralight;
   }
 
 }

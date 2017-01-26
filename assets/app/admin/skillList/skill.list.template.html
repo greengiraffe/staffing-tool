@@ -1,38 +1,52 @@
 <div class="page-wrapper">
-  <div class="content-wrapper">
-    <h1>Skills</h1>
-    <flash-messages></flash-messages>
-    <div class="flex-container">
-      <input type="text" placeholder="Name of the skill" #input>
-      <button class="btn btn-primary" (click)="addSkill(input.value)">Add Skill</button>
+  <flash-messages></flash-messages>
+
+  <h1>Skills</h1>
+
+  <div class="skill-create-container">
+
+    <div class="input-group">
+      <input type="text" class="form-control" (click)="addSkill()" placeholder="Enter a skill">
+      <span class="input-group-btn">
+        <button class="btn btn-primary" type="button">Add Skill</button>
+      </span>
     </div>
-    <table class="table g-table">
-      <thead>
-        <tr>
-          <th>#</th>
-          <th>Skill</th>
-          <th></th> <!-- Button column -->
-        </tr>
-      </thead>
-      <tbody>
-        <tr class="table-row" *ngFor="let skill of skills; let i = index">
-          <th scope="row">{{ i+1 }}</th>
-          <td>{{ skill.name }}</td>
-          <td class="text-xs-right actions">
-            <button class="btn delete" (click)="modalService.open(deleteSkillModalIds[i])"
-            *ngIf="currentUserCanRemove">
-              <i class="fa fa-trash"></i>
-            </button>
-          </td>
-          <app-modal [modal-id]="deleteSkillModalIds[i]" modal-title="Delete Skill {{ skill?.name }}">
-            <span modal-body>Do you want to delete this skill "{{ skill.name }}"?</span>
-            <div modal-footer class="text-xs-right">
-              <button type="button" class="btn" (click)="modalService.close(deleteSkillModalIds[i])">Cancel</button>
-              <button type="button" class="btn btn-danger" (click)="deleteSkill(skill,i)">Delete</button>
-            </div>
-          </app-modal>
-        </tr>
-      </tbody>
-    </table>
+  </div>
+
+  <div class="content-wrapper">
+
+    <div class="content-wrapper">
+
+      <div class="table-wrapper">
+        <table class="table g-table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Skill</th>
+              <th></th> <!-- Button column -->
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="table-row" *ngFor="let skill of skills; let i = index">
+              <th scope="row">{{ i+1 }}</th>
+              <td>{{ skill.name }}</td>
+              <td class="text-xs-right actions">
+                <button class="btn btn-icon delete" (click)="modalService.open(deleteSkillModalIds[i])"
+                *ngIf="currentUserCanRemove">
+                  <i class="fa fa-trash"></i>
+                </button>
+              </td>
+              <app-modal [modal-id]="deleteSkillModalIds[i]" modal-title="Delete Skill {{ skill?.name }}">
+                <span modal-body>Do you want to delete this skill "{{ skill.name }}"?</span>
+                <div modal-footer class="text-xs-right">
+                  <button type="button" class="btn" (click)="modalService.close(deleteSkillModalIds[i])">Cancel</button>
+                  <button type="button" class="btn btn-danger" (click)="deleteSkill(skill,i)">Delete</button>
+                </div>
+              </app-modal>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
   </div>
 </div>

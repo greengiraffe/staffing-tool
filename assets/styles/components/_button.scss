@@ -145,3 +145,18 @@ button,
     }
   }
 }
+
+.input-group-btn {
+  .btn {
+    @extend .btn-plain;
+    border-color: $grey-light;
+
+    &:hover,
+    &:active,
+    &:focus,
+    &:active:hover,
+    &:active:focus {
+      border-color: $blackish;
+    }
+  }
+}
