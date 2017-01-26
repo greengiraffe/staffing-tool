@@ -20,7 +20,7 @@ body {
   font-family: $font-stack;
   font-weight: 400;
   color: $blackish;
-  background: $grey-extralight;
+  background: $primary-lighter;//$grey-extralight;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -42,7 +42,7 @@ body {
     #content-container {
       display: flex;
     }
-    
+
     app-footer {
       display: none;
     }

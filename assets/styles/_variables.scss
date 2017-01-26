@@ -13,6 +13,7 @@ $white: #fff;
 $primary: #41D1AC;
 $primary-light: tint($primary, 25);
 $primary-lighter: tint($primary, 50);
+$primary-extralight: tint($primary, 75);
 $primary-dark: shade($primary, 10);
 $primary-darker: shade($primary, 35);
 
