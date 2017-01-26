@@ -14,7 +14,7 @@
         </span>
       </li>
     </ul>
-    <p *ngIf="professionalSkills.size === 0">No skills added yet.</p>
+    <p class="no-skills-hint" *ngIf="professionalSkills.size === 0">No skills added yet.</p>
   </div>
   <div class="col-lg-4">
     <h4 class="skill-type-heading"><span *ngIf="showSkillTypeIcons" class="skill-icon basic"></span>Basic Skills</h4>
@@ -31,7 +31,7 @@
         </span>
       </li>
     </ul>
-    <p *ngIf="basicSkills.size === 0">No skills added yet.</p>
+    <p class="no-skills-hint" *ngIf="basicSkills.size === 0">No skills added yet.</p>
   </div>
   <div class="col-lg-4">
     <h4 class="skill-type-heading"><span *ngIf="showSkillTypeIcons" class="skill-icon interest"></span>Interests</h4>
@@ -48,6 +48,6 @@
         </span>
       </li>
     </ul>
-    <p *ngIf="interestSkills.size === 0">No skills added yet.</p>
+    <p class="no-skills-hint" *ngIf="interestSkills.size === 0">No skills added yet.</p>
   </div>
 </div>
