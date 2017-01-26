@@ -1,12 +1,14 @@
 <div class="card">
   <div class="actions">
-    <button *ngIf="currentUserCanDelete" class="btn remove" type="button" (click)="modalService.open(deleteUserModalId)"><i class="fa fa-trash"></i></button>
+    <button *ngIf="currentUserCanDelete" class="btn btn-icon btn-danger" type="button" (click)="modalService.open(deleteUserModalId)"><i class="fa fa-trash"></i></button>
   </div>
 
   <h3 class="title" (click)="showUser()">{{ user.firstName}} {{ user.lastName }}</h3>
-  <h6 class="subtitle"><i class="fa fa-envelope"></i> {{ user.email }}</h6>
-  <h6 class="subtitle" *ngIf="user.phone"><i class="fa fa-phone"></i> {{ user.phone }}</h6>
-  <h6 class="subtitle" *ngIf="user.location"><i class="fa fa-map-marker"></i> {{ user.location }}</h6>
+  <ul class="meta-list">
+    <li class="meta-item"><i class="fa fa-envelope"></i>{{ user.email }}</li>
+    <li class="meta-item" *ngIf="user.phone"><i class="fa fa-phone"></i>{{ user.phone }}</li>
+    <li class="meta-item" *ngIf="user.location"><i class="fa fa-map-marker"></i>{{ user.location }}</li>
+  </ul>
 
   <app-user-skill-list [user]="user" [showSkillTypeIcons]="false"></app-user-skill-list>
 

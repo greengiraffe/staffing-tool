@@ -12,7 +12,7 @@ const adminRoutes: Routes = [
                 path: '',
                 children: [
                     { path: 'user/create', component: UserCreateComponent },
-                    { path: 'skillList', component: SkillListComponent }
+                    { path: 'skills', component: SkillListComponent }
                 ]
             }
         ]

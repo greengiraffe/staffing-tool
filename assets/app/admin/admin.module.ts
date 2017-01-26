@@ -9,8 +9,6 @@ import { AdminComponent } from "./admin.component";
 import { AdminRoutingModule } from "./admin.routes";
 import { SkillListComponent } from "./skillList/skill.list.component";
 import { UserCreateComponent } from "./userCreate/user.create.component";
-import { ModalComponent } from "../modal/modal.component";
-
 
 
 @NgModule({

@@ -52,12 +52,9 @@
             <!--<p class="task-client">{{ assignedTask?.project.client }}</p>-->
             <p class="g-card-text task-description">{{ assignedTask?.task.description }}</p>
           </div>
-          <div class="empty-task-bar" *ngIf="assignedTasks?.length === 0">
-            you don't have any assigned tasks
-          </div>
+          <p class="empty-hint" *ngIf="assignedTasks?.length === 0">You don't have any assigned tasks.</p>
         </div>
       </div>
-
     </div>
     <div class="bar" [class.expanded]="showProject">
       <div class="bar-head" (click)="toggleProject()" >
@@ -88,22 +85,5 @@
 </div>
 
 <app-modal [modal-id]="changePwdModal" modal-title="Change Password">
-
-  Test lkadflkasjdf
   <app-change-password modal-body></app-change-password>
-
-
-
-
-
-
-
-
-
-
-  <!--class="text-xs-right">
-    <button type="button" class="btn btn-secondary" (click)="closeModal(changePwdModal, $event)">Cancel</button>
-    <button type="button" class="btn btn-primary" [disabled]="!taskComponent.taskForm.valid" (click)="addProjectTask(taskComponent)">
-   -->
-
 </app-modal>
