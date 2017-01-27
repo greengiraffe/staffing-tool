@@ -12,7 +12,7 @@ import { UserSearchService } from '../../_services/user.search.service';
       class="user-search form-control"
       placeholder="Search for a User"
       type="text" (click)="openUserList()">
-      <div class="user-list" [ngSwitch]="clickableUser">
+      <div class="user-list" *ngIf="showUserList" [ngSwitch]="clickableUser">
         <div class="user" *ngFor="let interested of interestedUsers | filterNames : 'firstName' : 'lastName' : searchText"
          (click)="selectUser(user)">
          <div class="user-info">
@@ -78,7 +78,7 @@ export class UserSearchComponent implements OnInit {
     selectUser(user: User) {
         this.searchText = null;
         this.userSearchService.addUser(user);
-        this.showUserList=false;
+        this.showUserList = false;
     }
 
     hideUser(user: User) {
@@ -87,7 +87,6 @@ export class UserSearchComponent implements OnInit {
     }
 
     showUser(user: User) {
-        this.showUserList = false;
         this.visibleUsers.push(user);
         this.hiddenUsers = this.hiddenUsers.filter(hiddenUser => hiddenUser._id !== user._id);
         this.sortUsers();
@@ -144,9 +143,9 @@ export class UserSearchComponent implements OnInit {
     }
 
     openUserList(){
-        this.showUserList = true;
         this.calculateMatch(this.requiredSkills);
         this.sortUsers();
+        this.showUserList = true;
     }
 
     retrieveImgURLs() {
