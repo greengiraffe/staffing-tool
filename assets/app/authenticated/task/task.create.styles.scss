@@ -51,13 +51,23 @@
   }
 }
 
+.required-skill-list {
+  padding: 0;
+}
+
+.required-skill {
+  cursor: default;
+}
+
 .assigned-user-list {
   list-style: none;
   display: flex;
   flex-wrap: wrap;
+  padding: 0;
   & li {
-    flex: 1 1 183px;
+    flex: 1 1 260px;
     margin: 6px;
+    max-width: 260px;
   }
 }
 
