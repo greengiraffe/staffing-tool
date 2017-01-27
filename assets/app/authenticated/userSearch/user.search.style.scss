@@ -1,6 +1,5 @@
 @import "../../../styles/variables";
 
-<<<<<<< 5e0622f75af7a43a33ba203eaa729f1ab083e8cb
 .user-search {
 
   &:focus {
@@ -13,17 +12,8 @@
   position: relative;
   margin-top: -1px;
   border: 1px solid $grey-light;
-=======
-.user-list {
-  position: relative;
-  margin-top: -1px;
-  border: 1px solid $grey-light;
   max-height: 140px;
   overflow: auto;
-}
-
-.active {
-  height: 140px;
 }
 
 .user {

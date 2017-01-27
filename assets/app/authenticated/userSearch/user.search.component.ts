@@ -12,7 +12,7 @@ import { UserSearchService } from '../../_services/user.search.service';
       class="user-search form-control"
       placeholder="Search for a User"
       type="text" (click)="openUserList()">
-      <div class="user-list" [ngClass]="{ active: showUserList }" [ngSwitch]="clickableUser">
+      <div class="user-list" [ngSwitch]="clickableUser">
         <div class="user" *ngFor="let interested of interestedUsers | filterNames : 'firstName' : 'lastName' : searchText"
          (click)="selectUser(user)">
          <div class="user-info">
