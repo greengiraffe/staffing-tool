@@ -59,11 +59,14 @@
   <ul class="assigned-user-list">
     <li
       class="assigned-user"
-      *ngFor="let user of task.assignedUsers"><img class="g-avatar" [src]="urlsOfLoadedPictures[user._id] | safeUrl">
-      {{ user.firstName }} {{ user.lastName }}
+      *ngFor="let user of task.assignedUsers">
+      <div class="assigned-user-content">
+        <img class="g-avatar" [src]="urlsOfLoadedPictures[user._id] | safeUrl">
+        {{ user.firstName }} {{ user.lastName }}
+      </div>
       <span
         (click)="removeAssignedUser(user)"
-        class="remove-user fa fa-remove"
+        class="remove-user fa fa-remove" title="Unassign {{ user.firstName }} {{ user.lastName }}"
         aria-hidden="true">
       </span>
     </li>

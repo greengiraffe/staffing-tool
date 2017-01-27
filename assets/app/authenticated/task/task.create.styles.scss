@@ -50,3 +50,18 @@
     background-color: $primary-light;
   }
 }
+
+.assigned-user-list {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  & li {
+    flex: 1 1 183px;
+    margin: 6px;
+  }
+}
+
+.assigned-user-content {
+  min-width: 183px;
+  display: inline-block;
+}
