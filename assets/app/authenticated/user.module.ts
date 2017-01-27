@@ -27,6 +27,7 @@ import { SafeUrlPipe } from "../_pipes/safeUrl.pipe";
 
 import { ProjectCardComponent } from "./project/card/project.card.component";
 import { TaskCardComponent } from "./task/card/task.card.component";
+import { MatchBarComponent } from "../match-bar/match-bar.component";
 
 
 @NgModule({
@@ -56,6 +57,7 @@ import { TaskCardComponent } from "./task/card/task.card.component";
         ProjectListComponent,
         TaskCreateComponent,
         TaskCreateComponent,
+        MatchBarComponent,
         FilterPipe,
         OrderByPipe,
         FilterNamesPipe,

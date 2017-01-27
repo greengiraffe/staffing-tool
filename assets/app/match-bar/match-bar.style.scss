@@ -1,0 +1,26 @@
+@import "../../styles/variables";
+
+:host {
+  display: inline-block;
+  font-size: 14px;
+  line-height: 24px;
+  color: $grey-dark;
+}
+
+.description {
+  margin-right: 4px;
+}
+
+.meter {
+  background: $white;
+  border: 1px solid $grey-light;
+  padding: 2px;
+  display: inline-block;
+  min-width: 48px;
+  margin-bottom: -1px;
+}
+
+.bar {
+  height: 4px;
+  background: $primary-dark;
+}
