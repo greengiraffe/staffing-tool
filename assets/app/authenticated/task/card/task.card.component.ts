@@ -57,15 +57,24 @@ export class TaskCardComponent {
     }
 
     deleteTask() {
-        this.onDelete.emit({
-            task: this.task,
-            project: this.project
-        });
+        this.onDelete.emit();
+        this.project.projectTasks.splice(this.project.projectTasks.indexOf(this.task), 1);
         this.modalService.close(this.deleteTaskModalId)
     }
 
-    updateTask() {
-        // TODO use updateTask backend route (needs to be added to the projectService first)
+    updateTask(taskComponent) {
+        const editedTask = new ProjectTask(
+            taskComponent.taskForm.controls["title"]["_value"],
+            taskComponent.taskForm.controls["description"]["value"],
+            taskComponent.task.requiredSkills,
+            taskComponent.task.assignedUsers,
+            taskComponent.task.interestedUsers,
+            this.task._id
+        );
+        this.modalService.close(this.editTaskModalId);
+        this.task = editedTask;
+        this.projectService.updateProjectTask(this.project._id, this.task)
+            .subscribe();
     }
 
     closeModal(modalId, event) {

@@ -29,6 +29,24 @@ export class ProjectService {
             .catch((error: Response) => Observable.throw(error.json()));
     }
 
+    updateProjectTask(projectId: string, projectTask: any) {
+        const body = JSON.stringify(projectTask);
+        console.log(body, projectTask._id);
+        const headers = new Headers({'Content-Type': 'application/json'});
+
+        return this.http.put('http://localhost:3000/api/project/task/' + projectId, body, {headers: headers})
+            .map((response: Response) => response.json())
+            .catch((error: Response) => Observable.throw(error.json()));
+    }
+
+    deleteProjectTask(projectId: string, projectTaskId: string) {
+        const headers = new Headers({'Content-Type': 'application/json'});
+
+        return this.http.delete('http://localhost:3000/api/project/task/' + projectId + "/" + projectTaskId, {headers: headers})
+            .map((response: Response) => response.json())
+            .catch((error: Response) => Observable.throw(error.json()));
+    }
+
     getProjects(): Observable<{}> {
         return this.http.get('http://localhost:3000/api/project/list')
             .map((response: Response) => {

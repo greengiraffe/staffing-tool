@@ -97,11 +97,11 @@ module.exports = {
         });
     },
 
-    removeProjectTask: function(projectId, projectTask) {
+    removeProjectTask: function(projectId, projectTaskId) {
         return new Promise(function (resolve, reject) {
             Project.update(
               { '_id' : projectId },
-              { $pull: { 'projectTasks': { _id: projectTask._id } } },
+              { $pull: { 'projectTasks': { _id: projectTaskId } } },
               { safe : true },
               function callback(err, result) {
                   if(err) {
@@ -121,7 +121,7 @@ module.exports = {
     updateProjectTask: function(projectId, projectTask) {
         return new Promise(function (resolve, reject) {
             Project.update(
-              { 'projectTasks._id' : projectTask._id },
+              { '_id' : projectId, 'projectTasks._id' : projectTask._id },
               { $set: { 'projectTasks.$': projectTask } },
               { safe : true },
               function callback(err, result) {

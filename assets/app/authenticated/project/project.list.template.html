@@ -42,7 +42,7 @@
           <app-task-card
             [project]="project"
             [task]="projectTask"
-            (onDelete)="deleteProjectTask(projectTask)"
+            (onDelete)="deleteProjectTask(project._id, projectTask._id)"
             *ngFor="let projectTask of project.projectTasks">
           </app-task-card>
         </template>

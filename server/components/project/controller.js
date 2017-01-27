@@ -65,10 +65,11 @@ router.post('/project/task/:id', function(req, res, next) {
 /**
  * Remove Task from Project
  */
-router.delete('/project/task/:id', function(req, res, next) {
-    let id = req.params.id;
-    if(util.isValidId(id, res)) {
-        Project.removeProjectTask(req.params.id, req.body)
+router.delete('/project/task/:projectId/:taskId', function(req, res, next) {
+    let projectId = req.params.projectId;
+    let taskId = req.params.taskId;
+    if(util.isValidId(projectId, res) && util.isValidId(taskId, res)) {
+        Project.removeProjectTask(projectId, taskId)
             .then(function(result){
                res.status(200).json(result);
             })

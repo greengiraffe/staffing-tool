@@ -7,6 +7,7 @@ export class ProjectTask {
                 public description: string,
                 public requiredSkills: Skill[],
                 public assignedUsers?: User[],
-                public interestedUsers?: User[]
+                public interestedUsers?: User[],
+                public _id?: string
               ) { }
 }

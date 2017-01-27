@@ -38,10 +38,9 @@ export class ProjectListComponent implements OnInit {
             );
     }
 
-    deleteProjectTask(taskAndProject) {
-        let task = taskAndProject.task;
-        let project = taskAndProject.project;
-        // TODO delete
+    deleteProjectTask(projectId, taskId) {
+        this.projectService.deleteProjectTask(projectId, taskId)
+            .subscribe(data => console.log(data));
     }
 
     toggleTabs() {
@@ -69,7 +68,6 @@ export class ProjectListComponent implements OnInit {
         let pastProjects = <NodeListOf<HTMLElement>>document.querySelectorAll('.past');
         for (var i = 0; i < pastProjects.length; ++i) {
             pastProjects[i].style.display = this.showPastProjects ? "block" : "none";
-            console.log(pastProjects[i])
         }
     }
 }
