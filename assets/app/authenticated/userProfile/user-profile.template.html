@@ -65,8 +65,10 @@
       <div class="bar-content" >
         <div class="project-list">
           <p class="empty-hint" *ngIf="projects?.length === 0">You don't have any created projects.</p>
-          <div class="g-card project-card"  *ngFor="let project of projects; let i = index" routerLink="../project/show/{{project?._id}}" >
-            <h5 class="g-card-title project-title">{{ project?.title }}</h5>
+          <div class="g-card project-card"  *ngFor="let project of projects; let i = index">
+            <h5 class="g-card-title project-title">
+              <a routerLink="../project/show/{{project?._id}}">{{ project?.title }}</a>
+            </h5>
             <div class="g-card-content project-content">
               <p>{{ project?.client }}</p>
               <p>{{ project?.start | date:"dd/MM/yy" }} - {{ project?.end | date:"dd/MM/yy"}}</p>
