@@ -133,6 +133,10 @@ export class ProjectCreateComponent implements OnInit {
         this.modalService.close(modalId);
     }
 
+    onCancel(){
+        this.router.navigateByUrl('user/project/list/projects');
+    }
+
     onSubmit(form: FormGroup) {
         // Create
         const creator = this.isEditing ? this.project.creator._id : this.authService.currentUser()._id;

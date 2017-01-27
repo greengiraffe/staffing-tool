@@ -139,7 +139,7 @@
       </div>
 
       <div class="text-xs-right">
-        <button type="button" class="btn">Cancel</button>
+        <button type="button" class="btn" (click)="onCancel()">Cancel</button>
         <button *ngIf="isEditing" type="submit" class="btn btn-primary" [disabled]="!projectForm.valid">Save Project</button>
         <button *ngIf="!isEditing" type="submit" class="btn btn-primary" [disabled]="!projectForm.valid">Create Project</button>
       </div>
