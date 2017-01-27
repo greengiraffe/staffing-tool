@@ -3,8 +3,8 @@
     <button *ngIf="currentUserCanDelete" class="btn btn-icon btn-danger" type="button" (click)="modalService.open(deleteUserModalId)"><i class="fa fa-trash"></i></button>
   </div>
 
+  <img class="g-avatar avatar" [src]="url | safeUrl" alt="profile picture">
   <h3 class="title" (click)="showUser()">{{ user.firstName}} {{ user.lastName }}</h3>
-  <img class="g-avatar" [src]="url | safeUrl" alt="profile picture">
   <ul class="meta-list">
     <li class="meta-item"><i class="fa fa-envelope"></i>{{ user.email }}</li>
     <li class="meta-item" *ngIf="user.phone"><i class="fa fa-phone"></i>{{ user.phone }}</li>
@@ -14,7 +14,7 @@
 
   <app-user-skill-list [user]="user" [showSkillTypeIcons]="false"></app-user-skill-list>
 
-  <app-modal [modal-id]="deleteUserModalId" modal-title="Delete User {{ user?.firstName }} {{ user?.lastName }}">
+  <app-modal class="modal-delete-user" [modal-id]="deleteUserModalId" modal-title="Delete User {{ user?.firstName }} {{ user?.lastName }}">
     <span modal-body>Are you sure that you want to delete this user?</span>
     <div modal-footer class="text-xs-right">
       <button type="button" class="btn" (click)="modalService.close(deleteUserModalId)">Cancel</button>

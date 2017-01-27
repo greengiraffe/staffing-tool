@@ -259,3 +259,7 @@
 .project-content {
   padding: 12px
 }
+
+:host .modal-change-password /deep/ .modal-dialog {
+  max-width: 500px;
+}

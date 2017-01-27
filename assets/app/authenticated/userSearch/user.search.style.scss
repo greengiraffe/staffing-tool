@@ -19,6 +19,7 @@
 .user {
   padding: 8px 12px;
   display: flex;
+  line-height: 36px; // avatar height
 
   &:hover {
     background-color: $primary-light;

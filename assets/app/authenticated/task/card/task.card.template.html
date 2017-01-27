@@ -31,11 +31,11 @@
     </ul>
   </template>
 
-  <app-modal [modal-id]="deleteTaskModalId" modal-title="Delete Task {{ task?.title }}">
+  <app-modal class="modal-delete-task" [modal-id]="deleteTaskModalId" modal-title="Delete Task {{ task?.title }}">
     <span modal-body>Are you sure that you want to delete this task?</span>
     <div modal-footer class="text-xs-right">
       <button type="button" class="btn" (click)="closeModal(deleteTaskModalId, $event)">Cancel</button>
-      <button type="button" class="btn btn danger" (click)="delete()">Delete</button>
+      <button type="button" class="btn btn-danger" (click)="delete()">Delete</button>
     </div>
   </app-modal>
 

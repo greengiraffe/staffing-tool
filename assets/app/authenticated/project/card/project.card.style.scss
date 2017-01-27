@@ -62,3 +62,7 @@
     color: $white;
   }
 }
+
+:host .modal-delete-project /deep/ .modal-dialog {
+  max-width: 500px;
+}

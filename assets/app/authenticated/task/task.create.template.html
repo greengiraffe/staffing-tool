@@ -39,16 +39,17 @@
   </div>
 
   <h3 class="section-title">Required Skills</h3>
-  <ul class="required-skill-list">
+  <ul class="g-tag-list required-skill-list" *ngIf="task.requiredSkills.length > 0">
     <li
-      class="g-tag skill required-skill"
+      class="g-tag required-skill"
       *ngFor="let skill of task.requiredSkills">
       {{ skill.name }}
-      <span
+      <button
         (click)="removeRequiredSkill(skill)"
-        class="remove-skill fa fa-remove"
+        class="btn btn-icon btn-remove-skill"
         aria-hidden="true">
-      </span>
+        <i class="fa fa-remove"></i>
+      </button>
     </li>
   </ul>
   <p *ngIf="task.requiredSkills.length === 0" class="hint">No required skills added. Select some skills from the list below.</p>
@@ -56,19 +57,18 @@
   <app-skill-search></app-skill-search>
 
   <h3 class="section-title">Assigned Users</h3>
-  <ul class="assigned-user-list">
+  <ul class="assigned-user-list" *ngIf="task.assignedUsers.length > 0">
     <li
       class="assigned-user"
       *ngFor="let user of task.assignedUsers">
-      <div class="assigned-user-content">
-        <img class="g-avatar" [src]="urlsOfLoadedPictures[user._id] | safeUrl">
-        {{ user.firstName }} {{ user.lastName }}
-      </div>
-      <span
+      <img class="g-avatar g-avatar--small" [src]="urlsOfLoadedPictures[user._id] | safeUrl">
+      <span class="assigned-user-name">{{ user.firstName }} {{ user.lastName }}</span>
+      <button
         (click)="removeAssignedUser(user)"
-        class="remove-user fa fa-remove" title="Unassign {{ user.firstName }} {{ user.lastName }}"
+        class="btn btn-icon btn-remove-user" title="Unassign {{ user.firstName }} {{ user.lastName }}"
         aria-hidden="true">
-      </span>
+        <i class="fa fa-remove"></i>
+      </button>
     </li>
   </ul>
   <p *ngIf="task.assignedUsers.length === 0" class ="hint">No one is assigned yet. Assign people by selecting them from the list below.</p>

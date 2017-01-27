@@ -88,8 +88,8 @@
 
 .assigned-users-title {
   margin-top: 24px;
-  border-top: 1px solid $grey-light;
-  padding: 12px 24px 0;
+  padding: 0 24px;
+  font-weight: 600;
 }
 
 .assigned-users {
@@ -110,4 +110,8 @@
   &.current {
     font-weight: 600;
   }
+}
+
+:host .modal-delete-task /deep/ .modal-dialog {
+  max-width: 500px;
 }

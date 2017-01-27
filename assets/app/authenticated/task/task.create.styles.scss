@@ -1,15 +1,9 @@
 @import "../../../styles/variables";
 
 .section-title {
-  margin-top: 24px;
+  margin: 28px 0 0 0;
   font-size: 20px;
   line-height: 24px;
-  margin-bottom: 8px;
-}
-
-.remove-skill {
-  margin-left: 4px;
-  cursor: pointer;
 }
 
 .error {
@@ -40,6 +34,7 @@
 
 .hint {
   color: $grey-dark;
+  margin-top: 8px;
 }
 
 // Style skill-search tags
@@ -52,26 +47,65 @@
 }
 
 .required-skill-list {
-  padding: 0;
+  margin-top: 16px;
+  
+  + app-skill-search {
+    display: block;
+    margin-top: 16px
+  }
 }
 
 .required-skill {
-  cursor: default;
+  border-color: $blackish;
+  color: $blackish;
+}
+
+.btn-remove-skill {
+  line-height: 16px;
+  vertical-align: bottom;
+  margin-left: 8px;
+  
+  &:hover {
+    color: $danger;
+  }
 }
 
 .assigned-user-list {
   list-style: none;
   display: flex;
   flex-wrap: wrap;
+  margin: 16px -16px 0;
   padding: 0;
-  & li {
-    flex: 1 1 260px;
-    margin: 6px;
-    max-width: 260px;
-  }
-}
 
-.assigned-user-content {
-  min-width: 183px;
-  display: inline-block;
+  li {
+    flex: 0 1 251px;
+    max-width: 251px;
+    margin: 8px 16px;
+    padding-right: 24px;
+    line-height: 36px; // avatar height
+    position: relative;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  + app-user-search {
+    display: block;
+    margin-top: 16px;
+  }
+
+  .assigned-user-name {
+  }
+
+  .btn-remove-user {
+    position: absolute;
+    right: 0;
+    top: 2px;
+    padding: 4px;
+    font-size: 20px;
+    
+    &:hover {
+      color: $danger;
+    }
+  }
 }
