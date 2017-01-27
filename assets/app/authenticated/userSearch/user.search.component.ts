@@ -23,7 +23,7 @@ import { UserSearchService } from '../../_services/user.search.service';
          <div class="user-match" *ngIf="interested.match || interested.match === 0">{{ interested.match | percent}}</div>
         </div>
         <div class="user" *ngFor="let user of visibleUsers | filterNames : 'firstName' : 'lastName' : searchText" (click)="selectUser(user)">
-            <div class="user-info"><img class="avatar" [src]="urlsOfLoadedPictures[user._id] | safeUrl" alt="profile picture" >{{ user.firstName }} {{ user.lastName }}</div>
+            <div class="user-info"><img class="g-avatar" [src]="urlsOfLoadedPictures[user._id] | safeUrl" alt="profile picture" >{{ user.firstName }} {{ user.lastName }}</div>
             <div class="user-match" *ngIf="user.match || user.match === 0">{{ user.match | percent }}</div>
         </div>
       </div>
