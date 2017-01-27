@@ -130,7 +130,7 @@ export class UserSearchComponent implements OnInit {
                             }
                         }
                     }
-                    user.match = (user.match / requiredSkills.length).toFixed(3);
+                    user.match = (user.match / requiredSkills.length).toFixed(2);
                 }
             }
         }

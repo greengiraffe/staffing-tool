@@ -20,6 +20,7 @@ import { AdminModule } from "./admin/admin.module";
 
 import { ModalService } from "./_services/modal.service";
 import { FooterComponent } from "./footer/footer.component";
+import { MatchService } from "./_services/match.service";
 
 @NgModule({
     imports: [
@@ -42,6 +43,7 @@ import { FooterComponent } from "./footer/footer.component";
     providers: [
         UserService,
         AuthService,
+        MatchService,
         ModalService,
         NavBarService,
     // provideAuth({

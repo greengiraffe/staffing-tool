@@ -6,6 +6,7 @@ import { Observable } from "rxjs";
 import { User } from "../_models/user.model";
 import { Project } from "../_models/project.model";
 import { ProjectTask } from "../_models/project-task.model";
+import { UserSkill } from "../_models/user-skill.model";
 
 @Injectable()
 export class UserService {
@@ -83,6 +84,12 @@ export class UserService {
 
     getAssignedTasksOfUser(userId): Observable<{}> {
         return this.http.get('http://localhost:3000/api/user/tasks/' + userId)
+            .map((response: Response) => response.json())
+            .catch((error: Response) => Observable.throw(error.json()));
+    }
+
+    getUserSkills(userId): Observable<UserSkill[]> {
+        return this.http.get('http://localhost:3000/api/user/skills/' + userId)
             .map((response: Response) => response.json())
             .catch((error: Response) => Observable.throw(error.json()));
     }

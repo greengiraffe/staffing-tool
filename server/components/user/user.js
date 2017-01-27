@@ -116,6 +116,12 @@ module.exports = {
             .exec();
     },
 
+    getUserSkills(userId) {
+        return User.findById(userId, {userSkills: 1, _id: 0})
+            .populate('userSkills.skill', '-__v')
+            .exec();
+    },
+
     //Todo: Review...push on sub document
     addSkill: function(userId, skillId, rating) {
 

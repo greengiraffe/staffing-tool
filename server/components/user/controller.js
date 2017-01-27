@@ -347,4 +347,18 @@ router.get('/user/tasks/:id', function(req, res, next) {
         });
 });
 
+/**
+ * Get all userSkills for a specific user
+ */
+router.get('/user/skills/:id', function(req, res, next) {
+    let id = req.params.id;
+    User.getUserSkills(id)
+        .then(function(result) {
+            res.status(200).json(result.userSkills);
+        })
+        .catch(function(err) {
+            res.status(400).json(err);
+        });
+});
+
 module.exports = router;

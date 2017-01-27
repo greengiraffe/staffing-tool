@@ -5,6 +5,8 @@ import { Router } from "@angular/router";
 import { AuthService } from "../../../_services/auth.service";
 import { ProjectService } from "../../../_services/project.service";
 import { Project } from '../../../_models/project.model';
+import { MatchService } from "../../../_services/match.service";
+import { UserService } from "../../../_services/user.service";
 
 @Component({
     selector: 'app-task-card',
@@ -26,8 +28,15 @@ export class TaskCardComponent {
     private editTaskModalId = "deleteTaskModal" + (0 | Math.random() * 6.04e7).toString(36);
     private currentUser;
 
+    matchValue: number;
 
-    constructor(private modalService: ModalService, private authService: AuthService, private projectService: ProjectService, private router: Router) {
+
+    constructor(private modalService: ModalService,
+                private authService: AuthService,
+                private userService: UserService,
+                private projectService: ProjectService,
+                private matchService: MatchService,
+                private router: Router) {
     }
 
     ngOnInit() {
@@ -38,6 +47,12 @@ export class TaskCardComponent {
             this.currentUserCanEdit = this.currentUser.role === "admin" || this.project.creator._id === this.currentUser._id;
             this.currentUserIsInterested = !!this.task.interestedUsers.find(user => user._id === this.currentUser._id);
             this.currentUserIsAssigned = !!this.task.assignedUsers.find(user => user._id === this.currentUser._id);
+
+            this.userService.getUserSkills(this.currentUser._id).subscribe(result => {
+                this.currentUser.userSkills = result;
+                this.matchValue = this.matchService.getMatch(this.task.requiredSkills, result)
+                console.log(this.matchValue);
+            })
         }
     }
 

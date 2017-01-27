@@ -112,6 +112,13 @@
   }
 }
 
+.match-value {
+  color: $grey-medium;
+  position: absolute;
+  bottom: 24px;
+  right: 24px;
+}
+
 :host .modal-delete-task /deep/ .modal-dialog {
   max-width: 500px;
 }
