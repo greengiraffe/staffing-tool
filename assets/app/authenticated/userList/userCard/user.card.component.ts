@@ -14,6 +14,7 @@ export class UserCardComponent {
 
     @Input() user: User;
     @Output("onDelete") onDelete = new EventEmitter();
+    url: string;
 
     private currentUserCanDelete = false;
     private deleteUserModalId = "deleteUserModal" + (0|Math.random()*6.04e7).toString(36);
@@ -26,6 +27,7 @@ export class UserCardComponent {
         if (user) {
             this.currentUserCanDelete = user.role === "admin";
         }
+        this.url = sessionStorage.getItem(this.user._id) ? sessionStorage.getItem(this.user._id) : '/img/usersmall.png';
     }
 
     deleteUser() {

@@ -107,7 +107,15 @@ export class UserProfileComponent implements OnInit {
     upload() {
         this.userService.uploadUserImage(this.user._id, this.imgToUpload)
             .subscribe(
-                data =>  this.renderer.setElementProperty(this.pictureElement, 'src', data),
+                data => { this.renderer.setElementProperty(this.pictureElement, 'src', data); this.loadNewAvatarImageIntoCache() } ,
+                error => console.log(error)
+            );
+    }
+
+    loadNewAvatarImageIntoCache() {
+        this.userService.getUserImage(this.user._id, 'small')
+            .subscribe(
+                data => sessionStorage.setItem(this.user._id, ""+data),
                 error => console.log(error)
             );
     }

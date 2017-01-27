@@ -4,11 +4,13 @@
   </div>
 
   <h3 class="title" (click)="showUser()">{{ user.firstName}} {{ user.lastName }}</h3>
+  <img [src]="url | safeUrl" alt="profile picture">
   <ul class="meta-list">
     <li class="meta-item"><i class="fa fa-envelope"></i>{{ user.email }}</li>
     <li class="meta-item" *ngIf="user.phone"><i class="fa fa-phone"></i>{{ user.phone }}</li>
     <li class="meta-item" *ngIf="user.location"><i class="fa fa-map-marker"></i>{{ user.location }}</li>
   </ul>
+
 
   <app-user-skill-list [user]="user" [showSkillTypeIcons]="false"></app-user-skill-list>
 

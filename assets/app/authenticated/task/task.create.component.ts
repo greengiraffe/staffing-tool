@@ -23,6 +23,7 @@ export class TaskCreateComponent implements OnInit, OnDestroy {
 
     skillSearchServiceSubscription;
     userSearchServiceSubscription;
+    urlsOfLoadedPictures: Object = new Object();
 
     constructor(private skillService: SkillService,
                 private skillSearchService: SkillSearchService,
@@ -45,6 +46,8 @@ export class TaskCreateComponent implements OnInit, OnDestroy {
             title: [this.task.title, Validators.required],
             description: [this.task.description, Validators.required]
         });
+
+        this.retrieveImgURLs();
     }
 
     addRequiredSkill(skill: Skill) {
@@ -68,6 +71,7 @@ export class TaskCreateComponent implements OnInit, OnDestroy {
 
     addAssignedUser(user: User){
         this.task.assignedUsers.push(user);
+        this.retrieveImgURLs();
         this.userSearchService.userAdded(user);
     }
 
@@ -87,6 +91,13 @@ export class TaskCreateComponent implements OnInit, OnDestroy {
         // Prevent memory leaks
         this.skillSearchServiceSubscription.unsubscribe();
         this.userSearchServiceSubscription.unsubscribe();
+    }
+
+    retrieveImgURLs() {
+        this.task.assignedUsers.forEach( user => {
+            let url = sessionStorage.getItem(user._id);
+            this.urlsOfLoadedPictures[user._id] = url ? url : '/img/usersmall.png';
+        });
     }
 
 }

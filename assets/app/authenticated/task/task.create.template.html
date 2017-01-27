@@ -59,7 +59,7 @@
   <ul class="assigned-user-list">
     <li
       class="assigned-user"
-      *ngFor="let user of task.assignedUsers">
+      *ngFor="let user of task.assignedUsers"><img [src]="urlsOfLoadedPictures[user._id] | safeUrl">
       {{ user.firstName }} {{ user.lastName }}
       <span
         (click)="removeAssignedUser(user)"
