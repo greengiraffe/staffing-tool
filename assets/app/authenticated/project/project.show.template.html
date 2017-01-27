@@ -22,7 +22,7 @@
       <div class="task-list">
         <p class="empty-hint" *ngIf="project?.projectTasks.length === 0">This project does not have any tasks yet.</p>
         <div class="g-card task-card" *ngFor="let projectTask of project?.projectTasks">
-          <h2 class="g-card-title">{{ projectTask.title }}</h2>
+          <h2 class="g-card-title">{{ projectTask.title }}</h2><div class="g-tag status">{{ projectTask.status }}</div>
           <div class="g-card-content"><p>{{ projectTask.description }}</p></div>
           <ul class="skill-list">
             <li class="g-tag skill" *ngFor="let skill of projectTask.requiredSkills">{{ skill.name }}</li>

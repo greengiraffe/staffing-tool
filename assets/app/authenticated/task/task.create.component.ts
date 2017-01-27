@@ -19,7 +19,7 @@ export class TaskCreateComponent implements OnInit, OnDestroy {
 
     taskForm: FormGroup;
 
-    @Input('task') task: ProjectTask = new ProjectTask(null,null,[],[],[]);
+    @Input('task') task: ProjectTask = new ProjectTask(null,null,[],"",[],[]);
 
     skillSearchServiceSubscription;
     userSearchServiceSubscription;
@@ -44,7 +44,8 @@ export class TaskCreateComponent implements OnInit, OnDestroy {
 
         this.taskForm = this.fb.group({
             title: [this.task.title, Validators.required],
-            description: [this.task.description, Validators.required]
+            description: [this.task.description, Validators.required],
+            status: [this.task.status, Validators.required]
         });
 
         this.retrieveImgURLs();
@@ -84,7 +85,7 @@ export class TaskCreateComponent implements OnInit, OnDestroy {
         this.taskForm.reset();
         this.skillSearchService.resetSearch();
         this.userSearchService.resetSearch();
-        this.task = new ProjectTask(null,null,[],[],[]);
+        this.task = new ProjectTask(null,null,[], "", [],[]);
     }
 
     ngOnDestroy() {

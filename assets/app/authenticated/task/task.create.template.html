@@ -33,8 +33,12 @@
   <div class="form-group">
     <div class="g-switch-title">Status</div>
     <div class="g-switch-field">
-      <input type="radio" checked id="input-status-upcoming" class="tag tag-default">
+      <input type="radio" id="input-status-upcoming" formControlName="status" value="upcoming" class="tag tag-default">
       <label for="input-status-upcoming">Upcoming</label>
+      <input type="radio" id="input-status-progress" formControlName="status" value="in progress" class="tag tag-default">
+      <label for="input-status-progress">In Progress</label>
+      <input type="radio" id="input-status-done" formControlName="status" value="done" class="tag tag-default">
+      <label for="input-status-done">Done</label>
     </div>
   </div>
 

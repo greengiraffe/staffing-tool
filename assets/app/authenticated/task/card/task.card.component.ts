@@ -82,6 +82,7 @@ export class TaskCardComponent {
             taskComponent.taskForm.controls["title"]["_value"],
             taskComponent.taskForm.controls["description"]["value"],
             taskComponent.task.requiredSkills,
+            taskComponent.taskForm.controls["status"]["value"],
             taskComponent.task.assignedUsers,
             taskComponent.task.interestedUsers,
             this.task._id

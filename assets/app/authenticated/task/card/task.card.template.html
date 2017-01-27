@@ -1,5 +1,6 @@
 <div class="card">
   <div class="actions">
+    <div class="g-tag">{{ task.status }}</div>
     <button *ngIf="currentUserCanDelete" class="btn btn-icon btn-danger" type="button" (click)="modalService.open(deleteTaskModalId)"><i class="fa fa-trash"></i></button>
     <button *ngIf="currentUserCanEdit" class="btn btn-icon" (click)="modalService.open(editTaskModalId)"><i class="fa fa-pencil"></i></button>
     <button *ngIf="!currentUserIsAssigned" class="btn btn-icon like" [class.starred]="currentUserIsInterested" >
