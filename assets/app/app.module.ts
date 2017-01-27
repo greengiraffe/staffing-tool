@@ -44,15 +44,15 @@ import { FooterComponent } from "./footer/footer.component";
         AuthService,
         ModalService,
         NavBarService,
-    provideAuth({
-        headerName: 'Authorization',
-        headerPrefix: 'Bearer',
-        tokenName: 'id_token',
-        tokenGetter: (() => localStorage.getItem('token')),
-        globalHeaders: [{'Content-Type':'application/json'}],
-        noJwtError: true,
-        noTokenScheme: true
-    })
+    // provideAuth({
+    //     headerName: 'Authorization',
+    //     headerPrefix: 'Bearer',
+    //     tokenName: 'id_token',
+    //     tokenGetter: (() => localStorage.getItem('token')),
+    //     globalHeaders: [{'Content-Type':'application/json'}],
+    //     noJwtError: true,
+    //     noTokenScheme: true
+    // })
     ],
     bootstrap: [AppComponent]
 })
