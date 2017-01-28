@@ -52,6 +52,10 @@ export class TaskCreateComponent implements OnInit, OnDestroy {
     }
 
     addRequiredSkill(skill: Skill) {
+        if (this.task.requiredSkills.findIndex(s => s._id === skill._id) !== -1) {
+            // prevent adding a duplicate
+            return;
+        }
         this.task.requiredSkills.push(skill);
         this.skillSearchService.skillAdded(skill);
         this.userSearchService.calculateMatch(this.task.requiredSkills);
@@ -71,6 +75,10 @@ export class TaskCreateComponent implements OnInit, OnDestroy {
     }
 
     addAssignedUser(user: User){
+        if (this.task.assignedUsers.findIndex(u => u._id === user._id) !== -1) {
+            // prevent adding a duplicate
+            return;
+        }
         this.task.assignedUsers.push(user);
         this.retrieveImgURLs();
         this.userSearchService.userAdded(user);

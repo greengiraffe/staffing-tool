@@ -65,6 +65,10 @@ export class UserSearchComponent implements OnInit {
     }
 
     showUser(user: User) {
+        if (this.visibleUsers.findIndex(u => u._id === user._id) !== -1) {
+            // prevent adding a duplicate
+            return;
+        }
         this.visibleUsers.push(user);
         this.hiddenUsers = this.hiddenUsers.filter(hiddenUser => hiddenUser._id !== user._id);
         this.sortUsers();

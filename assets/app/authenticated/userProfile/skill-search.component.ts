@@ -69,8 +69,8 @@ export class SkillSearchComponent implements OnInit {
 
     sortSkills() {
         this.visibleSkills.sort((a, b) => {
-            if (a.name < b.name) return -1;
-            else if (a.name > b.name) return 1;
+            if (a.name.toLowerCase() < b.name.toLowerCase()) return -1;
+            else if (a.name.toLowerCase() > b.name.toLowerCase()) return 1;
             else return 0;
         })
     }
@@ -87,6 +87,10 @@ export class SkillSearchComponent implements OnInit {
      * Show (i.e. add) a skill to the list as it was removed from the user-skill list
      */
     showSkill(skill: Skill) {
+        if (this.visibleSkills.findIndex(s => s._id === skill._id) !== -1) {
+            // prevent adding a duplicate
+            return;
+        }
         this.visibleSkills.push(skill);
         this.hiddenSkills = this.hiddenSkills.filter(hiddenSkill => hiddenSkill._id !== skill._id);
         this.sortSkills();
