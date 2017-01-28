@@ -40,9 +40,10 @@
 // Style skill-search tags
 :host /deep/ .skill {
   cursor: pointer;
+  transition: background 0.1s ease-in-out;
 
   &:hover {
-    background-color: $primary-light;
+    background: $primary-light;
   }
 }
 

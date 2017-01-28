@@ -68,3 +68,6 @@ select {
   position: relative;
 }
 
+.form-group + .form-group {
+  margin-top: 24px;
+}

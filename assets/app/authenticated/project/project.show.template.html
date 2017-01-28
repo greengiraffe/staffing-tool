@@ -13,7 +13,7 @@
         <li><b>Expense Budget:</b> {{ project?.expBudget }} €</li>
         <li><b>Description:</b> {{project?.description}}</li>
       </ul>
-      <button class="btn edit-project-btn" routerLink="../../edit/{{ project?._id }}"
+      <button class="btn btn-primary edit-project-btn" routerLink="../../edit/{{ project?._id }}"
        *ngIf="currentUserCanEdit">Edit Project</button>
     </section>
 

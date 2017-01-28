@@ -19,6 +19,7 @@
     padding: 7px 15px;
     border: 1px solid $grey-light;
     margin-left: -1px; // overlap borders
+    transition: background 0.1s ease-in-out;
 
     &:hover {
       cursor: pointer;

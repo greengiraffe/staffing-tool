@@ -47,7 +47,7 @@
         <div class="task-list">
           <div class="g-card task-card" *ngFor="let assignedTask of assignedTasks">
             <h5 class="g-card-title task-title">
-              <a routerLink="/user/project/show/{{ assignedTask?.project._id }}">{{ assignedTask?.task.title }}</a>
+              <a class="card-link" routerLink="/user/project/show/{{ assignedTask?.project._id }}">{{ assignedTask?.task.title }}</a>
             </h5>
             <div class="g-card-content task-content">
               <p class="task-description">{{ assignedTask?.task.description }}</p>
@@ -67,7 +67,7 @@
           <p class="empty-hint" *ngIf="projects?.length === 0">You don't have any created projects.</p>
           <div class="g-card project-card"  *ngFor="let project of projects; let i = index">
             <h5 class="g-card-title project-title">
-              <a routerLink="../project/show/{{project?._id}}">{{ project?.title }}</a>
+              <a class="card-link" routerLink="../project/show/{{project?._id}}">{{ project?.title }}</a>
             </h5>
             <div class="g-card-content project-content">
               <p>{{ project?.client }}</p>

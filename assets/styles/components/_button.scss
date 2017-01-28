@@ -13,6 +13,8 @@ button,
   box-shadow: 2px 2px 0 $grey-dark;
   border: 1px solid $grey-dark;
   padding: 7px 11px;
+  transition: all 0.1s ease-in-out;
+  transition-property: background, color; // override
 
   + .btn {
     margin-left: 8px;

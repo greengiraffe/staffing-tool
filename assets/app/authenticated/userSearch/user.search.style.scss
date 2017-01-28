@@ -22,9 +22,10 @@
   padding: 8px 12px;
   display: flex;
   line-height: 36px; // avatar height
+  transition: background 0.1s ease-in-out;
 
   &:hover {
-    background-color: $primary-light;
+    background: $primary-light;
     cursor: pointer;
   }
 
