@@ -7,6 +7,7 @@ import { ProjectService } from "../../../_services/project.service";
 import { Project } from '../../../_models/project.model';
 import { MatchService } from "../../../_services/match.service";
 import { UserService } from "../../../_services/user.service";
+import { RightsService } from "../../../_services/rights.service";
 
 @Component({
     selector: 'app-task-card',
@@ -35,6 +36,7 @@ export class TaskCardComponent {
                 private authService: AuthService,
                 private userService: UserService,
                 private projectService: ProjectService,
+                private rightsService: RightsService,
                 private matchService: MatchService,
                 private router: Router) {
     }
@@ -43,8 +45,8 @@ export class TaskCardComponent {
         this.currentUser = this.authService.currentUser();
 
         if (this.currentUser) {
-            this.currentUserCanDelete = this.currentUser.role === "admin" || this.project.creator._id === this.currentUser._id;
-            this.currentUserCanEdit = this.currentUser.role === "admin" || this.project.creator._id === this.currentUser._id;
+            this.currentUserCanDelete = this.rightsService.canDeleteTask(this.project, this.currentUser)
+            this.currentUserCanEdit = this.rightsService.canEditTask(this.project, this.currentUser)
             this.currentUserIsInterested = !!this.task.interestedUsers.find(user => user._id === this.currentUser._id);
             this.currentUserIsAssigned = !!this.task.assignedUsers.find(user => user._id === this.currentUser._id);
 

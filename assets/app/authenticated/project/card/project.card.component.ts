@@ -1,9 +1,8 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Project } from '../../../_models/project.model';
 import { ModalService } from "../../../_services/modal.service";
-import { Router } from "@angular/router";
 import { AuthService } from "../../../_services/auth.service";
-import { User } from "../../../_models/user.model";
+import { RightsService } from "../../../_services/rights.service";
 
 @Component({
     selector: 'app-project-card',
@@ -21,14 +20,16 @@ export class ProjectCardComponent {
     private deleteProjectModalId = "deleteProjectModal" + (0|Math.random()*6.04e7).toString(36);
 
 
-    constructor(private modalService: ModalService, private authService: AuthService, private router: Router) {}
+    constructor(private modalService: ModalService,
+                private rightsService: RightsService,
+                private authService: AuthService) {}
 
     ngOnInit() {
         const user = this.authService.currentUser();
 
         if (user) {
-            this.currentUserCanDelete = user.role === "admin" || this.project.creator._id === user._id;
-            this.currentUserCanEdit = user.role === "admin" || this.project.creator._id === user._id; // TODO assignees should be able to edit the project too
+            this.currentUserCanDelete = this.rightsService.canDeleteProject(this.project, user);
+            this.currentUserCanEdit = this.rightsService.canEditProject(this.project, user);
         }
     }
 

@@ -5,6 +5,7 @@ import { Skill } from "../../_models/skill.model";
 import { SkillService } from "../../_services/skill.service";
 import { ModalService } from "../../_services/modal.service";
 import { AuthService } from "../../_services/auth.service";
+import { RightsService } from "../../_services/rights.service";
 
 @Component({
     selector: 'app-skill-list',
@@ -20,6 +21,7 @@ export class SkillListComponent implements OnInit {
 
     constructor(private skillService: SkillService,
                 private authService: AuthService,
+                private rightsService: RightsService,
                 private _flash: FlashMessagesService,
                 private modalService: ModalService) {}
 
@@ -37,7 +39,7 @@ export class SkillListComponent implements OnInit {
             );
 
         if (currentUser) {
-            this.currentUserCanRemove = currentUser.role === 'admin' || currentUser.role === 'user_creator';
+            this.currentUserCanRemove = this.rightsService.canRemoveSkill(currentUser);
         }
     }
 

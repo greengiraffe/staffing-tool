@@ -5,6 +5,7 @@ import { UserService } from "../../_services/user.service";
 import { SkillService } from "../../_services/skill.service";
 import { SkillSearchService } from "../../_services/skill-search.service";
 import { AuthService } from "../../_services/auth.service";
+import { RightsService } from "../../_services/rights.service";
 
 @Component({
     selector: 'app-user-list',
@@ -18,6 +19,7 @@ export class UserListComponent {
     users: User[];
 
     constructor(private userService: UserService,
+                private rightsService: RightsService,
                 private authService: AuthService) {}
 
     ngOnInit() {
@@ -31,7 +33,7 @@ export class UserListComponent {
             );
 
         if (this.currentUser) {
-            this.currentUserCanRemove = this.currentUser.role === 'admin' || this.currentUser.role === 'user_creator';
+            this.currentUserCanRemove = this.rightsService.canRemoveUser(this.currentUser);
         }
     }
 

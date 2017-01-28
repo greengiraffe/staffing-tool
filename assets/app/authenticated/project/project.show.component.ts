@@ -11,6 +11,7 @@ import { Skill } from "../../_models/skill.model";
 import 'rxjs/add/operator/switchMap';
 import { AuthService } from "../../_services/auth.service";
 import { User } from "../../_models/user.model";
+import { RightsService } from "../../_services/rights.service";
 
 @Component({
     selector: 'app-project-show',
@@ -32,6 +33,7 @@ export class ProjectShowComponent implements OnInit {
         private skillService: SkillService,
         private userService: UserService,
         private authService: AuthService,
+        private rightsService: RightsService,
         private route: ActivatedRoute,
         private router: Router,
         private renderer: Renderer
@@ -47,7 +49,7 @@ export class ProjectShowComponent implements OnInit {
                 .subscribe((project: Project) => {
                     this.project = project;
                     this.currentUserIsCreator = project.creator._id === currentUser._id;
-                    this.currentUserCanEdit = this.checkIfUserCanEdit(currentUser);
+                    this.currentUserCanEdit = this.rightsService.canEditProject(project, currentUser);
                     this.project.projectTasks.forEach(
                         task => {
                             this.loadUserAvatars(task.assignedUsers)
@@ -95,23 +97,5 @@ export class ProjectShowComponent implements OnInit {
         task.assignedUsers.splice(userIndex, 1);
         this.projectService.updateProject(this.project)
             .subscribe();
-    }
-
-    private checkIfUserCanEdit(user: User) {
-
-        let isAssignedUser = user => {
-            for(let task of this.project.projectTasks) {
-                for(let assignedUser of task.assignedUsers) {
-                    if(assignedUser._id === user._id) {
-                        return true;
-                    }
-                }
-            }
-        }
-
-        return user.role === 'admin' ||
-            user.role === 'user_creator' ||
-            this.currentUserIsCreator ||
-            isAssignedUser(user);
     }
 }

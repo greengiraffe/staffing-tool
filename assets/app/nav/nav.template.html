@@ -6,7 +6,7 @@
         <i class="fa fa-user" aria-hidden="true"></i>
       Dashboard
       </a></li>
-      <li *ngIf="isInternUser" class="nav-item">
+      <li *ngIf="isInternalUser" class="nav-item">
         <a class="nav-link" routerLink="/user/project/list/projects"
         [class.active]="this.router.url.startsWith('/user/project/list')">
           <i class="fa fa-list-ul" aria-hidden="true"></i>
@@ -19,7 +19,7 @@
           People
         </a>
       </li>
-      <li class="nav-item" *ngIf="isAdminUser">
+      <li class="nav-item" *ngIf="isAdminUser || isUserCreator">
         <a class="nav-link" routerLink="/admin/skills" routerLinkActive="active">
           <i class="fa fa-rocket"></i>
           Skills

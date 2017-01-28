@@ -38,7 +38,7 @@ module.exports = [
             {skill: '542c2b97bac0595474108b53', rating: 1},
             {skill: '542c2b97bac0595474108b54', rating: 2},
             {skill: '542c2b97bac0595474108b55', rating: 1}],
-        role: 'user'
+        role: 'user_creator'
     },
     {
         email: 'miriam@example.com',
