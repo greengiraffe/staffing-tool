@@ -6,29 +6,7 @@ import { UserSearchService } from '../../_services/user.search.service';
 
 @Component({
   selector: 'app-user-search',
-  template: `
-    <input
-      [(ngModel)]="searchText"
-      class="user-search form-control"
-      placeholder="Search for a User"
-      type="text" (click)="openUserList()">
-      <div class="user-list" *ngIf="showUserList" [ngSwitch]="clickableUser">
-        <div class="user" *ngFor="let interested of interestedUsers | filterNames : 'firstName' : 'lastName' : searchText"
-         (click)="selectUser(user)">
-         <div class="user-info">
-             <img class="avatar {{interested._id}}" alt="profile picture" >
-            {{ interested.firstName }} {{ interested.lastName }}
-            <span class="tag tag-default">interested</span>
-         </div>
-         <div class="user-match" *ngIf="interested.match || interested.match === 0">{{ interested.match | percent}}</div>
-        </div>
-        <div class="user" *ngFor="let user of visibleUsers | filterNames : 'firstName' : 'lastName' : searchText" (click)="selectUser(user)">
-            <div class="user-info"><img class="g-avatar g-avatar--small" [src]="urlsOfLoadedPictures[user._id] | safeUrl" alt="profile picture" >{{ user.firstName }} {{ user.lastName }}</div>
-            <div class="user-match" *ngIf="user.match || user.match === 0">{{ user.match | percent }}</div>
-        </div>
-      </div>
-    <p *ngIf="users?.length === 0">There are no more available users.</p>
-  `,
+  templateUrl: 'user.search.template.html',
   styleUrls: ['user.search.style.scss']
 })
 

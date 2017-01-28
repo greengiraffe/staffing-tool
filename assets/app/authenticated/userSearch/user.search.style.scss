@@ -10,10 +10,12 @@
 
 .user-list {
   position: relative;
-  margin-top: -1px;
+  margin: -1px 0 0 0;
+  padding: 0;
   border: 1px solid $grey-light;
-  max-height: 140px;
+  max-height: 189px; // user item height * 3,5
   overflow: auto;
+  background: $white;
 }
 
 .user {
@@ -34,5 +36,17 @@
   &-match {
     width: 20%;
     text-align: right;
+  }
+}
+
+.user.interested {
+
+  &.last {
+    border-bottom: 1px solid $primary-light;
+  }
+
+  .fa-star {
+    color: $primary;
+    margin-right: 4px;
   }
 }

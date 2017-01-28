@@ -1,0 +1,22 @@
+<input
+  [(ngModel)]="searchText"
+  class="user-search form-control"
+  placeholder="Search for a User"
+  type="text" (click)="openUserList()">
+
+<ul class="user-list" *ngIf="showUserList" [ngSwitch]="clickableUser">
+  <li class="user interested" [class.last]="last" *ngFor="let interested of interestedUsers | filterNames : 'firstName' : 'lastName' : searchText; let last = last"
+      (click)="selectUser(interested)">
+    <div class="user-info">
+      <img class="g-avatar g-avatar--small" [src]="urlsOfLoadedPictures[interested._id] | safeUrl" alt="profile picture" >
+      {{ interested.firstName }} {{ interested.lastName }}
+    </div>
+    <div class="user-match"><span class="fa fa-star"></span>{{ interested.match | percent}}</div>
+  </li>
+  <li class="user" *ngFor="let user of visibleUsers | filterNames : 'firstName' : 'lastName' : searchText" (click)="selectUser(user)">
+    <div class="user-info"><img class="g-avatar g-avatar--small" [src]="urlsOfLoadedPictures[user._id] | safeUrl" alt="profile picture" >{{ user.firstName }} {{ user.lastName }}</div>
+    <div class="user-match">{{ user.match | percent }}</div>
+  </li>
+</ul>
+
+<p *ngIf="users?.length === 0">There are no more available users.</p>
