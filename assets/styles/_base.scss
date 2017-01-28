@@ -25,6 +25,11 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+html ::selection,
+body ::selection {
+  background: $primary-lighter;
+}
+
 #page-container {
   width: 100%;
   max-width: 1248px; // plus 2x24px = 48px horizontal padding

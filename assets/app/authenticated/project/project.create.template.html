@@ -125,7 +125,7 @@
           </li>
         </ul>
 
-        <button type="button" class="btn btn-add-task" (click)="showNewTaskModal()">Add Task</button>
+        <button type="button" class="btn btn-primary btn-add-task" (click)="showNewTaskModal()">Add Task</button>
         <app-modal [modal-id]="addTaskModalId" modal-title="Add a new Task">
           <app-task-create #taskComponent modal-body></app-task-create>
           <div modal-footer class="text-xs-right">
