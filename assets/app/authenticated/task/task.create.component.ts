@@ -45,7 +45,7 @@ export class TaskCreateComponent implements OnInit, OnDestroy {
         this.taskForm = this.fb.group({
             title: [this.task.title, Validators.required],
             description: [this.task.description, Validators.required],
-            status: [this.task.status, Validators.required]
+            status: [this.task.status ? this.task.status : 'upcoming', Validators.required]
         });
 
         this.retrieveImgURLs();
@@ -79,6 +79,7 @@ export class TaskCreateComponent implements OnInit, OnDestroy {
             // prevent adding a duplicate
             return;
         }
+        // TODO perhaps remove the interested user
         this.task.assignedUsers.push(user);
         this.retrieveImgURLs();
         this.userSearchService.userAdded(user);
