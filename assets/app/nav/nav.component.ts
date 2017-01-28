@@ -32,7 +32,6 @@ export class NavComponent {
         }
         this.navbarService.getUserRole$.subscribe((user) => {
             if (user) {
-                console.log(user.role);
                 this.isAdminUser = user.role === "admin";
                 this.isInternUser = user.role != "freelancer";
             }

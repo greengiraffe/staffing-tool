@@ -31,7 +31,6 @@ export class ProjectService {
 
     updateProjectTask(projectId: string, projectTask: any) {
         const body = JSON.stringify(projectTask);
-        console.log(body, projectTask._id);
         const headers = new Headers({'Content-Type': 'application/json'});
 
         return this.http.put('http://localhost:3000/api/project/task/' + projectId, body, {headers: headers})

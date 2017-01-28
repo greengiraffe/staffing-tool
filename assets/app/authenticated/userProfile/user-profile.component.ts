@@ -133,6 +133,5 @@ export class UserProfileComponent implements OnInit {
      */
     openModal() {
         this.modalService.open(this.changePwdModal);
-        console.log('open modal')
     }
 }

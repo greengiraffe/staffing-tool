@@ -18,7 +18,7 @@ export class UserSearchComponent implements OnInit {
     hiddenUsers: any[] = [];
     searchText;
     showUserList = false;
-    urlsOfLoadedPictures: Object = new Object();
+    urlsOfLoadedPictures = {};
 
     constructor(private userService: UserService,
                 private userSearchService: UserSearchService){}
@@ -83,7 +83,7 @@ export class UserSearchComponent implements OnInit {
     sortUsers() {
         this.visibleUsers.sort((a, b) => {
             return b.match - a.match;
-        })
+        });
 
         if(this.interestedUsers) {
             this.interestedUsers.sort((a,b) => {

@@ -41,7 +41,6 @@ export class ProjectShowComponent implements OnInit {
         const currentUser = this.authService.currentUser();
 
         if (currentUser) {
-            console.log(this.route);
             this.route.params
                 .switchMap((params: Params) =>
                     this.projectService.getProjectById(params['id']))

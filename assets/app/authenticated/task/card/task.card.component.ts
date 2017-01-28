@@ -51,7 +51,6 @@ export class TaskCardComponent {
             this.userService.getUserSkills(this.currentUser._id).subscribe(result => {
                 this.currentUser.userSkills = result;
                 this.matchValue = this.matchService.getMatch(this.task.requiredSkills, result)
-                console.log(this.matchValue);
             })
         }
     }
