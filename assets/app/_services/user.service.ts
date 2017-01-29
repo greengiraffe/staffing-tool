@@ -1,5 +1,6 @@
 import { Injectable } from "@angular/core";
-import { Http, Headers, Response, ResponseContentType } from "@angular/http";
+import { AuthHttp } from 'angular2-jwt';
+import { Headers, Response, ResponseContentType } from "@angular/http";
 import 'rxjs/Rx';
 import { Observable } from "rxjs";
 
@@ -8,24 +9,26 @@ import { Project } from "../_models/project.model";
 import { ProjectTask } from "../_models/project-task.model";
 import { UserSkill } from "../_models/user-skill.model";
 
+
+
 @Injectable()
 export class UserService {
     private users: User[] = [];
     private ownedProjects: Project[] = [];
     private assignedTasks: ProjectTask[] = [];
 
-    constructor(private http: Http) {}
+    constructor(private authHttp: AuthHttp) {}
 
     createUser(user: User) {
         const body = JSON.stringify(user);
         const headers = new Headers({'Content-Type': 'application/json'});
-        return this.http.post('http://localhost:3000/api/user', body, {headers: headers})
+        return this.authHttp.post('http://localhost:3000/api/user', body, {headers: headers})
             .map((response: Response) => response.json())
             .catch((error: Response) => Observable.throw(error.json()));
     }
 
     getUsers(): Observable<{}> {
-        return this.http.get('http://localhost:3000/api/user/list')
+        return this.authHttp.get('http://localhost:3000/api/user/list')
             .map((response: Response) => {
                 const res = response.json();
                 let newUsers: User[] = [];
@@ -49,13 +52,13 @@ export class UserService {
     }
 
     getUserById(userId): Observable<{}> {
-      return this.http.get('http://localhost:3000/api/user/' + userId)
+      return this.authHttp.get('http://localhost:3000/api/user/' + userId)
         .map((response: Response) => response.json())
         .catch((error: Response) => Observable.throw(error.json()));
     }
 
     getProjectsCreatedByUser(userId): Observable<{}> {
-        return this.http.get('http://localhost:3000/api/user/projects/' + userId)
+        return this.authHttp.get('http://localhost:3000/api/user/projects/' + userId)
             .map((response: Response) => {
                 const res = response.json();
                 let ownedProjects: Project[] = [];
@@ -83,13 +86,13 @@ export class UserService {
     }
 
     getAssignedTasksOfUser(userId): Observable<{}> {
-        return this.http.get('http://localhost:3000/api/user/tasks/' + userId)
+        return this.authHttp.get('http://localhost:3000/api/user/tasks/' + userId)
             .map((response: Response) => response.json())
             .catch((error: Response) => Observable.throw(error.json()));
     }
 
     getUserSkills(userId): Observable<UserSkill[]> {
-        return this.http.get('http://localhost:3000/api/user/skills/' + userId)
+        return this.authHttp.get('http://localhost:3000/api/user/skills/' + userId)
             .map((response: Response) => response.json())
             .catch((error: Response) => Observable.throw(error.json()));
     }
@@ -101,7 +104,7 @@ export class UserService {
             newPassword
         };
         const headers = new Headers({'Content-Type': 'application/json'});
-        return this.http.put('http://localhost:3000/api/user/password', body, { headers })
+        return this.authHttp.put('http://localhost:3000/api/user/password', body, { headers })
             .map((response: Response) => response.json())
             .catch((error: Response) => Observable.throw(error.json()));
     }
@@ -121,14 +124,14 @@ export class UserService {
 
         const body = JSON.stringify(user);
         const headers = new Headers({'Content-Type': 'application/json'});
-        return this.http.put('http://localhost:3000/api/user', body, { headers })
+        return this.authHttp.put('http://localhost:3000/api/user', body, { headers })
             .map((response: Response) => response.json())
             .catch((error: Response) => Observable.throw(error.json()));
     }
 
     getUserImage(userId, size?: string): Observable<{}> {
         let routeParams = size ? userId + "/" + size : userId;
-        return this.http.get('http://localhost:3000/api/user/img/' + routeParams, {responseType: ResponseContentType.Blob })
+        return this.authHttp.get('http://localhost:3000/api/user/img/' + routeParams, {responseType: ResponseContentType.Blob })
         .map((response: Response) => (response.status === 200) ? this.createImageUrl(response.blob()) : null)
         .catch((error: Response) => Observable.throw(error.json()));
     }
@@ -136,7 +139,7 @@ export class UserService {
     uploadUserImage(userId, image: File): Observable<{}> {
         var formData  =  new FormData();
         formData.append('image', image);
-        return this.http.post('http://localhost:3000/api/user/img/' + userId, formData, {responseType: ResponseContentType.Blob})
+        return this.authHttp.post('http://localhost:3000/api/user/img/' + userId, formData, {responseType: ResponseContentType.Blob})
             .map((response: Response) => this.createImageUrl(response.blob()))
             .catch((error: Response) => Observable.throw(error))
     }
@@ -144,7 +147,7 @@ export class UserService {
     deleteUser(user: User) {
         this.users.splice(this.users.indexOf(user), 1);
         const body = JSON.stringify(user);
-        return this.http.delete('http://localhost:3000/api/user/' + user._id)
+        return this.authHttp.delete('http://localhost:3000/api/user/' + user._id)
             .map((response: Response) => response.json())
             .catch((error: Response) => Observable.throw(error.json()));
     }

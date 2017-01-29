@@ -1,4 +1,5 @@
 import { Http, Response, Headers } from "@angular/http";
+import { AuthHttp } from 'angular2-jwt';
 import { Injectable, EventEmitter } from "@angular/core";
 import 'rxjs/Rx';
 import { Observable } from "rxjs";
@@ -9,12 +10,12 @@ import { Skill } from "../_models/skill.model";
 export class SkillService {
     private skillCollection: Skill[] = [];
 
-    constructor(private http: Http) {}
+    constructor(private authHttp: AuthHttp) {}
 
     addSkill(skill: string) {
         const headers = new Headers({'Content-Type': 'application/json'});
 
-        return this.http.post('http://localhost:3000/api/skill', { skill }, { headers: headers })
+        return this.authHttp.post('http://localhost:3000/api/skill', { skill }, { headers: headers })
             .map((response: Response) => {
                 const result = response.json();
                 const skill = new Skill(
@@ -31,13 +32,13 @@ export class SkillService {
         const token = localStorage.getItem('token')
             ? '?token=' + localStorage.getItem('token')
             : '';
-        return this.http.delete('http://localhost:3000/api/skill/' + skill._id)
+        return this.authHttp.delete('http://localhost:3000/api/skill/' + skill._id)
             .map((response: Response) => response.json())
             .catch((error: Response) => Observable.throw(error.json()));
     }
 
     getSkills(): Observable<{}> {
-        return this.http.get('http://localhost:3000/api/skill/list')
+        return this.authHttp.get('http://localhost:3000/api/skill/list')
             .map((response: Response) => {
                 const res = response.json();
                 let transformedSkills: Skill[] = [];
@@ -54,7 +55,7 @@ export class SkillService {
     }
 
     getSkillById(skillId: string): Observable<{}> {
-        return this.http.get('http://localhost:3000/api/skill/' + skillId)
+        return this.authHttp.get('http://localhost:3000/api/skill/' + skillId)
             .map((response: Response) => {
                 const res = response.json();
                 return res;
