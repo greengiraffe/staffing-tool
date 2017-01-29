@@ -25,20 +25,21 @@ export class ProjectListComponent implements OnInit {
     showHighPrio: boolean = false;
     showPastProjects: boolean = false;
     showCurrentProjects: boolean = false;
-    showConfirmedStatus: boolean = false;
-    showTentativeStatus: boolean = false;
-    showInternalStatus: boolean = false;
+    // showConfirmedStatus: boolean = false;
+    // showTentativeStatus: boolean = false;
+    // showInternalStatus: boolean = false;
 
     notOwnProjects: Project[] = [];
     notNormalProjects: Project[] = [];
     notHighProjects: Project[] = [];
     notPastProjects: Project[] = [];
     notCurrentProjects: Project[] = [];
-    notConfirmedProjects: Project[] = [];
-    notTentativeProjects: Project[] = [];
-    notInternalProjects: Project[] = [];
+    // notConfirmedProjects: Project[] = [];
+    // notTentativeProjects: Project[] = [];
+    // notInternalProjects: Project[] = [];
 
     filteredProjects: Project[];
+    applyFilters: String[] = ["current"];
 
     constructor(private projectService: ProjectService,
                 private router: Router,
@@ -51,6 +52,9 @@ export class ProjectListComponent implements OnInit {
             .subscribe((projects: Project[]) => {
                 this.projects = projects;
                 this.filteredProjects = projects;
+                for(let filter of this.applyFilters) {
+                    this.filterProjects(filter);
+                }
             });
         this.route.params
             .subscribe(params => {
@@ -110,18 +114,18 @@ export class ProjectListComponent implements OnInit {
                         expression = !project.isPriority;
                         break;
                     case ("current"):
-                        expression = new Date(project.end) >= this.today;
-                        break;
-                    case ("past"):
                         expression = new Date(project.end) < this.today;
                         break;
+                    case ("past"):
+                        expression = new Date(project.end) >= this.today;
+                        break;
                     //TODO filter projects after status
-                    case ("confirmed"):
-                        break;
-                    case ("tentative"):
-                        break;
-                    case ("internal"):
-                        break;
+                    // case ("confirmed"):
+                    //     break;
+                    // case ("tentative"):
+                    //     break;
+                    // case ("internal"):
+                    //     break;
                     default:
                         break;
                 }
@@ -161,18 +165,18 @@ export class ProjectListComponent implements OnInit {
                 this.showPastProjects = !this.showPastProjects;
                 this.filterAfter("past", this.showPastProjects, this.notPastProjects);
                 break;
-            case("confirmed"):
-                this.showConfirmedStatus = !this.showConfirmedStatus;
-                this.filterAfter("confirmed", this.showConfirmedStatus, this.notConfirmedProjects);
-                break;
-            case("tentative"):
-                this.showTentativeStatus = !this.showTentativeStatus;
-                this.filterAfter("tentative", this.showTentativeStatus, this.notTentativeProjects);
-                break;
-            case("internal"):
-                this.showInternalStatus = !this.showInternalStatus;
-                this.filterAfter("internal", this.showInternalStatus, this.notInternalProjects);
-                break;
+            // case("confirmed"):
+            //     this.showConfirmedStatus = !this.showConfirmedStatus;
+            //     this.filterAfter("confirmed", this.showConfirmedStatus, this.notConfirmedProjects);
+            //     break;
+            // case("tentative"):
+            //     this.showTentativeStatus = !this.showTentativeStatus;
+            //     this.filterAfter("tentative", this.showTentativeStatus, this.notTentativeProjects);
+            //     break;
+            // case("internal"):
+            //     this.showInternalStatus = !this.showInternalStatus;
+            //     this.filterAfter("internal", this.showInternalStatus, this.notInternalProjects);
+            //     break;
             default:
                 break;
         }
