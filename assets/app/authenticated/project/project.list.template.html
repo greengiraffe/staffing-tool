@@ -13,11 +13,11 @@
   <div class="content-wrapper">
 
     <div class="settings">
-      <h6 class="settings-title">Filter</h6>
+      <h6 class="settings-title">Filter out</h6>
       <ul class="filter-list">
         <li class="filter">
           <label>
-            <input id="own" type="checkbox" (change)="filterProjects('own', true)" />Own projects
+            <input id="own" type="checkbox" (change)="filterProjects('own', true)" />Not created projects
           </label>
         </li>
         <li class="filter">
@@ -27,12 +27,12 @@
         </li>
         <li class="filter">
           <label>
-            <input id="past" type="checkbox" (change)="filterProjects('past', true)" />Past projects
+            <input id="past" type="checkbox" (change)="filterProjects('past', true)" />Current projects
           </label>
         </li>
         <li class="filter">
           <label>
-            <input id="current" type="checkbox" (change)="filterProjects('current', true)" />Current projects
+            <input id="current" type="checkbox" (change)="filterProjects('current', true)" />Past projects
           </label>
         </li>
       </ul>
