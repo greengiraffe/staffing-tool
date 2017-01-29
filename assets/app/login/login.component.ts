@@ -23,6 +23,16 @@ export class LoginComponent implements OnInit{
                 private userService: UserService
                 ) {}
 
+    ngOnInit(){
+        this.loginForm = new FormGroup({
+            email: new FormControl(null, [
+                Validators.required,
+                Validators.pattern("[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?")
+            ]),
+            password: new FormControl(null, Validators.required)
+        });
+    }
+
     onSubmit() {
         let user = new User(this.loginForm.value.email, this.loginForm.value.password);
             this.authService.login(user)
@@ -35,20 +45,11 @@ export class LoginComponent implements OnInit{
                         this.loginForm.reset();
                     },
                     error => {
-                        this._flash.show(error.error.message, { cssClass: 'alert-danger', timeout: 50000000 });
+                        this.loginForm.get('password').reset();
+                        this._flash.show(error.error.message, { cssClass: 'alert-danger', timeout: 5000 });
                     }
                 );
         }
-
-    ngOnInit(){
-        this.loginForm = new FormGroup({
-            email: new FormControl(null, [
-                Validators.required,
-                Validators.pattern("[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?")
-            ]),
-            password: new FormControl(null, Validators.required)
-        });
-    }
 
     cacheUserAvatars(users: any[]) {
         users.forEach(user =>

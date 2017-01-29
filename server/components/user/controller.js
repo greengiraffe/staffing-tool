@@ -26,13 +26,13 @@ router.post('/login', function(req, res) {
             if (!user) {
                 return res.status(401).json({
                     title: 'Login failed',
-                    error: {message: 'Invalid login credentials'}
+                    error: {message: 'Invalid email or password.'}
                 });
             }
             if (!authHelper.comparePassword(req.body.password, user.password)) {
                 return res.status(401).json({
                     title: 'Login failed',
-                    error: {message: 'Invalid login credentials'}
+                    error: {message: 'Invalid email or password.'}
                 });
             }
             delete user.password;
@@ -46,7 +46,7 @@ router.post('/login', function(req, res) {
         })
         .catch(function(err) {
             return res.status(500).json({
-                title: 'An server error occurred',
+                title: 'A server error occurred',
                 error: err
             });
         });
