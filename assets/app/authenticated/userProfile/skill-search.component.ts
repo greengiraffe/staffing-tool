@@ -4,6 +4,7 @@ import { Skill } from "../../_models/skill.model";
 import { SkillService } from "../../_services/skill.service";
 import { SkillSearchService } from "../../_services/skill-search.service";
 import { UserSkill } from "../../_models/user-skill.model";
+import { isNullOrUndefined } from "util";
 
 @Component({
   selector: 'app-skill-search',
@@ -100,9 +101,11 @@ export class SkillSearchComponent implements OnInit {
      * Stream the selected skill as a UserSkill
      */
     selectUserSkill(skill: Skill, rating: number) {
-        this.searchText = null;
-        const userSkill = new UserSkill(skill, rating);
-        this.skillSearchService.addUserSkill(userSkill);
+        if(!isNullOrUndefined(skill._id) && !isNullOrUndefined(rating)) {
+            this.searchText = null;
+            const userSkill = new UserSkill(skill, rating);
+            this.skillSearchService.addUserSkill(userSkill);
+        }
     }
 
     /**

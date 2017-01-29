@@ -9,7 +9,6 @@ import { UserSkill } from "../../_models/user-skill.model";
 import { SkillSearchService } from "../../_services/skill-search.service";
 import { AuthService } from "../../_services/auth.service";
 
-
 @Component({
     selector: 'app-user-skill-list',
     templateUrl: 'user-skill-list.template.html',
@@ -22,9 +21,9 @@ export class UserSkillListComponent implements OnInit, OnChanges, OnDestroy {
     @Input() showSkillTypeIcons = true;
     @Input() user: User;
 
-    professionalSkills:Set<Skill> = new Set<Skill>();
-    basicSkills:Set<Skill> = new Set<Skill>();
-    interestSkills:Set<Skill> = new Set<Skill>();
+    professionalSkills: Array<Skill> = [];
+    basicSkills:        Array<Skill> = [];
+    interestSkills:     Array<Skill> = [];
     skillSearchServiceSubscription;
 
     constructor(private userService: UserService,
@@ -54,8 +53,8 @@ export class UserSkillListComponent implements OnInit, OnChanges, OnDestroy {
      */
     fillArrays() {
         for (let userSkill of this.user.userSkills) {
-            this.addSkill(userSkill);
-            this.skillSearchService.userSkills.push(userSkill)
+                this.addSkill(userSkill);
+                this.skillSearchService.userSkills.push(userSkill)
         }
     };
 
@@ -66,19 +65,25 @@ export class UserSkillListComponent implements OnInit, OnChanges, OnDestroy {
      */
     addSkill(userSkill: UserSkill) {
         const skill = userSkill.skill;
+        if (typeof skill === 'string' || skill == null) return;
 
-        switch (userSkill.rating) {
-            case 0:
-                this.interestSkills.add(skill);
-                break;
-            case 1:
-                this.basicSkills.add(skill);
-                break;
-            case 2:
-                this.professionalSkills.add(skill);
-                break;
+        if( this.interestSkills.findIndex(elem => elem._id === skill._id) === -1&&
+            this.basicSkills.findIndex(elem => elem._id === skill._id) === -1 &&
+            this.professionalSkills.findIndex(elem => elem._id === skill._id) === -1)
+        {
+            switch (userSkill.rating) {
+                case 0:
+                    this.interestSkills.push(skill);
+                    break;
+                case 1:
+                    this.basicSkills.push(skill);
+                    break;
+                case 2:
+                    this.professionalSkills.push(skill);
+                    break;
+            }
+            this.skillSearchService.skillAdded(skill);
         }
-        this.skillSearchService.skillAdded(skill)
     }
 
     /**

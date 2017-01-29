@@ -35,10 +35,15 @@ module.exports = {
         });
     },
 
+
     updateUser: function(updateData) {
         //Prevent Password and Email from being updated
         delete updateData.password;
         delete updateData.email;
+        // filter null values and duplicates of userSkills array
+        updateData.userSkills = updateData.userSkills.filter(skill => skill.skill !== undefined);
+        updateData.userSkills = updateData.userSkills.filter(
+            (elem, index, self) => self.findIndex((t) => {return t.skill === elem.skill;}) === index);
 
         return new Promise(function(resolve, reject) {
             User.findByIdAndUpdate(updateData._id, { $set: updateData}, function(err, user) {
@@ -190,6 +195,7 @@ module.exports = {
         })
     },
 
+
     addTokenToBlacklist: function(token) {
         let decoded = jwt.decode(token, {complete: true});
         let expDate = new Date(decoded.payload.exp * 1000);
@@ -197,7 +203,7 @@ module.exports = {
         let blacklistedToken = new BlacklistedToken({
             token: token,
             expireAt: expDate
-        })
+        });
 
         return new Promise(function(resolve, reject) {
             blacklistedToken.save(function(err, result) {

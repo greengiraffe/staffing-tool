@@ -23,14 +23,18 @@ export class UserProfileComponent implements OnInit {
     showTask = true;
     showSkill = true;
     showProject = true;
+
     editingPhone = false;
     newPhone: string;
+
+    editingSkills = false;
     pictureElement;
     imgToUpload: File;
     changePwdModal = "change-pwd-modal";
 
     constructor(private userService: UserService,
                 private authService: AuthService,
+                private skillSearchService: SkillSearchService,
                 private renderer: Renderer,
                 private modalService: ModalService,
                 private _flash: FlashMessagesService) {}
@@ -90,6 +94,26 @@ export class UserProfileComponent implements OnInit {
         );
 
         this.editingPhone = false;
+    }
+
+    saveSkills() {
+        let lastSkills = this.user.userSkills;
+        this.user.userSkills = this.skillSearchService.userSkills;
+
+        this.userService.updateUser(this.user).subscribe(
+            data => this._flash.show('Successfully saved!', { cssClass: 'alert-success', timeout: 2000 }),
+            error => {
+                this.user.userSkills = lastSkills;
+                this._flash.show(error.error.message, { cssClass: 'alert-danger', timeout: 2000 })
+            }
+        );
+
+        this.editingSkills = false;
+        this.skillSearchService.resetSearch();
+    }
+    cancelSkills() {
+        this.editingSkills = false;
+        this.skillSearchService.resetSearch();
     }
 
     toggleSkill() {

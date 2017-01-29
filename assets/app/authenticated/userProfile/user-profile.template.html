@@ -86,7 +86,14 @@
         <i class="fa fa-chevron-right"></i>
       </div>
       <div class="bar-content">
-        <app-user-skill-list class="skill-list" [user]="user" [showSkillTypeIcons]="false"></app-user-skill-list>
+        <app-user-skill-list class="skill-list" [user]="user" [showSkillTypeIcons]="true" [showRemove]="editingSkills?true:false"></app-user-skill-list>
+        <button (click)="editingSkills = true" [hidden]="editingSkills">Edit</button>
+        <div [hidden]="!editingSkills">
+          <br />
+          <app-skill-search [showSkillButtons]="true"></app-skill-search>
+          <button (click)="cancelSkills()">Cancel</button>
+          <button (click)="saveSkills()">Save</button>
+        </div>
       </div>
     </div>
 
