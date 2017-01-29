@@ -8,18 +8,22 @@ let util = require('../../services/util');
  * Create a skill
  */
 router.post('/skill', function(req, res, next) {
-    if(req.body.skill) {
-        Skill.createSkill(req.body.skill)
-        .then(function(result) {
-            res.status(200).json(result);
-        })
-        .catch(function(err) {
-            res.status(500).json(err);
-        });
+    if (!util.isAdmin(req)) {
+        return res.status(401).json('{}')
     } else {
-        res.status(400).json({
-            message: 'Was not able to create Skill'
-        });
+        if(req.body.skill) {
+            Skill.createSkill(req.body.skill)
+            .then(function(result) {
+                res.status(200).json(result);
+            })
+            .catch(function(err) {
+                res.status(500).json(err);
+            });
+        } else {
+            res.status(400).json({
+                message: 'Was not able to create Skill'
+            });
+        }
     }
 });
 

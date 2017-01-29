@@ -112,28 +112,33 @@ router.get('/user/mail/:email', function (req, res, next){
  * Create a user
  */
 router.post('/user', function(req, res, next) {
-    if(authHelper.passwordIsValid(req.body.password)) {
-        User.createUser(
-        req.body.firstName,
-        req.body.lastName,
-        req.body.email,
-        req.body.password,
-        req.body.location,
-        req.body.role,
-        req.body.phone
-    )
-        .then(function(result) {
-            res.status(201).json(result);
-        })
-        .catch(function(err) {
-            res.status(500).json(err);
-        });
+    if (!util.isAdmin(req)) {
+        console.log("is admin: ", util.isAdmin(req))
+        return res.status(401).json('{}')
     } else {
-        res.status(400).json({
-                        message : "Bad password",
-                        statusCode: 400,
-                        value: req.body.password
-        })
+        if(authHelper.passwordIsValid(req.body.password)) {
+            User.createUser(
+            req.body.firstName,
+            req.body.lastName,
+            req.body.email,
+            req.body.password,
+            req.body.location,
+            req.body.role,
+            req.body.phone
+        )
+            .then(function(result) {
+                res.status(201).json(result);
+            })
+            .catch(function(err) {
+                res.status(500).json(err);
+            });
+        } else {
+            res.status(400).json({
+                            message : "Bad password",
+                            statusCode: 400,
+                            value: req.body.password
+            })
+        }
     }
 });
 
