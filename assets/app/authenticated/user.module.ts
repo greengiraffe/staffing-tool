@@ -21,7 +21,6 @@ import { TaskCreateComponent } from "./task/task.create.component";
 import { FilterPipe } from "../_pipes/filter.pipe";
 import { OrderByPipe } from "../_pipes/orderBy.pipe";
 import { FilterNamesPipe } from "../_pipes/filterNames.pipe";
-import { PastProjectsPipe } from "../_pipes/pastProjects.pipe";
 import { SafeUrlPipe } from "../_pipes/safeUrl.pipe";
 
 import { ProjectCardComponent } from "./project/card/project.card.component";
@@ -59,7 +58,6 @@ import { MatchBarComponent } from "../match-bar/match-bar.component";
         FilterPipe,
         OrderByPipe,
         FilterNamesPipe,
-        PastProjectsPipe,
         SafeUrlPipe
     ]
 })
