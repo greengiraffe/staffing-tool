@@ -100,6 +100,26 @@
   padding: 8px 16px;
 }
 
+.orderButtons {
+  display: block;
+  margin-right: 15px;
+  &:hover {
+    color: $danger;
+    cursor: pointer;
+  }
+  &:active {
+    transform: scale(0.7);
+  }
+}
+
+.orderButtons-active {
+  color: $danger;
+}
+
+.flex-container {
+  display: flex;
+}
+
 //spinner
 .ducspinner {
   margin: 20% auto 0 auto;

@@ -36,6 +36,42 @@
           </label>
         </li>
       </ul>
+      <h6 class="settings-title">Order by</h6>
+      <ul class="filter-list">
+        <li class="filter">
+          <div class="flex-container">
+            <div>
+              <i id="start-asc" class="fa fa-caret-up orderButtons" (click)="orderProjects('start-asc', true)"></i>
+              <i id="start-desc" class="fa fa-caret-down orderButtons" (click)="orderProjects('start-desc', true)"></i>
+            </div>
+            <div>
+              Start date
+            </div>
+          </div>
+        </li>
+        <li class="filter">
+          <div class="flex-container">
+            <div>
+              <i id="end-asc" class="fa fa-caret-up orderButtons" (click)="orderProjects('end-asc', true)"></i>
+              <i id="end-desc" class="fa fa-caret-down orderButtons" (click)="orderProjects('end-desc', true)"></i>
+            </div>
+            <div>
+             End date
+            </div>
+          </div>
+        </li>
+        <li class="filter">
+          <div class="flex-container">
+            <div>
+              <i id="client-asc" class="fa fa-caret-up orderButtons active" (click)="orderProjects('client-asc', true)"></i>
+              <i id="client-desc" class="fa fa-caret-down orderButtons" (click)="orderProjects('client-desc', true)"></i>
+            </div>
+            <div>
+              Client
+            </div>
+          </div>
+        </li>
+      </ul>
     </div>
 
     <main class="content">
