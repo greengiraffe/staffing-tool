@@ -32,7 +32,9 @@
       </dd>
     </dl>
 
-    <button type="button" class="btn btn-block btn-plain btn-change-password" (click)="openModal()">Change Password</button>
+    <button type="button"
+            class="btn btn-block btn-plain btn-change-password"
+            (click)="modalService.open(changePwdModal)">Change Password</button>
 
   </div>
 
@@ -102,5 +104,12 @@
 </div>
 
 <app-modal class="modal-change-password" [modal-id]="changePwdModal" modal-title="Change Password">
-  <app-change-password modal-body></app-change-password>
+  <app-change-password #changePwd modal-body (onPasswordChange)="passwordChanged()"></app-change-password>
+  <div modal-footer class="text-xs-right">
+    <button type="button" class="btn" (click)="modalService.close(changePwdModal)">Cancel</button>
+    <button type="button"
+            class="btn btn-primary"
+            (click)="changePassword(changePwd)"
+            [disabled]="changePwd.changeForm.invalid">Change Password</button>
+  </div>
 </app-modal>

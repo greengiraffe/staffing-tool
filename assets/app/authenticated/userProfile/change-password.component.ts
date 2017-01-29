@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { UserService } from '../../_services/user.service';
 import { FormGroup, FormControl, Validators, FormBuilder } from "@angular/forms";
 import { AuthService } from "../../_services/auth.service";
@@ -6,10 +6,12 @@ import { AuthService } from "../../_services/auth.service";
 @Component({
   selector: 'app-change-password',
   templateUrl: 'change-password.template.html',
-  styleUrls: ['user-profile.style.scss']
+  styleUrls: ['change-password.style.scss']
 })
 
 export class ChangePasswordComponent implements OnInit{
+    @Output() onPasswordChange = new EventEmitter();
+
     changeForm: FormGroup;
 
     constructor(private userService: UserService,
@@ -20,8 +22,8 @@ export class ChangePasswordComponent implements OnInit{
         this.changeForm = this._fb.group({
             oldPw: ['', Validators.required],
             newPw: this._fb.group({
-                password: ['', Validators.required],
-                confirm: ['', Validators.required]
+                password: ['', [Validators.required, Validators.minLength(8), this.noCapital, this.noNumber]],
+                confirm: ['', [Validators.required, Validators.minLength(8)]]
             }, { validator: this.matchPassword })
         });
     }
@@ -47,14 +49,19 @@ export class ChangePasswordComponent implements OnInit{
         };
     }
 
-    onSubmit(form: FormGroup) {
-        this.userService.updateUserPassword(
-            this.authService.currentUser()._id,
-            form['oldPw'],
-            form['newPw']['password'])
-            .subscribe(
-                data => this.changeForm.reset(),
-                error => console.log(error)
-            );
+    noCapital(control): any {
+        if(!control.value.match(/(?=.*[A-Z])/)) {
+            return {noCapital: true};
+        } else {
+            return null;
+        }
+    }
+
+    noNumber(control): any {
+        if(!control.value.match(/^(?=.*\d).+$/)) {
+            return {noNumber: true};
+        } else {
+            return null;
+        }
     }
 }

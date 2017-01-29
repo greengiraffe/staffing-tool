@@ -6,37 +6,34 @@
       <div class="flex-container">
         <label for="firstName" class="flex-container-left">First Name <span class="red">*</span></label>
         <div class="flex-container-right red"
-             *ngIf="!createUserForm.get('firstName').valid && createUserForm.get('firstName').dirty">
+             *ngIf="createUserForm.get('firstName').invalid && createUserForm.get('firstName').dirty">
           This field is required.
         </div>
       </div>
       <input required type="text" id="firstName" placeholder="e.g. John" class="form-control"
-             formControlName="firstName"
-             [class.error]="!createUserForm.get('firstName').valid && createUserForm.get('firstName').dirty">
+             formControlName="firstName">
     </div>
     <div class="form-group">
       <div class="flex-container">
         <label for="lastName" class="flex-container-left">Last Name <span class="red">*</span></label>
         <div class="flex-container-right red"
-             *ngIf="!createUserForm.get('lastName').valid && createUserForm.get('lastName').dirty">
+             *ngIf="createUserForm.get('lastName').invalid && createUserForm.get('lastName').dirty">
           This field is required.
         </div>
       </div>
       <input required type="text" id="lastName" placeholder="e.g. Doe" class="form-control"
-             formControlName="lastName"
-             [class.error]="!createUserForm.get('lastName').valid && createUserForm.get('lastName').dirty">
+             formControlName="lastName">
     </div>
     <div class="form-group">
       <div class="flex-container">
         <label for="email" class="flex-container-left">Email <span class="red">*</span></label>
-        <div *ngIf="!createUserForm.get('email').valid && createUserForm.get('email').dirty"
+        <div *ngIf="createUserForm.get('email').invalid && createUserForm.get('email').dirty"
              class="flex-container-right red">
           Please enter a valid email address.
         </div>
       </div>
       <input required type="email" id="email" placeholder="john.doe@example.com" class="form-control"
-             formControlName="email"
-             [class.error]="!createUserForm.get('email').valid && createUserForm.get('email').dirty">
+             formControlName="email">
     </div>
     <div class="form-group">
       <label for="location">Location</label>
@@ -64,32 +61,30 @@
       <div class="form-group col-xs-6">
         <label for="password">Password <span class="red">*</span></label>
         <input required type="password" id="password" placeholder="Password" class="form-control"
-               formControlName="password"
-               [class.error]="!createUserForm.get('pw').get('password').valid && createUserForm.get('pw').get('password').dirty">
+               formControlName="password">
         <div *ngIf="createUserForm.get('pw').get('password').hasError('required') && createUserForm.get('pw').get('password').dirty"
              class="red">
           This field is required.
         </div>
         <div *ngIf="createUserForm?.controls?.pw?.controls?.password?.hasError('minlength')" class="red">
-          Minimum 8 characters.
+          Password must be at least 8 characters long.
         </div>
         <div *ngIf="createUserForm.get('pw').get('password').hasError('noCapital') && createUserForm.get('pw').get('password').dirty"
              class="red">
-          At least 1 capital letter.
+          Password must contain at least 1 capital letter (A-Z).
         </div>
         <div *ngIf="createUserForm?.controls?.pw?.controls?.password?.hasError('noNumber') && createUserForm.get('pw').get('password').dirty"
              class="red">
-          At least 1 number.
+          Password must contain at least 1 number (1-9).
         </div>
       </div>
       <div class="form-group col-xs-6">
         <label for="password-confirm">Confirm password <span class="red">*</span></label>
         <input required type="password" placeholder="Repeat password" id="password-confirm" class="form-control"
-               formControlName="confirm"
-               [class.error]="!createUserForm.get('pw').get('confirm').valid  && createUserForm.get('pw').get('confirm').dirty">
+               formControlName="confirm">
         <div *ngIf="createUserForm.get('pw').get('confirm').hasError('required') && createUserForm.get('pw').get('confirm').dirty"
              class="red">This field is required.</div>
-        <div *ngIf="!createUserForm.controls.pw.valid && createUserForm.controls.pw.controls.confirm.dirty" class="red">
+        <div *ngIf="createUserForm.get('pw').invalid && createUserForm.get('pw').get('confirm').dirty" class="red">
           Passwords must match.
         </div>
       </div>
@@ -97,7 +92,7 @@
     <div class="text-xs-right">
       <flash-messages></flash-messages>
       <button type="button" class="btn" (click)="goBack()">Cancel</button>
-      <button type="submit" class="btn btn-primary" [disabled]="!createUserForm.valid">Add Person</button>
+      <button type="submit" class="btn btn-primary" [disabled]="createUserForm.invalid">Add Person</button>
     </div>
   </form>
 </div>

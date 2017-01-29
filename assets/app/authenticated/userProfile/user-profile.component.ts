@@ -8,6 +8,7 @@ import { SkillSearchService } from "../../_services/skill-search.service";
 import { AuthService } from "../../_services/auth.service";
 import { FlashMessagesService } from "angular2-flash-messages";
 import { ModalService } from "../../_services/modal.service";
+import { ChangePasswordComponent } from "./change-password.component";
 
 @Component ({
     selector: 'app-user-profile',
@@ -158,10 +159,26 @@ export class UserProfileComponent implements OnInit {
         this.upload();
     }
 
-    /**
-     * Change Password Modal
-     */
-    openModal() {
-        this.modalService.open(this.changePwdModal);
+    changePassword(changePwdComponent: ChangePasswordComponent) {
+        let formValue = changePwdComponent.changeForm.value;
+
+        this.userService.updateUserPassword(
+            this.authService.currentUser()._id,
+            formValue['oldPw'],
+            formValue['newPw']['confirm'])
+            .subscribe(
+                data => {
+                    changePwdComponent.changeForm.reset();
+                    this.modalService.close(this.changePwdModal);
+                    this._flash.show("Password changed!", { cssClass: 'alert-success', timeout: 2000 })
+                },
+                error => {
+                    console.log(error);
+                    changePwdComponent.changeForm.reset();
+                    changePwdComponent.changeForm.setErrors({
+                        'wrongPassword': true
+                    });
+                }
+            );
     }
 }

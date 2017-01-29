@@ -25,7 +25,8 @@ form {
   background: $white;
 }
 
-.error {
+.error,
+.form-control.ng-dirty.ng-invalid {
   border-color: $danger;
 }
 

@@ -71,3 +71,7 @@ select {
 .form-group + .form-group {
   margin-top: 24px;
 }
+
+.row .form-group + .form-group {
+  margin-top: 0;
+}
