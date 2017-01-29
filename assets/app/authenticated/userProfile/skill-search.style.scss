@@ -1,9 +1,4 @@
 @import "../../../styles/variables";
-//
-//:host {
-//  display: block;
-//  border: 1px solid $grey-light;
-//}
 
 .skill-search {
   width: 100%;
@@ -22,32 +17,44 @@
   margin-left: 4px;
 }
 
-.skill-icon {
-  display: inline-block;
-  width: 14px;
-  height: 14px;
-  border-radius: 50%;
-  background-color: currentColor;
-}
-
-.skill-btn {
-  cursor: pointer;
-  margin-left: 2px;
-  border: 1px solid $grey-light;
-
-  &:hover {
-    border-color: currentColor;
+.skill {
+  &.has-skill-buttons {
+    line-height: 24px;
   }
 }
 
-.skill-icon.professional {
-  color: $skill-professional;
+.skill-buttons {
+  font-size: 20px;
+  line-height: 24px;
+  vertical-align: sub;
+
+  .fa {
+    cursor: pointer;
+    margin-left: 4px;
+
+    &.professional {
+      color: $skill-professional;
+
+      &:hover {
+        color: shade($skill-professional, 20);
+      }
+    }
+
+    &.basic {
+      color: $skill-basic;
+
+      &:hover {
+        color: shade($skill-basic, 20);
+      }
+    }
+
+    &.interest {
+      color: $skill-interest;
+
+      &:hover {
+        color: shade($skill-interest, 20);
+      }
+    }
+  }
 }
 
-.skill-icon.basic {
-  color: $skill-basic;
-}
-
-.skill-icon.interest {
-  color: $skill-interest;
-}

@@ -56,7 +56,7 @@
       {{ skill.name }}
       <button
         (click)="removeRequiredSkill(skill)"
-        class="btn btn-icon btn-remove-skill"
+        class="btn btn-icon btn-remove-skill btn-danger"
         aria-hidden="true">
         <i class="fa fa-remove"></i>
       </button>
@@ -75,7 +75,7 @@
       <span class="assigned-user-name">{{ user.firstName }} {{ user.lastName }}</span>
       <button
         (click)="removeAssignedUser(user)"
-        class="btn btn-icon btn-remove-user" title="Unassign {{ user.firstName }} {{ user.lastName }}"
+        class="btn btn-icon btn-danger btn-remove-user" title="Unassign {{ user.firstName }} {{ user.lastName }}"
         aria-hidden="true">
         <i class="fa fa-remove"></i>
       </button>

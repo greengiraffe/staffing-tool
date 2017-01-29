@@ -15,16 +15,19 @@ import { isNullOrUndefined } from "util";
       placeholder="Search for a Skill"
       type="text">
     <ul class="g-tag-list skill-list" [ngSwitch]="clickableSkill">
-      <li class="g-tag skill" *ngFor="let skill of visibleSkills | filter : 'name' : searchText" (click)="selectSkill(skill)">
+      <li class="g-tag skill"
+          [class.has-skill-buttons]="showSkillButtons"
+          *ngFor="let skill of visibleSkills | filter : 'name' : searchText"
+          (click)="selectSkill(skill)">
         {{ skill.name }}
         <span *ngIf="showSkillButtons" class="skill-buttons">
-            <span class="skill-icon skill-btn professional"
+            <span class="fa fa-star professional"
                 (click)="selectUserSkill(skill, 2)"
                 title="Add skill to professional skills"></span>
-            <span class="skill-icon skill-btn basic"
+            <span class="fa fa-star-half-o basic"
                 (click)="selectUserSkill(skill, 1)"
                 title="Add skill to basic skills"></span>
-            <span class="skill-icon skill-btn interest"
+            <span class="fa fa-star-o interest"
                 (click)="selectUserSkill(skill, 0)"
                 title="Add skill to interests"></span>
         </span>

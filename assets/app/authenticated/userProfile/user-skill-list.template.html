@@ -1,53 +1,59 @@
-<div class="row">
-  <div class="col-lg-4">
-    <h4 class="skill-type-heading"><span *ngIf="showSkillTypeIcons" class="skill-icon professional"></span>Professional Skills</h4>
+<div class="wrapper" [class.show-skill-icons]="showSkillTypeIcons">
+
+  <div class="skill-block">
+    <h4 class="skill-type-heading"><span class="fa fa-star professional"></span>Professional Skills</h4>
     <ul class="g-tag-list skill-list">
       <li
         class="g-tag skill professional"
         *ngFor="let skill of professionalSkills">
         {{ skill?.name }}
-        <span
+        <button
           *ngIf="showRemove"
           (click)="removeSkill(skill, professionalSkills)"
-          class="fa fa-remove"
+          class="btn btn-icon btn-danger"
           aria-hidden="true">
-        </span>
+            <span class="fa fa-remove"></span>
+        </button>
       </li>
     </ul>
     <p class="no-skills-hint" *ngIf="professionalSkills.length === 0">No skills added yet.</p>
   </div>
-  <div class="col-lg-4">
-    <h4 class="skill-type-heading"><span *ngIf="showSkillTypeIcons" class="skill-icon basic"></span>Basic Skills</h4>
+
+  <div class="skill-block">
+    <h4 class="skill-type-heading"><span class="fa fa-star-half-o basic"></span>Basic Skills</h4>
     <ul class="g-tag-list skill-list">
       <li
         class="g-tag skill basic"
         *ngFor="let skill of basicSkills">
         {{ skill?.name }}
-        <span
+        <button
           *ngIf="showRemove"
           (click)="removeSkill(skill, basicSkills)"
-          class="fa fa-remove"
-          aria-hidden="true">
-        </span>
+          class="btn btn-icon btn-danger">
+          <span class="fa fa-remove"></span>
+        </button>
       </li>
     </ul>
     <p class="no-skills-hint" *ngIf="basicSkills.length === 0">No skills added yet.</p>
   </div>
-  <div class="col-lg-4">
-    <h4 class="skill-type-heading"><span *ngIf="showSkillTypeIcons" class="skill-icon interest"></span>Interests</h4>
+
+  <div class="skill-block">
+    <h4 class="skill-type-heading"><span class="fa fa-star-o interest"></span>Interests</h4>
     <ul class="g-tag-list skill-list">
       <li
         class="g-tag skill interest"
         *ngFor="let skill of interestSkills">
         {{ skill?.name }}
-        <span
+        <button
           *ngIf="showRemove"
           (click)="removeSkill(skill, interestSkills)"
-          class="fa fa-remove"
+          class="btn btn-icon btn-danger"
           aria-hidden="true">
-        </span>
+          <span class="fa fa-remove"></span>
+        </button>
       </li>
     </ul>
     <p class="no-skills-hint" *ngIf="interestSkills.length === 0">No skills added yet.</p>
   </div>
+
 </div>

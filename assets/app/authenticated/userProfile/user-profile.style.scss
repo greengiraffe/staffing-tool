@@ -270,6 +270,20 @@
   padding: 12px
 }
 
+.btn-edit-skills {
+  float: right;
+}
+
+app-skill-search {
+  display: block;
+  margin-top: 24px;
+}
+
+.skill-actions {
+  float: right;
+  margin-top: 24px;
+}
+
 :host .modal-change-password /deep/ .modal-dialog {
   max-width: 500px;
 }

@@ -1,23 +1,41 @@
 @import "../../../styles/variables";
 
+.wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  margin: -12px;
+
+  &.show-skill-icons {
+    .skill-type-heading .fa {
+      display: inline-block;
+    }
+
+    .skill {
+      border-color: $blackish;
+      color: $blackish;
+
+      &.professional {
+        background: tint($skill-professional, 85);
+      }
+
+      &.basic {
+        background: tint($skill-basic, 85);
+      }
+    }
+  }
+}
+
+.skill-block {
+  flex: 1 1 220px;
+  margin: 12px;
+}
+
 .skill-icon {
   display: inline-block;
   width: 14px;
   height: 14px;
   border-radius: 50%;
   background-color: currentColor;
-}
-
-.skill-icon.professional {
-  color: $skill-professional;
-}
-
-.skill-icon.basic {
-  color: $skill-basic;
-}
-
-.skill-icon.interest {
-  color: $skill-interest;
 }
 
 .skill-list {
@@ -28,9 +46,26 @@
   font-size: 20px;
   line-height: 24px;
 
-  .skill-icon {
+  .fa {
+    display: none; // toggled via class on .wrapper
     margin-right: 8px;
+
+    &.professional {
+      color: $skill-professional;
+    }
+
+    &.basic {
+      color: $skill-basic;
+    }
+
+    &.interest {
+      color: $skill-interest;
+    }
   }
+}
+
+.skill .btn {
+
 }
 
 .no-skills-hint {
