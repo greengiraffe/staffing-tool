@@ -1,6 +1,5 @@
 <div class="card">
   <div class="actions">
-    <div class="g-tag">{{ task.status }}</div>
     <button *ngIf="currentUserCanDelete" class="btn btn-icon btn-danger" type="button" (click)="modalService.open(deleteTaskModalId)"><i class="fa fa-trash"></i></button>
     <button *ngIf="currentUserCanEdit" class="btn btn-icon" (click)="modalService.open(editTaskModalId)"><i class="fa fa-pencil"></i></button>
     <button *ngIf="!currentUserIsAssigned" class="btn btn-icon like" [class.starred]="currentUserIsInterested" >
@@ -19,6 +18,7 @@
     <span class="kicker-item project-client">{{ project.client }}</span>
   </h6>
   <h3 class="title"><a routerLink="/user/project/show/{{ project._id }}">{{ task.title }}</a></h3>
+  <span class="task-status">{{ task.status }}</span>
   <p class="description">{{ task.description }}</p>
   <ul class="g-tag-list skill-list">
     <li *ngFor="let skill of task.requiredSkills" class="g-tag skill">{{ skill.name }}</li>
