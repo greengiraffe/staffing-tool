@@ -36,21 +36,6 @@ export class ProjectListComponent implements OnInit {
 
     filteredProjects: Project[];
 
-    //used for ordering
-    orderStartAsc: boolean = false;
-    orderStartDesc: boolean = false;
-    orderEndAsc: boolean = false;
-    orderEndDesc: boolean = false;
-    orderClientAsc: boolean = false;
-    orderClientDesc: boolean = false;
-
-    beforeOrderStartAsc: Project[] = [];
-    beforeOrderStartDesc: Project[] = [];
-    beforeOrderEndAsc: Project[] = [];
-    beforeOrderEndDesc: Project[] = [];
-    beforeOrderClientAsc: Project[] = [];
-    beforeOrderClientDesc: Project[] = [];
-
     constructor(private projectService: ProjectService,
                 private router: Router,
                 private route: ActivatedRoute,
@@ -64,10 +49,10 @@ export class ProjectListComponent implements OnInit {
                 this.projects = projects;
                 this.filteredProjects = projects;
                 let filters = this.filterService.getFilters();
-                console.log(filters);
                 for(let filter of filters) {
                     this.filterProjects(filter, false);
                 }
+                this.orderProjects(this.filterService.getOrder(), false);
             });
         this.route.params
             .subscribe(params => {
@@ -176,76 +161,44 @@ export class ProjectListComponent implements OnInit {
 
     orderProjects(key: string, rememberOrder: boolean) {
 
-        switch(key) {
-            case ("start-asc"):
-                this.orderStartAsc = !this.orderStartAsc;
-                this.orderAfter("start-asc", this.orderStartAsc, this.beforeOrderStartAsc);
-                break;
-            case ("start-desc"):
-                this.orderStartDesc = !this.orderStartDesc;
-                this.orderAfter("start-desc", this.orderStartDesc, this.beforeOrderStartDesc);
-                break;
-            case ("end-asc"):
-                this.orderEndAsc = !this.orderEndAsc;
-                this.orderAfter("end-asc", this.orderEndAsc, this.beforeOrderEndAsc);
-                break;
-            case ("end-desc"):
-                this.orderEndDesc = !this.orderEndDesc;
-                this.orderAfter("end-desc", this.orderEndDesc, this.beforeOrderEndDesc);
-                break;
-            case ("client-asc"):
-                this.orderClientAsc = !this.orderClientAsc;
-                this.orderAfter("client-asc", this.orderClientAsc, this.beforeOrderClientAsc);
-                break;
-            case ("client-desc"):
-                this.orderClientDesc = !this.orderClientDesc;
-                this.orderAfter("client-desc", this.orderClientDesc, this.beforeOrderClientDesc);
-                break;
+        //dirty: deactivate other activated buttons
+        document.getElementById("start-asc").classList.remove("orderButtons-active");
+        document.getElementById("start-desc").classList.remove("orderButtons-active");
+        document.getElementById("end-asc").classList.remove("orderButtons-active");
+        document.getElementById("end-desc").classList.remove("orderButtons-active");
+        document.getElementById("client-asc").classList.remove("orderButtons-active");
+        document.getElementById("client-desc").classList.remove("orderButtons-active");
+
+        document.getElementById(key).classList.add("orderButtons-active");
+
+        this.filteredProjects.sort(function(a, b) {
+            var expression;
+            switch (key) {
+                case ("start-asc"):
+                    expression = new Date(a.start).valueOf() - new Date(b.start).valueOf();
+                    console.log(expression);
+                    break;
+                case ("start-desc"):
+                    expression = new Date(b.start).valueOf() - new Date(a.start).valueOf();
+                    break;
+                case ("end-asc"):
+                    expression = new Date(a.end).valueOf() - new Date(b.end).valueOf();
+                    break;
+                case ("end-desc"):
+                    expression = new Date(b.end).valueOf() - new Date(a.end).valueOf();
+                    break;
+                case ("client-asc"):
+                    expression = a.client.localeCompare(b.client);
+                    break;
+                case ("client-desc"):
+                    expression = -(a.client.localeCompare(b.client));
+                    break;
+            }
+            return expression;
+        })
+        if(rememberOrder) {
+            this.filterService.setOrder(key);
         }
     }
 
-    orderAfter(key: string, toggle: boolean, orderBefore: Project[]) {
-        if(toggle) {
-            for(let project of this.filteredProjects) {
-                orderBefore.push(project);
-            }
-            document.getElementById(key).classList.add("orderButtons-active");
-            this.filteredProjects.sort(function(a, b) {
-                var expression;
-                switch (key) {
-                    case ("start-asc"):
-                        expression = new Date(a.start).valueOf() - new Date(b.start).valueOf();
-                        console.log(expression);
-                        break;
-                    case ("start-desc"):
-                        expression = new Date(b.start).valueOf() - new Date(a.start).valueOf();
-                        break;
-                    case ("end-asc"):
-                        expression = new Date(a.end).valueOf() - new Date(b.end).valueOf();
-                        break;
-                    case ("end-desc"):
-                        expression = new Date(b.end).valueOf() - new Date(a.end).valueOf();
-                        break;
-                    case ("client-asc"):
-                        expression = a.client.localeCompare(b.client);
-                        break;
-                    case ("client-desc"):
-                        expression = -(a.client.localeCompare(b.client));
-                        break;
-                }
-                return expression;
-            })
-        } else {
-            document.getElementById(key).classList.remove("orderButtons-active");
-            this.filteredProjects = [];
-            for(let project of orderBefore) {
-                this.filteredProjects.push(project);
-            }
-            //clear orderBefore array
-            for(var i = orderBefore.length; i>0; i--) {
-                orderBefore.pop();
-            }
-
-        }
-    }
 }

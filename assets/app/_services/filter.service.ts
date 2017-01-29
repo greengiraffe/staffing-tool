@@ -4,18 +4,23 @@ import { Injectable } from '@angular/core';
 
 export class FilterService {
     filters: string[] = ["current"];
+    orderBy: string = "end-asc";
 
     pushPopFilter(filter) {
-        console.log(this.filters);
-        console.log(filter);
         let index = this.filters.indexOf(filter);
-        console.log(index);
         if(index === -1) {
             this.filters.push(filter);
         } else {
             this.filters.splice(index, 1);
         }
-        console.log(this.filters);
+    }
+
+    setOrder(order) {
+        this.orderBy = order;
+    }
+
+    getOrder() {
+        return this.orderBy;
     }
 
     getFilters() {
