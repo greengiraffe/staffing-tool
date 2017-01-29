@@ -1,4 +1,4 @@
-<div class="card {{ project.end | pastProjects }}">
+<div class="card">
   <div class="actions">
     <button *ngIf="currentUserCanDelete" class="btn btn-icon btn-danger" type="button" (click)="modalService.open(deleteProjectModalId)"><i class="fa fa-trash"></i></button>
     <button *ngIf="currentUserCanEdit" class="btn btn-icon" routerLink="/user/project/edit/{{project._id}}"><i class="fa fa-pencil"></i></button>
