@@ -130,8 +130,23 @@ section {
   padding: 8px;
 }
 
-.status {
-  position: absolute;
-  right: 16px;
-  top: 16px;
+.task-status {
+  font-size: 14px;
+  color: $grey-dark;
+  margin-left: 6px;
+  text-transform: lowercase;
+}
+
+.task-actions {
+  float: right;
+  margin-right: 16px;
+
+  button {
+    margin-top: -4px;
+    padding: 4px 8px;
+
+    + button {
+      margin-left: 0;
+    }
+  }
 }

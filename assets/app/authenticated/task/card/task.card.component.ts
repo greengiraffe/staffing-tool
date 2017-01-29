@@ -26,7 +26,7 @@ export class TaskCardComponent {
     private currentUserIsInterested = false;
     private currentUserIsAssigned = false;
     private deleteTaskModalId = "deleteTaskModal" + (0 | Math.random() * 6.04e7).toString(36);
-    private editTaskModalId = "deleteTaskModal" + (0 | Math.random() * 6.04e7).toString(36);
+    private editTaskModalId = "editTaskModal" + (0 | Math.random() * 6.04e7).toString(36);
     private currentUser;
 
     matchValue: number;

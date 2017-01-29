@@ -14,15 +14,19 @@
         <li><b>Description:</b> {{project?.description}}</li>
       </ul>
       <button class="btn btn-primary edit-project-btn" routerLink="../../edit/{{ project?._id }}"
-       *ngIf="currentUserCanEdit">Edit Project</button>
+       *ngIf="currentUserCanEditProject">Edit Project</button>
     </section>
 
     <h3 id="tasks" class="section-title">Tasks</h3>
     <section class="task-section">
       <div class="task-list">
         <p class="empty-hint" *ngIf="project?.projectTasks.length === 0">This project does not have any tasks yet.</p>
-        <div class="g-card task-card" *ngFor="let projectTask of project?.projectTasks">
-          <h2 class="g-card-title">{{ projectTask.title }}</h2><div class="g-tag status">{{ projectTask.status }}</div>
+        <div class="g-card task-card" *ngFor="let projectTask of project?.projectTasks; let i = index">
+          <div class="task-actions">
+            <button *ngIf="currentUserCanDeleteTask" class="btn btn-icon btn-danger" (click)="modalService.open(deleteTaskModalIds[i])"><i class="fa fa-trash"></i></button>
+            <button *ngIf="currentUserCanEditTask" class="btn btn-icon" (click)="modalService.open(editTaskModalIds[i])"><i class="fa fa-pencil"></i></button>
+          </div>
+          <h2 class="g-card-title">{{ projectTask.title }}<span class="task-status">{{ projectTask.status }}</span></h2>
           <div class="g-card-content"><p>{{ projectTask.description }}</p></div>
           <ul class="skill-list">
             <li class="g-tag skill" *ngFor="let skill of projectTask.requiredSkills">{{ skill.name }}</li>
@@ -41,6 +45,25 @@
               <button title="Assign User" *ngIf="currentUserIsCreator" type="button" (click)="assignUser(projectTask, user)" class="btn btn-icon btn-assign"><i class="fa fa-plus-circle" aria-hidden="true"></i></button>
             </li>
           </ul>
+
+          <app-modal class="modal-delete-task" [modal-id]="deleteTaskModalIds[i]" modal-title="Delete Task {{ projectTask.title }}">
+            <span modal-body>Are you sure that you want to delete this task?</span>
+            <div modal-footer class="text-xs-right">
+              <button type="button" class="btn" (click)="closeModal(deleteTaskModalIds[i], $event)">Cancel</button>
+              <button type="button" class="btn btn-danger" (click)="deleteTask(taskComponent, i)">Delete</button>
+            </div>
+          </app-modal>
+
+          <app-modal [modal-id]="editTaskModalIds[i]" modal-title="Edit {{ projectTask.title }}">
+            <app-task-create #taskComponent [task]="projectTask" modal-body></app-task-create>
+            <div modal-footer class="text-xs-right">
+              <button type="button" class="btn" (click)="closeModal(editTaskModalIds[i], $event)">Cancel</button>
+              <button type="button" class="btn btn-primary" [disabled]="!taskComponent.taskForm.valid" (click)="updateTask(taskComponent, i)">
+                Save Changes
+              </button>
+            </div>
+          </app-modal>
+
         </div>
       </div>
     </section>

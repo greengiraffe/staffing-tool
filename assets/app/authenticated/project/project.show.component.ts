@@ -12,6 +12,7 @@ import 'rxjs/add/operator/switchMap';
 import { AuthService } from "../../_services/auth.service";
 import { User } from "../../_models/user.model";
 import { RightsService } from "../../_services/rights.service";
+import { ModalService } from "../../_services/modal.service";
 
 @Component({
     selector: 'app-project-show',
@@ -21,7 +22,11 @@ import { RightsService } from "../../_services/rights.service";
 })
 
 export class ProjectShowComponent implements OnInit {
-    private currentUserCanEdit = false;
+    private currentUserCanEditProject = false;
+    private currentUserCanEditTask = false;
+    private currentUserCanDeleteTask = false;
+    private deleteTaskModalIds: string[] = [];
+    private editTaskModalIds: string[] = [];
 
     project: Project;
     currentUserIsCreator = false;
@@ -34,6 +39,7 @@ export class ProjectShowComponent implements OnInit {
         private userService: UserService,
         private authService: AuthService,
         private rightsService: RightsService,
+        private modalService: ModalService,
         private route: ActivatedRoute,
         private router: Router,
         private renderer: Renderer
@@ -48,12 +54,19 @@ export class ProjectShowComponent implements OnInit {
                     this.projectService.getProjectById(params['id']))
                 .subscribe((project: Project) => {
                     this.project = project;
+
+                    // set rights
                     this.currentUserIsCreator = project.creator._id === currentUser._id;
-                    this.currentUserCanEdit = this.rightsService.canEditProject(project, currentUser);
+                    this.currentUserCanEditProject = this.rightsService.canEditProject(project, currentUser);
+                    this.currentUserCanEditTask = this.rightsService.canEditTask(project, currentUser);
+                    this.currentUserCanDeleteTask = this.rightsService.canDeleteTask(project, currentUser);
+
                     this.project.projectTasks.forEach(
-                        task => {
-                            this.loadUserAvatars(task.assignedUsers)
-                            this.loadUserAvatars(task.interestedUsers)
+                        (task, i) => {
+                            this.loadUserAvatars(task.assignedUsers);
+                            this.loadUserAvatars(task.interestedUsers);
+                            this.editTaskModalIds.push("editTaskModal" + i);
+                            this.deleteTaskModalIds.push("deleteTaskModal" + i);
                         })
                 });
         }
@@ -97,5 +110,40 @@ export class ProjectShowComponent implements OnInit {
         task.assignedUsers.splice(userIndex, 1);
         this.projectService.updateProject(this.project)
             .subscribe();
+    }
+
+    deleteTask(taskComponent, i) {
+        let task = taskComponent.task;
+
+        this.modalService.close(this.deleteTaskModalIds[i]);
+        this.projectService.deleteProjectTask(this.project._id, task._id)
+            .subscribe(data => {
+                this.editTaskModalIds.splice(i, 1);
+                this.deleteTaskModalIds.splice(i, 1);
+                this.project.projectTasks.splice(this.project.projectTasks.indexOf(task), 1);
+            });
+    }
+
+    updateTask(taskComponent, i) {
+        const editedTask = new ProjectTask(
+            taskComponent.taskForm.controls["title"]["_value"],
+            taskComponent.taskForm.controls["description"]["value"],
+            taskComponent.task.requiredSkills,
+            taskComponent.taskForm.controls["status"]["value"],
+            taskComponent.task.assignedUsers,
+            taskComponent.task.interestedUsers,
+            taskComponent.task._id
+        );
+
+        this.modalService.close(this.editTaskModalIds[i]);
+
+        this.project.projectTasks[i] = editedTask;
+        this.projectService.updateProjectTask(this.project._id, editedTask)
+            .subscribe();
+    }
+
+    closeModal(modalId, event) {
+        event.stopPropagation();
+        this.modalService.close(modalId);
     }
 }
