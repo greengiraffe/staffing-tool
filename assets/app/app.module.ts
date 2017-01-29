@@ -59,7 +59,6 @@ import { CanActivateAuthGuard } from "./app.routing.guard.auth";
           headerPrefix: 'Bearer',
           tokenName: 'id_token',
           tokenGetter: (() => localStorage.getItem('id_token')),
-          globalHeaders: [{'Content-Type':'application/json'}],
           noJwtError: true
         })
     ],
