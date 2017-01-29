@@ -14,7 +14,7 @@ function isAdmin(req) {
         return res.status(401).json({});
     let token = req.headers.authorization.split(' ')[1];
     let decoded = jwt.decode(token, {complete: true});
-    return (decoded.payload.user.role == "admin");
+    return (decoded.payload.user.role == "admin" || decoded.payload.user.role == "user_creator");
 }
 
 module.exports = {
