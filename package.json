@@ -22,7 +22,7 @@
     "@angular/router": "3.4.2",
     "@angular/upgrade": "2.4.2",
     "angular2-flash-messages": "~1.0.3",
-    "angular2-jwt": "~0.1.28",
+    "angular2-jwt": "^0.1.28",
     "bcryptjs": "~2.3.0",
     "bluebird": "~3.4.6",
     "body-parser": "~1.15.2",
