@@ -16,7 +16,6 @@ import { FilterService } from "../../_services/filter.service";
 export class ProjectListComponent implements OnInit {
     projects: Project[];
     tasks: ProjectTask[];
-    sortType: string = 'end';
     activeTab = "projects";
 
     today: Date;
@@ -162,17 +161,18 @@ export class ProjectListComponent implements OnInit {
     orderProjects(key: string, rememberOrder: boolean) {
 
         //dirty: deactivate other activated buttons
-        document.getElementById("start-asc").classList.remove("orderButtons-active");
-        document.getElementById("start-desc").classList.remove("orderButtons-active");
-        document.getElementById("end-asc").classList.remove("orderButtons-active");
-        document.getElementById("end-desc").classList.remove("orderButtons-active");
-        document.getElementById("client-asc").classList.remove("orderButtons-active");
-        document.getElementById("client-desc").classList.remove("orderButtons-active");
+        document.getElementById("start-asc").classList.remove("order-button-active");
+        document.getElementById("start-desc").classList.remove("order-button-active");
+        document.getElementById("end-asc").classList.remove("order-button-active");
+        document.getElementById("end-desc").classList.remove("order-button-active");
+        document.getElementById("client-asc").classList.remove("order-button-active");
+        document.getElementById("client-desc").classList.remove("order-button-active");
 
-        document.getElementById(key).classList.add("orderButtons-active");
+        document.getElementById(key).classList.add("order-button-active");
 
         this.filteredProjects.sort(function(a, b) {
-            var expression;
+            let expression;
+
             switch (key) {
                 case ("start-asc"):
                     expression = new Date(a.start).valueOf() - new Date(b.start).valueOf();

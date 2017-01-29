@@ -13,65 +13,59 @@
   <div class="content-wrapper">
 
     <div class="settings">
-      <h6 class="settings-title">Filter out</h6>
-      <ul class="filter-list">
-        <li class="filter">
-          <label>
-            <input id="own" type="checkbox" (change)="filterProjects('own', true)" />Not created projects
-          </label>
-        </li>
-        <li class="filter">
-          <label>
-            <input id="high" type="checkbox" (change)="filterProjects('high', true)" />High priority projects
-          </label>
-        </li>
-        <li class="filter">
-          <label>
-            <input id="past" type="checkbox" (change)="filterProjects('past', true)" />Current projects
-          </label>
-        </li>
-        <li class="filter">
-          <label>
-            <input id="current" type="checkbox" (change)="filterProjects('current', true)" />Past projects
-          </label>
-        </li>
-      </ul>
-      <h6 class="settings-title">Order by</h6>
-      <ul class="filter-list">
-        <li class="filter">
-          <div class="flex-container">
-            <div>
-              <i id="start-asc" class="fa fa-caret-up orderButtons" (click)="orderProjects('start-asc', true)"></i>
-              <i id="start-desc" class="fa fa-caret-down orderButtons" (click)="orderProjects('start-desc', true)"></i>
+
+      <div class="settings-block">
+        <h6 class="settings-title">Filter out:</h6>
+        <ul class="filter-list">
+          <li class="filter">
+            <label>
+              <input id="own" type="checkbox" (change)="filterProjects('own', true)" />Not created projects
+            </label>
+          </li>
+          <li class="filter">
+            <label>
+              <input id="high" type="checkbox" (change)="filterProjects('high', true)" />High priority projects
+            </label>
+          </li>
+          <li class="filter">
+            <label>
+              <input id="past" type="checkbox" (change)="filterProjects('past', true)" />Current projects
+            </label>
+          </li>
+          <li class="filter">
+            <label>
+              <input id="current" type="checkbox" (change)="filterProjects('current', true)" />Past projects
+            </label>
+          </li>
+        </ul>
+      </div>
+
+      <div class="settings-block">
+        <h6 class="settings-title">Order by:</h6>
+        <ul class="filter-list">
+          <li class="filter">
+            <span>Start date</span>
+            <div class="order-buttons">
+              <i id="start-asc" class="fa fa-caret-up order-button" (click)="orderProjects('start-asc', true)"></i>
+              <i id="start-desc" class="fa fa-caret-down order-button" (click)="orderProjects('start-desc', true)"></i>
             </div>
-            <div>
-              Start date
+          </li>
+          <li class="filter">
+            <span>End date</span>
+            <div class="order-buttons">
+              <i id="end-asc" class="fa fa-caret-up order-button" (click)="orderProjects('end-asc', true)"></i>
+              <i id="end-desc" class="fa fa-caret-down order-button" (click)="orderProjects('end-desc', true)"></i>
             </div>
-          </div>
-        </li>
-        <li class="filter">
-          <div class="flex-container">
-            <div>
-              <i id="end-asc" class="fa fa-caret-up orderButtons" (click)="orderProjects('end-asc', true)"></i>
-              <i id="end-desc" class="fa fa-caret-down orderButtons" (click)="orderProjects('end-desc', true)"></i>
+          </li>
+          <li class="filter">
+            <span>Client</span>
+            <div class="order-buttons">
+              <i id="client-asc" class="fa fa-caret-up order-button" (click)="orderProjects('client-asc', true)"></i>
+              <i id="client-desc" class="fa fa-caret-down order-button" (click)="orderProjects('client-desc', true)"></i>
             </div>
-            <div>
-             End date
-            </div>
-          </div>
-        </li>
-        <li class="filter">
-          <div class="flex-container">
-            <div>
-              <i id="client-asc" class="fa fa-caret-up orderButtons" (click)="orderProjects('client-asc', true)"></i>
-              <i id="client-desc" class="fa fa-caret-down orderButtons" (click)="orderProjects('client-desc', true)"></i>
-            </div>
-            <div>
-              Client
-            </div>
-          </div>
-        </li>
-      </ul>
+          </li>
+        </ul>
+      </div>
     </div>
 
     <main class="content">
