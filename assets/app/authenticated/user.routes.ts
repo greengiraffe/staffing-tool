@@ -8,21 +8,24 @@ import { UserProfileComponent } from "./userProfile/user-profile.component";
 import { UserProfileEditComponent } from "./userProfile/user-profile-edit.component";
 import { UserListComponent } from "./userList/user.list.component";
 import { TaskCreateComponent } from "./task/task.create.component";
+import { CanActivateAuthGuard } from '../app.routing.guard.auth';
+
 
 const userRoutes: Routes = [
     {
         path: 'user',
         children: [
-            { path: '', component: UserProfileComponent},
-            { path: 'profile', component: UserProfileComponent },
-            { path: 'profile/edit', component: UserProfileEditComponent },
-            { path: 'project/show/:id', component: ProjectShowComponent },
-            { path: 'project/create', component: ProjectCreateComponent },
-            { path: 'project/list/:type', component: ProjectListComponent },
-            { path: 'project/list', component: ProjectListComponent },
-            { path: 'project/edit/:id', component: ProjectCreateComponent },
-            { path: 'list', component: UserListComponent }
-        ]
+            { path: '', component: UserProfileComponent, canActivate: [CanActivateAuthGuard] },
+            { path: 'profile', component: UserProfileComponent, canActivate: [CanActivateAuthGuard] },
+            { path: 'profile/edit', component: UserProfileEditComponent,canActivate: [CanActivateAuthGuard] },
+            { path: 'project/show/:id', component: ProjectShowComponent, canActivate: [CanActivateAuthGuard] },
+            { path: 'project/create', component: ProjectCreateComponent, canActivate: [CanActivateAuthGuard] },
+            { path: 'project/list/:type', component: ProjectListComponent, canActivate: [CanActivateAuthGuard] },
+            { path: 'project/list', component: ProjectListComponent, canActivate: [CanActivateAuthGuard] },
+            { path: 'project/edit/:id', component: ProjectCreateComponent, canActivate: [CanActivateAuthGuard] },
+            { path: 'list', component: UserListComponent, canActivate: [CanActivateAuthGuard]}
+        ],
+        canActivate: [CanActivateAuthGuard]
     }
 ];
 
