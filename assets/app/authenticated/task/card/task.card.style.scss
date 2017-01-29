@@ -20,7 +20,8 @@
   .btn {
     font-size: 20px;
 
-    + .btn {
+    + .btn,
+    + .assigned {
       margin-left: 8px;
     }
 

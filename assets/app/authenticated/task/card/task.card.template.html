@@ -7,9 +7,9 @@
          [ngClass]="{'fa-star-o': !currentUserIsInterested, 'fa-star': currentUserIsInterested}"
          class="fa"></i>
     </button>
-    <div *ngIf="currentUserIsAssigned" class="assigned" title="You are assigned!">
+    <span *ngIf="currentUserIsAssigned" class="assigned" title="You are assigned!">
       <i class="fa fa-check-circle"></i>
-    </div>
+    </span>
   </div>
 
   <h6 class="kicker">
