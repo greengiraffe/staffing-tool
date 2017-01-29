@@ -55,7 +55,7 @@ router.post('/login', function(req, res) {
 /**
  * Guard routes
  */
-//router.use(authHelper.ensureAuthenticated)
+router.use(authHelper.ensureAuthenticated)
 
 /**
  *  Handle Logout
