@@ -29,7 +29,7 @@ export class AuthService {
                     null,
                     res.user._id
                 );
-                localStorage.setItem('token', res.token);
+                localStorage.setItem('id_token', res.token);
                 localStorage.setItem('user', JSON.stringify(user));
                 return user;
             })
