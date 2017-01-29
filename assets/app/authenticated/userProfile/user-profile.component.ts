@@ -64,12 +64,18 @@ export class UserProfileComponent implements OnInit {
 
             this.userService.getProjectsCreatedByUser(currentUser._id)
                 .subscribe(
-                        (projects: Project[]) =>  this.projects = projects,
+                        (projects: Project[]) => {
+                            this.projects = projects;
+                            this.showProject = this.projects.length > 0
+                        },
                         error => console.log(error)
                     );
             this.userService.getAssignedTasksOfUser(currentUser._id)
                 .subscribe(
-                    (res: any[]) => this.assignedTasks = res,
+                    (res: any[]) => {
+                        this.assignedTasks = res;
+                        this.showTask = this.assignedTasks.length > 0
+                    },
                     error => console.log(error)
                     );
 
