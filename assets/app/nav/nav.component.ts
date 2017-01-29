@@ -29,7 +29,6 @@ export class NavComponent implements OnInit {
         }
         this.navbarService.getUserRole$.subscribe((user) => {
             if (user) {
-                console.log(user.role);
                 this.isAdminUser = user.role === "admin";
                 this.isInternalUser = user.role != "freelancer";
                 this.isUserCreator = user.role === "user_creator";

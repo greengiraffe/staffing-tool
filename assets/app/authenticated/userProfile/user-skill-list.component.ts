@@ -89,9 +89,11 @@ export class UserSkillListComponent implements OnInit, OnChanges, OnDestroy {
     /**
      * Remove a skill from a skill set and inform the service.
      */
-    removeSkill(skill: Skill, skillList: Set<Skill>) {
-        skillList.delete(skill);
-        this.skillSearchService.removeSkill(skill);
+    removeSkill(skill: Skill, skillList: Array<Skill>) {
+        if (skillList.findIndex(elem => elem._id === skill._id) > -1) {
+            skillList.splice(skillList.indexOf(skill), 1);
+            this.skillSearchService.removeSkill(skill);
+        }
     }
 
     ngOnDestroy() {

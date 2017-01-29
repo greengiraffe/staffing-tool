@@ -24,7 +24,6 @@ export class SkillSearchService {
     searchReset$ = this.resetSearchSource.asObservable();
 
     addUserSkill(userSkill: UserSkill) {
-        console.log("skill-search-service add user skill")
         this.userSkillAddedSource.next(userSkill);
         this.userSkills.push(userSkill);
     }
