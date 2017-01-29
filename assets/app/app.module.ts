@@ -8,6 +8,7 @@ import { FlashMessagesModule } from "angular2-flash-messages";
 import { AuthService } from "./_services/auth.service";
 import { UserService } from "./_services/user.service";
 import { NavBarService } from "./_services/navbar.service";
+import { FilterService } from "./_services/filter.service";
 
 import { AppComponent } from "./app.component";
 import { AppRoutingModule } from "./app.routing";
@@ -47,6 +48,7 @@ import { CanActivateAuthGuard } from "./app.routing.guard.auth";
         UserService,
         AuthService,
         RightsService,
+        FilterService,
         MatchService,
         ModalService,
         NavBarService,

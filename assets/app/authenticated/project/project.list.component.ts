@@ -4,6 +4,7 @@ import { Router, ActivatedRoute } from "@angular/router";
 import { Project } from "../../_models/project.model";
 import { ProjectTask } from "../../_models/project-task.model";
 import { AuthService } from "../../_services/auth.service";
+import { FilterService } from "../../_services/filter.service";
 
 @Component({
     selector: 'app-project-list',
@@ -39,12 +40,12 @@ export class ProjectListComponent implements OnInit {
     // notInternalProjects: Project[] = [];
 
     filteredProjects: Project[];
-    applyFilters: String[] = ["current"];
 
     constructor(private projectService: ProjectService,
                 private router: Router,
                 private route: ActivatedRoute,
-                private authService: AuthService) {}
+                private authService: AuthService,
+                private filterService: FilterService) {}
 
     ngOnInit() {
         this.today = new Date();
@@ -52,8 +53,10 @@ export class ProjectListComponent implements OnInit {
             .subscribe((projects: Project[]) => {
                 this.projects = projects;
                 this.filteredProjects = projects;
-                for(let filter of this.applyFilters) {
-                    this.filterProjects(filter);
+                let filters = this.filterService.getFilters();
+                console.log(filters);
+                for(let filter of filters) {
+                    this.filterProjects(filter, false);
                 }
             });
         this.route.params
@@ -94,16 +97,9 @@ export class ProjectListComponent implements OnInit {
         this.router.navigate([destinationURL]);
     }
 
-    togglePastProjects() {
-        this.showPastProjects = !this.showPastProjects;
-        let pastProjects = <NodeListOf<HTMLElement>>document.querySelectorAll('.past');
-        for (var i = 0; i < pastProjects.length; ++i) {
-            pastProjects[i].style.display = this.showPastProjects ? "block" : "none";
-        }
-    }
-
     filterAfter(key: string, toggle: boolean, filterArray: Project[]) {
         if(toggle) {
+            document.getElementById(key).setAttribute("checked", "true");
             for(let project of this.filteredProjects) {
                 var expression;
                 switch(key) {
@@ -137,6 +133,7 @@ export class ProjectListComponent implements OnInit {
                 this.filteredProjects.splice(this.filteredProjects.indexOf(project),1);
             }
         } else {
+            document.getElementById(key).setAttribute("checked", "false");
             for(let project of filterArray) {
                 this.filteredProjects.push(project);
             }
@@ -147,7 +144,8 @@ export class ProjectListComponent implements OnInit {
         }
     }
 
-    filterProjects(key) {
+    filterProjects(key: string, rememberFilter: boolean) {
+
         switch(key) {
             case ("own"):
                 this.showOwnProjects = !this.showOwnProjects;
@@ -179,6 +177,9 @@ export class ProjectListComponent implements OnInit {
             //     break;
             default:
                 break;
+        }
+        if(rememberFilter) {
+            this.filterService.pushPopFilter(key);
         }
     }
 }

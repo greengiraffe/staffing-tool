@@ -17,22 +17,22 @@
       <ul class="filter-list">
         <li class="filter">
           <label>
-            <input type="checkbox" (change)="filterProjects('own')" />Own projects
+            <input id="own" type="checkbox" (change)="filterProjects('own', true)" />Own projects
           </label>
         </li>
         <li class="filter">
           <label>
-            <input type="checkbox" (change)="filterProjects('high')" />High priority projects
+            <input id="high" type="checkbox" (change)="filterProjects('high', true)" />High priority projects
           </label>
         </li>
         <li class="filter">
           <label>
-            <input type="checkbox" (change)="filterProjects('past')" />Past projects
+            <input id="past" type="checkbox" (change)="filterProjects('past', true)" />Past projects
           </label>
         </li>
         <li class="filter">
           <label>
-            <input type="checkbox" (change)="filterProjects('current')" checked/>Current projects
+            <input id="current" type="checkbox" (change)="filterProjects('current', true)" />Current projects
           </label>
         </li>
       </ul>
