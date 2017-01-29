@@ -31,7 +31,7 @@ export class UserCardComponent {
         if (user) {
             this.currentUserCanDelete = this.rightsService.canRemoveUser(user);
         }
-        this.url = sessionStorage.getItem(this.user._id) ? sessionStorage.getItem(this.user._id) : '/img/usersmall.png';
+        this.url = localStorage.getItem(this.user._id) ? localStorage.getItem(this.user._id) : '/img/usersmall.png';
     }
 
     deleteUser() {

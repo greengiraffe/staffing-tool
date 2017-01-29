@@ -105,7 +105,7 @@ export class TaskCreateComponent implements OnInit, OnDestroy {
 
     retrieveImgURLs() {
         this.task.assignedUsers.forEach( user => {
-            let url = sessionStorage.getItem(user._id);
+            let url = localStorage.getItem(user._id);
             this.urlsOfLoadedPictures[user._id] = url ? url : '/img/usersmall.png';
         });
     }

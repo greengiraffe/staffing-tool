@@ -55,7 +55,7 @@ export class LoginComponent implements OnInit{
         users.forEach(user =>
             this.userService.getUserImage(user._id, "small")
                 .subscribe(url =>
-                     sessionStorage.setItem(user._id, ""+url)
+                     localStorage.setItem(user._id, ""+url)
                 )
         )
     }

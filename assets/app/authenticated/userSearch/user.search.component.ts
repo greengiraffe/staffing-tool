@@ -132,7 +132,7 @@ export class UserSearchComponent implements OnInit {
 
     retrieveImgURLs() {
         this.users.forEach( user => {
-            let url = sessionStorage.getItem(user._id);
+            let url = localStorage.getItem(user._id);
             this.urlsOfLoadedPictures[user._id] = url ? url : '/img/usersmall.png';
         });
     }
