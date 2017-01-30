@@ -18,6 +18,10 @@ export class RightsService {
     }
 
     canEditProject(project: Project, user: User): boolean {
+        if(user.role === 'freelancer'){
+            return false;
+        }
+
         let isAssignedUser = user => {
             for(let task of project.projectTasks) {
                 for(let assignedUser of task.assignedUsers) {
