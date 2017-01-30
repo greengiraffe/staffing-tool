@@ -124,7 +124,8 @@ export class ProjectShowComponent implements OnInit {
             taskComponent.task.interestedUsers,
             taskComponent.task._id
         );
-
+        this.loadUserAvatars(taskComponent.task.assignedUsers);
+        this.loadUserAvatars(taskComponent.task.interestedUsers);
         this.modalService.close(this.editTaskModalIds[i]);
 
         this.project.projectTasks[i] = editedTask;

@@ -54,10 +54,8 @@ export class LoginComponent implements OnInit{
     cacheUserAvatars(users: any[]) {
         users.forEach(user =>
             this.userService.getUserImage(user._id, "small")
-                .subscribe()
+                .subscribe(data => console.log('cached'))
+                /*DO NOT REMOVE LOG, some images fail to load without the log, no idea why*/
         );
-        let user: User = JSON.parse(localStorage.getItem('user'));
-        this.userService.getUserImage(user._id)
-            .subscribe();
     }
 }
