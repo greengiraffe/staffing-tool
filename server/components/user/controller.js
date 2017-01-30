@@ -113,7 +113,6 @@ router.get('/user/mail/:email', function (req, res, next){
  */
 router.post('/user', function(req, res, next) {
     if (!util.isAdmin(req)) {
-        console.log("is admin: ", util.isAdmin(req))
         return res.status(401).json('{}')
     } else {
         if(authHelper.passwordIsValid(req.body.password)) {
