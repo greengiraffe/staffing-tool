@@ -38,9 +38,11 @@ export class ProjectListComponent implements OnInit {
                 }
                 let filters = this.filterService.getFilters();
                 for(let filter of filters) {
+                    let checkbox = document.getElementById(filter);
+                    if(checkbox) { checkbox.setAttribute("checked", "true"); }
                     this.applyFilter(filter);
                 }
-                this.orderProjects(this.filterService.getOrder(), false);
+                this.orderProjects(this.filterService.getOrder());
             });
         this.route.params
             .subscribe(params => {
@@ -92,10 +94,10 @@ export class ProjectListComponent implements OnInit {
                     expression = !project.isPriority;
                     break;
                 case ("current"):
-                    expression = new Date(project.end) >= this.today;
+                    expression = new Date(project.end) < this.today;
                     break;
                 case ("past"):
-                    expression = new Date(project.end) <= this.today;
+                    expression = new Date(project.end) >= this.today;
                     break;
                 default:
                     break;
@@ -139,10 +141,10 @@ export class ProjectListComponent implements OnInit {
         for(let key of applyFilters) {
             this.applyFilter(key);
         }
-        this.orderProjects(this.filterService.getOrder(), false);
+        this.orderProjects(this.filterService.getOrder());
     }
 
-    orderProjects(key: string, rememberOrder: boolean) {
+    orderProjects(key: string) {
 
         //dirty: deactivate other activated buttons
         document.getElementById("start-asc").classList.remove("order-button-active");
@@ -179,9 +181,8 @@ export class ProjectListComponent implements OnInit {
             }
             return expression;
         })
-        if(rememberOrder) {
-            this.filterService.setOrder(key);
-        }
+
+        this.filterService.setOrder(key);
     }
 
 }
