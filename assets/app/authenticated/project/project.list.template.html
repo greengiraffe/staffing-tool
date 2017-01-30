@@ -74,7 +74,7 @@
       </div>
 
       <div class="tabpane" id="tasks" [ngClass]="{ active: activeTab === 'tasks' }">
-        <template ngFor let-project [ngForOf]="projects">
+        <template ngFor let-project [ngForOf]="filteredProjects">
           <app-task-card
             [project]="project"
             [task]="projectTask"
