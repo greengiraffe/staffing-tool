@@ -83,15 +83,19 @@ router.delete('/project/task/:projectId/:taskId', function(req, res, next) {
  * Update a Task
  */
 router.put('/project/task/:id', function(req, res, next) {
-    let id = req.params.id;
-    if(util.isValidId(id, res)) {
-        Project.updateProjectTask(req.params.id, req.body)
-            .then(function(result){
-               res.status(200).json(result);
-            })
-            .catch(function(err){
-                res.status(err.statusCode).json(err);
-            });
+    if(util.isFreelancer(req)) {
+        return res.status(401).json('{}')
+    } else {
+        let id = req.params.id;
+        if(util.isValidId(id, res)) {
+            Project.updateProjectTask(req.params.id, req.body)
+                .then(function(result){
+                   res.status(200).json(result);
+                })
+                .catch(function(err){
+                    res.status(err.statusCode).json(err);
+                });
+        }
     }
 });
 
