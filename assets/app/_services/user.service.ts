@@ -133,17 +133,35 @@ export class UserService {
     getUserImage(userId, size?: string): Observable<{}> {
         let routeParams = size ? userId + "/" + size : userId;
         return this.authHttp.get('http://localhost:3000/api/user/img/' + routeParams, {responseType: ResponseContentType.Blob })
-        .map((response: Response) => (response.status === 200) ? response.blob() : null)
+        .map((response: Response) => this.imgToBase64(response.blob(), size ? userId : "profile_img"))
         .catch((error: Response) => Observable.throw(error.json()));
     }
 
     uploadUserImage(userId, image: File): Observable<{}> {
-        var formData  =  new FormData();
+        let formData  =  new FormData();
         formData.append('image', image);
         return this.authHttp.post('http://localhost:3000/api/user/img/' + userId, formData, {responseType: ResponseContentType.Blob})
-            .map((response: Response) => this.createImageUrl(response.blob()))
+            .map((response: Response) => {
+                this.getUserImage(userId, "small").subscribe();
+                return this.imgToBase64(response.blob(), "profile_img");
+            })
             .catch((error: Response) => Observable.throw(error))
     }
+
+    imgToBase64(data: Blob, key: string) {
+        if (!data) return;
+        return new Promise(function (resolve, reject) {
+            let image;
+            let myReader:FileReader = new FileReader();
+            myReader.readAsDataURL(data);
+            myReader.onloadend = (e) => {
+                image = myReader.result;
+                if(!image) reject("/img/usersmall.png");
+                localStorage.setItem(key , image);
+                resolve(image);
+            };
+        })
+    };
 
     deleteUser(user: User) {
         this.users.splice(this.users.indexOf(user), 1);
@@ -151,12 +169,5 @@ export class UserService {
         return this.authHttp.delete('http://localhost:3000/api/user/' + user._id)
             .map((response: Response) => response.json())
             .catch((error: Response) => Observable.throw(error.json()));
-    }
-
-    createImageUrl(blob: Blob) {
-        return blob;
-        /*console.log(JSON.stringify(blob));
-        let urlCreator = window.URL;
-        return urlCreator.createObjectURL(blob);*/
     }
 }

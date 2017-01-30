@@ -1,7 +1,6 @@
-import { Component, OnInit, Renderer, trigger, state, style, transition, animate } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { User } from "../../_models/user.model";
 import { Project } from "../../_models/project.model";
-import { ProjectTask } from "../../_models/project-task.model";
 import { UserService } from "../../_services/user.service";
 import { SkillService } from "../../_services/skill.service";
 import { SkillSearchService } from "../../_services/skill-search.service";
@@ -19,6 +18,7 @@ import { ChangePasswordComponent } from "./change-password.component";
 
 export class UserProfileComponent implements OnInit {
     user: User;
+    img: string = "/img/user.png";
     projects: Project[];
     assignedTasks: any[]; // backend returns [{ task: {}, project: { _id: string, client: string, title: string }}]
     showTask = true;
@@ -29,39 +29,33 @@ export class UserProfileComponent implements OnInit {
     newPhone: string;
 
     editingSkills = false;
-    pictureElement;
     imgToUpload: File;
     changePwdModal = "change-pwd-modal";
 
     constructor(private userService: UserService,
                 private authService: AuthService,
                 private skillSearchService: SkillSearchService,
-                private renderer: Renderer,
                 private modalService: ModalService,
                 private _flash: FlashMessagesService) {}
 
     ngOnInit() {
         //clear all modals to prevent memory leak
+        let comp = this;
         this.modalService.clearAllModals();
-
         const currentUser = this.authService.currentUser();
-        this.pictureElement = document.getElementById('profile-picture');
 
         if (currentUser) {
             this.userService.getUserById(currentUser._id)
                 .subscribe(
-                    (user: User) => this.user = user,
-                    error => console.log(error)
+                    (user: User) => {
+                        this.user = user;
+                        // Todo: refactor please
+                        this.userService.getUserImage(user._id).subscribe((data: Promise<any>) => data
+                            .then(function (result) {
+                                comp.img = result;
+                            }));
+                    }, error => console.log(error)
             );
-
-            this.userService.getUserImage(currentUser._id)
-                .subscribe(
-                    data => {
-                        let profilePicture = document.getElementById('profile-picture');
-                        this.renderer.setElementProperty(profilePicture, 'src', data);
-                    },
-                    error => console.log(error)
-                );
 
             this.userService.getProjectsCreatedByUser(currentUser._id)
                 .subscribe(
@@ -79,12 +73,6 @@ export class UserProfileComponent implements OnInit {
                     },
                     error => console.log(error)
                     );
-
-            this.userService.getUserImage(currentUser._id)
-                .subscribe(
-                    data =>  this.renderer.setElementProperty(this.pictureElement, 'src', data),
-                    error => console.log(error)
-                );
         }
     }
 
@@ -136,13 +124,15 @@ export class UserProfileComponent implements OnInit {
      * Uploads the chosen image as profile picture
      */
     upload() {
+        let comp = this;
         this.userService.uploadUserImage(this.user._id, this.imgToUpload)
             .subscribe(
-                data => {
-                    this.renderer.setElementProperty(this.pictureElement, 'src', data);
-                    return localStorage.setItem(this.user._id, ""+data);
-                },
-                error => console.log(error)
+                (data: Promise<any>) => {
+                    data.then(function (result) {
+                        comp.img = result;
+                    })
+                }, error => comp.img = "/img/usersmall.png"
+
             );
     }
 

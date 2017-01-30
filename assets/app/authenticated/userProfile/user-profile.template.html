@@ -4,7 +4,7 @@
   <div class="sidebar">
 
     <div class="picture-container">
-      <img src="/img/user.png" id="profile-picture" alt="Profile picture">
+      <img [src]="img | safeUrl" id="profile-picture" alt="Profile picture">
       <label class="image-upload-label" for="img-upload-input"><i class="fa fa-pencil"></i></label>
       <input class="image-upload-input" id="img-upload-input" type="file" (change)="fileChanged($event)" style="display: none;">
       <span class="username">{{user?.firstName}} {{user?.lastName}}</span>

@@ -55,7 +55,7 @@ router.post('/login', function(req, res) {
 /**
  * Guard routes
  */
-router.use(authHelper.ensureAuthenticated)
+router.use(authHelper.ensureAuthenticated);
 
 /**
  *  Handle Logout
@@ -273,7 +273,7 @@ router.post('/user/img/:id', multipartMiddleware, function(req, res, next) {
                     else console.log(info);
                 });
 
-            var largeImgPath = imgStorePath + req.params.id + '.png';
+            let largeImgPath = imgStorePath + req.params.id + '.png';
 
             sharp(req.files.image.path)
                 .resize(600,600)
@@ -296,6 +296,7 @@ router.get('/user/img/:id/:size?', function (req, res){
             .then(function (result) {
                 file = imgStorePath +  result._id + size + '.png';
                 let img = fs.readFileSync(file);
+                if(!img) res.
                 res.writeHead(200, {'Content-Type': 'image/png' });
                 res.end(img, 'binary');
             })

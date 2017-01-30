@@ -54,16 +54,10 @@ export class LoginComponent implements OnInit{
     cacheUserAvatars(users: any[]) {
         users.forEach(user =>
             this.userService.getUserImage(user._id, "small")
-                .subscribe((file: Blob) => {
-                    let image;
-                    var myReader:FileReader = new FileReader();
-                    myReader.readAsDataURL(file);
-                    myReader.onloadend = (e) => {
-                        image = myReader.result;
-                        localStorage.setItem(user._id + , image);
-                    }
-                })
-        )
-        this.userService.getUserImage(localStorage.getItem('user')._id);
+                .subscribe()
+        );
+        let user: User = JSON.parse(localStorage.getItem('user'));
+        this.userService.getUserImage(user._id)
+            .subscribe();
     }
 }

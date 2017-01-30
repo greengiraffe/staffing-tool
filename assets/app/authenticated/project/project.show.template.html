@@ -34,14 +34,14 @@
           <h3 class="g-card-subtitle">Assigned Users</h3>
           <ul class="user-list">
           <p class="empty-hint" *ngIf="projectTask.assignedUsers.length === 0">There are no assigned Users yet.</p>
-            <li class="user" *ngFor="let user of projectTask.assignedUsers"><img class="avatar {{user._id}}" alt="Profile picture">{{ user.firstName }} {{ user.lastName }}
+            <li class="user" *ngFor="let user of projectTask.assignedUsers"><img [src]="pictures[user._id] | safeUrl" class="avatar {{user._id}}" alt="Profile picture">{{ user.firstName }} {{ user.lastName }}
               <button title="Unassign User" *ngIf="currentUserIsCreator" type="button" (click)="unassignUser(projectTask, user)" class="btn btn-icon btn-unassign"><i class="fa fa-minus-circle" aria-hidden="true"></i></button>
             </li>
           </ul>
           <h3 class="g-card-subtitle">Interested Users</h3>
           <ul class="user-list">
           <p class="empty-hint" *ngIf="projectTask.interestedUsers.length === 0">There are no interested Users yet.</p>
-            <li class="user" *ngFor="let user of projectTask.interestedUsers"><img class="g-avatar {{user._id}}" alt="Profile picture">{{ user.firstName }} {{ user.lastName }}
+            <li class="user" *ngFor="let user of projectTask.interestedUsers"><img [src]="pictures[user._id] | safeUrl" class="g-avatar {{user._id}}" alt="Profile picture">{{ user.firstName }} {{ user.lastName }}
               <button title="Assign User" *ngIf="currentUserIsCreator" type="button" (click)="assignUser(projectTask, user)" class="btn btn-icon btn-assign"><i class="fa fa-plus-circle" aria-hidden="true"></i></button>
             </li>
           </ul>

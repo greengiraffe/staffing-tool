@@ -30,8 +30,7 @@ export class ProjectShowComponent implements OnInit {
 
     project: Project;
     currentUserIsCreator = false;
-    urlsOfLoadedPictures: Object = new Object();
-    idsOfLoadedPictures = new Array<string>();
+    pictures: Object = {};
 
     constructor(
         private projectService: ProjectService,
@@ -75,34 +74,24 @@ export class ProjectShowComponent implements OnInit {
     loadUserAvatars(users: Array<User>) {
         this.project.projectTasks.forEach(task => {
             users.forEach(user => {
-                if(!this.urlsOfLoadedPictures[user._id]) {
-                    this.userService.getUserImage(user._id, "small")
-                        .subscribe(data => {
-                            this.urlsOfLoadedPictures[user._id] = data;
-                            this.renderImages(user._id)
-                        },
-                        error => {
-                            this.urlsOfLoadedPictures[user._id] = '/img/usersmall.png';
-                            this.renderImages(user._id)
-                        });
-                }
+                this.pictures[user._id] = localStorage.getItem(user._id);
             });
         });
     }
 
-    renderImages(userId: string) {
-        var images = document.getElementsByClassName(userId);
-        for (var i = 0; i < images.length; ++i) {
-            this.renderer.setElementProperty(images[i], 'src', this.urlsOfLoadedPictures[userId])
-        }
-    }
+    // renderImages(userId: string) {
+    //     var images = document.getElementsByClassName(userId);
+    //     for (var i = 0; i < images.length; ++i) {
+    //         this.renderer.setElementProperty(images[i], 'src', this.urlsOfLoadedPictures[userId])
+    //     }
+    // }
 
     assignUser(task: ProjectTask, user: User) {
         task.assignedUsers.push(user);
         let userIndex = task.interestedUsers.indexOf(user);
         task.interestedUsers.splice(userIndex, 1);
         this.projectService.updateProject(this.project)
-            .subscribe(data => this.renderImages(user._id));
+            .subscribe();
     }
 
     unassignUser(task: ProjectTask, user: User) {
