@@ -20,20 +20,7 @@ export class ProjectListComponent implements OnInit {
 
     today: Date;
 
-    //used for filtering
-    showOwnProjects: boolean = false;
-    showNormalPrio: boolean = false;
-    showHighPrio: boolean = false;
-    showPastProjects: boolean = false;
-    showCurrentProjects: boolean = false;
-
-    notOwnProjects: Project[] = [];
-    notNormalProjects: Project[] = [];
-    notHighProjects: Project[] = [];
-    notPastProjects: Project[] = [];
-    notCurrentProjects: Project[] = [];
-
-    filteredProjects: Project[];
+    filteredProjects: Project[] = [];
 
     constructor(private projectService: ProjectService,
                 private router: Router,
@@ -46,10 +33,12 @@ export class ProjectListComponent implements OnInit {
         this.projectService.getProjects()
             .subscribe((projects: Project[]) => {
                 this.projects = projects;
-                this.filteredProjects = projects;
+                for(let project of this.projects) {
+                    this.filteredProjects.push(project);
+                }
                 let filters = this.filterService.getFilters();
                 for(let filter of filters) {
-                    this.filterProjects(filter, false);
+                    this.applyFilter(filter);
                 }
                 this.orderProjects(this.filterService.getOrder(), false);
             });
@@ -91,71 +80,66 @@ export class ProjectListComponent implements OnInit {
         this.router.navigate([destinationURL]);
     }
 
-    filterAfter(key: string, toggle: boolean, filterArray: Project[]) {
-        if(toggle) {
-            document.getElementById(key).setAttribute("checked", "true");
-            for(let project of this.filteredProjects) {
-                var expression;
-                switch(key) {
-                    case ("own"):
-                        expression = project.creator._id != this.authService.currentUser()._id;
-                        break;
-                    case ("high"):
-                        expression = !project.isPriority;
-                        break;
-                    case ("current"):
-                        expression = new Date(project.end) < this.today;
-                        break;
-                    case ("past"):
-                        expression = new Date(project.end) >= this.today;
-                        break;
-                    default:
-                        break;
-                }
-                if(expression) {
-                    filterArray.push(project);
-                }
+    filterAfter(key: string) {
+        let removeProjects = []
+        for(let project of this.filteredProjects) {
+            var expression;
+            switch(key) {
+                case ("own"):
+                    expression = project.creator._id != this.authService.currentUser()._id;
+                    break;
+                case ("high"):
+                    expression = !project.isPriority;
+                    break;
+                case ("current"):
+                    expression = new Date(project.end) >= this.today;
+                    break;
+                case ("past"):
+                    expression = new Date(project.end) <= this.today;
+                    break;
+                default:
+                    break;
             }
-            for(let project of filterArray) {
-                this.filteredProjects.splice(this.filteredProjects.indexOf(project),1);
+            if(expression) {
+                removeProjects.push(project);
             }
-        } else {
-            document.getElementById(key).setAttribute("checked", "false");
-            for(let project of filterArray) {
-                this.filteredProjects.push(project);
-            }
-            //clear filterArray
-            for(var i = filterArray.length; i>0; i--) {
-                filterArray.pop();
-            }
+        }
+        for(let project of removeProjects) {
+            this.filteredProjects.splice(this.filteredProjects.indexOf(project),1);
         }
     }
 
-    filterProjects(key: string, rememberFilter: boolean) {
+    applyFilter(key: string) {
 
         switch(key) {
             case ("own"):
-                this.showOwnProjects = !this.showOwnProjects;
-                this.filterAfter("own", this.showOwnProjects, this.notOwnProjects);
+                this.filterAfter("own");
                 break;
             case("high"):
-                this.showHighPrio = !this.showHighPrio;
-                this.filterAfter("high", this.showHighPrio, this.notHighProjects);
+                this.filterAfter("high");
                 break;
             case("current"):
-                this.showCurrentProjects = !this.showCurrentProjects;
-                this.filterAfter("current", this.showCurrentProjects, this.notCurrentProjects);
+                this.filterAfter("current");
                 break;
             case("past"):
-                this.showPastProjects = !this.showPastProjects;
-                this.filterAfter("past", this.showPastProjects, this.notPastProjects);
+                this.filterAfter("past");
                 break;
             default:
                 break;
         }
-        if(rememberFilter) {
-            this.filterService.pushPopFilter(key);
+    }
+
+    filterProjects(key: string) {
+        this.filteredProjects = [];
+        for(let project of this.projects) {
+            this.filteredProjects.push(project);
         }
+        this.filterService.pushPopFilter(key);
+        let applyFilters = this.filterService.getFilters();
+        for(let key of applyFilters) {
+            this.applyFilter(key);
+        }
+        this.orderProjects(this.filterService.getOrder(), false);
     }
 
     orderProjects(key: string, rememberOrder: boolean) {
@@ -176,7 +160,6 @@ export class ProjectListComponent implements OnInit {
             switch (key) {
                 case ("start-asc"):
                     expression = new Date(a.start).valueOf() - new Date(b.start).valueOf();
-                    console.log(expression);
                     break;
                 case ("start-desc"):
                     expression = new Date(b.start).valueOf() - new Date(a.start).valueOf();

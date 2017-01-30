@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 @Injectable()
 
 export class FilterService {
-    filters: string[] = ["current"];
+    filters: string[] = ["past"];
     orderBy: string = "end-asc";
 
     pushPopFilter(filter) {
