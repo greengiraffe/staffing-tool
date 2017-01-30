@@ -1,6 +1,12 @@
-# IXDS HTW Staffing Tool
+## IXDS HTW Staffing Tool
 
 HTW Projekt WiSe 16/17 – IXDS Online Staffing Tool
+
+A Student project from[HTW Berlin](https://www.htw-berlin.de)in cooperation with[IXDS](https://www.ixds.com), <br />
+which is a first prototype of an online staffing tool to help the organization of tasks in different projects <br />
+including the assignment of users.
+
+If you want to reuse the code, please ask.
 
 <!-- TOC depthFrom:2 -->
 
@@ -44,30 +50,6 @@ HTW Projekt WiSe 16/17 – IXDS Online Staffing Tool
 
 `nodemon start`
 
-### Project Structure
-
-```
-.
-├── assets
-│   └── app  (Angular App / TypeScript Assets)
-├── bin      (Node Server Binary)
-├── config   (Configuration)
-│
-├── public
-│   ├── img
-│   ├── js
-│   │   ├── app     (Compiled Angular TS / created by gulp)
-│   │   └── vendor  (node vendor files   / created by gulp)
-│   │       
-│   └── stylesheets
-├── server          (express backend)
-│   ├── components
-│   │   └── user
-│   ├── models      (database models / seeds)
-│   ├── services
-│   └── views       (index.hbs handlebar)
-└── typings         (typescript)
-```
 
 ### Troubleshooting
 
