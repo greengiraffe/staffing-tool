@@ -79,8 +79,9 @@ export class TaskCreateComponent implements OnInit, OnDestroy {
             // prevent adding a duplicate
             return;
         }
-        // TODO perhaps remove the interested user
         this.task.assignedUsers.push(user);
+        let userIndex = this.task.interestedUsers.indexOf(user);
+        this.task.interestedUsers.splice(userIndex, 1);
         this.retrieveImgURLs();
         this.userSearchService.userAdded(user);
     }
