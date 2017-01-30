@@ -133,7 +133,7 @@ export class UserService {
     getUserImage(userId, size?: string): Observable<{}> {
         let routeParams = size ? userId + "/" + size : userId;
         return this.authHttp.get('http://localhost:3000/api/user/img/' + routeParams, {responseType: ResponseContentType.Blob })
-        .map((response: Response) => (response.status === 200) ? this.createImageUrl(response.blob()) : null)
+        .map((response: Response) => (response.status === 200) ? response.blob() : null)
         .catch((error: Response) => Observable.throw(error.json()));
     }
 
@@ -154,7 +154,9 @@ export class UserService {
     }
 
     createImageUrl(blob: Blob) {
+        return blob;
+        /*console.log(JSON.stringify(blob));
         let urlCreator = window.URL;
-        return urlCreator.createObjectURL(blob);
+        return urlCreator.createObjectURL(blob);*/
     }
 }

@@ -3,7 +3,7 @@
     <button *ngIf="currentUserCanDelete" class="btn btn-icon btn-danger" type="button" (click)="modalService.open(deleteUserModalId)"><i class="fa fa-trash"></i></button>
   </div>
 
-  <img class="g-avatar avatar" [src]="url | safeUrl" alt="profile picture">
+  <img class="g-avatar avatar" [src]="url" alt="profile picture">
   <h3 class="title" (click)="showUser()">{{ user.firstName}} {{ user.lastName }}</h3>
   <ul class="meta-list">
     <li class="meta-item"><i class="fa fa-envelope"></i><a href="mailto:{{user.email}}">{{ user.email }}</a></li>
