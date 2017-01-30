@@ -115,7 +115,7 @@
             <app-modal [modal-id]="editTaskModalIds[i]" modal-title="Edit {{ projectTask.title }}">
               <app-task-create #taskComponent [task]="projectTask" modal-body></app-task-create>
               <div modal-footer class="text-xs-right">
-                <button type="button" class="btn" (click)="closeModal(editTaskModalIds[i], taskComponent, $event)">Cancel</button>
+                <button type="button" class="btn" (click)="closeModal(editTaskModalIds[i], $event)">Cancel</button>
                 <button type="button" class="btn btn-primary" [disabled]="!taskComponent.taskForm.valid" (click)="saveEditedProjectTask(taskComponent, i)">
                   Save Changes
                 </button>
@@ -129,7 +129,7 @@
         <app-modal [modal-id]="addTaskModalId" modal-title="Add a new Task">
           <app-task-create #taskComponent modal-body></app-task-create>
           <div modal-footer class="text-xs-right">
-            <button type="button" class="btn" (click)="closeModal(addTaskModalId, taskComponent, $event)">Cancel</button>
+            <button type="button" class="btn" (click)="closeModalAndReset(addTaskModalId, taskComponent, $event)">Cancel</button>
             <button type="button" class="btn btn-primary" [disabled]="!taskComponent.taskForm.valid" (click)="addProjectTask(taskComponent)">
               Save Task
             </button>
