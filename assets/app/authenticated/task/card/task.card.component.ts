@@ -45,8 +45,8 @@ export class TaskCardComponent {
         this.currentUser = this.authService.currentUser();
 
         if (this.currentUser) {
-            this.currentUserCanDelete = this.rightsService.canDeleteTask(this.project, this.currentUser)
-            this.currentUserCanEdit = this.rightsService.canEditTask(this.project, this.currentUser)
+            this.currentUserCanDelete = this.rightsService.canDeleteTask(this.project, this.currentUser);
+            this.currentUserCanEdit = this.rightsService.canEditTask(this.project, this.currentUser);
             this.currentUserIsInterested = !!this.task.interestedUsers.find(user => user._id === this.currentUser._id);
             this.currentUserIsAssigned = !!this.task.assignedUsers.find(user => user._id === this.currentUser._id);
 

@@ -74,7 +74,8 @@ export class ProjectShowComponent implements OnInit {
     loadUserAvatars(users: Array<User>) {
         this.project.projectTasks.forEach(task => {
             users.forEach(user => {
-                this.pictures[user._id] = localStorage.getItem(user._id);
+                let img = localStorage.getItem(user._id);
+                this.pictures[user._id] = img ? img : "/img/usersmall.png" ;
             });
         });
     }

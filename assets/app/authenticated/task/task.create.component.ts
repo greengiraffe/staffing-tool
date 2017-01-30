@@ -23,7 +23,7 @@ export class TaskCreateComponent implements OnInit, OnDestroy {
 
     skillSearchServiceSubscription;
     userSearchServiceSubscription;
-    urlsOfLoadedPictures: Object = new Object();
+    urlsOfLoadedPictures: Object = {};
 
     constructor(private skillService: SkillService,
                 private skillSearchService: SkillSearchService,
