@@ -163,16 +163,14 @@ export class UserProfileComponent implements OnInit {
             formValue['newPw']['confirm'])
             .subscribe(
                 data => {
-                    changePwdComponent.changeForm.reset();
+                    changePwdComponent.reset();
                     this.modalService.close(this.changePwdModal);
                     this._flash.show("Password changed!", { cssClass: 'alert-success', timeout: 2000 })
                 },
                 error => {
                     console.log(error);
-                    changePwdComponent.changeForm.reset();
-                    changePwdComponent.changeForm.setErrors({
-                        'wrongPassword': true
-                    });
+                    changePwdComponent.reset();
+                    changePwdComponent.setWrongPasswordError();
                 }
             );
     }

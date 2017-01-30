@@ -64,4 +64,20 @@ export class ChangePasswordComponent implements OnInit{
             return null;
         }
     }
+
+    reset() {
+        this.changeForm.reset({
+            oldPw: '',
+            newPw: {
+                password: '',
+                confirm: ''
+            }
+        });
+    }
+
+    setWrongPasswordError() {
+        this.changeForm.setErrors({
+            'wrongPassword': true
+        });
+    }
 }
