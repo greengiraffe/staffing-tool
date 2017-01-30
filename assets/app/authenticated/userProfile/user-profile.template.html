@@ -59,7 +59,7 @@
         </div>
       </div>
     </div>
-    <div class="bar" [class.expanded]="showProject">
+    <div class="bar" [class.expanded]="showProject" *ngIf="user?.role != 'freelancer'">
       <div class="bar-head" (click)="toggleProject()" >
         Created Projects
         <i class="fa fa-chevron-right"></i>
