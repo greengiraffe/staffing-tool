@@ -10,6 +10,12 @@
   width: 250px;
   height: 100%;
   background: $white;
+  position: -webkit-sticky;
+  position: -moz-sticky;
+  position: -ms-sticky;
+  position: -o-sticky;
+  position: sticky;
+  top:24px;
 }
 
 .picture-container {
