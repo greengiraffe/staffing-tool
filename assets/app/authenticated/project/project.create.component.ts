@@ -137,7 +137,12 @@ export class ProjectCreateComponent implements OnInit {
     }
 
     onCancel(){
-        this.router.navigateByUrl('user/project/list/projects');
+        if(this.isEditing){
+            this.router.navigateByUrl('user/project/show/' + this.project._id);
+        }
+        else{
+            this.router.navigateByUrl('user/project/list/projects');
+        }
     }
 
     onSubmit(form: FormGroup) {
