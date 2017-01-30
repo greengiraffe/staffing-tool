@@ -161,13 +161,14 @@ export class ProjectCreateComponent implements OnInit {
         if(!this.isEditing) {
             this.projectService.createProject(project)
             .subscribe(
-                data => {
+                (data: Project) => {
                     this._flash.show("Project successfully added.", { cssClass: 'alert-success', timeout: 500000 });
                     this.projectForm.reset({
                         type: "tentative",
                         isPriority: "false",
                     });
                     this.projectTasks = new Array<ProjectTask>();
+                    this.router.navigateByUrl('user/project/show/' + data._id);
                 },
                 error => {this._flash.show(error.error.message, { cssClass: 'alert-danger', timeout: 5000 });}
             );
