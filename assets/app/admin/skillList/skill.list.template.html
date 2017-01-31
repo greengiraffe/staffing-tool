@@ -4,13 +4,14 @@
   <h1>Skills</h1>
 
   <div class="skill-create-container">
-
-    <div class="input-group">
-      <input #skillInput type="text" class="form-control" placeholder="Enter a skill">
-      <span class="input-group-btn">
-        <button class="btn btn-primary" (click)="addSkill(skillInput.value)" type="button">Add Skill</button>
-      </span>
-    </div>
+    <form (submit)="addSkill(skillInput.value, skillInput)">
+      <div class="input-group">
+        <input #skillInput type="text" class="form-control" placeholder="Enter a skill">
+        <span class="input-group-btn">
+          <button type="submit" (click)="addSkill(skillInput.value, skillInput)" class="btn btn-primary" type="button">Add Skill</button>
+        </span>
+      </div>
+    </form>
   </div>
 
   <div class="content-wrapper">

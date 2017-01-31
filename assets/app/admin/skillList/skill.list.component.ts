@@ -43,9 +43,10 @@ export class SkillListComponent implements OnInit {
         }
     }
 
-    addSkill(skillInput: string): void {
+    addSkill(skill: string, skillInput): void {
+        skillInput.value = '';
         // Create
-        this.skillService.addSkill(skillInput)
+        this.skillService.addSkill(skill)
             .subscribe(
                 data => {
                     this._flash.show("Skill successfully added", { cssClass: 'alert-success', timeout: 10000 });},
