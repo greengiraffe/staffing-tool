@@ -2,9 +2,9 @@
 
 HTW Projekt WiSe 16/17 – IXDS Online Staffing Tool
 
-A Student project from[HTW Berlin](https://www.htw-berlin.de)in cooperation with[IXDS](https://www.ixds.com), <br />
-which is a first prototype of an online staffing tool to help the organization of tasks in different projects <br />
-including the assignment of users.
+A Student project from [HTW Berlin](https://www.htw-berlin.de) in cooperation with [IXDS](https://www.ixds.com), <br />
+which is a first prototype of an online staffing tool to help with <br />
+the organization of tasks in different projects including the assignment of users.
 
 If you want to reuse the code, please ask.
 
