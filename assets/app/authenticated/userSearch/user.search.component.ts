@@ -12,8 +12,8 @@ import { UserSearchService } from '../../_services/user.search.service';
 
 export class UserSearchComponent implements OnInit {
     @Input() requiredSkills;
-    @Input() interestedUsers;
-    users: User[];
+    @Input() interestedUsers: any[];
+    users: any[];
     visibleUsers: any[] = [];
     hiddenUsers: any[] = [];
     searchText;
@@ -27,8 +27,16 @@ export class UserSearchComponent implements OnInit {
         this.userService.getUsers()
             .subscribe(
                 users => {
-                    this.users = users as User[];
-                    this.visibleUsers = users as any[];
+                    this.users = users as any[];
+                    this.visibleUsers = [];
+            outer: for(let user of this.users) {
+                        for(let interested of this.interestedUsers) {
+                            if(interested._id.localeCompare(user._id)===0) {
+                                continue outer;
+                            }
+                        }
+                        this.visibleUsers.push(user);
+                    }
                     this.sortUsers();
                     this.retrieveImgURLs();
                 },
@@ -75,7 +83,7 @@ export class UserSearchComponent implements OnInit {
     }
 
     reset() {
-        this.visibleUsers = new Array<User>();
+        this.visibleUsers = new Array<any>();
         this.visibleUsers.push(...this.users);
         this.sortUsers();
     }
@@ -93,13 +101,19 @@ export class UserSearchComponent implements OnInit {
     }
 
     calculateMatch(requiredSkills: Skill[]){
-        function doCalculation(users) {
+        function doCalculation(users, interested) {
             for(let user of users)  {
                 user.match = 0;
                 if(requiredSkills.length > 0) {
                     for(let userSkill of user.userSkills) {
                         for(let reqSkill of requiredSkills) {
-                            if(userSkill.skill._id === reqSkill._id) {
+                            var expression;
+                            if(interested) {
+                                expression = userSkill.skill === reqSkill._id;
+                            } else {
+                                expression = userSkill.skill._id === reqSkill._id
+                            }
+                            if(expression) {
                                 switch(userSkill.rating){
                                     case 0: user.match += 0.25;
                                             break;
@@ -116,10 +130,10 @@ export class UserSearchComponent implements OnInit {
                 }
             }
         }
-        doCalculation(this.visibleUsers);
+        doCalculation(this.visibleUsers, false);
 
         if(this.interestedUsers) {
-            doCalculation(this.interestedUsers);
+            doCalculation(this.interestedUsers, true);
         }
         this.sortUsers();
     }
