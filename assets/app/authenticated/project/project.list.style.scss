@@ -138,19 +138,3 @@
 .order-buttons {
   display: inline-block;
 }
-
-//spinner
-.ducspinner {
-  margin: 20% auto 0 auto;
-  height: 28px;
-  width: 28px;
-  animation: rotate 0.5s infinite linear;
-  border: 6px solid $grey-medium;
-  border-right-color: transparent;
-  border-radius: 50%;
-}
-
-@keyframes rotate {
-  0%    { transform: rotate(0deg); }
-  100%  { transform: rotate(360deg); }
-}

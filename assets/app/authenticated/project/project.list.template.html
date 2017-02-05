@@ -64,7 +64,7 @@
     </div>
 
     <main class="content">
-      <div class="ducspinner" *ngIf="projects === undefined"></div>
+      <div class="g-ducspinner" *ngIf="projects === undefined"></div>
       <div id="projects" class="tabpane" [ngClass]="{ active: activeTab === 'projects' }">
         <app-project-card
           [project]="project"

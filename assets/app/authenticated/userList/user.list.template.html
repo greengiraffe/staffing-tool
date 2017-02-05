@@ -5,6 +5,7 @@
       New User
     </button>
     <div class="users">
+      <div class="g-ducspinner" *ngIf="users === undefined"></div>
       <app-user-card *ngFor="let user of users" (onDelete)="deleteUser(user)" [user]="user"></app-user-card>
     </div>
 

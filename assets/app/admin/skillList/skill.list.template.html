@@ -14,8 +14,9 @@
     </form>
   </div>
 
-  <div class="content-wrapper">
+  <div class="g-ducspinner" *ngIf="skills === undefined"></div>
 
+  <div class="content-wrapper" *ngIf="skills">
     <div class="content-wrapper">
 
       <div class="table-wrapper">
