@@ -61,10 +61,18 @@ body ::selection {
 a {
   color: $primary-darker;
   text-decoration: none;
+  transition: all 0.1s ease-in-out;
+  transition-property: color, border; // override
 
-  &:hover {
+  &:hover,
+  &:focus {
     color: $primary-darker;
     border-bottom: 1px solid $primary-darker;
     text-decoration: none;
+  }
+  
+  &:active {
+    color: $primary;
+    border-color: $primary;
   }
 }

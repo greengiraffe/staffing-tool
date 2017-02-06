@@ -38,6 +38,12 @@
   width: 120px;
   text-align: right;
   margin-left: auto;
+  
+  a:hover,
+  a:focus,
+  a:active {
+    color: $danger-light;
+  }
 }
 
 
@@ -59,7 +65,9 @@
   color: $grey-extralight;
   padding: 0;
 
-  &:hover {
+  &:hover,
+  &:focus,
+  &:active {
     border-bottom: 0;
     color: $primary-lighter;
   }

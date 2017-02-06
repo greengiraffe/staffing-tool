@@ -7,7 +7,7 @@
       <h1 class="project-title">{{project?.title}}</h1>
       <div class="g-tag type">{{ project?.type }}</div>
       <ul class="meta-list">
-        <li><b>Period:</b> {{ project?.start | date:"dd/MM/yyyy" }} - {{ project?.end | date:"dd/MM/yyyy"}}</li>
+        <li><b>Period:</b> {{ project?.start | date:"dd.MM.yyyy" }} – {{ project?.end | date:"dd.MM.yyyy"}}</li>
         <li><b>Created by:</b> {{ project?.creator.firstName }} {{ project?.creator.lastName }}</li>
         <li><b>Budget:</b> {{ project?.budget }} €</li>
         <li><b>Expense Budget:</b> {{ project?.expBudget }} €</li>
