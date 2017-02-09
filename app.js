@@ -10,9 +10,9 @@ let path = require('path');
 let logger = require('morgan');
 let cookieParser = require('cookie-parser');
 let bodyParser = require('body-parser');
-let seed = require('seed-mongoose')({
-    path: 'config/fixtures/'
-});
+// let seed = require('seed-mongoose')({
+//     path: 'config/fixtures/'
+// });
 let mongoose = require('mongoose');
 let passport = require('passport');
 let expressSession = require('express-session');
