@@ -26,6 +26,7 @@ import { RightsService } from "./_services/rights.service";
 
 import { CanActivateAuthGuard } from "./app.routing.guard.auth";
 
+
 @NgModule({
     imports: [
         HttpModule,
@@ -54,13 +55,13 @@ import { CanActivateAuthGuard } from "./app.routing.guard.auth";
         NavBarService,
         CanActivateAuthGuard,
         AuthHttp,
-         provideAuth({
-          headerName: 'Authorization',
-          headerPrefix: 'Bearer',
-          tokenName: 'id_token',
-          tokenGetter: (() => localStorage.getItem('id_token')),
-          noJwtError: true
-        })
+        //  provideAuth({
+        //   headerName: 'Authorization',
+        //   headerPrefix: 'Bearer',
+        //   tokenName: 'id_token',
+        //   tokenGetter: (() => localStorage.getItem('id_token')),
+        //   noJwtError: true
+        // })
     ],
     bootstrap: [AppComponent]
 })
